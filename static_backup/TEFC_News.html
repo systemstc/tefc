@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>News — TEFC | Textiles Exports Facilitation Centre</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#6c153f;
+  --navy-dark:#4a0e2b;
+  --navy-light:#8a1e50;
+  --blue-accent:#6c153f;
+  --sky:#f9eaf1;
+  --sky2:#fdf4f8;
+  --white:#ffffff;
+  --text:#1a1a2e;
+  --muted:#5a6a82;
+  --border:#e8d0dc;
+  --gold:#f5a623;
+  --green:#2a9d54;
+  --blue:#1a7db5;
+  --orange:#e07b00;
+}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--text);font-size:14px;}
+
+/* ── TOPBAR ── */
+.topbar{background:#fce8f2;padding:0.28rem 2.5rem;display:flex;align-items:center;justify-content:flex-end;gap:0.6rem;border-bottom:1px solid #e8c8d8;}
+.topbar-btn{display:flex;align-items:center;gap:5px;background:none;border:1px solid #c97aab;border-radius:4px;padding:0.22rem 0.65rem;font-size:0.72rem;color:var(--navy);cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;transition:background 0.15s;}
+.topbar-btn:hover{background:rgba(108,21,63,0.08);}
+.topbar-btn svg{width:14px;height:14px;fill:none;stroke:var(--navy);stroke-width:1.8;flex-shrink:0;}
+.topbar-divider{width:1px;height:18px;background:#c97aab;opacity:0.4;}
+
+/* ── LOGOBAR ── */
+.logobar{background:#fff;padding:0.7rem 2.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.logobar-left{display:flex;align-items:center;gap:14px;}
+.logo-emblem{width:auto;height:70px;padding-right:14px;border-right:1px solid var(--border);display:flex;align-items:center;}
+.logo-emblem svg{height:54px;width:54px;}
+.logo-text-block{padding-left:14px;}
+.logo-title{font-size:2.05rem;font-weight:700;color:var(--navy);line-height:1.2;letter-spacing:0.01em;}
+.logo-subtitle{font-size:0.95rem;color:#7a4060;font-weight:400;margin-top:0.15rem;line-height:1.35;}
+.gov-badge-box{display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;border:1px solid var(--border);border-radius:6px;padding:0.3rem 0.7rem;font-size:0.6rem;color:var(--muted);text-align:center;line-height:1.3;}
+.gov-badge-icon{font-size:1.5rem;margin-bottom:2px;}
+
+/* ── NAV ── */
+nav{background:var(--navy);padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:48px;position:sticky;top:0;z-index:200;}
+.nav-links{display:flex;gap:0;list-style:none;}
+.nav-links li{position:relative;}
+.nav-links li a{color:rgba(255,255,255,0.88);font-size:0.78rem;padding:0.38rem 0.8rem;text-decoration:none;border-radius:3px;transition:background 0.15s,color 0.15s;display:flex;align-items:center;gap:4px;white-space:nowrap;}
+.nav-links li a:hover,.nav-links li a.active{background:rgba(255,255,255,0.16);color:#fff;}
+.arr{font-size:0.55rem;opacity:0.65;transition:transform 0.2s ease;}
+.nav-links li:hover .arr{transform:rotate(180deg);}
+.dropdown-menu{position:absolute;top:100%;left:0;background:var(--white);min-width:200px;border-radius:5px;padding:0.35rem 0;box-shadow:0 6px 18px rgba(0,0,0,0.14);z-index:300;opacity:0;visibility:hidden;transform:translateY(5px);transition:all 0.18s ease;}
+.dropdown-menu li{list-style:none;}
+.dropdown-menu li a{color:#333;font-size:0.78rem;padding:0.5rem 1rem;display:block;text-decoration:none;border-radius:0;white-space:nowrap;}
+.dropdown-menu li a:hover{background:#fce8f2;color:var(--navy);}
+.nav-links li:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0);}
+.nav-search{display:flex;align-items:center;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;overflow:hidden;}
+.nav-search input{background:transparent;border:none;outline:none;color:#fff;font-size:0.75rem;font-family:'Inter',sans-serif;padding:0.3rem 0.65rem;width:150px;}
+.nav-search input::placeholder{color:rgba(255,255,255,0.5);}
+.nav-search button{background:rgba(255,255,255,0.15);border:none;border-left:1px solid rgba(255,255,255,0.2);color:#fff;padding:0 0.55rem;cursor:pointer;height:30px;display:flex;align-items:center;}
+.nav-search button svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2;}
+
+/* ── PAGE HERO ── */
+.page-hero{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%,#a0245e 100%);padding:2.8rem 2.5rem;position:relative;overflow:hidden;}
+.page-hero::after{content:'';position:absolute;right:0;top:0;bottom:0;width:45%;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200"><rect width="400" height="200" fill="%234a0e2b"/><line x1="0" y1="0" x2="400" y2="200" stroke="%23ffffff08" stroke-width="1"/><line x1="50" y1="0" x2="450" y2="200" stroke="%23ffffff06" stroke-width="1"/><line x1="100" y1="0" x2="500" y2="200" stroke="%23ffffff06" stroke-width="1"/></svg>') center/cover;opacity:0.6;}
+.page-hero-inner{position:relative;z-index:2;}
+.breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:0.9rem;}
+.breadcrumb a,.breadcrumb span{font-size:0.74rem;color:rgba(255,255,255,0.65);text-decoration:none;}
+.breadcrumb a:hover{color:#fff;}
+.breadcrumb .sep{color:rgba(255,255,255,0.35);}
+.breadcrumb .cur{color:rgba(255,255,255,0.9);}
+.page-hero h1{color:#fff;font-size:1.9rem;font-weight:700;line-height:1.25;margin-bottom:0.6rem;}
+.page-hero p{color:rgba(255,255,255,0.75);font-size:0.88rem;max-width:580px;line-height:1.6;}
+.hero-meta{display:flex;gap:1.2rem;margin-top:1.4rem;flex-wrap:wrap;}
+.hero-meta-item{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:6px;padding:0.42rem 1rem;color:#fff;font-size:0.78rem;display:flex;align-items:center;gap:6px;}
+.hero-meta-item svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2;flex-shrink:0;}
+
+/* ── TICKER ── */
+.news-ticker{background:var(--navy-dark);padding:0 2.5rem;height:34px;display:flex;align-items:center;gap:0;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.1);}
+.ticker-label{background:var(--gold);color:#1a1a2e;font-size:0.68rem;font-weight:700;padding:0.2rem 0.75rem;border-radius:3px;white-space:nowrap;flex-shrink:0;text-transform:uppercase;letter-spacing:0.04em;}
+.ticker-track{flex:1;overflow:hidden;margin-left:1rem;position:relative;}
+.ticker-track::before{content:'';position:absolute;left:0;top:0;bottom:0;width:30px;background:linear-gradient(to right,var(--navy-dark),transparent);z-index:2;}
+.ticker-track::after{content:'';position:absolute;right:0;top:0;bottom:0;width:30px;background:linear-gradient(to left,var(--navy-dark),transparent);z-index:2;}
+.ticker-inner{display:flex;gap:0;white-space:nowrap;animation:ticker 40s linear infinite;}
+.ticker-item{color:rgba(255,255,255,0.82);font-size:0.73rem;padding:0 1.5rem;border-right:1px solid rgba(255,255,255,0.15);}
+.ticker-item span{color:var(--gold);margin-right:5px;font-weight:600;}
+@keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ── NEWS PAGE TABS ── */
+.news-page-tabs{background:#fff;border-bottom:2px solid var(--border);padding:0 2.5rem;display:flex;gap:0;position:sticky;top:48px;z-index:100;overflow-x:auto;}
+.news-tab{padding:0.85rem 1.15rem;font-size:0.8rem;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;display:flex;align-items:center;gap:6px;transition:color 0.15s;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;font-family:'Inter',sans-serif;}
+.news-tab svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;}
+.news-tab:hover{color:var(--navy);}
+.news-tab.active{color:var(--navy);border-bottom-color:var(--navy);font-weight:600;}
+.tab-count{background:var(--sky);color:var(--navy);font-size:0.62rem;font-weight:700;padding:1px 6px;border-radius:8px;}
+.news-tab.active .tab-count{background:var(--navy);color:#fff;}
+
+/* ── SECTION COMMON ── */
+.section{padding:2.5rem 2.5rem;}
+.section-alt{background:var(--sky2);}
+.sec-head{margin-bottom:1.8rem;}
+.sec-head h2{color:var(--navy);font-size:1.22rem;font-weight:700;margin-bottom:0.3rem;display:flex;align-items:center;gap:10px;}
+.sec-icon{width:34px;height:34px;background:var(--sky);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.sec-icon svg{width:18px;height:18px;fill:none;stroke:var(--navy);stroke-width:1.8;}
+.sec-head p{color:var(--muted);font-size:0.82rem;margin-top:0.3rem;padding-left:44px;}
+.sec-head-line{width:48px;height:3px;background:var(--navy);margin-top:0.7rem;margin-left:44px;border-radius:2px;}
+.sec-head-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:1.8rem;}
+.sec-head-row .sec-head{margin-bottom:0;}
+.view-all-btn{display:flex;align-items:center;gap:5px;color:var(--navy);font-size:0.78rem;font-weight:500;cursor:pointer;background:none;border:1px solid var(--border);border-radius:4px;padding:0.35rem 0.85rem;font-family:'Inter',sans-serif;transition:all 0.15s;}
+.view-all-btn:hover{background:var(--sky);border-color:var(--navy);}
+.section-divider{height:1px;background:var(--border);margin:0 2.5rem;}
+
+/* ── FILTER BAR ── */
+.filter-bar{display:flex;gap:0.45rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+.filter-tab{padding:0.32rem 0.95rem;border-radius:20px;font-size:0.75rem;font-weight:500;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--muted);font-family:'Inter',sans-serif;transition:all 0.15s;}
+.filter-tab:hover{border-color:var(--navy);color:var(--navy);}
+.filter-tab.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+/* ── BUTTONS ── */
+.btn-navy{background:var(--navy);color:#fff;padding:0.4rem 1rem;font-size:0.75rem;border:none;border-radius:4px;cursor:pointer;font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:5px;transition:background 0.15s;}
+.btn-navy:hover{background:var(--navy-dark);}
+.btn-ghost{background:transparent;color:var(--navy);padding:0.38rem 1rem;font-size:0.74rem;border:1px solid var(--navy);border-radius:4px;cursor:pointer;font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:5px;transition:all 0.15s;}
+.btn-ghost:hover{background:var(--sky);}
+.load-more-wrap{text-align:center;margin-top:1.8rem;}
+.btn-load-more{background:#fff;color:var(--navy);border:1.5px solid var(--navy);padding:0.52rem 2rem;font-size:0.8rem;font-weight:600;border-radius:5px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;}
+.btn-load-more:hover{background:var(--navy);color:#fff;}
+
+/* ══════════════════════════════
+   LATEST NEWS — HERO LAYOUT
+══════════════════════════════ */
+.latest-grid{display:grid;grid-template-columns:1fr 340px;gap:1.5rem;}
+.latest-featured{position:relative;border-radius:10px;overflow:hidden;cursor:pointer;min-height:360px;background:linear-gradient(135deg,#4a0e2b,#6c153f);}
+.latest-featured:hover .feat-img-overlay{opacity:1;}
+.feat-img{width:100%;height:100%;object-fit:cover;display:block;min-height:360px;}
+.feat-img-overlay{position:absolute;inset:0;background:rgba(74,14,43,0.45);opacity:0;transition:opacity 0.2s;}
+.feat-bg{position:absolute;inset:0;background:linear-gradient(160deg,#4a0e2b 0%,#8a1e50 50%,#a0245e 100%);display:flex;align-items:center;justify-content:center;}
+.feat-bg svg{opacity:0.07;width:180px;height:180px;fill:#fff;}
+.feat-badge{position:absolute;top:14px;left:14px;background:var(--gold);color:#1a1a2e;font-size:0.62rem;font-weight:700;padding:3px 10px;border-radius:4px;text-transform:uppercase;letter-spacing:0.04em;z-index:2;}
+.feat-source{position:absolute;top:14px;right:14px;background:rgba(255,255,255,0.15);backdrop-filter:blur(4px);color:#fff;font-size:0.63rem;padding:3px 9px;border-radius:4px;font-weight:500;z-index:2;border:1px solid rgba(255,255,255,0.2);}
+.feat-content{position:absolute;bottom:0;left:0;right:0;padding:1.4rem;background:linear-gradient(to top,rgba(40,5,22,0.95) 0%,rgba(40,5,22,0.6) 70%,transparent 100%);z-index:2;}
+.feat-category{display:inline-flex;align-items:center;gap:5px;background:var(--navy);color:#fff;font-size:0.62rem;font-weight:600;padding:3px 9px;border-radius:4px;margin-bottom:0.55rem;text-transform:uppercase;letter-spacing:0.04em;}
+.feat-content h3{color:#fff;font-size:1.08rem;font-weight:700;line-height:1.4;margin-bottom:0.5rem;}
+.feat-content p{color:rgba(255,255,255,0.75);font-size:0.78rem;line-height:1.55;margin-bottom:0.75rem;}
+.feat-meta{display:flex;align-items:center;gap:0.8rem;}
+.feat-meta-item{color:rgba(255,255,255,0.6);font-size:0.68rem;display:flex;align-items:center;gap:4px;}
+.feat-meta-item svg{width:11px;height:11px;stroke:rgba(255,255,255,0.6);fill:none;stroke-width:2;}
+
+.latest-list{display:flex;flex-direction:column;gap:0;}
+.latest-item{display:flex;gap:0.75rem;padding:0.9rem 0;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;}
+.latest-item:first-child{padding-top:0;}
+.latest-item:last-child{border-bottom:none;padding-bottom:0;}
+.latest-item:hover .li-title{color:var(--navy-light);}
+.li-thumb{width:74px;height:60px;border-radius:6px;flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.li-thumb-dom{background:linear-gradient(135deg,#4a0e2b,#6c153f);}
+.li-thumb-intl{background:linear-gradient(135deg,#1a5d8a,#1a7db5);}
+.li-thumb-pol{background:linear-gradient(135deg,#2a7d44,#2a9d54);}
+.li-thumb-mkt{background:linear-gradient(135deg,#8a4e00,#e07b00);}
+.li-thumb svg{width:28px;height:28px;stroke:rgba(255,255,255,0.5);fill:none;stroke-width:1.2;}
+.li-body{flex:1;min-width:0;}
+.li-badge{display:inline-block;font-size:0.58rem;font-weight:700;padding:2px 7px;border-radius:3px;margin-bottom:0.25rem;text-transform:uppercase;letter-spacing:0.04em;}
+.badge-dom{background:#fce8f2;color:var(--navy);}
+.badge-intl{background:#e3f0fa;color:#1a5d8a;}
+.badge-pol{background:#e3f5ec;color:#1a6e3a;}
+.badge-mkt{background:#fef3e2;color:#8a4e00;}
+.badge-trend{background:#fff0e5;color:#c05000;}
+.li-title{color:var(--text);font-size:0.8rem;font-weight:600;line-height:1.4;margin-bottom:0.3rem;transition:color 0.15s;}
+.li-meta{display:flex;align-items:center;gap:0.6rem;}
+.li-date{color:var(--muted);font-size:0.65rem;display:flex;align-items:center;gap:3px;}
+.li-date svg{width:10px;height:10px;stroke:var(--muted);fill:none;stroke-width:2;}
+.li-views{color:var(--muted);font-size:0.65rem;display:flex;align-items:center;gap:3px;}
+.li-views svg{width:10px;height:10px;stroke:var(--muted);fill:none;stroke-width:2;}
+
+/* ══════════════════════════════
+   IN FOCUS SECTION
+══════════════════════════════ */
+.infocus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+.infocus-card{border:1px solid var(--border);border-radius:9px;overflow:hidden;background:#fff;cursor:pointer;transition:box-shadow 0.2s,transform 0.15s;}
+.infocus-card:hover{box-shadow:0 4px 18px rgba(108,21,63,0.12);transform:translateY(-2px);}
+.ic-cover{height:145px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.ic-cover-1{background:linear-gradient(135deg,#4a0e2b,#6c153f);}
+.ic-cover-2{background:linear-gradient(135deg,#8a1e50,#a0245e);}
+.ic-cover-3{background:linear-gradient(135deg,#1a5d8a,#1a7db5);}
+.ic-cover-4{background:linear-gradient(135deg,#1a6e3a,#2a9d54);}
+.ic-cover-5{background:linear-gradient(135deg,#8a4e00,#e07b00);}
+.ic-cover-6{background:linear-gradient(135deg,#521035,#7a1845);}
+.ic-cover::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 18px,rgba(255,255,255,0.025) 18px,rgba(255,255,255,0.025) 19px);}
+.ic-cover-icon{position:relative;z-index:1;opacity:0.5;}
+.ic-cover-icon svg{width:48px;height:48px;stroke:#fff;fill:none;stroke-width:1;}
+.ic-badge{position:absolute;top:10px;left:10px;font-size:0.6rem;font-weight:700;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:0.04em;z-index:2;}
+.ic-new{background:#ff4040;color:#fff;}
+.ic-hot{background:var(--gold);color:#1a1a2e;}
+.ic-deep{background:var(--navy);color:#fff;}
+.ic-body{padding:0.85rem;}
+.ic-body h4{color:var(--text);font-size:0.82rem;font-weight:600;line-height:1.42;margin-bottom:0.35rem;}
+.ic-body p{color:var(--muted);font-size:0.75rem;line-height:1.55;margin-bottom:0.65rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.ic-footer{display:flex;align-items:center;justify-content:space-between;}
+.ic-date{color:var(--muted);font-size:0.65rem;}
+.ic-read{color:var(--navy);font-size:0.7rem;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:3px;}
+.ic-read:hover{text-decoration:underline;}
+
+/* ══════════════════════════════
+   DOMESTIC / INTERNATIONAL 2-COL
+══════════════════════════════ */
+.dom-intl-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.news-col-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem;padding-bottom:0.7rem;border-bottom:2px solid var(--border);}
+.news-col-head-left{display:flex;align-items:center;gap:8px;}
+.news-col-title{font-size:1rem;font-weight:700;color:var(--navy);}
+.col-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.col-icon-dom{background:var(--sky);}
+.col-icon-intl{background:#e3f0fa;}
+.col-icon svg{width:15px;height:15px;fill:none;stroke-width:1.8;}
+.col-icon-dom svg{stroke:var(--navy);}
+.col-icon-intl svg{stroke:#1a5d8a;}
+.col-view-btn{font-size:0.72rem;color:var(--navy);text-decoration:none;font-weight:500;display:flex;align-items:center;gap:3px;border:1px solid var(--border);border-radius:4px;padding:0.25rem 0.65rem;background:#fff;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;}
+.col-view-btn:hover{background:var(--sky);}
+
+.news-list-item{display:flex;gap:0.7rem;padding:0.8rem 0;border-bottom:1px dashed var(--border);cursor:pointer;}
+.news-list-item:last-child{border-bottom:none;padding-bottom:0;}
+.news-list-item:hover .nli-title{color:var(--navy);}
+.nli-num{font-size:1.15rem;font-weight:700;color:var(--border);flex-shrink:0;width:22px;line-height:1.2;margin-top:1px;}
+.nli-body{flex:1;}
+.nli-title{font-size:0.8rem;font-weight:600;color:var(--text);line-height:1.42;margin-bottom:0.28rem;transition:color 0.15s;}
+.nli-meta{display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;}
+.nli-cat{font-size:0.62rem;font-weight:600;padding:1px 7px;border-radius:3px;text-transform:uppercase;}
+.nli-date{color:var(--muted);font-size:0.63rem;}
+.nli-src{color:var(--muted);font-size:0.63rem;font-style:italic;}
+
+/* ══════════════════════════════
+   POPULAR NEWS
+══════════════════════════════ */
+.popular-layout{display:grid;grid-template-columns:1fr 280px;gap:1.8rem;align-items:start;}
+.popular-cards{display:flex;flex-direction:column;gap:0.85rem;}
+.pop-card{display:flex;gap:0.9rem;border:1px solid var(--border);border-radius:8px;padding:0.9rem;background:#fff;cursor:pointer;transition:box-shadow 0.2s,border-color 0.15s;}
+.pop-card:hover{box-shadow:0 3px 12px rgba(108,21,63,0.1);border-color:var(--navy-light);}
+.pop-rank{font-size:2rem;font-weight:700;color:var(--border);flex-shrink:0;width:38px;text-align:center;line-height:1;padding-top:4px;}
+.pop-card:nth-child(1) .pop-rank{color:var(--gold);}
+.pop-card:nth-child(2) .pop-rank{color:#aaa;}
+.pop-card:nth-child(3) .pop-rank{color:#c8854a;}
+.pop-thumb{width:80px;height:66px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.pop-t1{background:linear-gradient(135deg,#4a0e2b,#6c153f);}
+.pop-t2{background:linear-gradient(135deg,#1a5d8a,#1a7db5);}
+.pop-t3{background:linear-gradient(135deg,#1a6e3a,#2a9d54);}
+.pop-t4{background:linear-gradient(135deg,#8a4e00,#e07b00);}
+.pop-t5{background:linear-gradient(135deg,#521035,#7a1845);}
+.pop-thumb svg{width:32px;height:32px;stroke:rgba(255,255,255,0.45);fill:none;stroke-width:1.2;}
+.pop-body{flex:1;}
+.pop-body h4{font-size:0.82rem;font-weight:600;color:var(--text);line-height:1.42;margin-bottom:0.3rem;}
+.pop-meta{display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;}
+.pop-views{color:var(--muted);font-size:0.65rem;display:flex;align-items:center;gap:3px;}
+.pop-views svg{width:10px;height:10px;stroke:var(--muted);fill:none;stroke-width:2;}
+.pop-date{color:var(--muted);font-size:0.65rem;}
+
+/* Newsletter box */
+.newsletter-box{background:linear-gradient(160deg,var(--navy-dark),var(--navy));border-radius:10px;padding:1.5rem;position:relative;overflow:hidden;}
+.newsletter-box::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 18px,rgba(255,255,255,0.025) 18px,rgba(255,255,255,0.025) 19px);}
+.nl-inner{position:relative;z-index:1;}
+.nl-icon{width:40px;height:40px;background:rgba(255,255,255,0.12);border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:0.9rem;}
+.nl-icon svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:1.8;}
+.nl-inner h4{color:#fff;font-size:0.95rem;font-weight:700;margin-bottom:0.4rem;}
+.nl-inner p{color:rgba(255,255,255,0.7);font-size:0.75rem;line-height:1.55;margin-bottom:1rem;}
+.nl-input{width:100%;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:5px;padding:0.5rem 0.75rem;color:#fff;font-size:0.78rem;font-family:'Inter',sans-serif;outline:none;margin-bottom:0.6rem;}
+.nl-input::placeholder{color:rgba(255,255,255,0.45);}
+.nl-btn{width:100%;background:#fff;color:var(--navy);border:none;border-radius:5px;padding:0.5rem;font-size:0.78rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background 0.15s;}
+.nl-btn:hover{background:#fce8f2;}
+
+/* ══════════════════════════════
+   TRENDING ARTICLES
+══════════════════════════════ */
+.trending-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;}
+.trend-card{border:1px solid var(--border);border-radius:9px;overflow:hidden;background:#fff;cursor:pointer;transition:box-shadow 0.2s,transform 0.15s;}
+.trend-card:hover{box-shadow:0 4px 16px rgba(108,21,63,0.12);transform:translateY(-2px);}
+.trend-cover{height:120px;position:relative;display:flex;align-items:center;justify-content:center;}
+.tc1{background:linear-gradient(135deg,#4a0e2b,#6c153f);}
+.tc2{background:linear-gradient(135deg,#8a1e50,#a0245e);}
+.tc3{background:linear-gradient(135deg,#1a5d8a,#1a7db5);}
+.tc4{background:linear-gradient(135deg,#1a6e3a,#2a9d54);}
+.tc5{background:linear-gradient(135deg,#8a4e00,#e07b00);}
+.tc6{background:linear-gradient(135deg,#521035,#7a1845);}
+.tc7{background:linear-gradient(135deg,#3d0a24,#6c153f);}
+.tc8{background:linear-gradient(135deg,#4a2e00,#8a5e00);}
+.trend-cover::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 16px,rgba(255,255,255,0.025) 16px,rgba(255,255,255,0.025) 17px);}
+.tc-cover-icon{position:relative;z-index:1;opacity:0.45;}
+.tc-cover-icon svg{width:40px;height:40px;stroke:#fff;fill:none;stroke-width:1;}
+.trend-badge{position:absolute;top:8px;left:8px;font-size:0.58rem;font-weight:700;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:0.04em;z-index:2;}
+.trend-fire{background:#ff4040;color:#fff;}
+.trend-new{background:var(--gold);color:#1a1a2e;}
+.trend-hot{background:var(--orange);color:#fff;}
+.trend-views-badge{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.45);backdrop-filter:blur(2px);color:rgba(255,255,255,0.85);font-size:0.6rem;padding:2px 6px;border-radius:3px;z-index:2;display:flex;align-items:center;gap:3px;}
+.trend-views-badge svg{width:9px;height:9px;stroke:rgba(255,255,255,0.8);fill:none;stroke-width:2;}
+.trend-body{padding:0.75rem;}
+.trend-body h4{color:var(--text);font-size:0.78rem;font-weight:600;line-height:1.42;margin-bottom:0.35rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.trend-meta{display:flex;align-items:center;justify-content:space-between;}
+.trend-date{color:var(--muted);font-size:0.63rem;}
+.trend-cat-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.trend-cat-row{display:flex;align-items:center;gap:4px;}
+.trend-cat-label{font-size:0.62rem;font-weight:600;color:var(--muted);}
+
+/* ══════════════════════════════
+   STATS BAR
+══════════════════════════════ */
+.stats-bar{background:var(--navy);padding:1.2rem 2.5rem;display:grid;grid-template-columns:repeat(5,1fr);gap:1px;}
+.stat-item{text-align:center;padding:0.6rem 0.5rem;}
+.stat-item .big{color:#fff;font-size:1.45rem;font-weight:700;line-height:1.1;}
+.stat-item .big sub{font-size:0.82rem;}
+.stat-item .lbl{color:rgba(255,255,255,0.62);font-size:0.69rem;margin-top:3px;}
+
+/* ── HELP BANNER ── */
+.help-banner{background:linear-gradient(135deg,var(--navy-dark),var(--navy));padding:2rem 2.5rem;text-align:center;position:relative;overflow:hidden;}
+.help-banner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(255,255,255,0.02) 20px,rgba(255,255,255,0.02) 21px);}
+.help-banner h3{color:#fff;font-size:1.1rem;font-weight:600;position:relative;margin-bottom:1rem;}
+.btn-support{background:#fff;color:var(--navy);padding:0.55rem 1.8rem;font-size:0.82rem;font-weight:600;border:none;border-radius:5px;cursor:pointer;font-family:'Inter',sans-serif;position:relative;}
+
+/* ── FOOTER ── */
+footer{background:var(--sky2);border-top:1px solid var(--border);padding:2rem 2.5rem;}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;margin-bottom:1.5rem;}
+.footer-col h4{color:var(--navy);font-size:0.88rem;font-weight:700;margin-bottom:0.8rem;display:flex;align-items:center;gap:6px;}
+.footer-col h4 svg{width:18px;height:18px;stroke:var(--navy);fill:none;stroke-width:1.8;}
+.footer-col p,.footer-col a{color:var(--muted);font-size:0.78rem;line-height:1.8;display:block;text-decoration:none;}
+.footer-col a:hover{color:var(--navy);}
+.footer-col a::before{content:'›';margin-right:6px;color:var(--blue-accent);}
+.footer-contact-item{display:flex;align-items:flex-start;gap:8px;color:var(--muted);font-size:0.78rem;margin-bottom:0.5rem;}
+.footer-contact-item svg{width:14px;height:14px;stroke:var(--navy);fill:none;stroke-width:2;flex-shrink:0;margin-top:2px;}
+.footer-bottom{border-top:1px solid var(--border);padding-top:1rem;display:flex;justify-content:space-between;align-items:center;}
+.footer-bottom p{color:var(--muted);font-size:0.72rem;}
+.footer-logo{display:flex;align-items:center;gap:8px;}
+.footer-logo-circle{width:26px;height:26px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.footer-logo-text{color:var(--navy);font-weight:700;font-size:0.95rem;}
+</style>
+</head>
+<body>
+
+<!-- UTILITY BAR -->
+<div class="topbar">
+  <button class="topbar-btn"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Bhasini</button>
+  <div class="topbar-divider"></div>
+  <button class="topbar-btn"><svg viewBox="0 0 24 24"><path d="M5 8l6 6M4 6h7M2 6h2m12 12l4 4m-4-4l-4 4m4-4V11a4 4 0 00-4-4h-1"/><path d="M11 6a9 9 0 010 12"/></svg>Translate</button>
+  <div class="topbar-divider"></div>
+  <button class="topbar-btn"><svg viewBox="0 0 24 24"><text x="4" y="18" font-size="14" font-weight="700" fill="#6c153f" stroke="none">A</text><text x="13" y="14" font-size="9" fill="#6c153f" stroke="none">A</text></svg>A&thinsp;A</button>
+  <div class="topbar-divider"></div>
+  <button class="topbar-btn"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M6 20v-2a6 6 0 0112 0v2"/></svg>Accessibility</button>
+</div>
+
+<!-- LOGO BAR -->
+<div class="logobar">
+  <div class="logobar-left">
+    <div class="logo-emblem">
+      <img src="images/Textiles_Committee_Logo_2.png">
+    </div>
+    <div class="logo-text-block">
+      <div class="logo-title">Textile Export Facilitation Centre (TEFC)</div>
+      <div class="logo-subtitle">Under the initiative of Textiles Committee, Ministry of Textiles, Government of India</div>
+    </div>
+  </div>
+  <div class="logo-right"><img src="images/Swachh_Bharat_Mission_Logo_2.png"></div>  
+</div>
+
+<!-- MAIN NAV -->
+  <nav>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="TEFC_About.html">About TEFC <span class="arr">▼</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="TEFC_About.html">Overview</a></li>
+          <li><a href="TEFC_About.html">Mission &amp; Vision</a></li>
+          <li><a href="TEFC_About.html">Objectives</a></li>
+          <li><a href="TEFC_About.html">Organisational Structure</a></li>
+          <li><a href="TEFC_About.html">Partners</a></li>
+        </ul>
+      </li>
+      <li><a href="#">6 TEFC's <span class="arr">▼</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="tefc_clusters_page.html">Karur</a></li>
+          <li><a href="tefc_clusters_page.html">Surat</a></li>
+          <li><a href="tefc_clusters_page.html">Ichalkaranji</a></li>
+          <li><a href="tefc_clusters_page.html">Jaipur</a></li>
+          <li><a href="tefc_clusters_page.html">Varanasi</a></li>
+          <li><a href="tefc_clusters_page.html">Ludhiana</a></li>
+        </ul>
+      </li>
+      <li><a href="#">FTA Benefits</a></li>
+      <li><a href="#">Online Services</a></li>
+      <li><a href="tefc_exporter_portal_v4.html">Exporter Portal</a></li>
+      <li><a href="TEFC_Media_Center.html">Media Center</a></li>
+      <li><a href="#">Resources <span class="arr">▼</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="TEFC_Resources.html">Market Opportunities</a></li>
+          <li><a href="TEFC_Resources.html">Export Process</a></li>
+          <li><a href="TEFC_Resources.html">Trade Fairs</a></li>
+          <li><a href="TEFC_Resources.html">Government Schemes</a></li>
+          <li><a href="TEFC_Resources.html">FTA/PTA List</a></li>
+        </ul>
+      </li>
+      <li><a href="TEFC_News.html">News</a></li>
+      <li><a href="help_and_ support.html">Help &amp; Support</a></li>
+    </ul>
+    <div class="nav-actions">
+          <div class="nav-search">
+        <input type="text" placeholder="Search..." />
+        <button><svg viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg></button>
+      </div>
+    </div>
+  </nav>
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="#">Home</a><span class="sep">›</span><span class="cur">News</span>
+    </div>
+    <h1>News & Updates</h1>
+    <p>Stay informed with the latest domestic and international textile industry news, policy updates, trade developments, market intelligence, and export opportunities curated for Indian textile exporters.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>Updated Daily</div>
+      <div class="hero-meta-item"><svg viewBox="0 0 24 24"><path d="M4 22h14a2 2 0 002-2V7l-5-5H6a2 2 0 00-2 2v4"/><path d="M14 2v4a2 2 0 002 2h4"/><path d="M3 15h6m-3-3v6"/></svg>120+ Articles Monthly</div>
+      <div class="hero-meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Global Coverage</div>
+      <div class="hero-meta-item"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Ministry of Textiles Verified</div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS TICKER -->
+<div class="news-ticker">
+  <div class="ticker-label">🔴 Breaking</div>
+  <div class="ticker-track">
+    <div class="ticker-inner">
+      <span class="ticker-item"><span>Policy:</span> RoDTEP rates revised upward for MMF garments — effective 1 May 2026</span>
+      <span class="ticker-item"><span>Trade:</span> India-EU FTA negotiations enter final round; textiles chapter agreed in principle</span>
+      <span class="ticker-item"><span>Market:</span> Bangladesh garment exports slow — opportunity for Indian exporters in EU market</span>
+      <span class="ticker-item"><span>Event:</span> Texworld Paris 2026 registrations open — TEFC facilitating group pavilion</span>
+      <span class="ticker-item"><span>Finance:</span> TUFS 2.0 interest subvention extended for weaving clusters through FY2027</span>
+      <span class="ticker-item"><span>Global:</span> US imposes 15% tariff on Chinese synthetic textiles — Indian exporters to benefit</span>
+      <!-- duplicate for seamless loop -->
+      <span class="ticker-item"><span>Policy:</span> RoDTEP rates revised upward for MMF garments — effective 1 May 2026</span>
+      <span class="ticker-item"><span>Trade:</span> India-EU FTA negotiations enter final round; textiles chapter agreed in principle</span>
+      <span class="ticker-item"><span>Market:</span> Bangladesh garment exports slow — opportunity for Indian exporters in EU market</span>
+      <span class="ticker-item"><span>Event:</span> Texworld Paris 2026 registrations open — TEFC facilitating group pavilion</span>
+      <span class="ticker-item"><span>Finance:</span> TUFS 2.0 interest subvention extended for weaving clusters through FY2027</span>
+      <span class="ticker-item"><span>Global:</span> US imposes 15% tariff on Chinese synthetic textiles — Indian exporters to benefit</span>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS PAGE TABS -->
+<div class="news-page-tabs">
+  <button class="news-tab active" onclick="scrollToSec('latest',this)">
+    <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+    Latest News <span class="tab-count">8</span>
+  </button>
+  <button class="news-tab" onclick="scrollToSec('infocus',this)">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    In Focus <span class="tab-count">6</span>
+  </button>
+  <button class="news-tab" onclick="scrollToSec('domintl',this)">
+    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+    Domestic <span class="tab-count">12</span>
+  </button>
+  <button class="news-tab" onclick="scrollToSec('domintl',this)">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+    International <span class="tab-count">10</span>
+  </button>
+  <button class="news-tab" onclick="scrollToSec('popular',this)">
+    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+    Popular <span class="tab-count">5</span>
+  </button>
+  <button class="news-tab" onclick="scrollToSec('trending',this)">
+    <svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+    Trending <span class="tab-count">8</span>
+  </button>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     SECTION 1 — LATEST NEWS
+════════════════════════════════════════════ -->
+<section class="section" id="latest">
+  <div class="sec-head-row">
+    <div class="sec-head">
+      <h2>
+        <div class="sec-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        Latest News
+      </h2>
+      <p>Real-time updates on textile policy, trade, market &amp; export developments</p>
+      <div class="sec-head-line"></div>
+    </div>
+    <button class="view-all-btn">All Latest ›</button>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-tab active">All</button>
+    <button class="filter-tab">Policy</button>
+    <button class="filter-tab">Trade</button>
+    <button class="filter-tab">Markets</button>
+    <button class="filter-tab">Finance</button>
+    <button class="filter-tab">Events</button>
+    <button class="filter-tab">Technology</button>
+  </div>
+
+  <div class="latest-grid">
+    <!-- Featured story -->
+    <div class="latest-featured">
+      <div class="feat-bg">
+        <svg viewBox="0 0 24 24"><path d="M4 22h14a2 2 0 002-2V7l-5-5H6a2 2 0 00-2 2v4"/><path d="M14 2v4a2 2 0 002 2h4"/><path d="M3 15h6m-3-3v6"/></svg>
+      </div>
+      <div class="feat-badge">🔴 Breaking</div>
+      <div class="feat-source">PIB India</div>
+      <div class="feat-content">
+        <span class="feat-category">
+          <svg viewBox="0 0 24 24" width="10" height="10" stroke="#fff" fill="none" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Policy Update
+        </span>
+        <h3>Union Budget 2026-27 Allocates ₹4,200 Crore for Textile Export Incentives Under PLI &amp; RoDTEP</h3>
+        <p>The Ministry of Textiles has announced a significant boost to textile export competitiveness with revised incentive structures covering MMF, technical textiles, and handloom sectors across all six TEFC clusters.</p>
+        <div class="feat-meta">
+          <span class="feat-meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>16 Apr 2026</span>
+          <span class="feat-meta-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>4,280 views</span>
+          <span class="feat-meta-item"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>8 min read</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side list -->
+    <div class="latest-list">
+      <div class="latest-item">
+        <div class="li-thumb li-thumb-intl">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+        </div>
+        <div class="li-body">
+          <span class="li-badge badge-intl">International</span>
+          <div class="li-title">India-EU FTA Textile Chapter Clinched; Zero-Duty Access for 280 HS Codes by 2028</div>
+          <div class="li-meta">
+            <span class="li-date"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>15 Apr 2026</span>
+            <span class="li-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>3,140</span>
+          </div>
+        </div>
+      </div>
+      <div class="latest-item">
+        <div class="li-thumb li-thumb-dom">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div class="li-body">
+          <span class="li-badge badge-dom">Domestic</span>
+          <div class="li-title">Surat Textile Cluster Reports 22% Export Growth in Q4 FY26; Synthetic Fabrics Lead</div>
+          <div class="li-meta">
+            <span class="li-date"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>15 Apr 2026</span>
+            <span class="li-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>2,870</span>
+          </div>
+        </div>
+      </div>
+      <div class="latest-item">
+        <div class="li-thumb li-thumb-pol">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div class="li-body">
+          <span class="li-badge badge-pol">Policy</span>
+          <div class="li-title">DPIIT Launches Single-Window Portal for Textile Export Certification &amp; IEC Renewals</div>
+          <div class="li-meta">
+            <span class="li-date"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>14 Apr 2026</span>
+            <span class="li-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>2,105</span>
+          </div>
+        </div>
+      </div>
+      <div class="latest-item">
+        <div class="li-thumb li-thumb-mkt">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="li-body">
+          <span class="li-badge badge-mkt">Market</span>
+          <div class="li-title">US Apparel Import Demand Up 8% YoY — India Gains 1.2% Market Share from China</div>
+          <div class="li-meta">
+            <span class="li-date"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>14 Apr 2026</span>
+            <span class="li-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>1,950</span>
+          </div>
+        </div>
+      </div>
+      <div class="latest-item">
+        <div class="li-thumb li-thumb-intl">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="li-body">
+          <span class="li-badge badge-intl">International</span>
+          <div class="li-title">Vietnam Imposes Anti-Dumping Duties on Chinese Yarn; Indian Exporters Poised to Fill Gap</div>
+          <div class="li-meta">
+            <span class="li-date"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>13 Apr 2026</span>
+            <span class="li-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>1,680</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="load-more-wrap"><button class="btn-load-more">Load More Latest News</button></div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 2 — IN FOCUS
+════════════════════════════════════════════ -->
+<section class="section section-alt" id="infocus">
+  <div class="sec-head-row">
+    <div class="sec-head">
+      <h2>
+        <div class="sec-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></div>
+        In Focus
+      </h2>
+      <p>Deep dives, special reports, and expert analysis on critical textile export topics</p>
+      <div class="sec-head-line"></div>
+    </div>
+    <button class="view-all-btn">All Reports ›</button>
+  </div>
+
+  <div class="infocus-grid">
+    <div class="infocus-card">
+      <div class="ic-cover ic-cover-1">
+        <div class="ic-badge ic-hot">HOT</div>
+        <div class="ic-cover-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+      </div>
+      <div class="ic-body">
+        <h4>India's Textile Export Target of $100 Billion by 2030 — Progress Report &amp; Challenges</h4>
+        <p>An in-depth analysis of where India stands in its ambitious export journey, cluster-wise performance, and policy gaps that need urgent addressing.</p>
+        <div class="ic-footer">
+          <span class="ic-date">12 Apr 2026</span>
+          <a href="#" class="ic-read">Read Full Report →</a>
+        </div>
+      </div>
+    </div>
+    <div class="infocus-card">
+      <div class="ic-cover ic-cover-3">
+        <div class="ic-badge ic-new">NEW</div>
+        <div class="ic-cover-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg></div>
+      </div>
+      <div class="ic-body">
+        <h4>EU CBAM &amp; EUDR: What Indian Textile Exporters Must Prepare for by 2026 Deadline</h4>
+        <p>Compliance roadmap for the Carbon Border Adjustment Mechanism and Deforestation Regulation impacting cotton and viscose supply chains.</p>
+        <div class="ic-footer">
+          <span class="ic-date">10 Apr 2026</span>
+          <a href="#" class="ic-read">Read Full Report →</a>
+        </div>
+      </div>
+    </div>
+    <div class="infocus-card">
+      <div class="ic-cover ic-cover-2">
+        <div class="ic-badge ic-deep">DEEP DIVE</div>
+        <div class="ic-cover-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+      </div>
+      <div class="ic-body">
+        <h4>Technical Textiles: India's Next Big Export Frontier — Market Sizing &amp; Entry Points</h4>
+        <p>A comprehensive sector study on agrotech, medtech, and geotech textiles with global demand forecasts and India's competitive positioning.</p>
+        <div class="ic-footer">
+          <span class="ic-date">8 Apr 2026</span>
+          <a href="#" class="ic-read">Read Full Report →</a>
+        </div>
+      </div>
+    </div>
+    <div class="infocus-card">
+      <div class="ic-cover ic-cover-4">
+        <div class="ic-badge ic-new">NEW</div>
+        <div class="ic-cover-icon"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+      </div>
+      <div class="ic-body">
+        <h4>Sustainability Certifications: GOTS, OEKO-TEX &amp; BCI — Mandatory for EU Buyers from 2027</h4>
+        <p>Why Indian mills and exporters must start certification journeys now, with cost estimates and TEFC support programs available.</p>
+        <div class="ic-footer">
+          <span class="ic-date">6 Apr 2026</span>
+          <a href="#" class="ic-read">Read Full Report →</a>
+        </div>
+      </div>
+    </div>
+    <div class="infocus-card">
+      <div class="ic-cover ic-cover-5">
+        <div class="ic-badge ic-hot">HOT</div>
+        <div class="ic-cover-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      </div>
+      <div class="ic-body">
+        <h4>Digital Textile Trade: How AI, IoT &amp; Blockchain Are Reshaping Export Operations</h4>
+        <p>From smart inventory management to blockchain-verified certificates of origin — a technology adoption guide for mid-scale exporters.</p>
+        <div class="ic-footer">
+          <span class="ic-date">4 Apr 2026</span>
+          <a href="#" class="ic-read">Read Full Report →</a>
+        </div>
+      </div>
+    </div>
+    <div class="infocus-card">
+      <div class="ic-cover ic-cover-6">
+        <div class="ic-badge ic-deep">DEEP DIVE</div>
+        <div class="ic-cover-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+      </div>
+      <div class="ic-body">
+        <h4>MSMEs in Textile Exports: Barriers, Enablers &amp; the Role of TEFC in Scaling Up</h4>
+        <p>Field research across 6 TEFC clusters on MSME exporter profiles, common barriers to scaling, and actionable policy recommendations.</p>
+        <div class="ic-footer">
+          <span class="ic-date">2 Apr 2026</span>
+          <a href="#" class="ic-read">Read Full Report →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 3 — DOMESTIC & INTERNATIONAL
+════════════════════════════════════════════ -->
+<section class="section" id="domintl">
+  <div class="dom-intl-grid">
+    <!-- DOMESTIC -->
+    <div id="domestic">
+      <div class="news-col-head">
+        <div class="news-col-head-left">
+          <div class="col-icon col-icon-dom"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
+          <span class="news-col-title">Domestic News</span>
+        </div>
+        <button class="col-view-btn">All Domestic ›</button>
+      </div>
+
+      <div class="filter-bar">
+        <button class="filter-tab active">All</button>
+        <button class="filter-tab">Policy</button>
+        <button class="filter-tab">Clusters</button>
+        <button class="filter-tab">Finance</button>
+        <button class="filter-tab">MSME</button>
+      </div>
+
+      <div class="news-list-item">
+        <div class="nli-num">01</div>
+        <div class="nli-body">
+          <div class="nli-title">Tirupur Knitwear Exporters Seek GST Refund Overhaul; TEFC Submits Representation to MoF</div>
+          <div class="nli-meta">
+            <span class="nli-cat badge-dom">Policy</span>
+            <span class="nli-date">16 Apr 2026</span>
+            <span class="nli-src">• The Hindu BusinessLine</span>
+          </div>
+        </div>
+      </div>
+      <div class="news-list-item">
+        <div class="nli-num">02</div>
+        <div class="nli-body">
+          <div class="nli-title">Varanasi Handloom GI Tag Products See 40% Export Jump on Amazon Global &amp; Flipkart Commerce</div>
+          <div class="nli-meta">
+            <span class="nli-cat badge-dom">Cluster</span>
+            <span class="nli-date">15 Apr 2026</span>
+            <span class="nli-src">• Economic Times</span>
+          </div>
+        </div>
+      </div>
+      <div class="news-list-item">
+        <div class="nli-num">03</div>
+        <div class="nli-body">
+          <div class="nli-title">SIDBI Launches ₹500 Crore Green Textile Finance Scheme for Energy-Efficient Looms</div>
+          <div class="nli-meta">
+            <span class="nli-cat badge-mkt">Finance</span>
+            <span class="nli-date">14 Apr 2026</span>
+            <span class="nli-src">• Financial Express</span>
+          </div>
+        </div>
+      </div>
+      <div class="news-list-item">
+        <div class="nli-num">04</div>
+        <div class="nli-body">
+          <div class="nli-title">Ichalkaranji Powerloom Sector Adopts Digital Jacquard; Targets ₹800 Crore Export Milestone</div>
+          <div class="nli-meta">
+            <span class="nli-cat badge-dom">Technology</span>
+            <span class="nli-date">13 Apr 2026</span>
+            <span class="nli-src">• Deccan Herald</span>
+          </div>
+        </div>
+      </div>
+      <div class="news-list-item">
+        <div class="nli-num">05</div>
+        <div class="nli-body">
+          <div class="nli-title">MSME Textile Units in Ludhiana Complete ISO 9001 Certification Drive Under TEFC's Cluster Support</div>
+          <div class="nli-meta">
+            <span class="nli-cat badge-pol">MSME</span>
+            <span class="nli-date">12 Apr 2026</span>
+            <span class="nli-src">• Tribune India</span>
+          </div>
+        </div>
+      </div>
+      <div class="news-list-item">
+        <div class="nli-num">06</div>
+        <div class="nli-body">
+          <div class="nli-title">India's Cotton Output Rises to 340 Lakh Bales; CAI Revises Upward on Better Maharashtra Yield</div>
+          <div class="nli-meta">
+            <span class="nli-cat badge-mkt">Market</span>
+            <span class="nli-date">11 Apr 2026</span>
+            <span class="nli-src">• Business Standard</span>
+          </div>
+        </div>
+      </div>
+      <div class="news-list-item">
+        <div class="nli-num">07</div>
+        <div class="nli-body">
+          <div class="nli-title">Jaipur Block Print Exporters Get ₹12 Crore Boost Under PM Vishwakarma Textile Artisan Scheme</div>
+          <div class="nli-meta">
+            <span class="nli-cat badge-dom">Cluster</span>
+            <span class="nli-date">10 Apr 2026</span>
+            <span class="nli-src">• Rajasthan Patrika</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="load-more-wrap" style="margin-top:1rem;"><button class="btn-load-more">More Domestic News</button></div>
+    </div>
+
+    <!-- INTERNATIONAL -->
+    <div id="international">
+      <div class="news-col-head">
+        <div class="news-col-head-left">
+          <div class="col-icon col-icon-intl"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+          <span class="news-col-title" style="color:#1a5d8a;">International News</span>
+        </div>
+        <button class="col-view-btn">All International ›</button>
+      </div>
+
+      <div class="filter-bar">
+        <button class="filter-tab active">All</button>
+        <button class="filter-tab">USA</button>
+        <button class="filter-tab">Europe</button>
+        <button class="filter-tab">Asia</button>
+        <button class="filter-tab">Middle East</button>
+      </div>
+
+      <div class="news-list-item">
+        <div class="nli-num">01</div>
+        <div class="nli-body">
+          <div class="nli-title">US Raises Tariffs on Chinese Synthetic Textiles to 35%; Indian MMF Exporters Eyeing Opportunity</div>
+          <div class="nli-meta">
+            <span class="nli-cat badge-intl">USA</span>
+            <span class="nli-date">16 Apr 2026</span>
+            <span class="nli-src">• Reuters</span>
+          </div>
+        </div>
+      </div>
+      <div class="news-list-item">
+        <div class="nli-num">02</div>
+        <div class="nli-body">
+          <div class="nli-title">EU Textile Strategy 2030 Finalized: Mandatory Recycled Content, Extended Producer Responsibility</div>
+          <div class="nli-meta">
+            <span class="nli-cat badge-intl">Europe</span>
+            <span class="nli-date">15 Apr 2026</span>
+            <span class="nli-src">• Euractiv</span>
+          </div>
+        </div>
+      </div>
+      <div class="news-list-item">
+        <div class="nli-num">03</div>
+        <div class="nli-body">
+          <div class="nli-title">Bangladesh Garment Exports Fall 6% in Q1 2026 amid Energy Crisis; Orders Shift to India &amp; Vietnam</div>
+          <div class="nli-meta">
+            <span class="nli-cat badge-intl">Asia</span>
+            <span class="nli-date">14 Apr 2026</span>
+            <span class="nli-src">• Fibre2Fashion</span>
+          </div>
+        </div>
+      </div>
+      <div class="news-list-item">
+        <div class="nli-num">04</div>
+        <div class="nli-body">
+          <div class="nli-title">UAE's Dubai Textile City Plans 25% Expansion; Indian Exporters Get Reserved Space in Phase 2</div>
+          <div class="nli-meta">
+            <span class="nli-cat badge-intl">Middle East</span>
+            <span class="nli-date">13 Apr 2026</span>
+            <span class="nli-src">• Khaleej Times</span>
+          </div>
+        </div>
+      </div>
+      <div class="news-list-item">
+        <div class="nli-num">05</div>
+        <div class="nli-body">
+          <div class="nli-title">China's Textile Export Growth Slows to 3.2% in Q1 2026 as Domestic Demand Rises</div>
+          <div class="nli-meta">
+            <span class="nli-cat badge-intl">Asia</span>
+            <span class="nli-date">12 Apr 2026</span>
+            <span class="nli-src">• South China Morning Post</span>
+          </div>
+        </div>
+      </div>
+      <div class="news-list-item">
+        <div class="nli-num">06</div>
+        <div class="nli-body">
+          <div class="nli-title">UK Post-Brexit Textile Tariff Review Opens Opportunities Under India-UK FTA Negotiations</div>
+          <div class="nli-meta">
+            <span class="nli-cat badge-intl">Europe</span>
+            <span class="nli-date">11 Apr 2026</span>
+            <span class="nli-src">• Financial Times</span>
+          </div>
+        </div>
+      </div>
+      <div class="news-list-item">
+        <div class="nli-num">07</div>
+        <div class="nli-body">
+          <div class="nli-title">Saudi Vision 2030 Textile Investment Program Open to Foreign Partners; India First in Line</div>
+          <div class="nli-meta">
+            <span class="nli-cat badge-intl">Middle East</span>
+            <span class="nli-date">10 Apr 2026</span>
+            <span class="nli-src">• Arab News</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="load-more-wrap" style="margin-top:1rem;"><button class="btn-load-more">More International News</button></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 4 — POPULAR NEWS
+════════════════════════════════════════════ -->
+<section class="section section-alt" id="popular">
+  <div class="sec-head-row">
+    <div class="sec-head">
+      <h2>
+        <div class="sec-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        Most Popular
+      </h2>
+      <p>Most-read stories this week among textile exporters and industry stakeholders</p>
+      <div class="sec-head-line"></div>
+    </div>
+    <button class="view-all-btn">All Popular ›</button>
+  </div>
+
+  <div class="popular-layout">
+    <div class="popular-cards">
+      <div class="pop-card">
+        <div class="pop-rank">1</div>
+        <div class="pop-thumb pop-t1"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg></div>
+        <div class="pop-body">
+          <span class="li-badge badge-dom" style="margin-bottom:0.3rem;display:inline-block;">Policy</span>
+          <h4>Step-by-Step Guide: How to Apply for RoDTEP Benefits — Eligibility, Documentation &amp; Processing</h4>
+          <div class="pop-meta">
+            <span class="pop-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>18,450 views</span>
+            <span class="pop-date">9 Apr 2026</span>
+          </div>
+        </div>
+      </div>
+      <div class="pop-card">
+        <div class="pop-rank">2</div>
+        <div class="pop-thumb pop-t2"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+        <div class="pop-body">
+          <span class="li-badge badge-intl" style="margin-bottom:0.3rem;display:inline-block;">International</span>
+          <h4>India-EU FTA Textile Provisions Explained: Which Products Benefit &amp; When Zero-Duty Kicks In</h4>
+          <div class="pop-meta">
+            <span class="pop-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>14,980 views</span>
+            <span class="pop-date">15 Apr 2026</span>
+          </div>
+        </div>
+      </div>
+      <div class="pop-card">
+        <div class="pop-rank">3</div>
+        <div class="pop-thumb pop-t3"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/></svg></div>
+        <div class="pop-body">
+          <span class="li-badge badge-pol" style="margin-bottom:0.3rem;display:inline-block;">Sustainability</span>
+          <h4>GOTS Certification for Indian Textile Exporters: Full Process, Costs &amp; Approved Certifying Bodies</h4>
+          <div class="pop-meta">
+            <span class="pop-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>11,220 views</span>
+            <span class="pop-date">6 Apr 2026</span>
+          </div>
+        </div>
+      </div>
+      <div class="pop-card">
+        <div class="pop-rank">4</div>
+        <div class="pop-thumb pop-t4"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="pop-body">
+          <span class="li-badge badge-mkt" style="margin-bottom:0.3rem;display:inline-block;">Market</span>
+          <h4>Top 10 Export Destinations for Indian Textiles in 2026 — Country-Wise Demand &amp; Tariff Summary</h4>
+          <div class="pop-meta">
+            <span class="pop-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>9,640 views</span>
+            <span class="pop-date">3 Apr 2026</span>
+          </div>
+        </div>
+      </div>
+      <div class="pop-card">
+        <div class="pop-rank">5</div>
+        <div class="pop-thumb pop-t5"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="pop-body">
+          <span class="li-badge badge-dom" style="margin-bottom:0.3rem;display:inline-block;">Finance</span>
+          <h4>PLI Textile Scheme Round 3: Application Dates, Eligible Categories &amp; Incentive Structure Explained</h4>
+          <div class="pop-meta">
+            <span class="pop-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>8,310 views</span>
+            <span class="pop-date">1 Apr 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Newsletter + Subscribe -->
+    <div>
+      <div class="newsletter-box">
+        <div class="nl-inner">
+          <div class="nl-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <h4>TEFC News Digest</h4>
+          <p>Get a weekly curated digest of the top 10 textile export news stories, policy updates &amp; market alerts — straight to your inbox, every Monday.</p>
+          <input class="nl-input" type="email" placeholder="Enter your email address" />
+          <button class="nl-btn">Subscribe Free →</button>
+        </div>
+      </div>
+
+      <div style="margin-top:1.2rem;border:1px solid var(--border);border-radius:9px;background:#fff;padding:1rem;">
+        <div style="font-size:0.82rem;font-weight:700;color:var(--navy);margin-bottom:0.8rem;display:flex;align-items:center;gap:7px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Upcoming Events
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.6rem;">
+          <div style="display:flex;gap:0.6rem;align-items:flex-start;">
+            <div style="background:var(--sky);border-radius:5px;padding:0.3rem 0.5rem;text-align:center;flex-shrink:0;min-width:40px;">
+              <div style="font-size:0.65rem;color:var(--navy);font-weight:700;">APR</div>
+              <div style="font-size:1rem;color:var(--navy);font-weight:700;line-height:1;">22</div>
+            </div>
+            <div style="font-size:0.75rem;color:var(--text);line-height:1.4;">TEFC Exporter Webinar: RoDTEP Latest Rates &amp; Claims Process</div>
+          </div>
+          <div style="display:flex;gap:0.6rem;align-items:flex-start;">
+            <div style="background:var(--sky);border-radius:5px;padding:0.3rem 0.5rem;text-align:center;flex-shrink:0;min-width:40px;">
+              <div style="font-size:0.65rem;color:var(--navy);font-weight:700;">MAY</div>
+              <div style="font-size:1rem;color:var(--navy);font-weight:700;line-height:1;">5</div>
+            </div>
+            <div style="font-size:0.75rem;color:var(--text);line-height:1.4;">Texworld Paris 2026 — TEFC India Pavilion Orientation Meet</div>
+          </div>
+          <div style="display:flex;gap:0.6rem;align-items:flex-start;">
+            <div style="background:var(--sky);border-radius:5px;padding:0.3rem 0.5rem;text-align:center;flex-shrink:0;min-width:40px;">
+              <div style="font-size:0.65rem;color:var(--navy);font-weight:700;">MAY</div>
+              <div style="font-size:1rem;color:var(--navy);font-weight:700;line-height:1;">18</div>
+            </div>
+            <div style="font-size:0.75rem;color:var(--text);line-height:1.4;">ITME 2026 Mumbai — Technical Textiles Showcase &amp; Buyer Meet</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 5 — TRENDING ARTICLES
+════════════════════════════════════════════ -->
+<section class="section" id="trending">
+  <div class="sec-head-row">
+    <div class="sec-head">
+      <h2>
+        <div class="sec-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        Trending Articles
+      </h2>
+      <p>High-engagement stories gaining rapid traction among exporters &amp; industry professionals</p>
+      <div class="sec-head-line"></div>
+    </div>
+    <button class="view-all-btn">All Trending ›</button>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-tab active">This Week</button>
+    <button class="filter-tab">This Month</button>
+    <button class="filter-tab">All Time</button>
+  </div>
+
+  <div class="trending-grid">
+    <div class="trend-card">
+      <div class="trend-cover tc1">
+        <div class="trend-badge trend-fire">🔥 Hot</div>
+        <div class="tc-cover-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg></div>
+        <div class="trend-views-badge"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>12.4K</div>
+      </div>
+      <div class="trend-body">
+        <h4>PLI Scheme Round 3 Applications Open — Last Date 30 June 2026</h4>
+        <div class="trend-meta">
+          <span class="trend-date">14 Apr 2026</span>
+          <div class="trend-cat-row"><div class="trend-cat-dot" style="background:var(--navy);"></div><span class="trend-cat-label">Policy</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trend-card">
+      <div class="trend-cover tc2">
+        <div class="trend-badge trend-new">NEW</div>
+        <div class="tc-cover-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+        <div class="trend-views-badge"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>9.8K</div>
+      </div>
+      <div class="trend-body">
+        <h4>India-EU FTA: Full List of Textile HS Codes Getting Zero Duty</h4>
+        <div class="trend-meta">
+          <span class="trend-date">15 Apr 2026</span>
+          <div class="trend-cat-row"><div class="trend-cat-dot" style="background:#1a5d8a;"></div><span class="trend-cat-label">Trade</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trend-card">
+      <div class="trend-cover tc3">
+        <div class="trend-badge trend-hot">VIRAL</div>
+        <div class="tc-cover-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div class="trend-views-badge"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>8.2K</div>
+      </div>
+      <div class="trend-body">
+        <h4>How Tirupur Exporter Grew 3x Revenue Using TEFC's Buyer Connect Program</h4>
+        <div class="trend-meta">
+          <span class="trend-date">10 Apr 2026</span>
+          <div class="trend-cat-row"><div class="trend-cat-dot" style="background:#1a7db5;"></div><span class="trend-cat-label">Success Story</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trend-card">
+      <div class="trend-cover tc4">
+        <div class="trend-badge trend-fire">🔥 Hot</div>
+        <div class="tc-cover-icon"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/></svg></div>
+        <div class="trend-views-badge"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>7.5K</div>
+      </div>
+      <div class="trend-body">
+        <h4>GOTS vs OEKO-TEX vs BCI: Which Certification Should Your Textile Unit Choose?</h4>
+        <div class="trend-meta">
+          <span class="trend-date">8 Apr 2026</span>
+          <div class="trend-cat-row"><div class="trend-cat-dot" style="background:#2a9d54;"></div><span class="trend-cat-label">Sustainability</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trend-card">
+      <div class="trend-cover tc5">
+        <div class="trend-badge trend-new">NEW</div>
+        <div class="tc-cover-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <div class="trend-views-badge"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>6.9K</div>
+      </div>
+      <div class="trend-body">
+        <h4>Video: TEFC's 2026 Buyer-Seller Meet Recap — 200 Exporters, 50 International Buyers</h4>
+        <div class="trend-meta">
+          <span class="trend-date">12 Apr 2026</span>
+          <div class="trend-cat-row"><div class="trend-cat-dot" style="background:#e07b00;"></div><span class="trend-cat-label">Events</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trend-card">
+      <div class="trend-cover tc6">
+        <div class="trend-badge trend-fire">🔥 Hot</div>
+        <div class="tc-cover-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+        <div class="trend-views-badge"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>5.7K</div>
+      </div>
+      <div class="trend-body">
+        <h4>Understanding HS Code Classification for Blended Fabric Exports — Common Errors &amp; Fixes</h4>
+        <div class="trend-meta">
+          <span class="trend-date">7 Apr 2026</span>
+          <div class="trend-cat-row"><div class="trend-cat-dot" style="background:var(--navy);"></div><span class="trend-cat-label">Guide</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trend-card">
+      <div class="trend-cover tc7">
+        <div class="trend-badge trend-hot">VIRAL</div>
+        <div class="tc-cover-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+        <div class="trend-views-badge"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>4.9K</div>
+      </div>
+      <div class="trend-body">
+        <h4>MSME Exporter's Checklist: 12 Must-Do Steps Before Your First Export Shipment</h4>
+        <div class="trend-meta">
+          <span class="trend-date">5 Apr 2026</span>
+          <div class="trend-cat-row"><div class="trend-cat-dot" style="background:#2a9d54;"></div><span class="trend-cat-label">Guide</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trend-card">
+      <div class="trend-cover tc8">
+        <div class="trend-badge trend-new">NEW</div>
+        <div class="tc-cover-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <div class="trend-views-badge"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>4.3K</div>
+      </div>
+      <div class="trend-body">
+        <h4>Rupee vs Dollar in 2026: How Currency Fluctuation Affects Your Export Realisation</h4>
+        <div class="trend-meta">
+          <span class="trend-date">4 Apr 2026</span>
+          <div class="trend-cat-row"><div class="trend-cat-dot" style="background:#e07b00;"></div><span class="trend-cat-label">Finance</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="load-more-wrap"><button class="btn-load-more">Load More Trending Articles</button></div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="big">1,240<sub>+</sub></div><div class="lbl">News Articles Published</div></div>
+  <div class="stat-item"><div class="big">86K<sub>+</sub></div><div class="lbl">Monthly Readers</div></div>
+  <div class="stat-item"><div class="big">42</div><div class="lbl">Countries Covered</div></div>
+  <div class="stat-item"><div class="big">120<sub>+</sub></div><div class="lbl">Articles Per Month</div></div>
+  <div class="stat-item"><div class="big">18K<sub>+</sub></div><div class="lbl">Newsletter Subscribers</div></div>
+</div>
+
+<!-- HELP BANNER -->
+<div class="help-banner">
+  <h3>Have a news tip or press release for the Indian textile export industry?</h3>
+  <button class="btn-support">Submit to News Desk</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>About TEFC</h4>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>123 Textile Road, New Delhi</div>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>info@tefc.gov.in</div>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.11 1.18 2 2 0 012.09 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+91 12356 67890</div>
+    </div>
+    <div class="footer-col">
+      <h4><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>Quick Links</h4>
+      <a href="#">Homepage</a><a href="#">About TEFC</a><a href="#">Clusters</a>
+      <a href="#">Online Services</a><a href="#">FTA Benefits</a><a href="#">Resources</a>
+    </div>
+    <div class="footer-col">
+      <h4><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Contact Us</h4>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>123 Textile Road, New Delhi</div>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>contact@tefc.gov.in</div>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.11 1.18 2 2 0 012.09 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>Phone: +91 12335 6790</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Textiles Exports Facilitation Centre (TEFC) | Ministry of Textiles, Government of India</p>
+    <div class="footer-logo">
+      <div class="footer-logo-circle"><svg viewBox="0 0 20 20" width="14" height="14" fill="none"><path d="M4 10s2-4 6-4 6 4 6 4-2 4-6 4-6-4-6-4z" stroke="#fff" stroke-width="1.5"/><circle cx="10" cy="10" r="2" stroke="#fff" stroke-width="1.5"/></svg></div>
+      <span class="footer-logo-text">TEFC</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function scrollToSec(id, el) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelectorAll('.news-tab').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+}
+// Filter tabs per section
+document.querySelectorAll('.filter-bar').forEach(bar => {
+  bar.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      bar.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+});
+// Sticky tab highlight on scroll
+const sections = ['latest','infocus','domintl','domintl','popular','trending'];
+const tabs = document.querySelectorAll('.news-tab');
+window.addEventListener('scroll', () => {
+  let current = '';
+  ['latest','infocus','domintl','popular','trending'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 120) current = id;
+  });
+  tabs.forEach((tab, i) => {
+    tab.classList.toggle('active', sections[i] === current);
+  });
+});
+</script>
+</body>
+</html>

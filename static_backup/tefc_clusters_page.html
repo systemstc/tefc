@@ -1,0 +1,1054 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--nv:#6c153f;--nvd:#6c153f;--nvl:#6c153f;--bl:#6c153f;--sk:#e8f0fb;--sk2:#f0f4fd;--wh:#fff;--tx:#1a1a2e;--mt:#5a6a82;--br:#dde4f0;--gn:#2a9d54;--am:#f5a623;}
+body{font-family:'Inter',sans-serif;color:var(--tx);font-size:13px;background:#fff;}
+
+/* ── TIER 1: utility bar ── */
+.topbar {
+  background: #fce8f2;
+  padding: 0.28rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  border-bottom: 1px solid #e8c8d8;
+}
+.topbar-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: 1px solid #c97aab;
+  border-radius: 4px;
+  padding: 0.22rem 0.65rem;
+  font-size: 0.72rem;
+  color: var(--navy);
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+.topbar-btn:hover { background: rgba(108,21,63,0.08); }
+.topbar-btn svg { width: 14px; height: 14px; fill: none; stroke: var(--navy); stroke-width: 1.8; flex-shrink: 0; }
+.topbar-divider { width: 1px; height: 18px; background: #c97aab; opacity: 0.4; }
+
+/* ── TIER 2: logo bar ── */
+.logobar {
+  background: #fff;
+  padding: 0.7rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+.logobar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.logo-emblem {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-emblem svg { width: 56px; height: 56px; }
+.logo-text-block {}
+.logo-title {
+  font-size: 2.15rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+.logo-subtitle {
+  font-size: 1rem;
+  color: #7a4060;
+  font-weight: 400;
+  margin-top: 0.15rem;
+  line-height: 1.35;
+}
+.logobar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+/* Swachh Bharat / Azadi badge area */
+.gov-badges {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.gov-badge-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.6rem;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.3;
+  min-width: 64px;
+}
+.gov-badge-icon {
+  font-size: 1.1rem;
+  margin-bottom: 2px;
+}
+
+/* ── TIER 3: main nav bar ── */
+nav {
+  background: var(--bl);
+  padding: 0 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.nav-links {
+  display: flex;
+  gap: 0;
+  list-style: none;
+}
+.nav-links li {
+  position: relative;
+}
+.nav-links li a {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.78rem;
+  padding: 0.38rem 0.8rem;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: background 0.15s, color 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+.nav-links li a:hover {
+  background: rgba(255, 217, 0, 0.13);
+  color: #fff;
+}
+.nav-links li a .arr {
+  font-size: 0.55rem;
+  opacity: 0.65;
+  transition: transform 0.2s ease;
+}
+.nav-links li:hover .arr {
+  transform: rotate(180deg);
+}
+.nav-search {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.nav-search input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 0.75rem;
+  font-family: 'Inter', sans-serif;
+  padding: 0.3rem 0.65rem;
+  width: 150px;
+}
+.nav-search input::placeholder { color: rgba(255,255,255,0.5); }
+.nav-search button {
+  background: rgba(255,255,255,0.15);
+  border: none;
+  border-left: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  padding: 0 0.55rem;
+  cursor: pointer;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+.nav-search button svg { width: 13px; height: 13px; stroke: #fff; fill: none; stroke-width: 2; }
+/* HELP BUTTON */
+.nav-help {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 0.3rem 0.9rem;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+/* DROPDOWN */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--white);
+  min-width: 200px;
+  border-radius: 5px;
+  padding: 0.35rem 0;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.14);
+  z-index: 300;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(5px);
+  transition: all 0.18s ease;
+}
+.dropdown-menu li { list-style: none; }
+.dropdown-menu li a {
+  color: #333;
+  font-size: 0.78rem;
+  padding: 0.5rem 1rem;
+  display: block;
+  text-decoration: none;
+  border-radius: 0;
+  white-space: nowrap;
+}
+.dropdown-menu li a:hover {
+  background: #fce8f2;
+  color: var(--navy);
+}
+.nav-links li:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ── LISTING PAGE ── */
+.list-hero{background:var(--nvd);padding:2.2rem 2rem;position:relative;overflow:hidden;}
+.lhbg{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 38px,rgba(255,255,255,.035) 38px,rgba(255,255,255,.035) 39px),repeating-linear-gradient(90deg,transparent,transparent 38px,rgba(255,255,255,.035) 38px,rgba(255,255,255,.035) 39px);}
+.lhi{position:relative;z-index:2;}
+.bc{display:flex;align-items:center;gap:.35rem;margin-bottom:.6rem;}
+.bc span{color:rgba(255,255,255,.5);font-size:.68rem;cursor:pointer;}
+.bc span:hover{color:#fff;}
+.bc .sep{color:rgba(255,255,255,.28);font-size:.6rem;}
+.bc .cur{color:rgba(255,255,255,.88);}
+.lhi h1{color:#fff;font-size:1.7rem;font-weight:700;margin-bottom:.3rem;}
+.lhi p{color:rgba(255,255,255,.68);font-size:.85rem;margin-bottom:1rem;}
+.hero-stats{display:flex;gap:1.5rem;}
+.hs{text-align:center;}
+.hs .hsbig{color:#fff;font-size:1.3rem;font-weight:700;}
+.hs .hslbl{color:rgba(255,255,255,.55);font-size:.65rem;text-transform:uppercase;letter-spacing:.07em;}
+
+/* FILTER BAR */
+.filter-bar{background:#fff;border-bottom:1px solid var(--br);padding:.9rem 2rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;}
+.fb-label{font-size:.72rem;font-weight:600;color:var(--nv);margin-right:.2rem;}
+.fb-btn{background:#fff;border:1px solid var(--br);border-radius:20px;padding:.25rem .85rem;font-size:.72rem;color:var(--mt);cursor:pointer;font-family:'Inter',sans-serif;transition:all .13s;}
+.fb-btn:hover,.fb-btn.on{background:var(--nv);color:#fff;border-color:var(--nv);}
+.fb-search{display:flex;align-items:center;gap:.4rem;background:var(--sk2);border:1px solid var(--br);border-radius:20px;padding:.3rem .8rem;margin-left:auto;}
+.fb-search input{border:none;outline:none;font-size:.72rem;font-family:'Inter',sans-serif;background:transparent;width:150px;color:var(--tx);}
+.fb-search svg{width:13px;height:13px;stroke:var(--mt);fill:none;stroke-width:2;}
+
+/* CLUSTER CARDS GRID */
+.clusters-body{padding:1.8rem 2rem;}
+.grid-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;}
+.grid-header h2{color:var(--nv);font-size:1rem;font-weight:700;}
+.sort-sel{background:#fff;border:1px solid var(--br);border-radius:4px;padding:.28rem .6rem;font-size:.72rem;font-family:'Inter',sans-serif;color:var(--tx);}
+.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.cc{background:#fff;border:1px solid var(--br);border-radius:8px;overflow:hidden;cursor:pointer;transition:box-shadow .2s,transform .15s;}
+.cc:hover{box-shadow:0 4px 18px rgba(26,58,107,.13);transform:translateY(-2px);}
+.ci{height:130px;position:relative;display:flex;align-items:flex-end;}
+.ci-karur{background:linear-gradient(160deg,#1a3a6b 0%,#2a5fa8 100%);}
+.ci-surat{background:linear-gradient(160deg,#1e4080 0%,#3570c0 100%);}
+.ci-ich{background:linear-gradient(160deg,#243660 0%,#1f5096 100%);}
+.ci-jaipur{background:linear-gradient(160deg,#2a3a80 0%,#4060c0 100%);}
+.ci-varanasi{background:linear-gradient(160deg,#1a2e60 0%,#284ea0 100%);}
+.ci-ludhiana{background:linear-gradient(160deg,#16304e 0%,#24568a 100%);}
+.ci-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.ci-icon{font-size:3rem;opacity:.18;}
+.ci-bottom{position:relative;z-index:2;padding:.5rem .75rem;width:100%;display:flex;align-items:center;justify-content:space-between;}
+.ci-state{background:rgba(255,255,255,.18);color:#fff;font-size:.62rem;padding:.2rem .5rem;border-radius:3px;font-weight:500;}
+.ci-export{background:rgba(255,255,255,.9);color:var(--nv);font-size:.62rem;padding:.2rem .5rem;border-radius:3px;font-weight:700;}
+.cb{padding:.85rem .9rem;}
+.cb-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.35rem;}
+.cb h3{color:var(--nv);font-size:.92rem;font-weight:700;}
+.cb-tag{background:var(--sk);color:#0c447c;font-size:.6rem;padding:.2rem .5rem;border-radius:3px;font-weight:600;white-space:nowrap;}
+.cb p{color:var(--mt);font-size:.72rem;line-height:1.55;margin-bottom:.7rem;}
+.cb-meta{display:flex;gap:.6rem;margin-bottom:.7rem;flex-wrap:wrap;}
+.meta-item{display:flex;align-items:center;gap:.3rem;font-size:.67rem;color:var(--mt);}
+.meta-item svg{width:11px;height:11px;stroke:var(--bl);fill:none;stroke-width:2;flex-shrink:0;}
+.cb-footer{display:flex;align-items:center;justify-content:space-between;padding-top:.6rem;border-top:1px solid var(--br);}
+.cb-products{display:flex;gap:.3rem;flex-wrap:wrap;}
+.prod-tag{background:var(--sk2);color:#0c447c;font-size:.58rem;padding:2px 5px;border-radius:3px;}
+.btn-detail{background:var(--nv);color:#fff;padding:.32rem .9rem;font-size:.7rem;font-weight:500;border:none;border-radius:4px;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:background .13s;}
+.btn-detail:hover{background:var(--bl);}
+
+/* ── DETAIL PAGE ── */
+.det-hero{background:var(--nvd);padding:0;position:relative;overflow:hidden;}
+.det-hero-bg{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 38px,rgba(255,255,255,.03) 38px,rgba(255,255,255,.03) 39px),repeating-linear-gradient(90deg,transparent,transparent 38px,rgba(255,255,255,.03) 38px,rgba(255,255,255,.03) 39px);}
+.det-hero-inner{position:relative;z-index:2;padding:2rem 2rem 1.5rem;}
+.det-hero h1{color:#fff;font-size:1.6rem;font-weight:700;margin-bottom:.3rem;}
+.det-hero-sub{color:rgba(255,255,255,.68);font-size:.83rem;margin-bottom:.9rem;}
+.det-badges{display:flex;gap:.5rem;flex-wrap:wrap;}
+.dbadge{background:rgba(255,255,255,.14);color:#fff;font-size:.67rem;padding:.25rem .6rem;border-radius:4px;display:flex;align-items:center;gap:4px;}
+.dbadge svg{width:11px;height:11px;stroke:#fff;fill:none;stroke-width:2;opacity:.7;}
+
+.det-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
+.ds{background:#fff;padding:1rem;text-align:center;border-right:1px solid var(--br);border-bottom:1px solid var(--br);}
+.ds:last-child{border-right:none;}
+.ds-big{font-size:1.25rem;font-weight:700;color:var(--nv);}
+.ds-lbl{font-size:.63rem;color:var(--mt);margin-top:.12rem;text-transform:uppercase;letter-spacing:.06em;}
+
+.det-body{padding:1.8rem 2rem;}
+.sec-title{color:var(--nv);font-size:1rem;font-weight:700;margin-bottom:.9rem;padding-bottom:.45rem;border-bottom:2px solid var(--sk);}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+.overview-text{color:var(--mt);font-size:.8rem;line-height:1.75;}
+.stat-tiles{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;}
+.stile{background:var(--sk2);border:1px solid var(--br);border-radius:6px;padding:.75rem .85rem;display:flex;align-items:flex-start;gap:.65rem;}
+.stile-ic{width:32px;height:32px;background:var(--sk);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.stile-ic svg{width:16px;height:16px;stroke:var(--nv);fill:none;stroke-width:1.8;}
+.stile-val{font-size:.88rem;font-weight:700;color:var(--nv);}
+.stile-lbl{font-size:.63rem;color:var(--mt);}
+
+/* KEY HIGHLIGHTS */
+.kh-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1.5rem;}
+.kh{background:#fff;border:1px solid var(--br);border-radius:7px;overflow:hidden;cursor:pointer;transition:box-shadow .15s;}
+.kh:hover{box-shadow:0 3px 12px rgba(26,58,107,.1);}
+.kh-img{height:80px;display:flex;align-items:center;justify-content:center;position:relative;}
+.kh-img-1{background:linear-gradient(135deg,#1a3a6b,#2a5fa8);}
+.kh-img-2{background:linear-gradient(135deg,#1e4080,#3570c0);}
+.kh-img-3{background:linear-gradient(135deg,#243660,#1f5096);}
+.kh-img-4{background:linear-gradient(135deg,#2a3a80,#4060c0);}
+.kh-icon{font-size:1.8rem;opacity:.22;}
+.kh p{color:var(--nv);font-size:.72rem;font-weight:600;padding:.4rem .5rem;text-align:center;}
+
+/* EXPORT FLOW BAR CHART */
+.export-chart{background:#fff;border:1px solid var(--br);border-radius:7px;padding:1.1rem;margin-bottom:1.5rem;}
+.ec-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+.ec-title{color:var(--nv);font-size:.85rem;font-weight:600;}
+.ec-legend{display:flex;gap:.8rem;}
+.ec-leg-item{display:flex;align-items:center;gap:.3rem;font-size:.65rem;color:var(--mt);}
+.ec-dot{width:8px;height:8px;border-radius:50%;}
+.bar-group{display:flex;align-items:flex-end;gap:.4rem;height:120px;padding-bottom:.5rem;border-bottom:1px solid var(--br);margin-bottom:.5rem;}
+.bar-col{display:flex;flex-direction:column;align-items:center;gap:.3rem;flex:1;}
+.bar-fill{width:100%;border-radius:3px 3px 0 0;min-height:4px;transition:height .3s;}
+.bar-month{font-size:.6rem;color:var(--mt);}
+.bar-val{font-size:.6rem;color:var(--nv);font-weight:600;}
+
+/* EXPORTERS */
+.exp-controls{display:flex;gap:.5rem;margin-bottom:.8rem;flex-wrap:wrap;align-items:center;}
+.exp-search{display:flex;align-items:center;gap:.4rem;background:#fff;border:1px solid var(--br);border-radius:4px;padding:.3rem .6rem;flex:1;min-width:160px;}
+.exp-search input{border:none;outline:none;font-size:.72rem;font-family:'Inter',sans-serif;width:100%;}
+.exp-search svg{width:12px;height:12px;stroke:var(--mt);fill:none;stroke-width:2;}
+.exp-sel{background:#fff;border:1px solid var(--br);border-radius:4px;padding:.28rem .55rem;font-size:.72rem;font-family:'Inter',sans-serif;color:var(--tx);}
+.exp-count{font-size:.72rem;color:var(--mt);margin-left:auto;}
+.exp-row{background:#fff;border:1px solid var(--br);border-radius:7px;padding:.85rem 1rem;margin-bottom:.55rem;display:grid;grid-template-columns:1fr 1fr auto;gap:1rem;align-items:center;}
+.exp-row:hover{border-color:#b5d4f4;}
+.er-name{color:var(--nv);font-size:.85rem;font-weight:600;margin-bottom:.12rem;}
+.er-owner{color:var(--mt);font-size:.68rem;margin-bottom:.3rem;}
+.er-prods{display:flex;gap:.3rem;flex-wrap:wrap;}
+.er-prod{background:var(--sk);color:#0c447c;font-size:.6rem;padding:2px 5px;border-radius:3px;}
+.er-mid{display:flex;flex-direction:column;gap:.35rem;}
+.er-countries{display:flex;gap:.3rem;flex-wrap:wrap;align-items:center;}
+.er-country{font-size:.62rem;color:var(--mt);background:var(--sk2);padding:2px 5px;border-radius:3px;}
+.er-cert{display:flex;gap:.3rem;}
+.er-c{display:flex;align-items:center;gap:3px;font-size:.62rem;color:var(--gn);font-weight:500;}
+.er-c svg{width:10px;height:10px;stroke:var(--gn);fill:none;stroke-width:2.5;}
+.btn-exp{background:var(--bl);color:#fff;padding:.3rem .8rem;font-size:.68rem;border:none;border-radius:4px;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;}
+.btn-exp:hover{opacity:.88;}
+.exp-pagination{display:flex;align-items:center;justify-content:center;gap:.4rem;margin-top:.8rem;}
+.pg-btn{width:28px;height:28px;border:1px solid var(--br);border-radius:4px;background:#fff;font-size:.72rem;cursor:pointer;font-family:'Inter',sans-serif;color:var(--mt);display:flex;align-items:center;justify-content:center;}
+.pg-btn.on{background:var(--nv);color:#fff;border-color:var(--nv);}
+.pg-btn:hover:not(.on){background:var(--sk2);}
+
+/* FACILITIES */
+.fac-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1.5rem;}
+.fac{background:var(--sk2);border:1px solid var(--br);border-radius:7px;padding:.9rem;text-align:center;}
+.fac-ic{width:38px;height:38px;background:var(--sk);border-radius:8px;margin:0 auto .5rem;display:flex;align-items:center;justify-content:center;}
+.fac-ic svg{width:18px;height:18px;stroke:var(--nv);fill:none;stroke-width:1.8;}
+.fac h4{color:var(--nv);font-size:.75rem;font-weight:600;margin-bottom:.2rem;}
+.fac p{color:var(--mt);font-size:.65rem;line-height:1.5;}
+
+/* CONTACT / MAP */
+.contact-section{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+.contact-card{background:#fff;border:1px solid var(--br);border-radius:7px;padding:1.1rem;}
+.contact-card h3{color:var(--nv);font-size:.85rem;font-weight:700;margin-bottom:.8rem;display:flex;align-items:center;gap:6px;}
+.contact-card h3 svg{width:15px;height:15px;stroke:var(--bl);fill:none;stroke-width:1.8;}
+.contact-item{display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.6rem;}
+.contact-item svg{width:13px;height:13px;stroke:var(--nv);fill:none;stroke-width:1.8;flex-shrink:0;margin-top:2px;}
+.contact-item .ci-val{font-size:.78rem;color:var(--tx);}
+.contact-item .ci-lbl{font-size:.65rem;color:var(--mt);}
+.map-placeholder{background:var(--sk2);border:1px solid var(--br);border-radius:7px;height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;}
+.map-placeholder svg{width:28px;height:28px;stroke:var(--bl);fill:none;stroke-width:1.5;opacity:.5;}
+.map-placeholder p{color:var(--mt);font-size:.75rem;}
+.map-pin{background:var(--nv);color:#fff;font-size:.68rem;padding:.25rem .7rem;border-radius:3px;margin-top:.2rem;}
+
+/* HELP BAND */
+.hband{background:var(--nvd);padding:1.5rem 2rem;text-align:center;}
+.hband h3{color:#fff;font-size:.92rem;font-weight:600;margin-bottom:.75rem;}
+.bsup{background:#fff;color:var(--nv);padding:.42rem 1.3rem;font-size:.75rem;font-weight:600;border:none;border-radius:4px;cursor:pointer;font-family:'Inter',sans-serif;}
+
+/* FOOTER */
+footer{background:var(--sk2);border-top:1px solid var(--br);padding:1.5rem 2rem;}
+.fg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-bottom:1rem;}
+.fcol h4{color:var(--nv);font-size:.78rem;font-weight:700;margin-bottom:.55rem;display:flex;align-items:center;gap:4px;}
+.fcol h4 svg{width:12px;height:12px;stroke:var(--nv);fill:none;stroke-width:1.8;}
+.fcol a{display:block;color:var(--mt);font-size:.7rem;line-height:1.85;cursor:pointer;text-decoration:none;}
+.fcol a::before{content:'›';margin-right:4px;color:var(--bl);}
+.fcol a:hover{color:var(--nv);}
+.fci{display:flex;align-items:flex-start;gap:5px;color:var(--mt);font-size:.68rem;margin-bottom:.38rem;}
+.fci svg{width:11px;height:11px;stroke:var(--nv);fill:none;stroke-width:2;flex-shrink:0;margin-top:1px;}
+.fbot{border-top:1px solid var(--br);padding-top:.75rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.4rem;}
+.fbot p{color:var(--mt);font-size:.63rem;}
+.flogo{display:flex;align-items:center;gap:5px;}
+.flc{width:20px;height:20px;background:var(--nv);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.flt{color:var(--nv);font-weight:700;font-size:.82rem;}
+</style>
+
+
+
+<!-- NAV -->
+<div class="topbar">
+  <button class="topbar-btn" title="Bhasini — Indian language translation">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+    Bhasini
+  </button>
+  <div class="topbar-divider"></div>
+  <button class="topbar-btn" title="Translate page to another language">
+    <svg viewBox="0 0 24 24"><path d="M5 8l6 6M4 6h7M2 6h2m12 12l4 4m-4-4l-4 4m4-4V11a4 4 0 00-4-4h-1"/><path d="M11 6a9 9 0 010 12"/></svg>
+    Translate
+  </button>
+  <div class="topbar-divider"></div>
+  <button class="topbar-btn" title="Accessibility — font size">
+    <svg viewBox="0 0 24 24"><text x="4" y="18" font-size="14" font-weight="700" fill="#6c153f" stroke="none">A</text><text x="13" y="14" font-size="9" fill="#6c153f" stroke="none">A</text></svg>
+    A&thinsp;A
+  </button>
+  <div class="topbar-divider"></div>
+  <button class="topbar-btn" title="Screen reader / accessibility">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M6 20v-2a6 6 0 0112 0v2"/><path d="M3 13s2-2 9-2 9 2 9 2"/></svg>
+    Accessibility
+  </button>
+</div>
+
+<!-- TIER 2: LOGO BAR -->
+<div class="logobar">
+  <div class="logobar-left">
+    <!-- Textiles Committee Real Logo -->
+    <div class="logo-emblem" style="width:auto;height:70px;padding-right:4px;border-right:1px solid var(--border);">
+      <img src="images\Textiles_Committee_Logo_2.png">
+    </div>
+    <!-- TEFC name + subtitle -->
+    <div class="logo-text-block" style="padding-left:14px;">
+      <div class="logo-title">Textiles Exports Facilitation Centre (TEFC)</div>
+      <div class="logo-subtitle">Under the initiative of Textiles Committee, Ministry of Textiles, Government of India</div>
+    </div>
+  </div>
+  <div class="logobar-right">
+    <!-- Swachh Bharat Real Logo only -->
+    <img src="images\Swachh_Bharat_Mission_Logo_2.png">
+  </div>
+</div>
+
+<!-- TIER 3: MAIN NAV -->
+<nav>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="TEFC_About.html">About TEFC <span class="arr">▼</span></a>
+      <ul class="dropdown-menu">
+        <li><a href="TEFC_About.html">Overview</a></li>
+        <li><a href="TEFC_About.html">Mission &amp; Vision</a></li>
+        <li><a href="TEFC_About.html">Objectives</a></li>
+        <li><a href="TEFC_About.html">Organisational Structure</a></li>
+        <li><a href="TEFC_About.html">Partners</a></li>
+      </ul>
+    </li>
+    <li><a href="#">6 TEFC's <span class="arr">▼</span></a>
+      <ul class="dropdown-menu">
+        <li><a href="tefc_clusters_page.html">Karur</a></li>
+        <li><a href="tefc_clusters_page.html">Surat</a></li>
+        <li><a href="tefc_clusters_page.html">Ichalkaranji</a></li>
+        <li><a href="tefc_clusters_page.html">Jaipur</a></li>
+        <li><a href="tefc_clusters_page.html">Varanasi</a></li>
+        <li><a href="tefc_clusters_page.html">Ludhiana</a></li>
+      </ul>
+    </li>
+    <li><a href="#">FTA Benefits</a></li>
+    <li><a href="#">Online Services</a></li>
+    <li><a href="tefc_exporter_portal_v4.html">Exporter Portal</a></li>
+    <li><a href="TEFC_Media_Center.html">Media Center</a></li>
+    <li><a href="#">Resources <span class="arr">▼</span></a>
+      <ul class="dropdown-menu">
+        <li><a href="TEFC_Resources.html">Market Opportunities</a></li>
+        <li><a href="TEFC_Resources.html">Export Process</a></li>
+        <li><a href="TEFC_Resources.html">Trade Fairs</a></li>
+        <li><a href="TEFC_Resources.html">Government Schemes</a></li>
+        <li><a href="TEFC_Resources.html">FTA/PTA List</a></li>
+      </ul>
+    </li>
+    <li><a href="TEFC_News.html">News</a></li>
+    <li><a href="help_and_ support.html">Help &amp; Support</a></li>
+  </ul>
+  <div class="nav-actions">
+   
+    <div class="nav-search">
+      <input type="text" placeholder="Search..." />
+      <button><svg viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- LISTING PAGE -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="pg on" id="pg-listing">
+  <div class="list-hero">
+    <div class="lhbg"></div>
+    <div class="lhi">
+      <div class="bc"><span>Home</span><span class="sep">›</span><span class="cur">Clusters</span></div>
+      <h1>Key Textile Clusters</h1>
+      <p>Explore India's 6 major textile export cluster regions — products, exporters, facilities and more.</p>
+      <div class="hero-stats">
+        <div class="hs"><div class="hsbig">6</div><div class="hslbl">Total Clusters</div></div>
+        <div class="hs"><div class="hsbig">1000+</div><div class="hslbl">Exporters Listed</div></div>
+        <div class="hs"><div class="hsbig">Rs.18,800 Cr</div><div class="hslbl">Combined Export Value</div></div>
+        <div class="hs"><div class="hsbig">17 Lakh+</div><div class="hslbl">Total Workforce</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <span class="fb-label">Filter by:</span>
+    <button class="fb-btn on" onclick="filterClusters('all',this)">All States</button>
+    <button class="fb-btn" onclick="filterClusters('south',this)">South India</button>
+    <button class="fb-btn" onclick="filterClusters('west',this)">West India</button>
+    <button class="fb-btn" onclick="filterClusters('north',this)">North India</button>
+    <button class="fb-btn" onclick="filterClusters('home',this)">Home Textiles</button>
+    <button class="fb-btn" onclick="filterClusters('apparel',this)">Apparel</button>
+    <div class="fb-search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input placeholder="Search clusters..." id="clusterSearch" oninput="searchClusters(this.value)" />
+    </div>
+  </div>
+
+  <div class="clusters-body">
+    <div class="grid-header">
+      <h2>All Textile Clusters <span id="cluster-count" style="font-weight:400;color:#5a6a82;font-size:.85rem;">(6 clusters)</span></h2>
+      <select class="sort-sel"><option>Sort by: Export Value</option><option>Sort by: Name</option><option>Sort by: State</option></select>
+    </div>
+    <div class="cg" id="clusterGrid">
+
+      <!-- KARUR -->
+      <div class="cc" data-region="south" data-type="home" onclick="showDetail('karur')">
+        <div class="ci ci-karur">
+          <div class="ci-overlay"><div class="ci-icon">&#9776;</div></div>
+          <div class="ci-bottom">
+            <span class="ci-state">Tamil Nadu</span>
+            <span class="ci-export">Rs.4,000 Cr+</span>
+          </div>
+        </div>
+        <div class="cb">
+          <div class="cb-top"><h3>Karur</h3><span class="cb-tag">Home Textiles</span></div>
+          <p>Textile Capital of Tamil Nadu — globally renowned for high-quality home textiles including bed linens, kitchen linen, curtains, and home decor.</p>
+          <div class="cb-meta">
+            <div class="meta-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>1 Lakh+ workforce</div>
+            <div class="meta-item"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>1,500+ units</div>
+            <div class="meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>USA, UK, Germany</div>
+          </div>
+          <div class="cb-footer">
+            <div class="cb-products"><span class="prod-tag">Bed Sheets</span><span class="prod-tag">Curtains</span><span class="prod-tag">Table Linen</span></div>
+            <button class="btn-detail">View Details ›</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SURAT -->
+      <div class="cc" data-region="west" data-type="apparel" onclick="showDetail('surat')">
+        <div class="ci ci-surat">
+          <div class="ci-overlay"><div class="ci-icon">&#9672;</div></div>
+          <div class="ci-bottom">
+            <span class="ci-state">Gujarat</span>
+            <span class="ci-export">Rs.6,500 Cr+</span>
+          </div>
+        </div>
+        <div class="cb">
+          <div class="cb-top"><h3>Surat</h3><span class="cb-tag">Synthetic Textiles</span></div>
+          <p>India's synthetic textile capital — producing over 40% of the nation's synthetic fabric, including sarees, dress materials, and polyester fabrics.</p>
+          <div class="cb-meta">
+            <div class="meta-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>6 Lakh+ workforce</div>
+            <div class="meta-item"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>3,000+ units</div>
+            <div class="meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>UAE, USA, Europe</div>
+          </div>
+          <div class="cb-footer">
+            <div class="cb-products"><span class="prod-tag">Sarees</span><span class="prod-tag">Dress Material</span><span class="prod-tag">Polyester</span></div>
+            <button class="btn-detail">View Details ›</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ICHALKARANJI -->
+      <div class="cc" data-region="west" data-type="home" onclick="showDetail('ichalkaranji')">
+        <div class="ci ci-ich">
+          <div class="ci-overlay"><div class="ci-icon">&#9670;</div></div>
+          <div class="ci-bottom">
+            <span class="ci-state">Maharashtra</span>
+            <span class="ci-export">Rs.2,000 Cr+</span>
+          </div>
+        </div>
+        <div class="cb">
+          <div class="cb-top"><h3>Ichalkaranji</h3><span class="cb-tag">Cotton Fabrics</span></div>
+          <p>One of India's largest powerloom centres — specialising in cotton yarn and grey fabrics, supplying raw material to garment manufacturers globally.</p>
+          <div class="cb-meta">
+            <div class="meta-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>3 Lakh+ workforce</div>
+            <div class="meta-item"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>25,000+ units</div>
+            <div class="meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Bangladesh, China</div>
+          </div>
+          <div class="cb-footer">
+            <div class="cb-products"><span class="prod-tag">Cotton Yarn</span><span class="prod-tag">Grey Fabric</span><span class="prod-tag">Dyed Cloth</span></div>
+            <button class="btn-detail">View Details ›</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- JAIPUR -->
+      <div class="cc" data-region="north" data-type="apparel" onclick="showDetail('jaipur')">
+        <div class="ci ci-jaipur">
+          <div class="ci-overlay"><div class="ci-icon">&#10022;</div></div>
+          <div class="ci-bottom">
+            <span class="ci-state">Rajasthan</span>
+            <span class="ci-export">Rs.1,800 Cr+</span>
+          </div>
+        </div>
+        <div class="cb">
+          <div class="cb-top"><h3>Jaipur</h3><span class="cb-tag">Printed Textiles</span></div>
+          <p>World-famous for traditional block printing, Bandhani tie-dye, and screen printing on cotton and silk. Ethnic textiles sought after in global lifestyle markets.</p>
+          <div class="cb-meta">
+            <div class="meta-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>2 Lakh+ workforce</div>
+            <div class="meta-item"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>5,000+ units</div>
+            <div class="meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Europe, USA, Japan</div>
+          </div>
+          <div class="cb-footer">
+            <div class="cb-products"><span class="prod-tag">Block Prints</span><span class="prod-tag">Bandhani</span><span class="prod-tag">Jaipuri Razai</span></div>
+            <button class="btn-detail">View Details ›</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VARANASI -->
+      <div class="cc" data-region="north" data-type="apparel" onclick="showDetail('varanasi')">
+        <div class="ci ci-varanasi">
+          <div class="ci-overlay"><div class="ci-icon">&#10041;</div></div>
+          <div class="ci-bottom">
+            <span class="ci-state">Uttar Pradesh</span>
+            <span class="ci-export">Rs.900 Cr+</span>
+          </div>
+        </div>
+        <div class="cb">
+          <div class="cb-top"><h3>Varanasi</h3><span class="cb-tag">Silk Weaving</span></div>
+          <p>Home of the legendary Banarasi saree — a UNESCO-recognised craft tradition of hand-woven silk embellished with gold and silver zari, commanding premium prices globally.</p>
+          <div class="cb-meta">
+            <div class="meta-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>1.5 Lakh+ workforce</div>
+            <div class="meta-item"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>1,200+ units</div>
+            <div class="meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>USA, UAE, Japan</div>
+          </div>
+          <div class="cb-footer">
+            <div class="cb-products"><span class="prod-tag">Banarasi Sarees</span><span class="prod-tag">Zari Work</span><span class="prod-tag">Brocade</span></div>
+            <button class="btn-detail">View Details ›</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- LUDHIANA -->
+      <div class="cc" data-region="north" data-type="apparel" onclick="showDetail('ludhiana')">
+        <div class="ci ci-ludhiana">
+          <div class="ci-overlay"><div class="ci-icon">&#9632;</div></div>
+          <div class="ci-bottom">
+            <span class="ci-state">Punjab</span>
+            <span class="ci-export">Rs.3,500 Cr+</span>
+          </div>
+        </div>
+        <div class="cb">
+          <div class="cb-top"><h3>Ludhiana</h3><span class="cb-tag">Knitwear</span></div>
+          <p>India's largest knitwear and hosiery manufacturing hub — producing woollen garments, sweaters, socks, and sportswear for global fashion and outdoor-wear brands.</p>
+          <div class="cb-meta">
+            <div class="meta-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>4 Lakh+ workforce</div>
+            <div class="meta-item"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>10,000+ units</div>
+            <div class="meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>UK, Germany, Russia</div>
+          </div>
+          <div class="cb-footer">
+            <div class="cb-products"><span class="prod-tag">Sweaters</span><span class="prod-tag">Hosiery</span><span class="prod-tag">Sportswear</span></div>
+            <button class="btn-detail">View Details ›</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="fg">
+      <div class="fcol"><h4><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>About TEFC</h4>
+        <div class="fci"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>123 Textile Road, New Delhi</div>
+        <div class="fci"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>info@tefc.gov.in</div>
+        <div class="fci"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81"/></svg>+91 12356 67890</div>
+      </div>
+      <div class="fcol"><h4><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/></svg>Quick Links</h4>
+        <a>Homepage</a><a>About TEFC</a><a>Online Services</a><a>FTA Benefits</a><a>Media Center</a>
+      </div>
+      <div class="fcol"><h4><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Contact Us</h4>
+        <div class="fci"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>info@tefc.gov.in</div>
+        <div class="fci"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07"/></svg>+91 12335 6790</div>
+      </div>
+    </div>
+    <div class="fbot">
+      <div class="flogo"><div class="flc"><svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="white" stroke-width="2"><circle cx="6" cy="6" r="4"/></svg></div><span class="flt">TEFC</span></div>
+      <p>© 2026 Textile Export Facilitation Centres. Government of India.</p>
+      <p>Privacy Policy · Terms of Use</p>
+    </div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- DETAIL PAGE -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="pg" id="pg-detail">
+  <div class="det-hero">
+    <div class="det-hero-bg"></div>
+    <div class="det-hero-inner">
+      <div class="bc"><span onclick="showListing()">Home</span><span class="sep">›</span><span onclick="showListing()">Clusters</span><span class="sep">›</span><span class="cur" id="d-name">Karur</span></div>
+      <h1 id="d-title">Karur Textile Cluster</h1>
+      <p class="det-hero-sub" id="d-sub">Hub for home textiles and export-quality products</p>
+      <div class="det-badges">
+        <span class="dbadge"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Location: <strong id="d-state">Tamil Nadu</strong></span>
+        <span class="dbadge"><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>Specialisation: <strong id="d-spec">Home Textiles</strong></span>
+        <span class="dbadge"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Est. <strong id="d-est">Late 19th Century</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="det-stats">
+    <div class="ds"><div class="ds-big" id="d-units">1,500+</div><div class="ds-lbl">Manufacturing Units</div></div>
+    <div class="ds"><div class="ds-big" id="d-export">Rs.4,000 Cr+</div><div class="ds-lbl">Annual Export Value</div></div>
+    <div class="ds"><div class="ds-big" id="d-workforce">1 Lakh+</div><div class="ds-lbl">Workforce</div></div>
+    <div class="ds"><div class="ds-big" id="d-buyers">60+</div><div class="ds-lbl">Export Destinations</div></div>
+  </div>
+
+  <div class="det-body">
+
+    <!-- OVERVIEW -->
+    <div class="sec-title">Cluster Overview</div>
+    <div class="two-col">
+      <div>
+        <p class="overview-text" id="d-overview">Karur is known as the "Textile Capital of Tamil Nadu", renowned for its production of high-quality home textiles catering to domestic and international markets. The cluster specialises in bed linens, table linens, kitchen linens, and home decor items.</p>
+        <p class="overview-text" id="d-overview2">The cluster has played a pivotal role in India's export economy with strong buyer networks across the USA, UK, Germany, and the Middle East. It houses over 1,500 manufacturing units, many of which are ISO and OEKO-TEX certified.</p>
+      </div>
+      <div class="stat-tiles">
+        <div class="stile">
+          <div class="stile-ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+          <div><div class="stile-val" id="d-st-est">Late 19th C</div><div class="stile-lbl">Established Year</div></div>
+        </div>
+        <div class="stile">
+          <div class="stile-ic"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
+          <div><div class="stile-val" id="d-st-units">1,500+</div><div class="stile-lbl">Number of Units</div></div>
+        </div>
+        <div class="stile">
+          <div class="stile-ic"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+          <div><div class="stile-val" id="d-st-export">Rs.4,000 Cr+</div><div class="stile-lbl">Annual Export Volume</div></div>
+        </div>
+        <div class="stile">
+          <div class="stile-ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg></div>
+          <div><div class="stile-val" id="d-st-work">1 Lakh+</div><div class="stile-lbl">Workforce</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KEY HIGHLIGHTS -->
+    <div class="sec-title">Key Highlights</div>
+    <div class="kh-grid" id="d-highlights">
+      <div class="kh"><div class="kh-img kh-img-1"><div class="kh-icon">&#9632;</div></div><p id="d-h1">Bed Sheets</p></div>
+      <div class="kh"><div class="kh-img kh-img-2"><div class="kh-icon">&#9632;</div></div><p id="d-h2">Curtains</p></div>
+      <div class="kh"><div class="kh-img kh-img-3"><div class="kh-icon">&#9632;</div></div><p id="d-h3">Table Linen</p></div>
+      <div class="kh"><div class="kh-img kh-img-4"><div class="kh-icon">&#9632;</div></div><p id="d-h4">Cushion Covers</p></div>
+    </div>
+
+    <!-- EXPORT FLOW CHART -->
+    <div class="sec-title">Volume of Export Flow</div>
+    <div class="export-chart">
+      <div class="ec-header">
+        <span class="ec-title">Monthly Export Volume (Rs. Cr)</span>
+        <div class="ec-legend">
+          <div class="ec-leg-item"><div class="ec-dot" style="background:#1a3a6b;"></div>Current Year</div>
+          <div class="ec-leg-item"><div class="ec-dot" style="background:#b5d4f4;"></div>Previous Year</div>
+        </div>
+      </div>
+      <div class="bar-group" id="exportChart"></div>
+      <div style="display:flex;justify-content:space-between;padding:0 2px;">
+        <span style="font-size:.6rem;color:#5a6a82;">Jan</span><span style="font-size:.6rem;color:#5a6a82;">Feb</span><span style="font-size:.6rem;color:#5a6a82;">Mar</span><span style="font-size:.6rem;color:#5a6a82;">Apr</span><span style="font-size:.6rem;color:#5a6a82;">May</span><span style="font-size:.6rem;color:#5a6a82;">Jun</span><span style="font-size:.6rem;color:#5a6a82;">Jul</span><span style="font-size:.6rem;color:#5a6a82;">Aug</span><span style="font-size:.6rem;color:#5a6a82;">Sep</span><span style="font-size:.6rem;color:#5a6a82;">Oct</span><span style="font-size:.6rem;color:#5a6a82;">Nov</span><span style="font-size:.6rem;color:#5a6a82;">Dec</span>
+      </div>
+    </div>
+
+    <!-- EXPORTERS & TRADERS -->
+    <div class="sec-title">Exporters &amp; Traders</div>
+    <div class="exp-controls">
+      <div class="exp-search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input placeholder="Search exporters / traders by name..." />
+      </div>
+      <select class="exp-sel"><option>All Products</option><option>Bed Linen</option><option>Curtains</option><option>Table Linen</option><option>Yarn</option></select>
+      <select class="exp-sel"><option>All Certifications</option><option>ISO Certified</option><option>OEKO-TEX</option><option>GOTS</option></select>
+      <span class="exp-count" id="exp-count">Showing 5 of 12 exporters</span>
+    </div>
+    <div id="exportersList">
+      <div class="exp-row">
+        <div><div class="er-name">ABC Textiles Pvt. Ltd.</div><div class="er-owner">Owner: Ravi Kumar &nbsp;|&nbsp; Est. 2002</div><div class="er-prods"><span class="er-prod">Bed Linen</span><span class="er-prod">Curtains</span><span class="er-prod">Table Cloth</span></div></div>
+        <div class="er-mid"><div class="er-countries"><span style="font-size:.63rem;color:#5a6a82;margin-right:2px;">Exports to:</span><span class="er-country">USA</span><span class="er-country">UK</span><span class="er-country">Germany</span><span class="er-country">France</span></div><div class="er-cert"><div class="er-c"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/></svg>ISO 9001</div><div class="er-c"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/></svg>OEKO-TEX</div></div></div>
+        <button class="btn-exp">View Details</button>
+      </div>
+      <div class="exp-row">
+        <div><div class="er-name">Sri Lakshmi Home Textiles</div><div class="er-owner">Owner: Meena Subramaniam &nbsp;|&nbsp; Est. 1998</div><div class="er-prods"><span class="er-prod">Table Linen</span><span class="er-prod">Kitchen Textiles</span><span class="er-prod">Napkins</span></div></div>
+        <div class="er-mid"><div class="er-countries"><span style="font-size:.63rem;color:#5a6a82;margin-right:2px;">Exports to:</span><span class="er-country">UAE</span><span class="er-country">France</span><span class="er-country">Japan</span></div><div class="er-cert"><div class="er-c"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/></svg>GOTS</div><div class="er-c"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/></svg>OEKO-TEX</div></div></div>
+        <button class="btn-exp">View Details</button>
+      </div>
+      <div class="exp-row">
+        <div><div class="er-name">Karur Crown Exports</div><div class="er-owner">Owner: Senthil Kumar &nbsp;|&nbsp; Est. 2005</div><div class="er-prods"><span class="er-prod">Cushion Covers</span><span class="er-prod">Bed Sheets</span><span class="er-prod">Quilts</span></div></div>
+        <div class="er-mid"><div class="er-countries"><span style="font-size:.63rem;color:#5a6a82;margin-right:2px;">Exports to:</span><span class="er-country">Australia</span><span class="er-country">Canada</span><span class="er-country">New Zealand</span></div><div class="er-cert"><div class="er-c"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/></svg>ISO 9001</div></div></div>
+        <button class="btn-exp">View Details</button>
+      </div>
+      <div class="exp-row">
+        <div><div class="er-name">Royal Cotton Mills</div><div class="er-owner">Owner: Deepa Rajan &nbsp;|&nbsp; Est. 1990</div><div class="er-prods"><span class="er-prod">Bath Towels</span><span class="er-prod">Kitchen Linen</span><span class="er-prod">Bedcovers</span></div></div>
+        <div class="er-mid"><div class="er-countries"><span style="font-size:.63rem;color:#5a6a82;margin-right:2px;">Exports to:</span><span class="er-country">Italy</span><span class="er-country">Spain</span><span class="er-country">Portugal</span></div><div class="er-cert"><div class="er-c"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/></svg>ISO 9001</div><div class="er-c"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/></svg>GOTS</div></div></div>
+        <button class="btn-exp">View Details</button>
+      </div>
+      <div class="exp-row">
+        <div><div class="er-name">Kaveri Weaves &amp; Exports</div><div class="er-owner">Owner: Arjun Nair &nbsp;|&nbsp; Est. 2011</div><div class="er-prods"><span class="er-prod">Woven Throws</span><span class="er-prod">Sofa Covers</span><span class="er-prod">Wall Hangings</span></div></div>
+        <div class="er-mid"><div class="er-countries"><span style="font-size:.63rem;color:#5a6a82;margin-right:2px;">Exports to:</span><span class="er-country">Netherlands</span><span class="er-country">Sweden</span><span class="er-country">Denmark</span></div><div class="er-cert"><div class="er-c"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/></svg>OEKO-TEX</div></div></div>
+        <button class="btn-exp">View Details</button>
+      </div>
+    </div>
+    <div class="exp-pagination">
+      <button class="pg-btn on">1</button>
+      <button class="pg-btn">2</button>
+      <button class="pg-btn">3</button>
+      <button class="pg-btn" style="width:auto;padding:0 8px;">Next ›</button>
+    </div>
+
+    <!-- FACILITIES -->
+    <div class="sec-title" style="margin-top:1.5rem;">Facilities &amp; Support</div>
+    <div class="fac-grid">
+      <div class="fac"><div class="fac-ic"><svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg></div><h4>Testing Laboratories</h4><p>Modern labs for textile quality testing — fabric strength, colour fastness, shrinkage and chemical safety.</p></div>
+      <div class="fac"><div class="fac-ic"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><h4>Certification Assistance</h4><p>Full support with OEKO-TEX, GOTS, ISO 9001, and buyer-specific certification processes.</p></div>
+      <div class="fac"><div class="fac-ic"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg></div><h4>Training Programmes</h4><p>Skill development workshops, export management training, and capacity building for MSMEs.</p></div>
+      <div class="fac"><div class="fac-ic"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><h4>Logistic Support</h4><p>Warehousing, freight forwarding partnerships, and safe packing infrastructure for export dispatch.</p></div>
+    </div>
+
+    <!-- CONTACT & MAP -->
+    <div class="sec-title">Location &amp; Contact</div>
+    <div class="contact-section">
+      <div class="contact-card">
+        <h3><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>TEFC Cluster Office — <span id="d-contact-city">Karur</span></h3>
+        <div class="contact-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><div><div class="ci-lbl">Address</div><div class="ci-val" id="d-address">TEFC Office, No. 14, Textile Park, Karur — 639 002, Tamil Nadu</div></div></div>
+        <div class="contact-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.11 1.18 2 2 0 012.09 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><div><div class="ci-lbl">Phone</div><div class="ci-val" id="d-phone">+91 4324 123456</div></div></div>
+        <div class="contact-item"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><div><div class="ci-lbl">Email</div><div class="ci-val" id="d-email">karur@tefc.gov.in</div></div></div>
+        <div class="contact-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div><div class="ci-lbl">Working Hours</div><div class="ci-val">Mon – Fri, 9:00 AM – 6:00 PM IST</div></div></div>
+      </div>
+      <div class="map-placeholder">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <p id="d-map-label">Karur, Tamil Nadu</p>
+        <p style="font-size:.68rem;color:#5a6a82;">Map integration available in production build</p>
+        <div class="map-pin" id="d-map-pin">View on Google Maps ›</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="hband"><h3>Need Assistance? We're here to help.</h3><button class="bsup">Contact Support</button></div>
+  <footer>
+    <div class="fg">
+      <div class="fcol"><h4><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>About TEFC</h4>
+        <div class="fci"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>123 Textile Road, New Delhi</div>
+        <div class="fci"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>info@tefc.gov.in</div>
+      </div>
+      <div class="fcol"><h4><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/></svg>Quick Links</h4>
+        <a onclick="showListing()">All Clusters</a><a>FTA Benefits</a><a>Online Services</a><a>Help &amp; Support</a>
+      </div>
+      <div class="fcol"><h4><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Contact Us</h4>
+        <div class="fci"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/></svg>info@tefc.gov.in</div>
+        <div class="fci"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07"/></svg>+91 12335 6790</div>
+      </div>
+    </div>
+    <div class="fbot">
+      <div class="flogo"><div class="flc"><svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="white" stroke-width="2"><circle cx="6" cy="6" r="4"/></svg></div><span class="flt">TEFC</span></div>
+      <p>© 2026 Textile Export Facilitation Centres. Government of India.</p>
+      <p>Privacy Policy · Terms of Use</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+const CLUSTERS = {
+  karur: {
+    name:'Karur', title:'Karur Textile Cluster', sub:'Hub for home textiles and export-quality products',
+    state:'Tamil Nadu', spec:'Home Textiles', est:'Late 19th Century',
+    units:'1,500+', export:'Rs.4,000 Cr+', workforce:'1 Lakh+', buyers:'60+',
+    overview:'Karur is known as the "Textile Capital of Tamil Nadu", renowned for its production of high-quality home textiles catering to domestic and international markets. The cluster specialises in bed linens, table linens, kitchen linens, and home decor items.',
+    overview2:'The cluster has played a pivotal role in India\'s export economy with strong buyer networks across the USA, UK, Germany, and the Middle East. Over 1,500 manufacturing units, many of which are ISO and OEKO-TEX certified.',
+    h1:'Bed Sheets', h2:'Curtains', h3:'Table Linen', h4:'Cushion Covers',
+    address:'TEFC Office, No. 14, Textile Park, Karur — 639 002, Tamil Nadu',
+    phone:'+91 4324 123456', email:'karur@tefc.gov.in',
+    exportData:[280,310,340,290,360,400,380,420,390,440,460,430]
+  },
+  surat: {
+    name:'Surat', title:'Surat Textile Cluster', sub:"India's synthetic textile export capital",
+    state:'Gujarat', spec:'Synthetic Textiles', est:'Early 20th Century',
+    units:'3,000+', export:'Rs.6,500 Cr+', workforce:'6 Lakh+', buyers:'85+',
+    overview:'Surat is India\'s largest synthetic textiles hub, producing over 40% of the nation\'s synthetic fabric including sarees, dress materials, and polyester fabrics.',
+    overview2:'Surat\'s textile sector is highly technology-driven with advanced weaving and dyeing machinery. The city has strong connections with global fashion brands in the UAE, USA, and across Europe.',
+    h1:'Sarees', h2:'Dress Materials', h3:'Polyester Fabric', h4:'Dupatta',
+    address:'TEFC Office, Ring Road, Surat — 395 002, Gujarat',
+    phone:'+91 0261 234567', email:'surat@tefc.gov.in',
+    exportData:[420,480,560,510,590,640,600,680,650,720,700,760]
+  },
+  ichalkaranji: {
+    name:'Ichalkaranji', title:'Ichalkaranji Textile Cluster', sub:"Maharashtra's largest powerloom centre",
+    state:'Maharashtra', spec:'Cotton Yarn & Fabrics', est:'Mid 20th Century',
+    units:'25,000+', export:'Rs.2,000 Cr+', workforce:'3 Lakh+', buyers:'40+',
+    overview:'Ichalkaranji is one of India\'s largest powerloom centres, specialising in cotton yarn and grey fabrics. The cluster supplies raw material to garment manufacturers across India and internationally.',
+    overview2:'Known for its high-volume, cost-competitive cotton fabric production, the cluster has strong linkages with garment exporters in Bangladesh, Sri Lanka, and South-East Asia.',
+    h1:'Cotton Yarn', h2:'Grey Fabric', h3:'Dyed Fabric', h4:'Woven Cloth',
+    address:'TEFC Office, Textile Bhavan, Ichalkaranji — 416 115, Maharashtra',
+    phone:'+91 0230 345678', email:'ichalkaranji@tefc.gov.in',
+    exportData:[160,180,200,175,210,230,215,240,225,260,250,270]
+  },
+  jaipur: {
+    name:'Jaipur', title:'Jaipur Textile Cluster', sub:'Heritage printing and dyeing hub of Rajasthan',
+    state:'Rajasthan', spec:'Printed & Dyed Textiles', est:'17th Century',
+    units:'5,000+', export:'Rs.1,800 Cr+', workforce:'2 Lakh+', buyers:'55+',
+    overview:'Jaipur is world-famous for traditional block printing, Bandhani tie-dye, and screen printing on cotton and silk. The cluster\'s ethnic and artisan textiles are highly sought after in European and American lifestyle markets.',
+    overview2:'Jaipur\'s textile exports are rooted in craft heritage, with master artisans passing techniques across generations. The cluster is also known for sustainable, natural-dye based fabrics increasingly popular globally.',
+    h1:'Block Prints', h2:'Bandhani Fabric', h3:'Screen Print', h4:'Jaipuri Razai',
+    address:'TEFC Office, MI Road, Jaipur — 302 001, Rajasthan',
+    phone:'+91 0141 456789', email:'jaipur@tefc.gov.in',
+    exportData:[120,140,160,145,170,195,180,200,190,215,210,225]
+  },
+  varanasi: {
+    name:'Varanasi', title:'Varanasi Textile Cluster', sub:"India's silk weaving heritage centre",
+    state:'Uttar Pradesh', spec:'Silk Weaving', est:'Medieval Era',
+    units:'1,200+', export:'Rs.900 Cr+', workforce:'1.5 Lakh+', buyers:'30+',
+    overview:'Varanasi (Banaras) is synonymous with the Banarasi saree — an exquisite hand-woven silk fabric embellished with gold and silver zari. The cluster is a UNESCO-recognised craft tradition.',
+    overview2:'Banarasi textiles command premium prices globally and are associated with Indian cultural heritage. The cluster exports to diaspora markets worldwide and is growing in European luxury home furnishing segments.',
+    h1:'Banarasi Sarees', h2:'Zari Work', h3:'Silk Dupattas', h4:'Brocade Fabric',
+    address:'TEFC Office, Sigra, Varanasi — 221 002, Uttar Pradesh',
+    phone:'+91 0542 567890', email:'varanasi@tefc.gov.in',
+    exportData:[65,75,85,72,88,100,95,105,98,112,108,115]
+  },
+  ludhiana: {
+    name:'Ludhiana', title:'Ludhiana Textile Cluster', sub:"India's knitwear and hosiery capital",
+    state:'Punjab', spec:'Knitwear & Woollens', est:'Post-Independence Era',
+    units:'10,000+', export:'Rs.3,500 Cr+', workforce:'4 Lakh+', buyers:'70+',
+    overview:'Ludhiana is India\'s largest knitwear and hosiery manufacturing centre, producing woollen garments, sweaters, socks, and sportswear for global fashion and outdoor-wear brands.',
+    overview2:'The cluster is highly mechanised and exports strongly to the UK, Germany, Russia, and the CIS countries. Ludhiana is also emerging as a hub for technical textiles and performance sportswear.',
+    h1:'Woollen Sweaters', h2:'Hosiery', h3:'Sports Knitwear', h4:'Shawls & Stoles',
+    address:'TEFC Office, Ferozepur Road, Ludhiana — 141 001, Punjab',
+    phone:'+91 0161 678901', email:'ludhiana@tefc.gov.in',
+    exportData:[240,270,310,285,330,370,350,390,365,410,400,430]
+  }
+};
+
+function showListing() {
+  document.getElementById('pg-listing').classList.add('on');
+  document.getElementById('pg-detail').classList.remove('on');
+  try{window.scrollTo(0,0);}catch(e){}
+}
+
+function showDetail(key) {
+  const d = CLUSTERS[key];
+  if (!d) return;
+  document.getElementById('d-name').textContent = d.name;
+  document.getElementById('d-title').textContent = d.title;
+  document.getElementById('d-sub').textContent = d.sub;
+  document.getElementById('d-state').textContent = d.state;
+  document.getElementById('d-spec').textContent = d.spec;
+  document.getElementById('d-est').textContent = d.est;
+  document.getElementById('d-units').textContent = d.units;
+  document.getElementById('d-export').textContent = d.export;
+  document.getElementById('d-workforce').textContent = d.workforce;
+  document.getElementById('d-buyers').textContent = d.buyers;
+  document.getElementById('d-overview').textContent = d.overview;
+  document.getElementById('d-overview2').textContent = d.overview2;
+  document.getElementById('d-h1').textContent = d.h1;
+  document.getElementById('d-h2').textContent = d.h2;
+  document.getElementById('d-h3').textContent = d.h3;
+  document.getElementById('d-h4').textContent = d.h4;
+  document.getElementById('d-st-est').textContent = d.est;
+  document.getElementById('d-st-units').textContent = d.units;
+  document.getElementById('d-st-export').textContent = d.export;
+  document.getElementById('d-st-work').textContent = d.workforce;
+  document.getElementById('d-contact-city').textContent = d.name;
+  document.getElementById('d-address').textContent = d.address;
+  document.getElementById('d-phone').textContent = d.phone;
+  document.getElementById('d-email').textContent = d.email;
+  document.getElementById('d-map-label').textContent = d.name + ', ' + d.state;
+  buildChart(d.exportData);
+  document.getElementById('pg-listing').classList.remove('on');
+  document.getElementById('pg-detail').classList.add('on');
+  try{window.scrollTo(0,0);}catch(e){}
+}
+
+function buildChart(data) {
+  const container = document.getElementById('exportChart');
+  if (!container) return;
+  const maxVal = Math.max(...data);
+  const prevData = data.map(v => Math.round(v * 0.82));
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  container.innerHTML = '';
+  data.forEach((val, i) => {
+    const pct = Math.round((val / maxVal) * 100);
+    const pPct = Math.round((prevData[i] / maxVal) * 100);
+    const col = document.createElement('div');
+    col.className = 'bar-col';
+    col.innerHTML = `
+      <span class="bar-val">${val}</span>
+      <div style="display:flex;gap:3px;align-items:flex-end;height:80px;width:100%;">
+        <div class="bar-fill" style="height:${pPct}%;background:#b5d4f4;flex:1;"></div>
+        <div class="bar-fill" style="height:${pct}%;background:#1a3a6b;flex:1;"></div>
+      </div>
+    `;
+    container.appendChild(col);
+  });
+}
+
+function filterClusters(type, btn) {
+  document.querySelectorAll('.fb-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  const cards = document.querySelectorAll('#clusterGrid .cc');
+  let visible = 0;
+  cards.forEach(c => {
+    let show = true;
+    if (type === 'south') show = c.dataset.region === 'south';
+    else if (type === 'west') show = c.dataset.region === 'west';
+    else if (type === 'north') show = c.dataset.region === 'north';
+    else if (type === 'home') show = c.dataset.type === 'home';
+    else if (type === 'apparel') show = c.dataset.type === 'apparel';
+    c.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  document.getElementById('cluster-count').textContent = `(${visible} cluster${visible!==1?'s':''})`;
+}
+
+function searchClusters(val) {
+  const v = val.toLowerCase();
+  const cards = document.querySelectorAll('#clusterGrid .cc');
+  let visible = 0;
+  cards.forEach(c => {
+    const text = c.textContent.toLowerCase();
+    const show = !v || text.includes(v);
+    c.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  document.getElementById('cluster-count').textContent = `(${visible} cluster${visible!==1?'s':''})`;
+}
+</script>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Resources — TEFC | Textiles Exports Facilitation Centre</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#6c153f;
+  --navy-dark:#4a0e2b;
+  --navy-light:#8a1e50;
+  --blue-accent:#6c153f;
+  --sky:#f9eaf1;
+  --sky2:#fdf4f8;
+  --white:#ffffff;
+  --text:#1a1a2e;
+  --muted:#5a6a82;
+  --border:#e8d0dc;
+  --gold:#f5a623;
+  --green:#2a9d54;
+  --blue:#1a7db5;
+  --orange:#e07b00;
+}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--text);font-size:14px;}
+
+/* ── TOPBAR ── */
+.topbar{background:#fce8f2;padding:0.28rem 2.5rem;display:flex;align-items:center;justify-content:flex-end;gap:0.6rem;border-bottom:1px solid #e8c8d8;}
+.topbar-btn{display:flex;align-items:center;gap:5px;background:none;border:1px solid #c97aab;border-radius:4px;padding:0.22rem 0.65rem;font-size:0.72rem;color:var(--navy);cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;transition:background 0.15s;}
+.topbar-btn:hover{background:rgba(108,21,63,0.08);}
+.topbar-btn svg{width:14px;height:14px;fill:none;stroke:var(--navy);stroke-width:1.8;flex-shrink:0;}
+.topbar-divider{width:1px;height:18px;background:#c97aab;opacity:0.4;}
+
+/* ── LOGOBAR ── */
+.logobar{background:#fff;padding:0.7rem 2.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.logobar-left{display:flex;align-items:center;gap:14px;}
+.logo-emblem{width:auto;height:70px;padding-right:14px;border-right:1px solid var(--border);display:flex;align-items:center;}
+.logo-text-block{padding-left:14px;}
+.logo-title{font-size:2.05rem;font-weight:700;color:var(--navy);line-height:1.2;letter-spacing:0.01em;}
+.logo-subtitle{font-size:0.95rem;color:#7a4060;font-weight:400;margin-top:0.15rem;line-height:1.35;}
+.gov-badge-box{display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;border:1px solid var(--border);border-radius:6px;padding:0.3rem 0.7rem;font-size:0.6rem;color:var(--muted);text-align:center;line-height:1.3;}
+.gov-badge-icon{font-size:1.5rem;margin-bottom:2px;}
+
+/* ── NAV ── */
+nav{background:var(--navy);padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:48px;position:sticky;top:0;z-index:200;}
+.nav-links{display:flex;gap:0;list-style:none;}
+.nav-links li{position:relative;}
+.nav-links li a{color:rgba(255,255,255,0.88);font-size:0.78rem;padding:0.38rem 0.8rem;text-decoration:none;border-radius:3px;transition:background 0.15s,color 0.15s;display:flex;align-items:center;gap:4px;white-space:nowrap;}
+.nav-links li a:hover,.nav-links li a.active{background:rgba(255,255,255,0.16);color:#fff;}
+.arr{font-size:0.55rem;opacity:0.65;transition:transform 0.2s ease;}
+.nav-links li:hover .arr{transform:rotate(180deg);}
+.dropdown-menu{position:absolute;top:100%;left:0;background:var(--white);min-width:200px;border-radius:5px;padding:0.35rem 0;box-shadow:0 6px 18px rgba(0,0,0,0.14);z-index:300;opacity:0;visibility:hidden;transform:translateY(5px);transition:all 0.18s ease;}
+.dropdown-menu li{list-style:none;}
+.dropdown-menu li a{color:#333;font-size:0.78rem;padding:0.5rem 1rem;display:block;text-decoration:none;border-radius:0;white-space:nowrap;}
+.dropdown-menu li a:hover{background:#fce8f2;color:var(--navy);}
+.nav-links li:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0);}
+.nav-search{display:flex;align-items:center;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;overflow:hidden;}
+.nav-search input{background:transparent;border:none;outline:none;color:#fff;font-size:0.75rem;font-family:'Inter',sans-serif;padding:0.3rem 0.65rem;width:150px;}
+.nav-search input::placeholder{color:rgba(255,255,255,0.5);}
+.nav-search button{background:rgba(255,255,255,0.15);border:none;border-left:1px solid rgba(255,255,255,0.2);color:#fff;padding:0 0.55rem;cursor:pointer;height:30px;display:flex;align-items:center;}
+.nav-search button svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2;}
+
+/* ── PAGE HERO ── */
+.page-hero{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%,#a0245e 100%);padding:2.8rem 2.5rem;position:relative;overflow:hidden;}
+.page-hero::after{content:'';position:absolute;right:0;top:0;bottom:0;width:45%;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200"><rect width="400" height="200" fill="%234a0e2b"/><line x1="0" y1="0" x2="400" y2="200" stroke="%23ffffff08" stroke-width="1"/><line x1="50" y1="0" x2="450" y2="200" stroke="%23ffffff06" stroke-width="1"/><line x1="100" y1="0" x2="500" y2="200" stroke="%23ffffff06" stroke-width="1"/></svg>') center/cover;opacity:0.6;}
+.page-hero-inner{position:relative;z-index:2;}
+.breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:0.9rem;}
+.breadcrumb a,.breadcrumb span{font-size:0.74rem;color:rgba(255,255,255,0.65);text-decoration:none;}
+.breadcrumb a:hover{color:#fff;}
+.breadcrumb .sep{color:rgba(255,255,255,0.35);}
+.breadcrumb .cur{color:rgba(255,255,255,0.9);}
+.page-hero h1{color:#fff;font-size:1.9rem;font-weight:700;line-height:1.25;margin-bottom:0.6rem;}
+.page-hero p{color:rgba(255,255,255,0.75);font-size:0.88rem;max-width:580px;line-height:1.6;}
+.hero-meta{display:flex;gap:1.2rem;margin-top:1.4rem;flex-wrap:wrap;}
+.hero-meta-item{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:6px;padding:0.42rem 1rem;color:#fff;font-size:0.78rem;display:flex;align-items:center;gap:6px;}
+.hero-meta-item svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2;flex-shrink:0;}
+
+/* ── STICKY SECTION TABS ── */
+.res-page-tabs{background:#fff;border-bottom:2px solid var(--border);padding:0 2.5rem;display:flex;gap:0;position:sticky;top:48px;z-index:100;overflow-x:auto;}
+.res-tab{padding:0.85rem 1.15rem;font-size:0.8rem;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;display:flex;align-items:center;gap:6px;transition:color 0.15s;white-space:nowrap;}
+.res-tab svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;}
+.res-tab:hover{color:var(--navy);}
+.res-tab.active{color:var(--navy);border-bottom-color:var(--navy);font-weight:600;}
+.tab-count{background:var(--sky);color:var(--navy);font-size:0.62rem;font-weight:700;padding:1px 6px;border-radius:8px;}
+.res-tab.active .tab-count{background:var(--navy);color:#fff;}
+
+/* ── SECTION COMMON ── */
+.section{padding:2.5rem 2.5rem;}
+.section-alt{background:var(--sky2);}
+.sec-head{margin-bottom:1.8rem;}
+.sec-head h2{color:var(--navy);font-size:1.22rem;font-weight:700;margin-bottom:0.3rem;display:flex;align-items:center;gap:10px;}
+.sec-icon{width:34px;height:34px;background:var(--sky);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.sec-icon svg{width:18px;height:18px;fill:none;stroke:var(--navy);stroke-width:1.8;}
+.sec-head p{color:var(--muted);font-size:0.82rem;margin-top:0.3rem;padding-left:44px;}
+.sec-head-line{width:48px;height:3px;background:var(--navy);margin-top:0.7rem;margin-left:44px;border-radius:2px;}
+.sec-head-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:1.8rem;}
+.sec-head-row .sec-head{margin-bottom:0;}
+.view-all-btn{display:flex;align-items:center;gap:5px;color:var(--navy);font-size:0.78rem;font-weight:500;cursor:pointer;background:none;border:1px solid var(--border);border-radius:4px;padding:0.35rem 0.85rem;font-family:'Inter',sans-serif;transition:all 0.15s;}
+.view-all-btn:hover{background:var(--sky);border-color:var(--navy);}
+.section-divider{height:1px;background:var(--border);margin:0 2.5rem;}
+
+/* ── FILTER BAR ── */
+.filter-bar{display:flex;gap:0.45rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+.filter-tab{padding:0.32rem 0.95rem;border-radius:20px;font-size:0.75rem;font-weight:500;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--muted);font-family:'Inter',sans-serif;transition:all 0.15s;}
+.filter-tab:hover{border-color:var(--navy);color:var(--navy);}
+.filter-tab.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+/* ── BUTTONS ── */
+.btn-navy{background:var(--navy);color:#fff;padding:0.4rem 1rem;font-size:0.75rem;border:none;border-radius:4px;cursor:pointer;font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:5px;transition:background 0.15s;}
+.btn-navy:hover{background:var(--navy-dark);}
+.btn-navy svg{width:12px;height:12px;fill:none;stroke:#fff;stroke-width:2;}
+.btn-ghost{background:transparent;color:var(--navy);padding:0.38rem 1rem;font-size:0.74rem;border:1px solid var(--navy);border-radius:4px;cursor:pointer;font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:5px;transition:all 0.15s;}
+.btn-ghost:hover{background:var(--sky);}
+.btn-ghost svg{width:12px;height:12px;fill:none;stroke:var(--navy);stroke-width:2;}
+.load-more-wrap{text-align:center;margin-top:1.8rem;}
+.btn-load-more{background:#fff;color:var(--navy);border:1.5px solid var(--navy);padding:0.52rem 2rem;font-size:0.8rem;font-weight:600;border-radius:5px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;}
+.btn-load-more:hover{background:var(--navy);color:#fff;}
+
+
+
+/* ══════════════════════════════════════════
+   SECTION 4 — GOVERNMENT SCHEMES
+═══════════════════════════════════════════ */
+.scheme-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.scheme-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:1.2rem;transition:box-shadow 0.2s;}
+.scheme-card:hover{box-shadow:0 4px 16px rgba(108,21,63,0.11);}
+.scheme-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:0.8rem;}
+.scheme-icon{width:40px;height:40px;background:var(--sky);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.scheme-icon svg{width:22px;height:22px;fill:none;stroke:var(--navy);stroke-width:1.8;}
+.scheme-status{font-size:0.62rem;font-weight:700;padding:3px 8px;border-radius:10px;text-transform:uppercase;flex-shrink:0;}
+.s-active{background:#e8f5ee;color:#2a7a44;}
+.s-new{background:#f0e8fa;color:#6b3fa0;}
+.s-limited{background:#fff3e6;color:#a05800;}
+.scheme-card h4{color:var(--navy);font-size:0.9rem;font-weight:700;margin-bottom:0.3rem;}
+.scheme-card .tagline{color:var(--muted);font-size:0.73rem;margin-bottom:0.7rem;line-height:1.5;}
+.scheme-benefit{display:flex;align-items:flex-start;gap:6px;font-size:0.74rem;color:var(--muted);margin-bottom:0.35rem;line-height:1.5;}
+.scheme-benefit::before{content:'✓';color:var(--green);font-weight:700;font-size:0.7rem;margin-top:2px;flex-shrink:0;}
+.scheme-divider{height:1px;background:var(--border);margin:0.8rem 0;}
+.scheme-elig{font-size:0.71rem;color:var(--muted);margin-bottom:0.9rem;}
+.scheme-elig strong{color:var(--text);}
+.scheme-amount{display:flex;align-items:center;gap:6px;background:var(--sky2);border-radius:6px;padding:0.5rem 0.7rem;margin-bottom:0.9rem;}
+.scheme-amount svg{width:14px;height:14px;fill:none;stroke:var(--navy);stroke-width:2;}
+.scheme-amount span{font-size:0.78rem;color:var(--navy);font-weight:600;}
+.scheme-btns{display:flex;gap:0.5rem;flex-direction:column;}
+
+
+
+/* ── HELP BANNER ── */
+.help-banner{background:linear-gradient(135deg,var(--navy-dark),var(--navy));padding:2rem 2.5rem;text-align:center;position:relative;overflow:hidden;}
+.help-banner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(255,255,255,0.02) 20px,rgba(255,255,255,0.02) 21px);}
+.help-banner h3{color:#fff;font-size:1.1rem;font-weight:600;position:relative;margin-bottom:1rem;}
+.btn-support{background:#fff;color:var(--navy);padding:0.55rem 1.8rem;font-size:0.82rem;font-weight:600;border:none;border-radius:5px;cursor:pointer;font-family:'Inter',sans-serif;position:relative;}
+
+/* ── FOOTER ── */
+footer{background:var(--sky2);border-top:1px solid var(--border);padding:2rem 2.5rem;}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;margin-bottom:1.5rem;}
+.footer-col h4{color:var(--navy);font-size:0.88rem;font-weight:700;margin-bottom:0.8rem;display:flex;align-items:center;gap:6px;}
+.footer-col h4 svg{width:18px;height:18px;stroke:var(--navy);fill:none;stroke-width:1.8;}
+.footer-col p,.footer-col a{color:var(--muted);font-size:0.78rem;line-height:1.8;display:block;text-decoration:none;}
+.footer-col a:hover{color:var(--navy);}
+.footer-col a::before{content:'›';margin-right:6px;color:var(--blue-accent);}
+.footer-contact-item{display:flex;align-items:flex-start;gap:8px;color:var(--muted);font-size:0.78rem;margin-bottom:0.5rem;}
+.footer-contact-item svg{width:14px;height:14px;stroke:var(--navy);fill:none;stroke-width:2;flex-shrink:0;margin-top:2px;}
+.footer-bottom{border-top:1px solid var(--border);padding-top:1rem;display:flex;justify-content:space-between;align-items:center;}
+.footer-bottom p{color:var(--muted);font-size:0.72rem;}
+.footer-logo{display:flex;align-items:center;gap:8px;}
+.footer-logo-circle{width:26px;height:26px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.footer-logo-text{color:var(--navy);font-weight:700;font-size:0.95rem;}
+</style>
+</head>
+<body>
+
+<!-- UTILITY BAR -->
+<div class="topbar">
+  <button class="topbar-btn"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>Bhasini</button>
+  <div class="topbar-divider"></div>
+  <button class="topbar-btn"><svg viewBox="0 0 24 24"><path d="M5 8l6 6M4 6h7M2 6h2m12 12l4 4m-4-4l-4 4m4-4V11a4 4 0 00-4-4h-1"/><path d="M11 6a9 9 0 010 12"/></svg>Translate</button>
+  <div class="topbar-divider"></div>
+  <button class="topbar-btn"><svg viewBox="0 0 24 24"><text x="4" y="18" font-size="14" font-weight="700" fill="#6c153f" stroke="none">A</text><text x="13" y="14" font-size="9" fill="#6c153f" stroke="none">A</text></svg>A&thinsp;A</button>
+  <div class="topbar-divider"></div>
+  <button class="topbar-btn"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M6 20v-2a6 6 0 0112 0v2"/><path d="M3 13s2-2 9-2 9 2 9 2"/></svg>Accessibility</button>
+</div>
+
+<!-- LOGO BAR -->
+<div class="logobar">
+  <div class="logobar-left">
+    <div class="logo-emblem">
+      <img src="images/Textiles_Committee_Logo_2.png">
+    </div>
+    <div class="logo-text-block">
+      <div class="logo-title">Textiles Exports Facilitation Centre (TEFC)</div>
+      <div class="logo-subtitle">Under the initiative of Textiles Committee, Ministry of Textiles, Government of India</div>
+    </div>
+  </div>
+  
+</div>
+
+<!-- MAIN NAV -->
+  <nav>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="TEFC_About.html">About TEFC <span class="arr">▼</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="TEFC_About.html">Overview</a></li>
+          <li><a href="TEFC_About.html">Mission &amp; Vision</a></li>
+          <li><a href="TEFC_About.html">Objectives</a></li>
+          <li><a href="TEFC_About.html">Organisational Structure</a></li>
+          <li><a href="TEFC_About.html">Partners</a></li>
+        </ul>
+      </li>
+      <li><a href="#">6 TEFC's <span class="arr">▼</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="tefc_clusters_page.html">Karur</a></li>
+          <li><a href="tefc_clusters_page.html">Surat</a></li>
+          <li><a href="tefc_clusters_page.html">Ichalkaranji</a></li>
+          <li><a href="tefc_clusters_page.html">Jaipur</a></li>
+          <li><a href="tefc_clusters_page.html">Varanasi</a></li>
+          <li><a href="tefc_clusters_page.html">Ludhiana</a></li>
+        </ul>
+      </li>
+      <li><a href="#">FTA Benefits</a></li>
+      <li><a href="#">Online Services</a></li>
+      <li><a href="tefc_exporter_portal_v4.html">Exporter Portal</a></li>
+      <li><a href="TEFC_Media_Center.html">Media Center</a></li>
+      <li><a href="#">Resources <span class="arr">▼</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="TEFC_Resources.html">Market Opportunities</a></li>
+          <li><a href="TEFC_Resources.html">Export Process</a></li>
+          <li><a href="TEFC_Resources.html">Trade Fairs</a></li>
+          <li><a href="TEFC_Resources.html">Government Schemes</a></li>
+          <li><a href="TEFC_Resources.html">FTA/PTA List</a></li>
+        </ul>
+      </li>
+      <li><a href="TEFC_News.html">News</a></li>
+      <li><a href="help_and_ support.html">Help &amp; Support</a></li>
+    </ul>
+    <div class="nav-actions">
+      
+      <div class="nav-search">
+        <input type="text" placeholder="Search..." />
+        <button><svg viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg></button>
+      </div>
+    </div>
+  </nav>
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="#">Home</a><span class="sep">›</span><span class="cur">Resources</span>
+    </div>
+    <h1>Resources</h1>
+    <p>Your complete toolkit for textile exports — market intelligence, export guides, trade fair calendars, government schemes, FTA/PTA agreements, and downloadable publications all in one place.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>Updated Regularly</div>
+      <div class="hero-meta-item"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>50+ Documents</div>
+      <div class="hero-meta-item"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>Free for All Exporters</div>
+      <div class="hero-meta-item"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Ministry of Textiles Verified</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION TABS -->
+<div class="res-page-tabs">
+  <div class="res-tab active" onclick="scrollTo('market',this)">
+    <svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z" stroke-width="0"/><polyline points="3 6 12 13 21 6"/><path d="M21 3H3v18h18V3z"/><line x1="3" y1="3" x2="21" y2="21" stroke-width="0"/><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+    Market Opportunities <span class="tab-count">6</span>
+  </div>
+  <div class="res-tab" onclick="scrollTo('process',this)">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+    Export Process <span class="tab-count">5 Steps</span>
+  </div>
+  <div class="res-tab" onclick="scrollTo('tradefairs',this)">
+    <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    Trade Fairs <span class="tab-count">8</span>
+  </div>
+  <div class="res-tab" onclick="scrollTo('schemes',this)">
+    <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg>
+    Govt. Schemes <span class="tab-count">6</span>
+  </div>
+  <div class="res-tab" onclick="scrollTo('fta',this)">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+    FTA / PTA List <span class="tab-count">14</span>
+  </div>
+  <div class="res-tab" onclick="scrollTo('publications',this)">
+    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    Publications <span class="tab-count">20+</span>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════
+     SECTION 4 — GOVERNMENT SCHEMES
+═════════════════════════════════════════════════ -->
+<section class="section section-alt" id="schemes">
+  <div class="sec-head-row">
+    <div class="sec-head">
+      <h2><div class="sec-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg></div>Government Schemes</h2>
+      <p>Central government incentives, subsidies, and support programmes for textile exporters and manufacturers</p>
+      <div class="sec-head-line"></div>
+    </div>
+    <button class="view-all-btn">View All Schemes ›</button>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-tab active">All Schemes</button>
+    <button class="filter-tab">Export Incentives</button>
+    <button class="filter-tab">Capital Subsidy</button>
+    <button class="filter-tab">Production Linked</button>
+    <button class="filter-tab">MSME Specific</button>
+  </div>
+
+  <div class="scheme-grid">
+    <div class="scheme-card">
+      <div class="scheme-card-top">
+        <div class="scheme-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z"/></svg></div>
+        <span class="scheme-status s-active">Active</span>
+      </div>
+      <h4>RoDTEP Scheme</h4>
+      <div class="tagline">Remission of Duties &amp; Taxes on Exported Products</div>
+      <div class="scheme-amount"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg><span>0.5% – 4.3% of FOB Value</span></div>
+      <div class="scheme-benefit">Duty credit scrips transferable or usable against import duties</div>
+      <div class="scheme-benefit">Covers rebate on all central &amp; state taxes embedded in exports</div>
+      <div class="scheme-benefit">Applicable to all textile HSN codes</div>
+      <div class="scheme-divider"></div>
+      <div class="scheme-elig"><strong>Eligibility:</strong> All textile exporters with IEC and shipping bill</div>
+      <div class="scheme-btns">
+        <button class="btn-navy" style="justify-content:center;">View Details &amp; Apply</button>
+        <button class="btn-ghost" style="justify-content:center;font-size:0.72rem;">Download Notification</button>
+      </div>
+    </div>
+    <div class="scheme-card">
+      <div class="scheme-card-top">
+        <div class="scheme-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <span class="scheme-status s-active">Active</span>
+      </div>
+      <h4>PLI for Textiles</h4>
+      <div class="tagline">Production Linked Incentive — MMF &amp; Technical Textiles</div>
+      <div class="scheme-amount"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg><span>Up to ₹10 Crore over 5 years</span></div>
+      <div class="scheme-benefit">15% incentive on incremental sales in years 1–2</div>
+      <div class="scheme-benefit">Covers MMF apparel, MMF fabrics, and technical textiles</div>
+      <div class="scheme-benefit">Investment threshold: ₹100 Cr for large, ₹10 Cr for SMEs</div>
+      <div class="scheme-divider"></div>
+      <div class="scheme-elig"><strong>Eligibility:</strong> MMF &amp; Technical Textile Manufacturers</div>
+      <div class="scheme-btns">
+        <button class="btn-navy" style="justify-content:center;">View Details &amp; Apply</button>
+        <button class="btn-ghost" style="justify-content:center;font-size:0.72rem;">Download Notification</button>
+      </div>
+    </div>
+    <div class="scheme-card">
+      <div class="scheme-card-top">
+        <div class="scheme-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></div>
+        <span class="scheme-status s-active">Active</span>
+      </div>
+      <h4>TUFS — Technology Upgradation</h4>
+      <div class="tagline">Technology Upgradation Fund Scheme for Textiles</div>
+      <div class="scheme-amount"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg><span>15% Capital Subsidy on New Machinery</span></div>
+      <div class="scheme-benefit">Subsidy on plant &amp; machinery investment for textile units</div>
+      <div class="scheme-benefit">Enhanced benefits for power loom and handloom sectors</div>
+      <div class="scheme-benefit">Applicable to new greenfield and brownfield expansions</div>
+      <div class="scheme-divider"></div>
+      <div class="scheme-elig"><strong>Eligibility:</strong> All textile manufacturing units upgrading machinery</div>
+      <div class="scheme-btns">
+        <button class="btn-navy" style="justify-content:center;">View Details &amp; Apply</button>
+        <button class="btn-ghost" style="justify-content:center;font-size:0.72rem;">Download Notification</button>
+      </div>
+    </div>
+    <div class="scheme-card">
+      <div class="scheme-card-top">
+        <div class="scheme-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <span class="scheme-status s-new">New</span>
+      </div>
+      <h4>PM MITRA Park Scheme</h4>
+      <div class="tagline">PM Mega Integrated Textile Region and Apparel Parks</div>
+      <div class="scheme-amount"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg><span>₹500 Cr per Park — 7 Parks across India</span></div>
+      <div class="scheme-benefit">World-class plug-and-play infrastructure for textile units</div>
+      <div class="scheme-benefit">Common testing labs, logistics, and worker housing</div>
+      <div class="scheme-benefit">Priority allotment for TEFC cluster MSMEs</div>
+      <div class="scheme-divider"></div>
+      <div class="scheme-elig"><strong>Eligibility:</strong> Textile manufacturers in 7 selected states</div>
+      <div class="scheme-btns">
+        <button class="btn-navy" style="justify-content:center;">View Details &amp; Apply</button>
+        <button class="btn-ghost" style="justify-content:center;font-size:0.72rem;">Download Notification</button>
+      </div>
+    </div>
+    <div class="scheme-card">
+      <div class="scheme-card-top">
+        <div class="scheme-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <span class="scheme-status s-active">Active</span>
+      </div>
+      <h4>Samarth — Skill Development</h4>
+      <div class="tagline">Scheme for Capacity Building in Textile Sector</div>
+      <div class="scheme-amount"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg><span>Free Training + ₹8,000 stipend per trainee</span></div>
+      <div class="scheme-benefit">Placement-linked free skill training for textile workers</div>
+      <div class="scheme-benefit">Covers weaving, garmenting, spinning, and technical textiles</div>
+      <div class="scheme-benefit">Industry-connected curriculum with placement support</div>
+      <div class="scheme-divider"></div>
+      <div class="scheme-elig"><strong>Eligibility:</strong> Unemployed youth aged 14–35 years</div>
+      <div class="scheme-btns">
+        <button class="btn-navy" style="justify-content:center;">View Details &amp; Apply</button>
+        <button class="btn-ghost" style="justify-content:center;font-size:0.72rem;">Download Notification</button>
+      </div>
+    </div>
+    <div class="scheme-card">
+      <div class="scheme-card-top">
+        <div class="scheme-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+        <span class="scheme-status s-limited">Limited Slots</span>
+      </div>
+      <h4>Market Access Initiative (MAI)</h4>
+      <div class="tagline">Govt. Subsidy for Export Market Development</div>
+      <div class="scheme-amount"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg><span>Up to 50% of trade fair expenses covered</span></div>
+      <div class="scheme-benefit">Subsidy for participation in international trade fairs</div>
+      <div class="scheme-benefit">Support for buyer-seller meets and product adaptation</div>
+      <div class="scheme-benefit">Branding and market research assistance</div>
+      <div class="scheme-divider"></div>
+      <div class="scheme-elig"><strong>Eligibility:</strong> Export Promotion Councils &amp; registered MSMEs</div>
+      <div class="scheme-btns">
+        <button class="btn-navy" style="justify-content:center;">View Details &amp; Apply</button>
+        <button class="btn-ghost" style="justify-content:center;font-size:0.72rem;">Download Notification</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HELP BANNER -->
+<div class="help-banner">
+  <h3>Can't find what you're looking for? Our Resource Desk is here to help.</h3>
+  <button class="btn-support">Contact Resource Desk</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>About TEFC</h4>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>123 Textile Road, New Delhi</div>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>info@tefc.gov.in</div>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.11 1.18 2 2 0 012.09 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+91 12356 67890</div>
+    </div>
+    <div class="footer-col">
+      <h4><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>Quick Links</h4>
+      <a href="#">Homepage</a><a href="#">About TEFC</a><a href="#">Clusters</a>
+      <a href="#">Online Services</a><a href="#">FTA Benefits</a><a href="#">Media Center</a>
+    </div>
+    <div class="footer-col">
+      <h4><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Contact Us</h4>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>123 Textile Road, New Delhi</div>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>contact@tefc.gov.in</div>
+      <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.11 1.18 2 2 0 012.09 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>Phone: +91 12335 6790</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Textiles Exports Facilitation Centre (TEFC) | Ministry of Textiles, Government of India</p>
+    <div class="footer-logo">
+      <div class="footer-logo-circle"><svg viewBox="0 0 20 20" width="14" height="14" fill="none"><path d="M4 10s2-4 6-4 6 4 6 4-2 4-6 4-6-4-6-4z" stroke="#fff" stroke-width="1.5"/><circle cx="10" cy="10" r="2" stroke="#fff" stroke-width="1.5"/></svg></div>
+      <span class="footer-logo-text">TEFC</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function scrollTo(id, el) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelectorAll('.res-tab').forEach(t => t.classList.remove('active'));
+  if (el) el.classList.add('active');
+}
+// Filter tabs per section
+document.querySelectorAll('.filter-bar').forEach(bar => {
+  bar.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      bar.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+});
+// Sticky tab highlight on scroll
+const sections = ['market','process','tradefairs','schemes','fta','publications'];
+const tabs = document.querySelectorAll('.res-tab');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 120) current = id;
+  });
+  tabs.forEach((tab, i) => {
+    tab.classList.toggle('active', sections[i] === current);
+  });
+});
+</script>
+</body>
+</html>

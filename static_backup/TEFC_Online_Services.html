@@ -1,0 +1,2348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Online Services — TEFC | Textiles Exports Facilitation Centre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --navy: #6c153f;
+      --navy-dark: #4a0e2b;
+      --navy-light: #8a1e50;
+      --sky: #f9eaf1;
+      --sky2: #fdf4f8;
+      --white: #ffffff;
+      --text: #1a1a2e;
+      --muted: #5a6a82;
+      --border: #e8d0dc;
+      --gold: #f5a623;
+      --green: #2a9d54;
+      --blue: #1a7db5;
+      --orange: #e07b00;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    /* ── TIER 1: utility bar ── */
+    .topbar {
+      background: #fce8f2;
+      padding: 0.28rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.6rem;
+      border-bottom: 1px solid #e8c8d8;
+    }
+
+    .topbar-btn {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: none;
+      border: 1px solid #c97aab;
+      border-radius: 4px;
+      padding: 0.22rem 0.65rem;
+      font-size: 0.72rem;
+      color: var(--navy);
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      transition: background 0.15s;
+    }
+
+    .topbar-btn:hover {
+      background: rgba(108, 21, 63, 0.08);
+    }
+
+    .topbar-btn svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: var(--navy);
+      stroke-width: 1.8;
+      flex-shrink: 0;
+    }
+
+    .topbar-divider {
+      width: 1px;
+      height: 18px;
+      background: #c97aab;
+      opacity: 0.4;
+    }
+
+    /* ── TIER 2: logo bar ── */
+    .logobar {
+      background: #fff;
+      padding: 0.7rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logobar-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .main-logo-img {
+      height: 60px;
+      /* Adjust this based on your preference */
+      width: auto;
+      /* Maintains aspect ratio */
+      display: block;
+      object-fit: contain;
+    }
+
+    .logo-emblem {
+      border-right: 1px solid var(--border);
+      padding-right: 1.5rem;
+      margin-right: 1.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .swachh-logo-img {
+      height: 50px;
+      /* Slightly smaller than the main logo */
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* On Mobile, center the logo and remove the border */
+    @media screen and (max-width: 768px) {
+      .logo-emblem {
+        border-right: none;
+        padding-right: 0;
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+      }
+
+      .main-logo-img {
+        height: 50px;
+        /* Slightly smaller for mobile */
+      }
+
+      .swachh-logo-img {
+        height: 35px;
+        /* Scale down for mobile screens */
+      }
+    }
+
+    .logo-text-block {}
+
+    .logo-title {
+      font-size: 2.15rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+    }
+
+    .logo-subtitle {
+      font-size: 1rem;
+      color: #7a4060;
+      font-weight: 400;
+      margin-top: 0.15rem;
+      line-height: 1.35;
+    }
+
+    .logobar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Swachh Bharat / Azadi badge area */
+    .gov-badges {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .gov-badge-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.6rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.3;
+      min-width: 64px;
+    }
+
+    .gov-badge-icon {
+      font-size: 1.1rem;
+      margin-bottom: 2px;
+    }
+
+    /* ── TIER 3: main nav bar ── */
+    nav {
+      background: var(--navy);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 48px;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0;
+      list-style: none;
+    }
+
+    .nav-links li {
+      position: relative;
+    }
+
+    .nav-links li a {
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 0.78rem;
+      padding: 0.38rem 0.8rem;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: background 0.15s, color 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .nav-links li a:hover {
+      background: rgba(255, 255, 255, 0.13);
+      color: #fff;
+    }
+
+    .nav-links li a .arr {
+      font-size: 0.55rem;
+      opacity: 0.65;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-links li:hover .arr {
+      transform: rotate(180deg);
+    }
+
+    .nav-search {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-left: auto;
+    }
+
+    .nav-search input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-size: 0.75rem;
+      font-family: 'Inter', sans-serif;
+      padding: 0.3rem 0.65rem;
+      width: 150px;
+    }
+
+    .nav-search input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .nav-search button {
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      padding: 0 0.55rem;
+      cursor: pointer;
+      height: 30px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-search button svg {
+      width: 13px;
+      height: 13px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* HELP BUTTON */
+    .nav-help {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 0.3rem 0.9rem;
+      font-size: 0.75rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+      white-space: nowrap;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-help:hover {
+      background: rgba(255, 255, 255, 0.24);
+    }
+
+    .office-login-menu {
+      position: relative;
+    }
+
+    .office-login-menu .dropdown-menu {
+      left: auto;
+      right: 0;
+    }
+
+    .office-login-menu:hover .dropdown-menu,
+    .office-login-menu:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* DROPDOWN */
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--white);
+      min-width: 200px;
+      border-radius: 5px;
+      padding: 0.35rem 0;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+      z-index: 300;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(5px);
+      transition: all 0.18s ease;
+    }
+
+    .dropdown-menu li {
+      list-style: none;
+    }
+
+    .dropdown-menu li a {
+      color: #333;
+      font-size: 0.78rem;
+      padding: 0.5rem 1rem;
+      display: block;
+      text-decoration: none;
+      border-radius: 0;
+      white-space: nowrap;
+    }
+
+    .dropdown-menu li a:hover {
+      background: #fce8f2;
+      color: var(--navy);
+    }
+
+    .nav-links li:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #a0245e 100%);
+      padding: 2.8rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 45%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200"><rect width="400" height="200" fill="%234a0e2b"/><line x1="0" y1="0" x2="400" y2="200" stroke="%23ffffff08" stroke-width="1"/><line x1="50" y1="0" x2="450" y2="200" stroke="%23ffffff06" stroke-width="1"/><line x1="100" y1="0" x2="500" y2="200" stroke="%23ffffff06" stroke-width="1"/></svg>') center/cover;
+      opacity: 0.6;
+    }
+
+    .page-hero-inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 0.9rem;
+    }
+
+    .breadcrumb a,
+    .breadcrumb span {
+      font-size: 0.74rem;
+      color: rgba(255, 255, 255, 0.65);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      color: #fff;
+    }
+
+    .breadcrumb .sep {
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .breadcrumb .cur {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .page-hero h1 {
+      color: #fff;
+      font-size: 1.9rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 0.6rem;
+    }
+
+    .page-hero p {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.88rem;
+      max-width: 620px;
+      line-height: 1.6;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 1.4rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-meta-item {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      padding: 0.42rem 1rem;
+      color: #fff;
+      font-size: 0.78rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta-item svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2;
+      flex-shrink: 0;
+    }
+
+    /* ── STICKY TABS ── */
+    .page-tabs {
+      background: #fff;
+      border-bottom: 2px solid var(--border);
+      padding: 0 2.5rem;
+      display: flex;
+      gap: 0;
+      position: sticky;
+      top: 48px;
+      z-index: 100;
+      overflow-x: auto;
+    }
+
+    .page-tab {
+      padding: 0.85rem 1.15rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.15s;
+      white-space: nowrap;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .page-tab svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+    }
+
+    .page-tab:hover {
+      color: var(--navy);
+    }
+
+    .page-tab.active {
+      color: var(--navy);
+      border-bottom-color: var(--navy);
+      font-weight: 600;
+    }
+
+    .tab-count {
+      background: var(--sky);
+      color: var(--navy);
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 8px;
+    }
+
+    .page-tab.active .tab-count {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    /* ── SECTION COMMON ── */
+    .section {
+      padding: 2.5rem 2.5rem;
+    }
+
+    .section-alt {
+      background: var(--sky2);
+    }
+
+    .sec-head {
+      margin-bottom: 1.8rem;
+    }
+
+    .sec-head h2 {
+      color: var(--navy);
+      font-size: 1.22rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sec-icon {
+      width: 34px;
+      height: 34px;
+      background: var(--sky);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .sec-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: var(--navy);
+      stroke-width: 1.8;
+    }
+
+    .sec-head p {
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-top: 0.3rem;
+      padding-left: 44px;
+    }
+
+    .sec-head-line {
+      width: 48px;
+      height: 3px;
+      background: var(--navy);
+      margin-top: 0.7rem;
+      margin-left: 44px;
+      border-radius: 2px;
+    }
+
+    .sec-head-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 1.8rem;
+    }
+
+    .sec-head-row .sec-head {
+      margin-bottom: 0;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 2.5rem;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-navy {
+      background: var(--navy);
+      color: #fff;
+      padding: 0.4rem 1rem;
+      font-size: 0.75rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.15s;
+    }
+
+    .btn-navy:hover {
+      background: var(--navy-dark);
+    }
+
+    .btn-ghost {
+      background: none;
+      color: var(--navy);
+      padding: 0.38rem 0.9rem;
+      font-size: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--navy);
+      background: var(--sky);
+    }
+
+    /* ── FILTER BAR ── */
+    .filter-bar {
+      display: flex;
+      gap: 0.45rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      padding: 0.32rem 0.95rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      transition: all 0.15s;
+    }
+
+    .filter-tab:hover {
+      border-color: var(--navy);
+      color: var(--navy);
+    }
+
+    .filter-tab.active {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+    }
+
+    /* ── PORTAL CARDS (main services) ── */
+    .portal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+
+    .portal-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .portal-card:hover {
+      box-shadow: 0 8px 28px rgba(108, 21, 63, 0.13);
+      transform: translateY(-3px);
+    }
+
+    .portal-card-top {
+      padding: 1.4rem 1.4rem 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .portal-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .portal-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke-width: 1.7;
+    }
+
+    .pi-rose {
+      background: var(--sky);
+    }
+
+    .pi-rose svg {
+      stroke: var(--navy);
+    }
+
+    .pi-green {
+      background: #ebf8ef;
+    }
+
+    .pi-green svg {
+      stroke: #1e7e42;
+    }
+
+    .pi-blue {
+      background: #ebf4fb;
+    }
+
+    .pi-blue svg {
+      stroke: #1464a0;
+    }
+
+    .pi-gold {
+      background: #fff8eb;
+    }
+
+    .pi-gold svg {
+      stroke: #c47a00;
+    }
+
+    .pi-purple {
+      background: #f3ebfa;
+    }
+
+    .pi-purple svg {
+      stroke: #6b35a8;
+    }
+
+    .pi-teal {
+      background: #ebfaf7;
+    }
+
+    .pi-teal svg {
+      stroke: #147a6a;
+    }
+
+    .portal-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.2rem;
+    }
+
+    .portal-tagline {
+      font-size: 0.74rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .portal-tag {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 8px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      margin-top: 0.3rem;
+    }
+
+    .pt-live {
+      background: #ebf8ef;
+      color: #1e7e42;
+    }
+
+    .pt-new {
+      background: #ebf4fb;
+      color: #1464a0;
+    }
+
+    .pt-beta {
+      background: #fff8eb;
+      color: #c47a00;
+    }
+
+    .portal-card-body {
+      padding: 1rem 1.4rem;
+      flex: 1;
+    }
+
+    .portal-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-bottom: 1rem;
+    }
+
+    .portal-features li {
+      font-size: 0.78rem;
+      color: var(--text);
+      display: flex;
+      gap: 0.5rem;
+      line-height: 1.45;
+    }
+
+    .portal-features li::before {
+      content: '›';
+      color: var(--navy);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .portal-card-foot {
+      padding: 0.9rem 1.4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    /* ── EXTERNAL PORTALS ── */
+    .ext-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .ext-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem;
+      text-align: center;
+      transition: box-shadow 0.2s;
+    }
+
+    .ext-card:hover {
+      box-shadow: 0 4px 16px rgba(108, 21, 63, 0.1);
+    }
+
+    .ext-logo {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 0.8rem;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      border: 1px solid var(--border);
+    }
+
+    .ext-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+
+    .ext-desc {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+      line-height: 1.4;
+    }
+
+    .ext-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.73rem;
+      color: var(--navy);
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.28rem 0.7rem;
+      transition: all 0.15s;
+    }
+
+    .ext-link:hover {
+      background: var(--sky);
+      border-color: var(--navy);
+    }
+
+    .ext-link svg {
+      width: 11px;
+      height: 11px;
+      fill: none;
+      stroke: var(--navy);
+      stroke-width: 2;
+    }
+
+    /* ── TRACK STATUS ── */
+    .track-box {
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+      border-radius: 12px;
+      padding: 2rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .track-left h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .track-left p {
+      font-size: 0.82rem;
+      opacity: 0.8;
+      line-height: 1.5;
+    }
+
+    .track-form {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .track-input {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 5px;
+      color: #fff;
+      font-size: 0.8rem;
+      font-family: 'Inter', sans-serif;
+      padding: 0.52rem 1rem;
+      outline: none;
+      min-width: 220px;
+    }
+
+    .track-input::placeholder {
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    .btn-white {
+      background: #fff;
+      color: var(--navy);
+      padding: 0.52rem 1.2rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      white-space: nowrap;
+    }
+
+    .btn-white:hover {
+      background: #f9eaf1;
+    }
+
+    /* ── HOW TO USE ── */
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .how-steps::before {
+      content: '';
+      position: absolute;
+      top: 22px;
+      left: calc(10% + 20px);
+      right: calc(10% + 20px);
+      height: 2px;
+      background: var(--border);
+      z-index: 0;
+    }
+
+    .how-step {
+      text-align: center;
+      padding: 0 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .how-num {
+      width: 44px;
+      height: 44px;
+      background: #fff;
+      border: 2px solid var(--navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.8rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .how-step.completed .how-num {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .how-step h5 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.3rem;
+    }
+
+    .how-step p {
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* ── HELP CARDS ── */
+    .help-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .help-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.3rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: box-shadow 0.2s;
+    }
+
+    .help-card:hover {
+      box-shadow: 0 4px 14px rgba(108, 21, 63, 0.09);
+    }
+
+    .hc-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--sky);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .hc-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: var(--navy);
+      stroke-width: 1.8;
+    }
+
+    .hc-body h5 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.25rem;
+    }
+
+    .hc-body p {
+      font-size: 0.75rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 0.6rem;
+    }
+
+    .hc-link {
+      font-size: 0.75rem;
+      color: var(--navy);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .hc-link:hover {
+      border-bottom-color: var(--navy);
+    }
+
+    /* ── RECENTLY LAUNCHED ── */
+    .new-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #ebf4fb;
+      color: #1464a0;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.18rem 0.6rem;
+      border-radius: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .new-badge::before {
+      content: '●';
+      font-size: 0.5rem;
+    }
+
+    .new-services {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .new-service-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .nsc-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .nsc-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    .nsc-body {
+      flex: 1;
+    }
+
+    .nsc-body h5 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nsc-body p {
+      font-size: 0.76rem;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-bottom: 0.7rem;
+    }
+
+    /* ── STATUS TABLE ── */
+    .status-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .status-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .status-table thead tr {
+      background: var(--navy);
+    }
+
+    .status-table thead th {
+      color: #fff;
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 0.8rem 1rem;
+      text-align: left;
+    }
+
+    .status-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+
+    .status-table tbody tr:hover {
+      background: var(--sky2);
+    }
+
+    .status-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    .status-table td {
+      padding: 0.7rem 1rem;
+      font-size: 0.78rem;
+      vertical-align: middle;
+    }
+
+    .ref-id {
+      font-family: monospace;
+      font-size: 0.76rem;
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    .svc-name {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .app-date {
+      color: var(--muted);
+    }
+
+    .s-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0.2rem 0.6rem;
+      border-radius: 10px;
+      font-size: 0.68rem;
+      font-weight: 600;
+    }
+
+    .s-approved {
+      background: #ebf8ef;
+      color: #1e7e42;
+    }
+
+    .s-approved::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      background: #2a9d54;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .s-pending {
+      background: #fff8eb;
+      color: #c47a00;
+    }
+
+    .s-pending::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .s-inprogress {
+      background: #ebf4fb;
+      color: #1464a0;
+    }
+
+    .s-inprogress::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      background: #1a7db5;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* ── HELP BANNER ── */
+    .help-banner {
+      background: linear-gradient(90deg, var(--navy-dark), var(--navy));
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .help-banner h3 {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .btn-support {
+      background: #fff;
+      color: var(--navy);
+      border: none;
+      border-radius: 5px;
+      padding: 0.5rem 1.3rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn-support:hover {
+      background: #f9eaf1;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy-dark);
+      padding: 2.5rem 2.5rem 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-col h4 {
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .footer-col h4 svg {
+      width: 14px;
+      height: 14px;
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.6);
+      stroke-width: 1.8;
+    }
+
+    .footer-col a {
+      display: block;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.78rem;
+      text-decoration: none;
+      margin-bottom: 0.45rem;
+      transition: color 0.15s;
+    }
+
+    .footer-col a:hover {
+      color: #fff;
+    }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.78rem;
+      margin-bottom: 0.6rem;
+      line-height: 1.45;
+    }
+
+    .footer-contact-item svg {
+      width: 13px;
+      height: 13px;
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.45);
+      stroke-width: 1.8;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .footer-bottom {
+      padding: 1rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-bottom p {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.72rem;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-logo-circle {
+      width: 24px;
+      height: 24px;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-logo-text {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    @media(max-width:1024px) {
+      .portal-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .ext-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width:700px) {
+      .portal-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ext-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .how-steps {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .how-steps::before {
+        display: none;
+      }
+
+      .help-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .new-services {
+        grid-template-columns: 1fr;
+      }
+
+      .track-box {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TIER 1: UTILITY / TOPBAR -->
+  <div class="topbar">
+    <button class="topbar-btn" title="Bhasini — Indian language translation">
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
+      </svg>
+      Bhasini
+    </button>
+    <div class="topbar-divider"></div>
+    <button class="topbar-btn" title="Translate page to another language">
+      <svg viewBox="0 0 24 24">
+        <path d="M5 8l6 6M4 6h7M2 6h2m12 12l4 4m-4-4l-4 4m4-4V11a4 4 0 00-4-4h-1" />
+        <path d="M11 6a9 9 0 010 12" />
+      </svg>
+      Translate
+    </button>
+    <div class="topbar-divider"></div>
+    <button class="topbar-btn" title="Accessibility — font size">
+      <svg viewBox="0 0 24 24"><text x="4" y="18" font-size="14" font-weight="700" fill="#6c153f"
+          stroke="none">A</text><text x="13" y="14" font-size="9" fill="#6c153f" stroke="none">A</text></svg>
+      A&thinsp;A
+    </button>
+    <div class="topbar-divider"></div>
+    <button class="topbar-btn" title="Screen reader / accessibility">
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="3" />
+        <path d="M6 20v-2a6 6 0 0112 0v2" />
+        <path d="M3 13s2-2 9-2 9 2 9 2" />
+      </svg>
+      Accessibility
+    </button>
+  </div>
+
+  <!-- TIER 2: LOGO BAR -->
+  <div class="logobar">
+    <div class="logobar-left">
+      <!-- Textiles Committee Real Logo -->
+      <div class="logo-emblem">
+        <img src="https://lh3.googleusercontent.com/d/1XPXkbU4ohi6fO85V4Dz34Ghp73AJj1ti" alt="TEFC Logo"
+          class="main-logo-img">
+      </div>
+      <!-- TEFC name + subtitle -->
+      <div class="logo-text-block" style="padding-left:14px;">
+        <div class="logo-title">Textile Export Facilitation Centre (TEFC)</div>
+        <div class="logo-subtitle">An initiative of Textiles Committee, Ministry of Textiles, Government of India</div>
+      </div>
+    </div>
+    <div class="logo-right-group">
+      <img src="https://lh3.googleusercontent.com/u/0/d/18HWGnhJD1hVtTzTHEzdVeRL5_vedOFOy" alt="Swachh Bharat"
+        class="swachh-logo-img">
+    </div>
+  </div>
+
+  <!-- TIER 3: MAIN NAV -->
+  <nav>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="TEFC_About.html">About TEFC <span class="arr">▼</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="TEFC_About.html">Overview</a></li>
+          <li><a href="TEFC_About.html">Mission &amp; Vision</a></li>
+          <li><a href="TEFC_About.html">Objectives</a></li>
+          <li><a href="TEFC_About.html">Organisational Structure</a></li>
+          <li><a href="TEFC_About.html">Partners</a></li>
+        </ul>
+      </li>
+      <li><a href="#">6 TEFC's <span class="arr">▼</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="tefc_clusters_page.html">Karur</a></li>
+          <li><a href="tefc_clusters_page.html">Surat</a></li>
+          <li><a href="tefc_clusters_page.html">Ichalkaranji</a></li>
+          <li><a href="tefc_clusters_page.html">Jaipur</a></li>
+          <li><a href="tefc_clusters_page.html">Varanasi</a></li>
+          <li><a href="tefc_clusters_page.html">Ludhiana</a></li>
+        </ul>
+      </li>
+      <li><a href="#">FTA Benefits</a></li>
+      <li><a href="#">Online Services</a></li>
+      <li><a href="tefc_exporter_portal_v4.html">Exporter Portal</a></li>
+      <li><a href="TEFC_Media_Center.html">Media Center</a></li>
+      <li><a href="#">Resources <span class="arr">▼</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="TEFC_Resources.html">Market Opportunities</a></li>
+          <li><a href="TEFC_Resources.html">Export Process</a></li>
+          <li><a href="TEFC_Resources.html">Trade Fairs</a></li>
+          <li><a href="TEFC_Resources.html">Government Schemes</a></li>
+          <li><a href="TEFC_Resources.html">FTA/PTA List</a></li>
+        </ul>
+      </li>
+      <li><a href="TEFC_News.html">News</a></li>
+      <li><a href="help_and_ support.html">Help &amp; Support</a></li>
+    </ul>
+    <div class="nav-actions">
+      
+      <div class="nav-search">
+        <input type="text" placeholder="Search..." />
+        <button><svg viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="#">Home</a><span class="sep">›</span>
+        <span class="cur">Online Services</span>
+      </div>
+      <h1>Online Services</h1>
+      <p>Access all TEFC digital services and government portals from one place. Submit applications, track status,
+        register for training, apply for certifications and more — all online, all paperless.</p>
+      <div class="hero-meta">
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY TABS
+  <div class="page-tabs">
+    <button class="page-tab active" onclick="scrollToId('all-services',this)">
+      <svg viewBox="0 0 24 24">
+        <rect x="3" y="3" width="7" height="7" />
+        <rect x="14" y="3" width="7" height="7" />
+        <rect x="3" y="14" width="7" height="7" />
+        <rect x="14" y="14" width="7" height="7" />
+      </svg>
+      All Services <span class="tab-count">12</span>
+    </button>
+    <button class="page-tab" onclick="scrollToId('track',this)">
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 8v4l3 3" />
+      </svg>
+      Track Application
+    </button>
+    <button class="page-tab" onclick="scrollToId('ext-portals',this)">
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="2" y1="12" x2="22" y2="12" />
+        <path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
+      </svg>
+      External Portals <span class="tab-count">8</span>
+    </button>
+    <button class="page-tab" onclick="scrollToId('how-to',this)">
+      <svg viewBox="0 0 24 24">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+      </svg>
+      How to Use
+    </button>
+    <button class="page-tab" onclick="scrollToId('new-services',this)">
+      <svg viewBox="0 0 24 24">
+        <polygon
+          points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+      </svg>
+      Recently Launched
+    </button>
+    <button class="page-tab" onclick="scrollToId('help',this)">
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
+        <line x1="12" y1="17" x2="12.01" y2="17" />
+      </svg>
+      Help &amp; Support
+    </button>
+  </div>
+   -->
+
+  <!-- ALL SERVICES -->
+  <div class="section" id="all-services">
+    <div class="sec-head-row">
+      <div class="sec-head">
+        <h2>
+          <div class="sec-icon"><svg viewBox="0 0 24 24">
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <line x1="8" y1="21" x2="16" y2="21" />
+              <line x1="12" y1="17" x2="12" y2="21" />
+            </svg></div>
+          TEFC Digital Services
+        </h2>
+
+        <div class="sec-head-line"></div>
+      </div>
+    </div>
+
+    <!--<div class="filter-bar">
+      <button class="filter-tab active">All Services</button>
+      <button class="filter-tab">Applications &amp; Forms</button>
+      <button class="filter-tab">Certification</button>
+      <button class="filter-tab">Training</button>
+      <button class="filter-tab">Market Access</button>
+      <button class="filter-tab">Compliance</button>
+    </div>-->
+
+    <div class="portal-grid">
+
+      <!-- CoO Application -->
+      <div class="portal-card">
+        <div class="portal-card-top">
+          <div class="portal-icon pi-rose">
+            <svg viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="9" y1="13" x2="15" y2="13" />
+              <line x1="9" y1="17" x2="15" y2="17" />
+            </svg>
+          </div>
+          <div>
+            <div class="portal-title">Certificate of Origin</div>
+            <!--<div class="portal-tagline">Apply &amp; download CoO for FTA preferential duty claims</div>
+            <span class="portal-tag pt-live">● Live</span>-->
+          </div>
+        </div>
+        <div class="portal-card-body">
+          <ul class="portal-features">
+            <li>Official document certifying that a product was manufactured or processed in India.</li>
+            <li>Mandatory for most international shipments to clear customs at the destination.</li>
+            <li>Available in both Non-Preferential (standard) and Preferential (trade agreement) formats.</li>
+            <li>Issued by authorized bodies like the Textiles Committee or Chambers of Commerce.</li>
+            <li>Can be applied for and issued electronically through the DGFT portal.</li>
+          </ul>
+        </div>
+        <div class="portal-card-foot">
+          <button class="btn-navy">Know More</button>
+          
+        </div>
+      </div>
+
+      <!-- Scheme Application -->
+      <div class="portal-card">
+        <div class="portal-card-top">
+          <div class="portal-icon pi-gold">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z" />
+            </svg>
+          </div>
+          <div>
+            <div class="portal-title">Export Credit Guarantee (ECGC)</div>
+            <!--<div class="portal-tagline">Apply for RoDTEP, PLI, TUFS, RoSCTL &amp; more</div>
+            <span class="portal-tag pt-live">● Live</span>-->
+          </div>
+        </div>
+        <div class="portal-card-body">
+          <ul class="portal-features">
+            <li>Provides insurance to exporters against the risk of non-payment by foreign buyers.</li>
+            <li>Protects against commercial risks (insolvency) and political risks (war/trade bans).</li>
+            <li>Makes it easier for exporters to secure pre-shipment or post-shipment bank loans.</li>
+            <li>Enables confident entry into new or high-risk international markets.</li>
+            <li>Ensures business continuity by compensating for losses from payment failures.</li>
+          </ul>
+        </div>
+        <div class="portal-card-foot">
+          <button class="btn-navy">Know More</button>
+          
+        </div>
+      </div>
+
+      <!-- Training Registration -->
+      <div class="portal-card">
+        <div class="portal-card-top">
+          <div class="portal-icon pi-green">
+            <svg viewBox="0 0 24 24">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 00-3-3.87" />
+              <path d="M16 3.13a4 4 0 010 7.75" />
+            </svg>
+          </div>
+          <div>
+            <div class="portal-title">Letter of Credit</div>
+            <!--<div class="portal-tagline">Register for skill development &amp; capacity building programmes</div>
+            <span class="portal-tag pt-live">● Live</span>-->
+          </div>
+        </div>
+        <div class="portal-card-body">
+          <ul class="portal-features">
+            <li>A guarantee from the buyer’s bank that payment will be made once terms are met.</li>
+            <li>Acts as one of the most secure payment methods in international trade.</li>
+            <li>Payment is triggered only upon submission of proof of shipment and required papers.</li>
+            <li>Governed by international rules (UCP 600) to ensure global uniformity.</li>
+            <li>Bridges the trust gap between Indian sellers and foreign buyers.</li>
+          </ul>
+        </div>
+        <div class="portal-card-foot">
+          <button class="btn-navy">Know More</button>
+          
+        </div>
+      </div>
+
+      <!-- Quality Certification -->
+      <div class="portal-card">
+        <div class="portal-card-top">
+          <div class="portal-icon pi-blue">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="8" r="6" />
+              <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+            </svg>
+          </div>
+          <div>
+            <div class="portal-title">HS Code (Harmonized System)</div>
+            <!--<div class="portal-tagline">Apply for OEKO-TEX, ISO, Silk Mark &amp; Handloom Mark</div>
+            <span class="portal-tag pt-live">● Live</span>-->
+          </div>
+        </div>
+        <div class="portal-card-body">
+          <ul class="portal-features">
+            <li>A 6-to-8-digit standardized numerical method used to classify products worldwide.</li>
+            <li>Determines the exact customs duty and GST rates applicable to textile goods.</li>
+            <li>Ensures correct product identification globally, regardless of language barriers.</li>
+            <li>Essential for filing shipping bills and avoiding legal delays at customs.</li>
+            <li>Helps exporters check eligibility for specific government incentives or schemes.</li>
+          </ul>
+        </div>
+        <div class="portal-card-foot">
+          <button class="btn-navy">Know More</button>
+          
+        </div>
+      </div>
+
+      <!-- Exporter Registration -->
+      <div class="portal-card">
+        <div class="portal-card-top">
+          <div class="portal-icon pi-purple">
+            <svg viewBox="0 0 24 24">
+              <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+              <circle cx="8.5" cy="7" r="4" />
+              <line x1="20" y1="8" x2="20" y2="14" />
+              <line x1="23" y1="11" x2="17" y2="11" />
+            </svg>
+          </div>
+          <div>
+            <div class="portal-title">IEC (Import Export Code)</div>
+            <!--<div class="portal-tagline">Register as an exporter on the TEFC platform</div>
+            <span class="portal-tag pt-live">● Live</span>-->
+          </div>
+        </div>
+        <div class="portal-card-body">
+          <ul class="portal-features">
+            <li>A unique 10-digit identification number mandatory for all Indian export businesses.</li>
+            <li>Granted by the Directorate General of Foreign Trade (DGFT), Ministry of Commerce.</li>
+            <li>Valid for a lifetime, subject to a simple annual online update.</li>
+            <li>Required for clearing shipments and making/receiving foreign currency payments.</li>
+            <li>Fully digital application process linked directly to the business’s PAN card.</li>
+          </ul>
+        </div>
+        <div class="portal-card-foot">
+          <button class="btn-navy">Know More</button>
+          
+        </div>
+      </div>
+
+      <!-- 
+      <div class="portal-card">
+        <div class="portal-card-top">
+          <div class="portal-icon pi-teal">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+          </div>
+          <div>
+            <div class="portal-title">RCMC (Registration Cum Membership Certificate)</div>
+            <div class="portal-tagline">Apply for government-subsidised participation in domestic &amp; international
+              fairs</div>
+            <span class="portal-tag pt-new">● New</span>
+          </div>
+        </div>
+        <div class="portal-card-body">
+          <ul class="portal-features">
+            <li>Proves registration with a specific Export Promotion Council (e.g., TEXPROCIL).</li>
+            <li>Mandatory to claim benefits under India’s Foreign Trade Policy (like duty drawbacks).</li>
+            <li>Provides access to government-funded trade fairs and market intelligence data.</li>
+            <li>Validates the exporter as a legitimate player in the specific textile sector.</li>
+            <li>Usually issued for 5 years, granting long-term access to subsidies and resources.</li>
+          </ul>
+        </div>
+        <div class="portal-card-foot">
+          <button class="btn-navy">Know More</button>-->
+          
+        </div>
+      </div>
+
+      <!-- Market Intelligence 
+      <div class="portal-card">
+        <div class="portal-card-top">
+          <div class="portal-icon pi-rose">
+            <svg viewBox="0 0 24 24">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
+          </div>
+          <div>
+            <div class="portal-title">Market Intelligence Reports</div>
+            <div class="portal-tagline">Country-wise demand, price &amp; competition data for textile exporters</div>
+            <span class="portal-tag pt-live">● Live</span>
+          </div>
+        </div>
+        <div class="portal-card-body">
+          <ul class="portal-features">
+            <li>Reports for 40+ countries updated quarterly</li>
+            <li>HS-code level import demand &amp; price trends</li>
+            <li>Competitor country analysis (China, Bangladesh, Vietnam)</li>
+            <li>Downloadable PDF &amp; Excel data sets</li>
+          </ul>
+        </div>
+        <div class="portal-card-foot">
+          <button class="btn-navy">Access Reports</button>
+          <button class="btn-ghost">Preview Sample</button>
+        </div>
+      </div>
+
+      <!-- Grievance Portal 
+      <div class="portal-card">
+        <div class="portal-card-top">
+          <div class="portal-icon pi-gold">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+            </svg>
+          </div>
+          <div>
+            <div class="portal-title">Grievance Redressal</div>
+            <div class="portal-tagline">Submit &amp; track complaints related to TEFC services</div>
+            <span class="portal-tag pt-live">● Live</span>
+          </div>
+        </div>
+        <div class="portal-card-body">
+          <ul class="portal-features">
+            <li>Online complaint submission with file attachments</li>
+            <li>Unique grievance reference number issued instantly</li>
+            <li>3-tier escalation: Cluster → Regional → National</li>
+            <li>Resolution timeline: 7 working days (standard)</li>
+          </ul>
+        </div>
+        <div class="portal-card-foot">
+          <button class="btn-navy">File Grievance</button>
+          <button class="btn-ghost">Track Complaint</button>
+        </div>
+      </div>
+
+      <!-- Export Documentation 
+      <div class="portal-card">
+        <div class="portal-card-top">
+          <div class="portal-icon pi-green">
+            <svg viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+            </svg>
+          </div>
+          <div>
+            <div class="portal-title">Export Document Builder</div>
+            <div class="portal-tagline">Generate compliant export documents — invoices, packing lists, SDF, GR</div>
+            <span class="portal-tag pt-beta">● Beta</span>
+          </div>
+        </div>
+        <div class="portal-card-body">
+          <ul class="portal-features">
+            <li>Guided templates for 15+ export document types</li>
+            <li>Auto-populate from saved shipment profiles</li>
+            <li>Bank-compliant &amp; DGFT-compliant formats</li>
+            <li>E-sign integration for authorised signatories</li>
+          </ul>
+        </div>
+        <div class="portal-card-foot">
+          <button class="btn-navy">Try Now</button>
+          <button class="btn-ghost">Learn More</button>
+        </div>
+      </div>
+      -->
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- TRACK APPLICATION 
+  <div class="section section-alt" id="track">
+    <div class="sec-head">
+      <h2>
+        <div class="sec-icon"><svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 8v4l3 3" />
+          </svg></div>
+        Track Your Application
+      </h2>
+      <p>Enter your application reference number to get real-time status updates</p>
+      <div class="sec-head-line"></div>
+    </div>
+
+    <div class="track-box" style="margin-bottom:1.5rem;">
+      <div class="track-left">
+        <h3>Application Status Tracker</h3>
+        <p>Use your unique reference number (e.g. TEFC-COO-2025-XXXXX) sent to your registered email or mobile after
+          submission.</p>
+      </div>
+      <div class="track-form">
+        <input class="track-input" type="text" placeholder="Enter Reference Number (e.g. TEFC-COO-2025-00821)">
+        <button class="btn-white">Track →</button>
+      </div>
+    </div>
+
+    
+
+  <div class="section-divider"></div>
+
+  <!-- EXTERNAL PORTALS -->
+  <div class="section" id="ext-portals">
+    <div class="sec-head">
+      <h2>
+        <div class="sec-icon"><svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="2" y1="12" x2="22" y2="12" />
+            <path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
+          </svg></div>
+        External Government Portals
+      </h2>
+      <p>Direct links to key government portals relevant to textile exporters</p>
+      <div class="sec-head-line"></div>
+    </div>
+
+    <div class="ext-grid">
+      <div class="ext-card">
+        <div class="ext-logo">🏛️</div>
+        <div class="ext-name">DGFT Portal</div>
+        <div class="ext-desc">Licences, IEC registration, export-import policy &amp; RODTEP/RoSCTL applications</div>
+        <a href="#" class="ext-link">Visit Portal <svg viewBox="0 0 24 24">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+            <polyline points="15 3 21 3 21 9" />
+            <line x1="10" y1="14" x2="21" y2="3" />
+          </svg></a>
+      </div>
+      <div class="ext-card">
+        <div class="ext-logo">🚢</div>
+        <div class="ext-name">ICEGATE</div>
+        <div class="ext-desc">Customs e-filing, shipping bill status, duty scrip redemption &amp; customs EDI services
+        </div>
+        <a href="#" class="ext-link">Visit Portal <svg viewBox="0 0 24 24">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+            <polyline points="15 3 21 3 21 9" />
+            <line x1="10" y1="14" x2="21" y2="3" />
+          </svg></a>
+      </div>
+      <div class="ext-card">
+        <div class="ext-logo">📦</div>
+        <div class="ext-name">Trade Connect</div>
+        <div class="ext-desc">National trade portal for B2B connections, buyer directories &amp; foreign trade enquiries
+        </div>
+        <a href="#" class="ext-link">Visit Portal <svg viewBox="0 0 24 24">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+            <polyline points="15 3 21 3 21 9" />
+            <line x1="10" y1="14" x2="21" y2="3" />
+          </svg></a>
+      </div>
+      <div class="ext-card">
+        <div class="ext-logo">🧵</div>
+        <div class="ext-name">Textiles Committee</div>
+        <div class="ext-desc">Quality testing labs, CoO for non-TEFC exporters, IS/ISO compliance certification</div>
+        <a href="#" class="ext-link">Visit Portal <svg viewBox="0 0 24 24">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+            <polyline points="15 3 21 3 21 9" />
+            <line x1="10" y1="14" x2="21" y2="3" />
+          </svg></a>
+      </div>
+      <div class="ext-card">
+        <div class="ext-logo">💰</div>
+        <div class="ext-name">MSME Sambandh</div>
+        <div class="ext-desc">MSME registration (Udyam), loan schemes, cluster development &amp; government procurement
+        </div>
+        <a href="#" class="ext-link">Visit Portal <svg viewBox="0 0 24 24">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+            <polyline points="15 3 21 3 21 9" />
+            <line x1="10" y1="14" x2="21" y2="3" />
+          </svg></a>
+      </div>
+      <div class="ext-card">
+        <div class="ext-logo">🏦</div>
+        <div class="ext-name">SIDBI Portal</div>
+        <div class="ext-desc">Export credit schemes, working capital loans &amp; technology upgradation finance for
+          MSMEs</div>
+        <a href="#" class="ext-link">Visit Portal <svg viewBox="0 0 24 24">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+            <polyline points="15 3 21 3 21 9" />
+            <line x1="10" y1="14" x2="21" y2="3" />
+          </svg></a>
+      </div>
+      <div class="ext-card">
+        <div class="ext-logo">🌐</div>
+        <div class="ext-name">ECGC Portal</div>
+        <div class="ext-desc">Export credit insurance, buyer risk covers &amp; post-shipment credit guarantee for
+          exporters</div>
+        <a href="#" class="ext-link">Visit Portal <svg viewBox="0 0 24 24">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+            <polyline points="15 3 21 3 21 9" />
+            <line x1="10" y1="14" x2="21" y2="3" />
+          </svg></a>
+      </div>
+      <div class="ext-card">
+        <div class="ext-logo">🛂</div>
+        <div class="ext-name">GST Portal</div>
+        <div class="ext-desc">GST registration, LUT filing for zero-rated exports, refund claims &amp; return filing
+        </div>
+        <a href="#" class="ext-link">Visit Portal <svg viewBox="0 0 24 24">
+            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+            <polyline points="15 3 21 3 21 9" />
+            <line x1="10" y1="14" x2="21" y2="3" />
+          </svg></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+
+
+  <!-- RECENTLY LAUNCHED -->
+  <div class="section" id="new-services">
+    <div class="sec-head">
+      <h2>
+        <div class="sec-icon"><svg viewBox="0 0 24 24">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg></div>
+        Recently Launched Services
+      </h2>
+      <p>New digital tools and services added to the TEFC portal in 2025</p>
+      <div class="sec-head-line"></div>
+    </div>
+
+    <div class="new-services">
+      <div class="new-service-card">
+        <div class="nsc-icon pi-blue"><svg viewBox="0 0 24 24">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+          </svg></div>
+        <div class="nsc-body">
+          <h5>HS Code Intelligence Tool <span class="new-badge">New</span></h5>
+          <p>Enter product description to get recommended HS code, applicable FTA duty rates and scheme eligibility —
+            all in one search.</p>
+          <button class="btn-navy" style="font-size:0.74rem;padding:0.35rem 0.85rem;">Try Now →</button>
+        </div>
+      </div>
+      <!--<div class="new-service-card">
+        <div class="nsc-icon pi-green"><svg viewBox="0 0 24 24">
+            <rect x="2" y="3" width="20" height="14" rx="2" />
+            <line x1="8" y1="21" x2="16" y2="21" />
+            <line x1="12" y1="17" x2="12" y2="21" />
+          </svg></div>
+        <div class="nsc-body">
+          <h5>Export Documentation Builder <span class="new-badge">Beta</span></h5>
+          <p>Auto-generate shipping invoices, packing lists, GR declarations and SDF forms from a single shipment data
+            entry — reduces errors by 80%.</p>
+          <button class="btn-navy" style="font-size:0.74rem;padding:0.35rem 0.85rem;">Try Beta →</button>
+        </div>
+      </div>-->
+      <div class="new-service-card">
+        <div class="nsc-icon pi-gold"><svg viewBox="0 0 24 24">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+          </svg></div>
+        <div class="nsc-body">
+          <h5>AI Export Query Assistant <span class="new-badge">New</span></h5>
+          <p>Ask any export-related question — duties, documents, regulations, market entry — and get instant answers
+            based on TEFC's knowledge base.</p>
+          <button class="btn-navy" style="font-size:0.74rem;padding:0.35rem 0.85rem;">Ask Now →</button>
+        </div>
+      </div>
+      <!--<div class="new-service-card">
+        <div class="nsc-icon pi-rose"><svg viewBox="0 0 24 24">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+          </svg></div>
+        <div class="nsc-body">
+          <h5>Buyer–Seller Connect <span class="new-badge">New</span></h5>
+          <p>Registered exporters can now browse verified international buyer profiles, send trade enquiries and
+            schedule virtual meetings through the TEFC platform.</p>
+          <button class="btn-navy" style="font-size:0.74rem;padding:0.35rem 0.85rem;">Find Buyers →</button>
+        </div>-->
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- HELP & SUPPORT 
+  <div class="section section-alt" id="help">
+    <div class="sec-head">
+      <h2>
+        <div class="sec-icon"><svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg></div>
+        Help &amp; Support
+      </h2>
+      <p>Get assistance with any TEFC online service</p>
+      <div class="sec-head-line"></div>
+    </div>
+    <button type="button" class="btn-navy" id="">Help & Support</button>-->
+
+    <!--<div class="help-cards">
+      <div class="help-card">
+        <div class="hc-icon"><svg viewBox="0 0 24 24">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+          </svg></div>
+        <div class="hc-body">
+          <h5>Live Chat Support</h5>
+          <p>Chat with a TEFC help desk executive Monday–Saturday, 9:30 AM to 6:00 PM IST. Average response time: under
+            3 minutes.</p>
+          <a href="#" class="hc-link">Start Live Chat →</a>
+        </div>
+      </div>
+      <div class="help-card">
+        <div class="hc-icon"><svg viewBox="0 0 24 24">
+            <path
+              d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.11 1.18 2 2 0 012.09 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+          </svg></div>
+        <div class="hc-body">
+          <h5>Helpline Numbers</h5>
+          <p>National helpline: <strong>1800-XXX-XXXX</strong> (toll free). Cluster-specific helplines listed on each
+            cluster's page. Available 9 AM–6 PM IST.</p>
+          <a href="#" class="hc-link">View All Helpline Numbers →</a>
+        </div>
+      </div>
+      <div class="help-card">
+        <div class="hc-icon"><svg viewBox="0 0 24 24">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg></div>
+        <div class="hc-body">
+          <h5>Email Support</h5>
+          <p>Send queries to <strong>services@tefc.gov.in</strong> with your reference number. All emails acknowledged
+            within 4 hours on working days.</p>
+          <a href="mailto:services@tefc.gov.in" class="hc-link">Email Us →</a>
+        </div>
+      </div>
+      <div class="help-card">
+        <div class="hc-icon"><svg viewBox="0 0 24 24">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+          </svg></div>
+        <div class="hc-body">
+          <h5>User Guides &amp; FAQs</h5>
+          <p>Detailed step-by-step guides for every service in English and Hindi. Includes video walkthroughs for CoO
+            and Scheme applications.</p>
+          <a href="#" class="hc-link">Download Guides →</a>
+        </div>
+      </div>
+      <div class="help-card">
+        <div class="hc-icon"><svg viewBox="0 0 24 24">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg></div>
+        <div class="hc-body">
+          <h5>Visit a TEFC Cluster Office</h5>
+          <p>Our cluster offices across Karur, Surat, Ludhiana, Varanasi, Ichalkaranji and more provide in-person
+            assistance with online applications.</p>
+          <a href="#" class="hc-link">Find Nearest Office →</a>
+        </div>
+      </div>
+      <div class="help-card">
+        <div class="hc-icon"><svg viewBox="0 0 24 24">
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg></div>
+        <div class="hc-body">
+          <h5>Report a Technical Issue</h5>
+          <p>Facing a portal error, payment failure, or login issue? Report it directly to our IT team for priority
+            resolution within 2 hours.</p>
+          <a href="#" class="hc-link">Report Issue →</a>
+        </div>
+      </div>
+    </div>-->
+  </div>
+
+  <!-- HELP BANNER -->
+  <div class="help-banner">
+    <h3>Need Assistance? We're here to help.</h3>
+    <button class="btn-support">Help & Support</button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4><svg viewBox="0 0 24 24">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+          </svg>About TEFC</h4>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>123 Textile Road, New Delhi — 110001</div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>info@tefc.gov.in</div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24">
+            <path
+              d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.11 1.18 2 2 0 012.09 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+          </svg>+91 12356 67890</div>
+      </div>
+      <div class="footer-col">
+        <h4><svg viewBox="0 0 24 24">
+            <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71" />
+            <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71" />
+          </svg>Quick Links</h4>
+        <a href="#">Homepage</a>
+        <a href="#">About TEFC</a>
+        <a href="#">Clusters</a>
+        <a href="#">FTA Benefits</a>
+        <a href="#">Online Services</a>
+        <a href="#">Media Center</a>
+      </div>
+      <div class="footer-col">
+        <h4><svg viewBox="0 0 24 24">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+          </svg>Contact Us</h4>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>123 Textile Road, New Delhi</div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>contact@tefc.gov.in</div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24">
+            <path
+              d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.11 1.18 2 2 0 012.09 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+          </svg>Phone: +91 12335 6790</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Textiles Exports Facilitation Centre (TEFC) | Ministry of Textiles, Government of India</p>
+      <div class="footer-logo">
+        <div class="footer-logo-circle"><svg viewBox="0 0 20 20" width="14" height="14" fill="none">
+            <path d="M4 10s2-4 6-4 6 4 6 4-2 4-6 4-6-4-6-4z" stroke="#fff" stroke-width="1.5" />
+            <circle cx="10" cy="10" r="2" stroke="#fff" stroke-width="1.5" />
+          </svg></div>
+        <span class="footer-logo-text">TEFC</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function scrollToId(id, btn) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.querySelectorAll('.page-tab').forEach(t => t.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+    }
+    document.querySelectorAll('.filter-bar').forEach(bar => {
+      bar.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.addEventListener('click', function () {
+          bar.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+    });
+    const sections = ['all-services', 'track', 'ext-portals', 'how-to', 'new-services', 'help'];
+    window.addEventListener('scroll', () => {
+      let current = 'all-services';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && window.scrollY >= el.offsetTop - 130) current = id;
+      });
+      document.querySelectorAll('.page-tab').forEach((tab, i) => {
+        tab.classList.toggle('active', sections[i] === current);
+      });
+    });
+  </script>
+</body>
+
+</html>

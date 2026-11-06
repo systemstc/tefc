@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TEFC Website Admin CMS</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#6c153f;--navy-dark:#4a0e2b;--navy-light:#8a1e50;
+  --sky:#f9eaf1;--sky2:#fdf4f8;--white:#fff;--text:#1a1a2e;
+  --muted:#5a6a82;--border:#e8d0dc;--ok:#1e7e44;--danger:#c0392b;
+}
+body{font-family:'Inter',sans-serif;background:var(--sky2);color:var(--text);font-size:14px;min-height:100vh}
+button,input,textarea,select{font-family:inherit}
+button{cursor:pointer}
+.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;background:linear-gradient(135deg,var(--navy-dark),var(--navy) 58%,#a0245e)}
+.login-card{width:100%;max-width:430px;background:#fff;border-radius:10px;padding:2rem;box-shadow:0 18px 55px rgba(0,0,0,.25)}
+.login-brand{display:flex;align-items:center;gap:14px;margin-bottom:1.5rem}
+.login-brand img{height:56px;width:auto}
+.login-brand h1{font-size:1.15rem;color:var(--navy);line-height:1.2}
+.login-brand p{font-size:.76rem;color:#7a4060;margin-top:3px}
+.fg{margin-bottom:1rem}
+.fg label{display:block;font-size:.75rem;font-weight:700;margin-bottom:5px;color:var(--text)}
+.fg input,.fg textarea,.fg select{width:100%;border:1px solid var(--border);border-radius:6px;padding:.58rem .72rem;background:#fff;color:var(--text);font-size:.82rem}
+.fg textarea{min-height:86px;resize:vertical}
+.fg input:focus,.fg textarea:focus,.fg select:focus{outline:none;border-color:var(--navy)}
+.btn-primary{background:var(--navy);color:#fff;border:0;border-radius:5px;padding:.62rem 1rem;font-weight:700;font-size:.84rem}
+.btn-primary:hover{background:var(--navy-dark)}
+.btn-ghost{background:#fff;color:var(--navy);border:1px solid var(--navy);border-radius:5px;padding:.55rem .9rem;font-weight:700;font-size:.78rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn-soft{background:var(--sky);color:var(--navy);border:1px solid var(--border);border-radius:5px;padding:.52rem .85rem;font-weight:700;font-size:.78rem}
+.btn-danger{background:#fff;color:var(--danger);border:1px solid #f0b5ad;border-radius:5px;padding:.52rem .85rem;font-weight:700;font-size:.78rem}
+.alert{display:none;margin:.75rem 0 0;padding:.65rem .8rem;border-radius:6px;font-size:.78rem;line-height:1.45}
+.alert.err{display:block;background:#fff0f0;border:1px solid #f2c1bd;color:var(--danger)}
+.alert.ok{display:block;background:#eafaf1;border:1px solid #b7e4c7;color:var(--ok)}
+.cms{display:none;min-height:100vh}
+.cms.active{display:block}
+.topbar{background:#fce8f2;padding:.32rem 1.5rem;border-bottom:1px solid #e8c8d8;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.topbar small{color:var(--navy);font-weight:700}
+.logobar{background:#fff;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.logobar-left{display:flex;align-items:center;gap:14px;min-width:0}
+.logo-emblem{border-right:1px solid var(--border);padding-right:1.2rem;margin-right:.4rem}
+.main-logo-img{height:56px;width:auto;display:block}
+.logo-title{font-size:1.55rem;font-weight:800;color:var(--navy);line-height:1.2}
+.logo-subtitle{font-size:.82rem;color:#7a4060;margin-top:2px}
+.admin-shell{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 114px)}
+.sidebar{background:#fff;border-right:1px solid var(--border);padding:1rem;position:sticky;top:0;height:calc(100vh - 114px);overflow:auto}
+.side-title{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:800;margin:.4rem .4rem .7rem}
+.side-btn{width:100%;border:0;background:transparent;color:var(--muted);padding:.62rem .7rem;border-radius:6px;text-align:left;font-weight:700;font-size:.82rem;margin-bottom:4px}
+.side-btn:hover,.side-btn.active{background:var(--sky);color:var(--navy)}
+.workarea{padding:1.4rem;overflow:auto}
+.work-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1rem}
+.work-head h2{color:var(--navy);font-size:1.2rem}
+.work-head p{color:var(--muted);font-size:.8rem;margin-top:4px;line-height:1.5}
+.action-row{display:flex;gap:.55rem;flex-wrap:wrap}
+.panel{display:none}
+.panel.active{display:block}
+.card{background:#fff;border:1px solid var(--border);border-radius:9px;padding:1.1rem;margin-bottom:1rem}
+.card h3{font-size:.92rem;color:var(--navy);margin-bottom:.9rem}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.repeat-card{background:var(--sky2);border:1px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:.9rem}
+.repeat-card h4{color:var(--navy);font-size:.82rem;margin-bottom:.75rem}
+.media-preview{width:100%;height:120px;border:1px dashed var(--border);border-radius:7px;background:#fff center/cover no-repeat;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.75rem;margin-top:.45rem;overflow:hidden}
+.hint{font-size:.72rem;color:var(--muted);line-height:1.5;margin-top:.35rem}
+.statusbar{position:fixed;right:18px;bottom:18px;z-index:20;background:#fff;border:1px solid var(--border);box-shadow:0 8px 28px rgba(0,0,0,.12);border-radius:8px;padding:.75rem .95rem;display:none;color:var(--ok);font-weight:800;font-size:.8rem}
+.statusbar.show{display:block}
+.footer-note{font-size:.72rem;color:var(--muted);line-height:1.55;margin-top:.75rem}
+@media(max-width:920px){
+  .admin-shell{grid-template-columns:1fr}
+  .sidebar{position:static;height:auto;display:flex;gap:6px;overflow:auto;border-right:0;border-bottom:1px solid var(--border)}
+  .side-title{display:none}
+  .side-btn{white-space:nowrap;width:auto}
+  .grid-2,.grid-3{grid-template-columns:1fr}
+  .work-head{flex-direction:column}
+  .logobar{align-items:flex-start;flex-direction:column}
+  .logo-title{font-size:1.15rem}
+}
+</style>
+</head>
+<body>
+
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <div class="login-brand">
+      <img src="https://lh3.googleusercontent.com/d/1XPXkbU4ohi6fO85V4Dz34Ghp73AJj1ti" alt="TEFC logo">
+      <div>
+        <h1>TEFC Website Admin</h1>
+        <p>Content Management System</p>
+      </div>
+    </div>
+    <div class="fg"><label>Username</label><input id="loginUser" type="text" autocomplete="username" placeholder="Username" onkeydown="if(event.key==='Enter')login()"></div>
+    <div class="fg"><label>Password</label><input id="loginPass" type="password" autocomplete="current-password" placeholder="Password" onkeydown="if(event.key==='Enter')login()"></div>
+    <button class="btn-primary" style="width:100%" onclick="login()">Login to CMS</button>
+    <div id="loginMsg" class="alert"></div>
+    <!--<p class="footer-note">Demo credential: username <strong>admintefc</strong>, password <strong>admintefc1212</strong>.</p>-->
+  </div>
+</div>
+
+<div class="cms" id="cmsApp">
+  <div class="topbar">
+    <small>Logged in as admintefc</small>
+    <div class="action-row">
+      <a class="btn-ghost" href="TEFC_Home_Page.html">View Home Page</a>
+      <button class="btn-danger" onclick="logout()">Logout</button>
+    </div>
+  </div>
+  <div class="logobar">
+    <div class="logobar-left">
+      <div class="logo-emblem"><img src="https://lh3.googleusercontent.com/d/1XPXkbU4ohi6fO85V4Dz34Ghp73AJj1ti" class="main-logo-img" alt=""></div>
+      <div>
+        <div class="logo-title">Textile Export Facilitation Centre (TEFC)</div>
+        <div class="logo-subtitle">An initiative of Textiles Committee, Ministry of Textiles, Government of India</div>
+      </div>
+    </div>
+  </div>
+  <div class="admin-shell">
+    <aside class="sidebar">
+      <div class="side-title">CMS Controls</div>
+      <button class="side-btn active" data-panel="dashboard" onclick="openPanel('dashboard',this)">Dashboard</button>
+      <button class="side-btn" data-panel="theme" onclick="openPanel('theme',this)">Theme & Branding</button>
+      <button class="side-btn" data-panel="hero" onclick="openPanel('hero',this)">Home Hero</button>
+      <button class="side-btn" data-panel="about" onclick="openPanel('about',this)">About Section</button>
+      <button class="side-btn" data-panel="clusters" onclick="openPanel('clusters',this)">Clusters</button>
+      <button class="side-btn" data-panel="impact" onclick="openPanel('impact',this)">Impact</button>
+      <button class="side-btn" data-panel="cards" onclick="openPanel('cards',this)">Cards & Services</button>
+      <button class="side-btn" data-panel="media" onclick="openPanel('media',this)">Media Uploads</button>
+      <button class="side-btn" data-panel="navigation" onclick="openPanel('navigation',this)">Navigation & Pages</button>
+      <button class="side-btn" data-panel="footer" onclick="openPanel('footer',this)">Footer</button>
+    </aside>
+    <main class="workarea">
+      <div class="work-head">
+        <div>
+          <h2 id="panelTitle">Dashboard</h2>
+          <p id="panelDesc">Manage visible content for the TEFC website. Saved changes are applied from browser storage.</p>
+        </div>
+        <div class="action-row">
+          <button class="btn-primary" onclick="saveSettings()">Save Changes</button>
+          <button class="btn-soft" onclick="exportSettings()">Export JSON</button>
+          <button class="btn-soft" onclick="document.getElementById('importFile').click()">Import JSON</button>
+          <input id="importFile" type="file" accept="application/json" style="display:none" onchange="importSettings(event)">
+          <button class="btn-danger" onclick="resetSettings()">Reset</button>
+        </div>
+      </div>
+
+      <section id="dashboard" class="panel active">
+        <div class="card">
+          <h3>How This CMS Works</h3>
+          <p class="hint">This is a static website CMS. It stores edits in your browser localStorage under <strong>tefcCmsSettings</strong>. The home page reads that data when it opens, so updates stay after closing and reopening the file in the same browser.</p>
+          <p class="hint">For multi-user publishing on a server, the same interface can later be connected to a database/API. For now, this gives you working local control without a backend.</p>
+        </div>
+        <div class="grid-3">
+          <div class="card"><h3>Admin Login</h3><p class="hint">Username: admintefc<br>Password: admintefc1212</p></div>
+          <div class="card"><h3>Persistent Changes</h3><p class="hint">Hero image, colors, text, cards, links, and media stay saved in this browser.</p></div>
+          <div class="card"><h3>Backup</h3><p class="hint">Use Export JSON and Import JSON to move settings to another browser or machine.</p></div>
+        </div>
+      </section>
+
+      <section id="theme" class="panel"></section>
+      <section id="hero" class="panel"></section>
+      <section id="about" class="panel"></section>
+      <section id="clusters" class="panel"></section>
+      <section id="impact" class="panel"></section>
+      <section id="cards" class="panel"></section>
+      <section id="media" class="panel"></section>
+      <section id="navigation" class="panel"></section>
+      <section id="footer" class="panel"></section>
+    </main>
+  </div>
+</div>
+<div id="statusbar" class="statusbar">Saved</div>
+
+<script>
+const STORAGE_KEY='tefcCmsSettings';
+const ADMIN_USER='admintefc';
+const ADMIN_PASS='admintefc1212';
+const defaultSettings={
+  theme:{navy:'#6c153f',navyDark:'#4a0e2b',navyLight:'#8a1e50',sky:'#f9eaf1',sky2:'#fdf4f8'},
+  hero:{
+    title:'Empowering Textile Exports<br>through TEFC',
+    subtitle:"Facilitating growth and global reach for India's textile industry.",
+    primaryText:'Explore Services',
+    secondaryText:'View Clusters ›',
+    image:'',
+    overlayOpacity:86,
+    height:500,
+    badges:[
+      {value:'6+',label:'Textile Clusters'},
+      {value:'1000+',label:'Exporters Supported'},
+      {value:'₹5000 Cr',label:'Export Value'}
+    ]
+  },
+  about:{
+    title:'About Us',
+    text:'The Textiles Export and Facilitation Centre (TEFC) is a strategic initiative by the Textiles Committee, Ministry of Textiles, Govt. of India. We serve as a one-stop support hub for MSMEs and exporters in the textile sector, providing essential market intelligence, trade certification, and quality assurance to help Indian textile businesses compete globally.',
+    image:'images\\Key-People-in-organisation.png',
+    linkText:'Read More ›',
+    linkHref:'TEFC_About.html'
+  },
+  clusters:[
+    {name:'Karur',state:'Tamil Nadu',desc:'Weaving decorative home textiles - bed linens, kitchen linen, curtains & home decor.',image:'images/karur.png',href:'tefc_clusters_page.html',overlayOpacity:60,height:300},
+    {name:'Surat',state:'Gujarat',desc:'Processing and exporting synthetic textiles - sarees, dress materials, and fabrics.',image:'images/karur.png',href:'tefc_clusters_page.html',overlayOpacity:60,height:300},
+    {name:'Ichalkaranji',state:'Maharashtra',desc:"Supplying cotton yarn and fabrics - one of India's largest powerloom centres.",image:'images/karur.png',href:'tefc_clusters_page.html',overlayOpacity:60,height:300},
+    {name:'Jaipur',state:'Rajasthan',desc:'Printing and dyeing colourful fabrics - renowned for block prints and ethnic textiles.',image:'images/karur.png',href:'tefc_clusters_page.html',overlayOpacity:60,height:300},
+    {name:'Varanasi',state:'Uttar Pradesh',desc:'Traditional silk weaving - famous for Banarasi sarees with intricate zari work.',image:'images/karur.png',href:'tefc_clusters_page.html',overlayOpacity:60,height:300},
+    {name:'Ludhiana',state:'Punjab',desc:"Knitting and woollen textiles - India's largest knitwear and hosiery manufacturing hub.",image:'images/karur.png',href:'tefc_clusters_page.html',overlayOpacity:60,height:300}
+  ],
+  quick:[
+    {title:'Online Services',desc:'Manage applications, certifications and access TEFC portals online.'},
+    {title:'Textile Clusters',desc:'Supports textile communities and export-oriented companies across India.'},
+    {title:'FTA Benefits',desc:'Export vide FTAs and call meets to help textile exporters reach new markets.'},
+    {title:'Help & Support',desc:'We help you with your queries, support, and guidance for exporters.'}
+  ],
+  impact:{
+    stats:[
+      {value:'6+',label:'Clusters'},
+      {value:'1000+',label:'Exporters Supported'},
+      {value:'₹5000 Cr',label:'Export Value'},
+      {value:'₹7000 Cr',label:'Annual Production Value'}
+    ],
+    bars:[
+      {label:'Karur',pct:'33'},
+      {label:'Ludhiana',pct:'27'},
+      {label:'Surat',pct:'20'},
+      {label:'Tiruppur',pct:'12'},
+      {label:'Varanasi',pct:'8'}
+    ]
+  },
+  fta:[
+    {title:'RoDTEP Scheme',status:'Active',point1:'Access to Duty Credit Scrips',point2:'Rebate on Central & State taxes',eligibility:'All textile exporters'},
+    {title:'PLI Scheme',status:'Active',point1:'Incentive up to ₹10 Cr for increased textile production',point2:'MMF apparel, MMF fabrics, Technical textiles',eligibility:'MMF, Technical Textiles Manufacturers'},
+    {title:'TUFS',status:'Active',point1:'15% subsidy on capital investment for textile machinery upgradation',point2:'',eligibility:'All textile units upgrading machinery'}
+  ],
+  services:[
+    {title:'Trade Connect Portal',desc:'Access the national trade portal for applications and compliance.'},
+    {title:'Application Forms',desc:'Submit applications for schemes, clusters, and certifications.'},
+    {title:'Training Registration',desc:'Register for skill development and capacity building programmes.'},
+    {title:'Certification Portals',desc:'Apply for quality certifications and track status in real time.'}
+  ],
+  media:[
+    {label:'Watch - Karur Cluster Overview',image:'',overlayOpacity:70,height:300},
+    {label:'View - Surat Export Training',image:'',overlayOpacity:70,height:300},
+    {label:'View - MSME Capacity Building',image:'',overlayOpacity:70,height:300},
+    {label:'Watch - Karur Cluster Overview',image:'',overlayOpacity:70,height:300},
+    {label:'View - Surat Export Training',image:'',overlayOpacity:70,height:300},
+    {label:'View - MSME Capacity Building',image:'',overlayOpacity:70,height:300}
+  ],
+  nav:{
+    exporterPortalHref:'tefc_exporter_portal_v3.html',
+    office:[
+      {label:'Head Office Login',href:'#'},
+      {label:'Cluster Login',href:'#'},
+      {label:'TEFC Website Admin',href:'TEFC_Admin_Login.html'}
+    ],
+    connected:[
+      {label:'About TEFC',href:'TEFC_About.html'},
+      {label:'Clusters',href:'tefc_clusters_page.html'},
+      {label:'Media Center',href:'TEFC_Media_Center.html'},
+      {label:'Resources',href:'TEFC_Resources.html'},
+      {label:'Exporter Portal',href:'tefc_exporter_portal_v3.html'}
+    ]
+  },
+  footer:{address:'123 Textile Road, New Delhi',email:'info@tefc.gov.in',phone:'+91 12356 67890',helpTitle:"Need Assistance? We're here to help.",helpButton:'Contact Support'}
+};
+let settings=loadSettings();
+function $(id){return document.getElementById(id)}
+function loadSettings(){try{return merge(defaultSettings,JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'))}catch(e){return structuredClone(defaultSettings)}}
+function merge(base,extra){if(Array.isArray(base))return Array.isArray(extra)&&extra.length?extra.map((x,i)=>merge(base[i]||{},x)):structuredClone(base);let out={...base};Object.keys(extra||{}).forEach(k=>{out[k]=base&&typeof base[k]==='object'&&!Array.isArray(base[k])?merge(base[k],extra[k]):extra[k]});return out}
+function login(){const u=$('loginUser').value.trim(),p=$('loginPass').value;const msg=$('loginMsg');msg.className='alert';msg.textContent='';if(u===ADMIN_USER&&p===ADMIN_PASS){sessionStorage.setItem('tefcAdminLoggedIn','1');showCms()}else{msg.className='alert err';msg.textContent='Invalid username or password.'}}
+function logout(){sessionStorage.removeItem('tefcAdminLoggedIn');location.reload()}
+function showCms(){$('loginScreen').style.display='none';$('cmsApp').classList.add('active');renderAll()}
+if(sessionStorage.getItem('tefcAdminLoggedIn')==='1')showCms();
+function openPanel(id,btn){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.side-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');$('panelTitle').textContent=btn.textContent;$('panelDesc').textContent='Edit and save this section. Open the home page to see the updated result.'}
+function field(path,label,type='text',hint=''){const id=path.replaceAll('.','_');const val=get(path)||'';return `<div class="fg"><label>${label}</label>${type==='textarea'?`<textarea data-path="${path}" id="${id}">${escapeHtml(val)}</textarea>`:type==='color'?`<input data-path="${path}" id="${id}" type="color" value="${escapeHtml(val)}">`:type==='range'?`<input data-path="${path}" id="${id}" type="range" value="${val}" min="0" max="100" oninput="${id}_disp.value=this.value"><output id="${id}_disp" style="margin-left:8px;font-weight:600;color:var(--navy)">${val}</output>`:`<input data-path="${path}" id="${id}" type="${type}" value="${escapeHtml(val)}">`}${hint?`<div class="hint">${hint}</div>`:''}</div>`}
+function imageField(path,label){const id=path.replaceAll('.','_');const val=get(path)||'';return `<div class="fg"><label>${label}</label><input type="file" accept="image/*" onchange="readImage(event,'${path}','${id}_preview')"><div class="media-preview" id="${id}_preview" style="${val?`background-image:url('${val}')`:''}">${val?'':'No image selected'}</div><button class="btn-soft" style="margin-top:.5rem" onclick="clearImage('${path}','${id}_preview')">Clear Image</button></div>`}
+function get(path){return path.split('.').reduce((o,k)=>o&&o[k],settings)}
+function set(path,val){const parts=path.split('.');let obj=settings;parts.slice(0,-1).forEach(k=>obj=obj[k]);obj[parts.at(-1)]=val}
+function escapeHtml(v){return String(v||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function readInputs(){document.querySelectorAll('[data-path]').forEach(el=>{if(el.type==='file')return;set(el.dataset.path,el.value)})}
+function saveSettings(){readInputs();localStorage.setItem(STORAGE_KEY,JSON.stringify(settings));toast('Saved. Open or refresh Home Page to see changes.')}
+function toast(msg){const s=$('statusbar');s.textContent=msg;s.classList.add('show');setTimeout(()=>s.classList.remove('show'),2600)}
+function resetSettings(){if(confirm('Reset all CMS settings to default? This will clear all saved changes and reload the page.')){localStorage.removeItem(STORAGE_KEY);location.reload()}}
+function exportSettings(){readInputs();const blob=new Blob([JSON.stringify(settings,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='tefc-cms-settings.json';a.click();URL.revokeObjectURL(a.href)}
+function importSettings(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{try{settings=merge(defaultSettings,JSON.parse(ev.target.result));localStorage.setItem(STORAGE_KEY,JSON.stringify(settings));renderAll();toast('Imported settings')}catch(err){alert('Invalid JSON file')}};r.readAsText(f)}
+function readImage(e,path,previewId){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{set(path,ev.target.result);$(previewId).style.backgroundImage=`url('${ev.target.result}')`;$(previewId).textContent='';saveSettings()};r.readAsDataURL(f)}
+function clearImage(path,previewId){set(path,'');$(previewId).style.backgroundImage='';$(previewId).textContent='No image selected';saveSettings()}
+function renderAll(){renderTheme();renderHero();renderAbout();renderClusters();renderImpact();renderCards();renderMedia();renderNavigation();renderFooter()}
+function renderTheme(){$('theme').innerHTML=`<div class="card"><h3>Website Colors</h3><div class="grid-3">${field('theme.navy','Primary Color','color')}${field('theme.navyDark','Dark Accent','color')}${field('theme.navyLight','Light Accent','color')}${field('theme.sky','Soft Background','color')}${field('theme.sky2','Page Background','color')}</div></div>`}
+function renderHero(){$('hero').innerHTML=`<div class="card"><h3>Hero Content</h3><div class="grid-2">${field('hero.title','Hero Title','textarea','Use <br> for line break.')}${field('hero.subtitle','Hero Subtitle','textarea')}${field('hero.primaryText','Primary Button')}${field('hero.secondaryText','Secondary Button')}</div>${imageField('hero.image','Hero Banner Image')}</div><div class="card"><h3>Hero Overlay & Size</h3><div class="grid-2">${field('hero.overlayOpacity','Overlay Opacity (%)','range','Controls the color layer opacity over hero image')}${field('hero.height','Hero Height (px)','number','Height of the hero section')}</div></div><div class="card"><h3>Hero Badges</h3>${settings.hero.badges.map((b,i)=>`<div class="repeat-card"><h4>Badge ${i+1}</h4><div class="grid-2">${field(`hero.badges.${i}.value`,'Value')}${field(`hero.badges.${i}.label`,'Label')}</div></div>`).join('')}</div>`}
+function renderAbout(){$('about').innerHTML=`<div class="card"><h3>About Section</h3><div class="grid-2">${field('about.title','Heading')}${field('about.linkText','Link Text')}${field('about.linkHref','Link URL')}${field('about.text','About Text','textarea')}</div>${imageField('about.image','About Image')}</div>`}
+function renderClusters(){$('clusters').innerHTML=`<div class="card"><h3>Six TEFC Clusters</h3>${settings.clusters.map((c,i)=>`<div class="repeat-card"><h4>Cluster ${i+1}</h4><div class="grid-2">${field(`clusters.${i}.name`,'Name')}${field(`clusters.${i}.state`,'State')}${field(`clusters.${i}.href`,'Detail Link')}${field(`clusters.${i}.desc`,'Description','textarea')}</div><div class="grid-2" style="margin-top:0.75rem">${field(`clusters.${i}.overlayOpacity`,'Overlay Opacity (%)','range','Color layer opacity')}${field(`clusters.${i}.height`,'Height (px)','number','Thumbnail height')}</div>${imageField(`clusters.${i}.image`,'Cluster Image')}</div>`).join('')}</div>`}
+function renderImpact(){$('impact').innerHTML=`<div class="card"><h3>Impact Stats</h3>${settings.impact.stats.map((s,i)=>`<div class="repeat-card"><h4>Stat ${i+1}</h4><div class="grid-2">${field(`impact.stats.${i}.value`,'Value')}${field(`impact.stats.${i}.label`,'Label')}</div></div>`).join('')}</div><div class="card"><h3>Export Volume Bars</h3>${settings.impact.bars.map((b,i)=>`<div class="repeat-card"><h4>Bar ${i+1}</h4><div class="grid-2">${field(`impact.bars.${i}.label`,'Cluster')}${field(`impact.bars.${i}.pct`,'Percent','number')}</div></div>`).join('')}</div>`}
+function renderCards(){$('cards').innerHTML=`<div class="card"><h3>Quick Access Cards</h3>${settings.quick.map((q,i)=>`<div class="repeat-card"><h4>Quick Card ${i+1}</h4><div class="grid-2">${field(`quick.${i}.title`,'Title')}${field(`quick.${i}.desc`,'Description','textarea')}</div></div>`).join('')}</div><div class="card"><h3>FTA Benefit Cards</h3>${settings.fta.map((f,i)=>`<div class="repeat-card"><h4>FTA ${i+1}</h4><div class="grid-2">${field(`fta.${i}.title`,'Title')}${field(`fta.${i}.status`,'Status')}${field(`fta.${i}.point1`,'Point 1')}${field(`fta.${i}.point2`,'Point 2')}${field(`fta.${i}.eligibility`,'Eligibility')}</div></div>`).join('')}</div><div class="card"><h3>Online Services</h3>${settings.services.map((s,i)=>`<div class="repeat-card"><h4>Service ${i+1}</h4><div class="grid-2">${field(`services.${i}.title`,'Title')}${field(`services.${i}.desc`,'Description','textarea')}</div></div>`).join('')}</div>`}
+function renderMedia(){$('media').innerHTML=`<div class="card"><h3>Media Center Thumbnails</h3>${settings.media.map((m,i)=>`<div class="repeat-card"><h4>Media Item ${i+1}</h4>${field(`media.${i}.label`,'Label')}<div class="grid-2" style="margin-top:0.5rem">${field(`media.${i}.overlayOpacity`,'Overlay Opacity (%)','range','Color layer opacity')}${field(`media.${i}.height`,'Height (px)','number','Thumbnail height')}</div>${imageField(`media.${i}.image`,'Thumbnail Image')}</div>`).join('')}</div>`}
+function renderNavigation(){$('navigation').innerHTML=`<div class="card"><h3>Main Navigation</h3>${field('nav.exporterPortalHref','Exporter Portal Link')}</div><div class="card"><h3>Office Login Profiles</h3>${settings.nav.office.map((o,i)=>`<div class="repeat-card"><h4>Office Profile ${i+1}</h4><div class="grid-2">${field(`nav.office.${i}.label`,'Label')}${field(`nav.office.${i}.href`,'Link')}</div></div>`).join('')}</div><div class="card"><h3>Connected Pages Hub</h3><p class="hint">Use this as your page link registry for pages connected to the home page.</p>${settings.nav.connected.map((p,i)=>`<div class="repeat-card"><h4>Page ${i+1}</h4><div class="grid-2">${field(`nav.connected.${i}.label`,'Page Name')}${field(`nav.connected.${i}.href`,'File / URL')}</div></div>`).join('')}</div>`}
+function renderFooter(){$('footer').innerHTML=`<div class="card"><h3>Help Banner</h3><div class="grid-2">${field('footer.helpTitle','Help Banner Title')}${field('footer.helpButton','Help Button Text')}</div></div><div class="card"><h3>Footer Contact</h3><div class="grid-2">${field('footer.address','Address')}${field('footer.email','Email')}${field('footer.phone','Phone')}</div></div>`}
+</script>
+</body>
+</html>

@@ -1,0 +1,1045 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#6c153f;--navy-dark:#4a0e2b;--navy-light:#8a1e50;
+  --sky:#f9eaf1;--sky2:#fdf4f8;--white:#fff;
+  --text:#1a1a2e;--muted:#5a6a82;--border:#e8d0dc;--gold:#f5a623;
+}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--text);font-size:14px;}
+img,svg,video{max-width:100%;}
+button,input,select,textarea{max-width:100%;}
+body{overflow-x:hidden;}
+.page{display:none;min-height:600px;}
+.page.active{display:block;}
+
+/* ── TOP BAR ── */
+.topbar{background:#fce8f2;padding:0.28rem 2rem;display:flex;align-items:center;justify-content:flex-end;gap:0.6rem;border-bottom:1px solid #e8c8d8;}
+.topbar-btn{display:flex;align-items:center;gap:5px;background:none;border:1px solid #c97aab;border-radius:4px;padding:0.22rem 0.65rem;font-size:0.72rem;color:var(--navy);cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;transition:background 0.15s;}
+.topbar-btn:hover{background:rgba(108,21,63,0.08);}
+.topbar-divider{width:1px;height:18px;background:#c97aab;opacity:0.4;}
+
+/* ── LOGO BAR ── */
+.logobar{background:#fff;padding:0.7rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.logobar-left{display:flex;align-items:center;gap:14px;min-width:0;}
+.logo-emblem{border-right:1px solid var(--border);padding-right:1.5rem;margin-right:1.5rem;display:flex;align-items:center;}
+.main-logo-img{height:60px;width:auto;display:block;object-fit:contain;}
+.logo-title{font-size:2.15rem;font-weight:700;color:var(--navy);line-height:1.2;letter-spacing:0.01em;}
+.logo-subtitle{font-size:1rem;color:#7a4060;font-weight:400;margin-top:0.15rem;line-height:1.35;}
+.logo-right-group{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.swachh-logo-img{height:50px;width:auto;object-fit:contain;}
+.logobar-right{display:flex;align-items:center;gap:10px;}
+.gov-badge-box{display:flex;flex-direction:column;align-items:center;background:#fff;border:1px solid var(--border);border-radius:6px;padding:0.3rem 0.6rem;font-size:0.6rem;color:var(--muted);text-align:center;min-width:60px;}
+.gov-badge-icon{font-size:1rem;margin-bottom:2px;}
+.home-logo-lockup{display:flex;align-items:center;min-width:0;}
+.home-logo-lockup img{display:block;width:auto;height:60px;margin-right:30px;flex-shrink:0;object-fit:contain;}
+.home-logo-lockup + .logobar-right{display:none;}
+.home-logo-lockup + div:not(.logobar-right){display:none;}
+.home-logo-lockup + div:not(.logobar-right) + .logobar-right{display:none;}
+.logobar-left + div:not(.logo-right-group):not(.logobar-right){display:none;}
+.logobar-left + div:not(.logo-right-group):not(.logobar-right) + .logobar-right{display:flex;}
+.logobar-left + .logobar-right .gov-badge-box,
+.logobar-left + div:not(.logo-right-group):not(.logobar-right) + .logobar-right .gov-badge-box{display:none;}
+.logobar-left + .logobar-right::before,
+.logobar-left + div:not(.logo-right-group):not(.logobar-right) + .logobar-right::before{content:"";display:block;width:140px;height:50px;background:url("https://lh3.googleusercontent.com/u/0/d/18HWGnhJD1hVtTzTHEzdVeRL5_vedOFOy") center/contain no-repeat;}
+.logo-text-block{min-width:0;padding-left:14px;}
+
+/* ── NAV ── */
+nav.main-nav{background:var(--navy);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:44px;}
+.nav-links-main{display:flex;gap:0;list-style:none;}
+.nav-links-main li a{color:rgba(255,255,255,0.88);font-size:0.76rem;padding:0.35rem 0.75rem;text-decoration:none;border-radius:3px;transition:background 0.15s;display:block;}
+.nav-links-main li a:hover{background:rgba(255,255,255,0.13);color:#fff;}
+.nav-links-main li a.active-link{background:rgba(255,255,255,0.18);color:#fff;}
+.nav-right-btns{display:flex;align-items:center;gap:8px;}
+.btn-white-sm{background:#fff;color:var(--navy);padding:0.3rem 0.9rem;font-size:0.74rem;font-weight:600;border:none;border-radius:4px;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity 0.2s;}
+.btn-white-sm:hover{opacity:0.9;}
+.btn-outline-nav{background:transparent;color:#fff;padding:0.3rem 0.9rem;font-size:0.74rem;font-weight:500;border:1.5px solid rgba(255,255,255,0.5);border-radius:4px;cursor:pointer;font-family:'Inter',sans-serif;transition:background 0.2s;}
+.btn-outline-nav:hover{background:rgba(255,255,255,0.12);}
+.btn-danger-sm{background:#c0392b;color:#fff;padding:0.3rem 0.9rem;font-size:0.74rem;font-weight:600;border:none;border-radius:4px;cursor:pointer;font-family:'Inter',sans-serif;}
+.btn-danger-sm:hover{background:#a93226;}
+
+/* ── AUTH PAGE ── */
+.auth-hero{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%,#a0245e 100%);padding:3rem 2rem;display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 120px);}
+.auth-center{width:100%;max-width:480px;}
+.auth-welcome{color:#fff;text-align:center;margin-bottom:2rem;}
+.auth-welcome h2{font-size:1.5rem;font-weight:700;margin-bottom:0.4rem;}
+.auth-welcome p{font-size:0.85rem;color:rgba(255,255,255,0.75);}
+.auth-card{background:#fff;border-radius:10px;padding:2rem;box-shadow:0 12px 40px rgba(0,0,0,0.25);}
+.auth-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+.auth-tab-btn{flex:1;padding:0.6rem;text-align:center;font-size:0.82rem;font-weight:500;cursor:pointer;color:var(--muted);border:none;background:none;font-family:'Inter',sans-serif;border-bottom:2.5px solid transparent;transition:all 0.2s;margin-bottom:-1px;}
+.auth-tab-btn.active{color:var(--navy);border-bottom-color:var(--navy);font-weight:600;}
+.auth-panel{display:none;}
+.auth-panel.active{display:block;}
+.step{display:none;}
+.step.active{display:block;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.fg{margin-bottom:0.9rem;}
+.fg label{display:block;font-size:0.74rem;font-weight:600;color:var(--text);margin-bottom:4px;}
+.fg input,.fg select,.fg textarea{width:100%;padding:0.5rem 0.7rem;border:1px solid var(--border);border-radius:5px;font-size:0.82rem;font-family:'Inter',sans-serif;color:var(--text);background:#fff;transition:border 0.15s;}
+.fg input:focus,.fg select:focus{outline:none;border-color:var(--navy);}
+.fg textarea{resize:vertical;min-height:70px;}
+.otp-row{display:flex;gap:8px;justify-content:center;margin:0.5rem 0;}
+.otp-box{width:46px;height:52px;text-align:center;font-size:1.3rem;font-weight:700;border:1.5px solid var(--border);border-radius:6px;font-family:'Inter',sans-serif;color:var(--navy);transition:border 0.15s;}
+.otp-box:focus{outline:none;border-color:var(--navy);}
+.otp-hint{text-align:center;font-size:0.71rem;color:var(--muted);margin-top:0.3rem;}
+.btn-navy-full{background:var(--navy);color:#fff;width:100%;padding:0.6rem;font-size:0.85rem;font-weight:600;border:none;border-radius:5px;cursor:pointer;font-family:'Inter',sans-serif;margin-bottom:0.5rem;transition:background 0.2s;}
+.btn-navy-full:hover{background:var(--navy-dark);}
+.btn-ghost-full{background:transparent;color:var(--navy);width:100%;padding:0.55rem;font-size:0.82rem;border:1px solid var(--navy);border-radius:5px;cursor:pointer;font-family:'Inter',sans-serif;}
+.alert{padding:8px 12px;border-radius:5px;font-size:0.76rem;margin-bottom:0.7rem;}
+.alert-err{background:#fdf0f0;color:#c0392b;border:1px solid #f5c6c6;}
+.alert-ok{background:#eafaf1;color:#1e7e44;border:1px solid #b7e4c7;}
+.alert-info{background:var(--sky);color:var(--navy);border:1px solid var(--border);}
+.home-back{text-align:center;margin-top:1rem;}
+.home-back a{color:rgba(255,255,255,0.8);font-size:0.8rem;text-decoration:none;}
+.home-back a:hover{color:#fff;}
+
+/* ── APP LAYOUT ── */
+.app-body{background:var(--sky2);min-height:calc(100vh - 120px);}
+.app-inner{max-width:1140px;margin:0 auto;padding:1.5rem 1.5rem;display:grid;grid-template-columns:270px 1fr;gap:1.2rem;}
+.sidebar{}
+.main-content{}
+
+/* ── SIDEBAR PROFILE CARD ── */
+.sc-profile{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.sc-cover{height:70px;background:linear-gradient(135deg,var(--navy-dark),var(--navy));}
+.sc-body{padding:0 1.2rem 1.2rem;position:relative;}
+.sc-avatar-wrap{position:relative;display:inline-block;margin-top:-36px;margin-bottom:0.7rem;}
+.sc-avatar{width:72px;height:72px;border-radius:50%;border:3px solid #fff;background:var(--sky);display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:700;color:var(--navy);overflow:hidden;}
+.sc-avatar img{width:100%;height:100%;object-fit:cover;}
+.sc-edit-avatar{position:absolute;bottom:2px;right:2px;width:22px;height:22px;border-radius:50%;background:var(--navy);border:2px solid #fff;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:10px;}
+.sc-name{font-size:0.95rem;font-weight:700;color:var(--text);}
+.sc-org{font-size:0.78rem;color:var(--muted);margin-top:2px;}
+.sc-badge{display:inline-flex;align-items:center;gap:4px;background:var(--sky);color:var(--navy);font-size:0.65rem;font-weight:600;padding:2px 8px;border-radius:10px;margin-top:5px;}
+.sc-divider{border:none;border-top:1px solid var(--border);margin:0.9rem 0;}
+.sc-info-row{display:flex;align-items:flex-start;gap:8px;font-size:0.75rem;color:var(--muted);margin-bottom:0.5rem;}
+.sc-info-row svg{width:13px;height:13px;stroke:var(--navy);fill:none;stroke-width:2;flex-shrink:0;margin-top:1px;}
+.sc-nav{margin-top:0.8rem;}
+.sc-nav-item{display:flex;align-items:center;gap:9px;padding:0.5rem 0.7rem;border-radius:6px;cursor:pointer;font-size:0.8rem;color:var(--muted);transition:all 0.15s;font-family:'Inter',sans-serif;border:none;background:none;width:100%;text-align:left;}
+.sc-nav-item:hover{background:var(--sky);color:var(--navy);}
+.sc-nav-item.active{background:var(--sky);color:var(--navy);font-weight:600;}
+.sc-nav-item svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;flex-shrink:0;}
+.edit-req-note{background:var(--sky2);border:1px solid var(--border);border-radius:6px;padding:0.7rem 0.9rem;margin-top:0.8rem;font-size:0.72rem;color:var(--muted);line-height:1.5;}
+.btn-navy-sm{background:var(--navy);color:#fff;padding:0.35rem 0.9rem;font-size:0.74rem;font-weight:500;border:none;border-radius:4px;cursor:pointer;font-family:'Inter',sans-serif;margin-top:0.5rem;width:100%;transition:background 0.2s;}
+.btn-navy-sm:hover{background:var(--navy-dark);}
+.btn-ghost-sm{background:transparent;color:var(--navy);padding:0.32rem 0.9rem;font-size:0.74rem;border:1px solid var(--navy);border-radius:4px;cursor:pointer;font-family:'Inter',sans-serif;margin-top:0.4rem;width:100%;}
+
+/* ── SECTION HEADERS ── */
+.sec-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+.sec-hd h3{font-size:0.95rem;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:6px;}
+.sec-hd h3 svg{width:16px;height:16px;stroke:var(--navy);fill:none;stroke-width:2;}
+.sec-hd-line{width:36px;height:3px;background:var(--navy);border-radius:2px;margin-top:3px;}
+
+/* ── PROFILE SECTION ── */
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.pf-field{background:#fff;border:1px solid var(--border);border-radius:7px;padding:0.8rem 1rem;}
+.pf-field .pf-label{font-size:0.7rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:2px;}
+.pf-field .pf-val{font-size:0.88rem;font-weight:600;color:var(--text);}
+.pf-field-img{grid-column:1/-1;}
+.pf-field-img img{width:100%;max-height:220px;object-fit:cover;border-radius:6px;margin-top:0.5rem;border:1px solid var(--border);}
+.info-banner{background:var(--sky);border:1px solid var(--border);border-radius:7px;padding:0.8rem 1rem;font-size:0.78rem;color:var(--navy);margin-bottom:1rem;display:flex;gap:8px;align-items:flex-start;}
+.info-banner svg{width:15px;height:15px;stroke:var(--navy);fill:none;stroke-width:2;flex-shrink:0;margin-top:1px;}
+
+/* ── PRODUCTS SECTION ── */
+.products-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:1.2rem;}
+.product-card{background:#fff;border:1px solid var(--border);border-radius:9px;overflow:hidden;transition:box-shadow 0.2s;}
+.product-card:hover{box-shadow:0 4px 18px rgba(108,21,63,0.13);}
+.product-img{height:150px;background:linear-gradient(135deg,var(--navy-dark),var(--navy));position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.product-img img{width:100%;height:100%;object-fit:cover;}
+.product-img-placeholder{font-size:2.5rem;opacity:0.3;}
+.product-img-upload{position:absolute;bottom:6px;right:6px;background:rgba(255,255,255,0.9);border:none;border-radius:4px;padding:3px 8px;font-size:0.68rem;cursor:pointer;font-family:'Inter',sans-serif;color:var(--navy);font-weight:600;}
+.product-body{padding:0.85rem 1rem;}
+.product-body h4{font-size:0.85rem;font-weight:700;color:var(--text);margin-bottom:0.3rem;}
+.product-body p{font-size:0.75rem;color:var(--muted);line-height:1.55;margin-bottom:0.6rem;}
+.product-tags{display:flex;gap:4px;flex-wrap:wrap;}
+.ptag{background:var(--sky);color:var(--navy);font-size:0.65rem;padding:2px 7px;border-radius:10px;font-weight:500;}
+.product-actions{display:flex;gap:6px;margin-top:0.7rem;}
+.btn-prod-edit{background:var(--navy);color:#fff;padding:0.28rem 0.7rem;font-size:0.72rem;border:none;border-radius:4px;cursor:pointer;font-family:'Inter',sans-serif;}
+.btn-prod-del{background:transparent;color:#c0392b;padding:0.28rem 0.7rem;font-size:0.72rem;border:1px solid #f5c6c6;border-radius:4px;cursor:pointer;font-family:'Inter',sans-serif;}
+.add-product-btn{background:var(--sky2);border:2px dashed var(--border);border-radius:9px;padding:1.5rem;text-align:center;cursor:pointer;transition:all 0.2s;width:100%;}
+.add-product-btn:hover{border-color:var(--navy);background:var(--sky);}
+.add-product-btn .apb-icon{font-size:1.8rem;color:var(--navy);opacity:0.4;margin-bottom:6px;}
+.add-product-btn p{font-size:0.78rem;color:var(--muted);}
+
+/* ── TIMELINE ── */
+.rules-bar{background:var(--sky);border:1px solid var(--border);border-radius:7px;padding:0.7rem 1rem;margin-bottom:1rem;font-size:0.76rem;color:var(--navy);line-height:1.6;display:flex;gap:8px;}
+.rules-bar svg{width:15px;height:15px;stroke:var(--navy);fill:none;stroke-width:2;flex-shrink:0;margin-top:1px;}
+.compose-box{background:#fff;border:1px solid var(--border);border-radius:9px;padding:1rem;margin-bottom:1rem;}
+.compose-inner{display:flex;gap:10px;}
+.compose-avatar{width:38px;height:38px;border-radius:50%;background:var(--sky);display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:700;color:var(--navy);flex-shrink:0;overflow:hidden;}
+.compose-avatar img{width:100%;height:100%;object-fit:cover;}
+.compose-area{flex:1;}
+.compose-area textarea{width:100%;border:1px solid var(--border);border-radius:6px;padding:0.55rem 0.7rem;font-size:0.82rem;font-family:'Inter',sans-serif;color:var(--text);resize:none;min-height:68px;}
+.compose-area textarea:focus{outline:none;border-color:var(--navy);}
+.compose-footer{display:flex;align-items:center;justify-content:space-between;margin-top:0.6rem;flex-wrap:wrap;gap:6px;}
+.compose-actions{display:flex;gap:6px;}
+.btn-attach{background:var(--sky2);color:var(--navy);border:1px solid var(--border);border-radius:4px;padding:0.28rem 0.65rem;font-size:0.72rem;cursor:pointer;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:4px;}
+.btn-attach svg{width:12px;height:12px;stroke:var(--navy);fill:none;stroke-width:2;}
+.btn-post{background:var(--navy);color:#fff;border:none;border-radius:4px;padding:0.35rem 1rem;font-size:0.78rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;}
+.btn-post:hover{background:var(--navy-dark);}
+.tl-filters{display:flex;gap:6px;margin-bottom:0.9rem;flex-wrap:wrap;}
+.tl-fb{background:#fff;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:0.28rem 0.9rem;font-size:0.74rem;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;}
+.tl-fb.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+.tl-post-card{background:#fff;border:1px solid var(--border);border-radius:9px;padding:1rem;margin-bottom:0.9rem;transition:box-shadow 0.2s;}
+.tl-post-card:hover{box-shadow:0 2px 12px rgba(108,21,63,0.1);}
+.tl-ph{display:flex;align-items:center;gap:9px;margin-bottom:0.8rem;}
+.tl-av{width:38px;height:38px;border-radius:50%;background:var(--sky);display:flex;align-items:center;justify-content:center;font-size:0.82rem;font-weight:700;color:var(--navy);flex-shrink:0;overflow:hidden;}
+.tl-av img{width:100%;height:100%;object-fit:cover;}
+.tl-pm .tl-pn{font-size:0.85rem;font-weight:700;color:var(--text);}
+.tl-pm .tl-po{font-size:0.72rem;color:var(--muted);}
+.tl-pm .tl-pt{font-size:0.68rem;color:#aaa;}
+.post-status-badge{margin-left:auto;}
+.badge-pending{background:#fff8e1;color:#9c6a00;font-size:0.65rem;padding:2px 8px;border-radius:10px;font-weight:600;border:1px solid #ffe082;}
+.badge-approved{background:#eafaf1;color:#1e7e44;font-size:0.65rem;padding:2px 8px;border-radius:10px;font-weight:600;border:1px solid #b7e4c7;}
+.tl-body{font-size:0.82rem;color:var(--text);line-height:1.65;margin-bottom:0.7rem;}
+.tl-post-img{width:100%;border-radius:6px;max-height:220px;object-fit:cover;margin-bottom:0.7rem;}
+.tl-pending-note{background:#fff8e1;border:1px solid #ffe082;border-radius:5px;padding:5px 10px;font-size:0.72rem;color:#9c6a00;margin-bottom:0.6rem;}
+.tl-actions{display:flex;gap:0;padding-top:0.6rem;border-top:1px solid var(--border);}
+.tl-act{background:none;border:none;cursor:pointer;font-size:0.76rem;color:var(--muted);display:flex;align-items:center;gap:4px;padding:0.3rem 0.7rem;border-radius:4px;font-family:'Inter',sans-serif;}
+.tl-act:hover{background:var(--sky);color:var(--navy);}
+.tl-act svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;}
+.attach-note{font-size:0.71rem;color:var(--muted);margin-top:4px;}
+
+/* ── MODAL ── */
+.modal-wrap{display:none;position:fixed;inset:0;background:rgba(74,14,43,0.4);z-index:500;align-items:center;justify-content:center;}
+.modal-wrap.open{display:flex;}
+.modal-box{background:#fff;border-radius:10px;padding:1.5rem;width:90%;max-width:430px;box-shadow:0 16px 48px rgba(0,0,0,0.25);}
+.modal-title{font-size:0.95rem;font-weight:700;color:var(--navy);margin-bottom:0.3rem;}
+.modal-sub{font-size:0.76rem;color:var(--muted);margin-bottom:1.1rem;}
+.modal-footer{display:flex;gap:8px;justify-content:flex-end;margin-top:1rem;}
+.btn-modal-cancel{background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:0.38rem 1rem;font-size:0.78rem;cursor:pointer;font-family:'Inter',sans-serif;}
+.btn-modal-submit{background:var(--navy);color:#fff;border:none;border-radius:4px;padding:0.38rem 1.2rem;font-size:0.78rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;}
+.btn-modal-submit:hover{background:var(--navy-dark);}
+
+/* ── HOME PAGE ── */
+.hero{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%,#a0245e 100%);padding:3rem 2rem;text-align:center;position:relative;overflow:hidden;}
+.hero h1{color:#fff;font-size:2rem;font-weight:700;margin-bottom:0.6rem;}
+.hero-sub{color:rgba(255,255,255,0.78);font-size:0.9rem;margin-bottom:1.5rem;line-height:1.65;max-width:560px;margin-left:auto;margin-right:auto;}
+.hero-btns{display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;}
+.btn-white{background:#fff;color:var(--navy);padding:0.55rem 1.5rem;font-size:0.82rem;font-weight:700;border:none;border-radius:5px;cursor:pointer;font-family:'Inter',sans-serif;}
+.btn-outline-w{background:transparent;color:#fff;padding:0.52rem 1.5rem;font-size:0.82rem;font-weight:500;border:1.5px solid rgba(255,255,255,0.55);border-radius:5px;cursor:pointer;font-family:'Inter',sans-serif;}
+.home-features{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding:2rem 2rem;background:var(--sky2);}
+.hf-card{background:#fff;border:1px solid var(--border);border-radius:9px;padding:1.3rem 1.1rem;text-align:center;}
+.hf-icon{width:48px;height:48px;background:var(--sky);border-radius:10px;margin:0 auto 0.8rem;display:flex;align-items:center;justify-content:center;}
+.hf-icon svg{width:22px;height:22px;stroke:var(--navy);fill:none;stroke-width:1.8;}
+.hf-card h4{color:var(--navy);font-size:0.88rem;font-weight:700;margin-bottom:0.4rem;}
+.hf-card p{color:var(--muted);font-size:0.75rem;line-height:1.55;}
+.home-footer{background:var(--navy);color:rgba(255,255,255,0.7);text-align:center;padding:1rem;font-size:0.74rem;}
+
+/* RESPONSIVE LAYOUT */
+@media (min-width:1400px){
+  .home-features{padding-left:calc((100vw - 1180px)/2);padding-right:calc((100vw - 1180px)/2);}
+  .hero{padding-top:4rem;padding-bottom:4rem;}
+}
+
+@media (max-width:1180px){
+  .app-inner{grid-template-columns:250px 1fr;gap:1rem;}
+  .logo-title{font-size:1.6rem;}
+  .logo-subtitle{font-size:0.9rem;}
+  .nav-links-main li a{padding-left:0.55rem;padding-right:0.55rem;}
+}
+
+@media (max-width:960px){
+  .topbar,.logobar,nav.main-nav{padding-left:1.25rem;padding-right:1.25rem;}
+  nav.main-nav{height:auto;min-height:44px;padding-top:0.45rem;padding-bottom:0.45rem;gap:0.6rem;flex-wrap:wrap;}
+  .nav-links-main{flex:1 1 auto;max-width:100%;overflow-x:auto;white-space:nowrap;padding-bottom:2px;}
+  .nav-right-btns{margin-left:auto;}
+  .hero{padding:2.5rem 1.25rem;}
+  .home-features{grid-template-columns:repeat(2,1fr);padding:1.5rem 1.25rem;}
+  .app-inner{grid-template-columns:1fr;padding:1.25rem;}
+  .sidebar{order:0;}
+  .main-content{order:1;min-width:0;}
+  .sc-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+  .sc-nav-item{justify-content:center;text-align:center;min-height:42px;}
+  .edit-req-note{display:flex;align-items:center;gap:10px;justify-content:space-between;}
+  .edit-req-note .btn-navy-sm{width:auto;margin-top:0;flex-shrink:0;}
+  .products-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+
+@media (max-width:720px){
+  .topbar{justify-content:center;flex-wrap:wrap;gap:0.45rem;padding-top:0.5rem;padding-bottom:0.5rem;}
+  .topbar-divider{display:none;}
+  .logobar{align-items:flex-start;gap:0.7rem;flex-direction:column;}
+  .logobar-left{align-items:flex-start;}
+  .logo-emblem{border-right:none;padding-right:0;margin-right:0;margin-bottom:0.5rem;}
+  .main-logo-img{height:50px;}
+  .swachh-logo-img{height:35px;}
+  .logobar-right,.logo-right-group{align-self:flex-end;}
+  .home-logo-lockup img{height:50px;margin-right:18px;}
+  .logo-title{font-size:1.2rem;}
+  .logo-subtitle{font-size:0.8rem;}
+  nav.main-nav{align-items:stretch;}
+  .nav-links-main{width:100%;flex:1 1 100%;}
+  .nav-right-btns{width:100%;justify-content:stretch;margin-left:0;}
+  .nav-right-btns button,nav.main-nav > .btn-white-sm{flex:1;}
+  .hero h1{font-size:1.55rem;}
+  .hero-sub{font-size:0.84rem;}
+  .hero-btns{display:grid;grid-template-columns:1fr;max-width:320px;margin:0 auto;}
+  .btn-white,.btn-outline-w{width:100%;}
+  .home-features{grid-template-columns:1fr;}
+  .auth-hero{padding:2rem 1rem;min-height:auto;}
+  .auth-card{padding:1.25rem;}
+  .form-row,.profile-grid{grid-template-columns:1fr;}
+  .otp-row{gap:5px;}
+  .otp-box{width:40px;height:46px;font-size:1.1rem;}
+  .sec-hd{align-items:flex-start;gap:0.75rem;flex-direction:column;}
+  .sec-hd .btn-navy-sm{width:100% !important;}
+  .products-grid{grid-template-columns:1fr;}
+  .compose-inner{align-items:flex-start;}
+  .compose-footer,.compose-actions{width:100%;}
+  .compose-footer{align-items:stretch;flex-direction:column;}
+  .compose-actions{display:grid;grid-template-columns:1fr 1fr;}
+  .btn-attach,.btn-post{justify-content:center;width:100%;}
+  .tl-ph{align-items:flex-start;flex-wrap:wrap;}
+  .post-status-badge{width:100%;margin-left:47px;}
+  .tl-actions{overflow-x:auto;white-space:nowrap;}
+  .modal-wrap{align-items:flex-end;padding:0;}
+  .modal-box{width:100%;max-width:none;max-height:90vh;overflow:auto;border-radius:10px 10px 0 0;padding:1.25rem;}
+}
+
+@media (max-width:480px){
+  .topbar,.logobar,nav.main-nav{padding-left:0.85rem;padding-right:0.85rem;}
+  .topbar-btn{flex:1 1 auto;justify-content:center;min-height:36px;}
+  .home-logo-lockup,.logobar-left{align-items:flex-start;}
+  .home-logo-lockup img,.main-logo-img{height:48px;margin-right:14px;}
+  .logo-title{font-size:0.95rem;line-height:1.25;}
+  .logo-subtitle{font-size:0.7rem;line-height:1.4;}
+  .logo-right-group img,.swachh-logo-img{height:40px;}
+  .gov-badge-box{min-width:0;font-size:0.58rem;}
+  .nav-links-main li a{font-size:0.72rem;padding:0.38rem 0.55rem;}
+  .btn-white-sm,.btn-outline-nav,.btn-danger-sm{min-height:36px;padding-left:0.7rem;padding-right:0.7rem;}
+  .hero{padding:2rem 0.9rem;}
+  .hero h1{font-size:1.35rem;}
+  .home-features,.app-inner{padding-left:0.9rem;padding-right:0.9rem;}
+  .hf-card,.tl-post-card,.compose-box{padding:0.9rem;}
+  .sc-body{padding-left:0.9rem;padding-right:0.9rem;}
+  .sc-nav{grid-template-columns:1fr;}
+  .sc-nav-item{justify-content:flex-start;text-align:left;}
+  .edit-req-note{display:block;}
+  .edit-req-note .btn-navy-sm{width:100%;margin-top:0.6rem;}
+  .pf-field .pf-val{word-break:break-word;}
+  .product-actions,.modal-footer{display:grid;grid-template-columns:1fr;gap:8px;}
+  .btn-prod-edit,.btn-prod-del,.btn-modal-cancel,.btn-modal-submit{width:100%;}
+  .compose-inner{gap:8px;}
+  .compose-avatar{width:34px;height:34px;}
+  .compose-actions{grid-template-columns:1fr;}
+  .post-status-badge{margin-left:43px;}
+  .otp-box{width:36px;height:42px;}
+}
+</style>
+
+<!-- ═══════════════ HOME PAGE ═══════════════ -->
+<div id="pg-home" class="page active">
+  <div class="topbar">
+    <button class="topbar-btn" onclick="showAuth('signup')">&#43; Register as Exporter</button>
+    <div class="topbar-divider"></div>
+    <button class="topbar-btn" onclick="showAuth('login')">&#9654; Login</button>
+  </div>
+  <div class="logobar">
+    <div class="logobar-left">
+      <div class="logo-emblem">
+        <img src="https://lh3.googleusercontent.com/d/1XPXkbU4ohi6fO85V4Dz34Ghp73AJj1ti" alt="TEFC Logo" class="main-logo-img">
+      </div>
+      <div class="logo-text-block">
+        <div class="logo-title">Textile Export Facilitation Centre (TEFC)</div>
+        <div class="logo-subtitle">An initiative of Textiles Committee, Ministry of Textiles, Government of India</div>
+      </div>
+    </div>
+    <div class="logo-right-group">
+      <img src="https://lh3.googleusercontent.com/u/0/d/18HWGnhJD1hVtTzTHEzdVeRL5_vedOFOy" alt="Swachh Bharat" class="swachh-logo-img">
+    </div>
+  </div>
+  <nav class="main-nav">
+    <ul class="nav-links-main">
+      <li><a href="#" class="active-link">Home</a></li>
+      <li><a href="#">About TEFC</a></li>
+      <li><a href="#">Clusters ▾</a></li>
+      <li><a href="#">FTA Benefits</a></li>
+      <li><a href="#">Online Services ▾</a></li>
+      <li><a href="#">Media Center</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="nav-right-btns">
+      <button class="btn-white-sm" onclick="showAuth('signup')">Register</button>
+      <button class="btn-outline-nav" onclick="showAuth('login')">Login</button>
+    </div>
+  </nav>
+  <div class="hero">
+    <h1>Welcome to the TEFC Exporter Portal</h1>
+    <p class="hero-sub">A regulated, verified platform for India's textile exporters — showcase products, share trade news, and connect with global buyers under TEFC governance.</p>
+    <div class="hero-btns">
+      <button class="btn-white" onclick="showAuth('signup')">Register as Exporter</button>
+      <button class="btn-outline-w" onclick="showAuth('login')">Existing Member Login</button>
+    </div>
+  </div>
+  <div class="home-features">
+    <div class="hf-card">
+      <div class="hf-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+      <h4>Verified Exporters Only</h4>
+      <p>OTP-verified profiles ensure only genuine exporters on the platform.</p>
+    </div>
+    <div class="hf-card">
+      <div class="hf-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></div>
+      <h4>Product Showcase</h4>
+      <p>Display your textile products with images, descriptions and export details.</p>
+    </div>
+    <div class="hf-card">
+      <div class="hf-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <h4>TEFC Regulated Timeline</h4>
+      <p>Admin-moderated posts ensure only compliant content reaches buyers.</p>
+    </div>
+  </div>
+  <div class="home-footer">© 2026 Textile Export Facilitation Council, Government of India. All rights reserved.</div>
+</div>
+
+<!-- ═══════════════ AUTH PAGE ═══════════════ -->
+<div id="pg-auth" class="page">
+  <div class="topbar">
+    <button class="topbar-btn" onclick="showPage('pg-home')">&#8592; Back to Home</button>
+  </div>
+  <div class="logobar">
+    <div class="logobar-left">
+      <div class="logo-emblem">
+        <img src="https://lh3.googleusercontent.com/d/1XPXkbU4ohi6fO85V4Dz34Ghp73AJj1ti" alt="TEFC Logo" class="main-logo-img">
+      </div>
+      <div class="logo-text-block">
+        <div class="logo-title">Textile Export Facilitation Centre (TEFC)</div>
+        <div class="logo-subtitle">An initiative of Textiles Committee, Ministry of Textiles, Government of India</div>
+      </div>
+    </div>
+    <div class="logobar-right">
+      <div class="gov-badge-box"><div class="gov-badge-icon">🇮🇳</div>Govt. of India</div>
+    </div>
+  </div>
+  <nav class="main-nav">
+    <ul class="nav-links-main"></ul>
+    <button class="btn-white-sm" onclick="showPage('pg-home')">&#8962; Home</button>
+  </nav>
+  <div class="auth-hero">
+    <div class="auth-center">
+      <div class="auth-welcome">
+        <h2>Exporter Member Portal</h2>
+        <p>Register or login to access your TEFC exporter dashboard</p>
+      </div>
+      <div class="auth-card">
+        <div class="auth-tabs">
+          <button class="auth-tab-btn active" id="tab-reg-btn" onclick="switchAuthTab('reg')">New Registration</button>
+          <button class="auth-tab-btn" id="tab-login-btn" onclick="switchAuthTab('login')">Member Login</button>
+        </div>
+
+        <!-- REGISTER PANEL -->
+        <div id="panel-reg" class="auth-panel active">
+          <div id="reg-step1" class="step active">
+            <div class="form-row">
+              <div class="fg"><label>Full Name *</label><input id="r-name" type="text" placeholder="Your full name"></div>
+              <div class="fg"><label>Organisation *</label><input id="r-org" type="text" placeholder="Company name"></div>
+            </div>
+            <div class="fg"><label>Contact Number *</label><input id="r-phone" type="tel" placeholder="+91 9XXXXXXXXX"></div>
+            <div class="fg"><label>Email ID *</label><input id="r-email" type="email" placeholder="you@company.com"></div>
+            <div class="fg"><label>IEC No *</label><input id="r-iec" type="text" maxlength="10" placeholder="10-character IEC code"></div>
+            <div id="reg-err1" class="alert alert-err" style="display:none"></div>
+            <button class="btn-navy-full" onclick="submitRegStep1()">Submit &amp; Generate OTP</button>
+          </div>
+          <div id="reg-step2" class="step">
+            <p style="font-size:0.8rem;color:var(--muted);margin-bottom:1rem;text-align:center;">Enter the 6-digit OTP sent to your registered mobile number</p>
+            <div class="otp-row">
+              <input class="otp-box" maxlength="1" id="ro1" oninput="onext(this,'ro2')">
+              <input class="otp-box" maxlength="1" id="ro2" oninput="onext(this,'ro3')">
+              <input class="otp-box" maxlength="1" id="ro3" oninput="onext(this,'ro4')">
+              <input class="otp-box" maxlength="1" id="ro4" oninput="onext(this,'ro5')">
+              <input class="otp-box" maxlength="1" id="ro5" oninput="onext(this,'ro6')">
+              <input class="otp-box" maxlength="1" id="ro6" oninput="onext(this,null)">
+            </div>
+            <div class="otp-hint">Demo OTP: <strong>123456</strong></div>
+            <div id="reg-err2" class="alert alert-err" style="display:none;margin-top:0.6rem;"></div>
+            <br>
+            <button class="btn-navy-full" onclick="verifyRegOTP()">Verify &amp; Create Account</button>
+            <button class="btn-ghost-full" onclick="backStep('reg-step1','reg-step2')">&#8592; Back</button>
+          </div>
+        </div>
+
+        <!-- LOGIN PANEL -->
+        <div id="panel-login" class="auth-panel">
+          <div id="login-step1" class="step active">
+            <div class="fg"><label>Registered Mobile Number *</label><input id="l-phone" type="tel" placeholder="+91 9XXXXXXXXX"></div>
+            <div id="login-err1" class="alert alert-err" style="display:none"></div>
+            <button class="btn-navy-full" onclick="submitLoginStep1()">Get OTP</button>
+          </div>
+          <div id="login-step2" class="step">
+            <p style="font-size:0.8rem;color:var(--muted);margin-bottom:1rem;text-align:center;">Enter the 6-digit OTP sent to your mobile</p>
+            <div class="otp-row">
+              <input class="otp-box" maxlength="1" id="lo1" oninput="onext(this,'lo2')">
+              <input class="otp-box" maxlength="1" id="lo2" oninput="onext(this,'lo3')">
+              <input class="otp-box" maxlength="1" id="lo3" oninput="onext(this,'lo4')">
+              <input class="otp-box" maxlength="1" id="lo4" oninput="onext(this,'lo5')">
+              <input class="otp-box" maxlength="1" id="lo5" oninput="onext(this,'lo6')">
+              <input class="otp-box" maxlength="1" id="lo6" oninput="onext(this,null)">
+            </div>
+            <div class="otp-hint">Demo OTP: <strong>123456</strong></div>
+            <div id="login-err2" class="alert alert-err" style="display:none;margin-top:0.6rem;"></div>
+            <br>
+            <button class="btn-navy-full" onclick="verifyLoginOTP()">Login to Portal</button>
+            <button class="btn-ghost-full" onclick="backStep('login-step1','login-step2')">&#8592; Back</button>
+          </div>
+        </div>
+
+        <!-- EXPORTER DETAILS PANEL -->
+        <div id="panel-exporter-details" class="auth-panel">
+          <div class="info-banner" style="margin-bottom:1rem;"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Complete exporter details before entering your TEFC profile.</div>
+          <div class="fg"><label>Address of Unit *</label><textarea id="ed-address" placeholder="Factory / unit address"></textarea></div>
+          <div class="form-row">
+            <div class="fg"><label>Year of Establishment *</label><input id="ed-year" type="number" min="1800" max="2026" placeholder="e.g. 2012"></div>
+            <div class="fg"><label>Cluster Name *</label>
+              <select id="ed-cluster">
+                <option value="">Select cluster</option>
+                <option>Kauru</option>
+                <option>Jaipur</option>
+                <option>Ludhiana</option>
+                <option>Varanasi</option>
+                <option>Ichankarnji</option>
+                <option>Surat</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg"><label>Existing Product Details *</label><textarea id="ed-existing-product" placeholder="Product name, specifications, certifications, MOQ, export readiness..."></textarea></div>
+          <div class="fg"><label>Existing Product Image</label><input id="ed-existing-img" type="file" accept="image/*" style="border:1px solid var(--border);border-radius:5px;padding:5px;width:100%;font-size:0.78rem;background:#fff;"></div>
+          <div class="fg"><label>Potential Product Details *</label><textarea id="ed-potential-product" placeholder="Products planned for export, development stage, buyer readiness..."></textarea></div>
+          <div class="fg"><label>Production Volume *</label><input id="ed-volume" type="text" placeholder="e.g. 20,000 metres/month or 5,000 pcs/month"></div>
+          <div id="ed-err" class="alert alert-err" style="display:none"></div>
+          <button class="btn-navy-full" onclick="submitExporterDetails()">Submit Application</button>
+        </div>
+      </div>
+      <div class="home-back"><a href="#" onclick="showPage('pg-home')">&#8592; Return to TEFC Home Page</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ APP PAGE ═══════════════ -->
+<div id="pg-app" class="page">
+  <div class="topbar">
+    <span style="font-size:0.72rem;color:var(--navy);margin-right:auto;">Welcome back, <strong id="topbar-name">Exporter</strong></span>
+    <button class="topbar-btn" onclick="signOut()">&#x23FB; Sign Out</button>
+  </div>
+  <div class="logobar">
+    <div class="logobar-left">
+      <div class="logo-emblem">
+        <img src="https://lh3.googleusercontent.com/d/1XPXkbU4ohi6fO85V4Dz34Ghp73AJj1ti" alt="TEFC Logo" class="main-logo-img">
+      </div>
+      <div class="logo-text-block">
+        <div class="logo-title">Textile Export Facilitation Centre (TEFC)</div>
+        <div class="logo-subtitle">An initiative of Textiles Committee, Ministry of Textiles, Government of India</div>
+      </div>
+    </div>
+    <div><div class="logo-title">TEFC</div><div class="logo-subtitle">Textile Export Facilitation Council — Exporter Portal</div></div>
+    <div class="logobar-right">
+      <div class="gov-badge-box"><div class="gov-badge-icon">🇮🇳</div>Govt. of India</div>
+    </div>
+  </div>
+  <nav class="main-nav">
+    <ul class="nav-links-main">
+      <li><a href="#" onclick="showPage('pg-home')">Home</a></li>
+      <li><a href="#" class="active-link">My Dashboard</a></li>
+    </ul>
+    <div class="nav-right-btns">
+      <button class="btn-danger-sm" onclick="signOut()">Sign Out</button>
+    </div>
+  </nav>
+  <div class="app-body">
+    <div class="app-inner">
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <div class="sc-profile">
+          <div class="sc-cover"></div>
+          <div class="sc-body">
+            <div class="sc-avatar-wrap">
+              <div class="sc-avatar" id="sc-av">EX</div>
+              <div class="sc-edit-avatar" onclick="document.getElementById('av-file').click()" title="Change photo">✎</div>
+              <input type="file" id="av-file" accept="image/*" style="display:none" onchange="uploadAvatar(event)">
+            </div>
+            <div class="sc-name" id="sc-name">Exporter Name</div>
+            <div class="sc-org" id="sc-org">Organisation</div>
+            <div id="sc-badge-wrap"><span class="sc-badge">✓ Verified Exporter</span></div>
+            <hr class="sc-divider">
+            <div class="sc-info-row"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.11 1.18 2 2 0 012.09 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><span id="sc-phone">+91 XXXXXXXXXX</span></div>
+            <div class="sc-info-row"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span id="sc-email" style="word-break:break-all;">email@org.com</span></div>
+            <hr class="sc-divider">
+            <nav class="sc-nav">
+              <button class="sc-nav-item active" id="nav-profile" onclick="showSection('profile')">
+                <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> My Profile
+              </button>
+              <button class="sc-nav-item" id="nav-products" onclick="showSection('products')">
+                <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> My Products
+              </button>
+              <button class="sc-nav-item" id="nav-timeline" onclick="showSection('timeline')">
+                <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg> Timeline / Posts
+              </button>
+            </nav>
+            <div class="edit-req-note">
+              <strong style="color:var(--navy);">&#9432; Profile changes</strong> require TEFC administrator approval.
+              <button class="btn-navy-sm" onclick="openModal('editModal')">Request Edit Permission</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT -->
+      <div class="main-content">
+
+        <!-- PROFILE SECTION -->
+        <div id="sec-profile">
+          <!-- PENDING REVIEW BANNER -->
+          <div id="pending-review-banner" style="display:none;background:#fff8e1;border:1px solid #ffe082;border-radius:9px;padding:1rem 1.2rem;margin-bottom:1rem;gap:12px;align-items:flex-start;">
+            <div style="font-size:1.3rem;flex-shrink:0;">⏳</div>
+            <div>
+              <div style="font-size:0.88rem;font-weight:700;color:#9c6a00;margin-bottom:0.25rem;">Application Under Review</div>
+              <div style="font-size:0.78rem;color:#7a5500;line-height:1.6;">Your registration application has been successfully submitted and is currently pending review by the TEFC administrator for your cluster. You will be notified once a decision is made. Full portal features will be unlocked upon approval.</div>
+              <div style="margin-top:0.7rem;display:flex;gap:8px;flex-wrap:wrap;">
+                <span style="background:#fff;border:1px solid #ffe082;border-radius:4px;padding:3px 10px;font-size:0.72rem;color:#9c6a00;font-weight:600;">📋 Application ID: <span id="app-id-display">—</span></span>
+                <span style="background:#fff;border:1px solid #ffe082;border-radius:4px;padding:3px 10px;font-size:0.72rem;color:#9c6a00;">Expected: 3–5 working days</span>
+              </div>
+            </div>
+          </div>
+          <!-- REJECTED BANNER -->
+          <div id="rejected-banner" style="display:none;background:#fdf0f0;border:1px solid #f5c6c6;border-radius:9px;padding:1rem 1.2rem;margin-bottom:1rem;gap:12px;align-items:flex-start;">
+            <div style="font-size:1.3rem;flex-shrink:0;">❌</div>
+            <div>
+              <div style="font-size:0.88rem;font-weight:700;color:#c0392b;margin-bottom:0.25rem;">Application Rejected</div>
+              <div style="font-size:0.78rem;color:#7a1f1f;line-height:1.6;">Your registration application has been rejected by the TEFC administrator. Please review the reason provided and contact your cluster office for guidance. The Head Office can reinstate rejected applications if the issue is resolved.</div>
+              <div style="margin-top:0.7rem;"><span style="background:#fff;border:1px solid #f5c6c6;border-radius:4px;padding:3px 10px;font-size:0.72rem;color:#c0392b;">📞 Contact your cluster office for assistance</span></div>
+            </div>
+          </div>
+          <div class="info-banner"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Your profile is verified. To update any information, please request administrator permission using the sidebar.</div>
+          <div style="background:#fff;border:1px solid var(--border);border-radius:9px;padding:1.2rem;margin-bottom:1rem;">
+            <div class="sec-hd"><h3><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Personal Information</h3></div>
+            <div class="profile-grid" id="profile-details-grid"></div>
+          </div>
+          <div style="background:#fff;border:1px solid var(--border);border-radius:9px;padding:1.2rem;">
+            <div class="sec-hd"><h3>&#128336; Account Activity</h3></div>
+            <div class="profile-grid">
+              <div class="pf-field"><div class="pf-label">Member Since</div><div class="pf-val">April 2026</div></div>
+              <div class="pf-field"><div class="pf-label">Account Status</div><div class="pf-val" id="acct-status-field" style="color:#1e7e44;">✓ Active &amp; Verified</div></div>
+              <div class="pf-field"><div class="pf-label">Products Listed</div><div class="pf-val" id="prod-count">0</div></div>
+              <div class="pf-field"><div class="pf-label">Posts Published</div><div class="pf-val" id="post-count">2</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRODUCTS SECTION -->
+        <div id="sec-products" style="display:none">
+          <div style="background:#fff;border:1px solid var(--border);border-radius:9px;padding:1.2rem;">
+            <div class="sec-hd">
+              <h3><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg> My Product Showcase</h3>
+              <button class="btn-navy-sm" style="width:auto;margin:0;padding:0.35rem 1rem;" onclick="openModal('addProductModal')">+ Add Product</button>
+            </div>
+            <div id="products-grid" class="products-grid"></div>
+          </div>
+        </div>
+
+        <!-- TIMELINE SECTION -->
+        <div id="sec-timeline" style="display:none">
+          <div class="rules-bar"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span><strong>TEFC Content Policy:</strong> Posts are reviewed before going live. Do not post pricing lists, misleading claims, political or personal content. Violations will result in post removal. Contact: tefc@admin.in</span></div>
+          <div class="compose-box">
+            <div class="compose-inner">
+              <div class="compose-avatar" id="compose-av">EX</div>
+              <div class="compose-area">
+                <textarea id="post-text" placeholder="Share a product update, trade news, or export opportunity with the TEFC community..."></textarea>
+                <div id="post-warn" class="alert alert-err" style="display:none;margin-top:5px;"></div>
+                <div class="compose-footer">
+                  <div class="compose-actions">
+                    <button class="btn-attach" onclick="document.getElementById('post-img-input').click()"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> Photo</button>
+                    <button class="btn-attach" onclick="document.getElementById('post-doc-input').click()"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Document</button>
+                    <input type="file" id="post-img-input" accept="image/*" style="display:none" onchange="attachImg(event)">
+                    <input type="file" id="post-doc-input" accept=".pdf,.doc,.docx" style="display:none" onchange="attachDoc(event)">
+                  </div>
+                  <button class="btn-post" onclick="submitPost()">Post for Review</button>
+                </div>
+                <div id="attach-note" class="attach-note"></div>
+              </div>
+            </div>
+          </div>
+          <div class="tl-filters">
+            <button class="tl-fb active" onclick="filterPosts('all',this)">All Posts</button>
+            <button class="tl-fb" onclick="filterPosts('pending',this)">Pending Review</button>
+            <button class="tl-fb" onclick="filterPosts('approved',this)">Approved</button>
+          </div>
+          <div id="post-feed"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MODALS ═══ -->
+<div id="editModal" class="modal-wrap">
+  <div class="modal-box">
+    <div class="modal-title">Request Profile Edit Permission</div>
+    <div class="modal-sub">Specify the field(s) you want to update. TEFC admin will review within 48 working hours.</div>
+    <div class="fg"><label>Field(s) to Update</label><input id="edit-field" type="text" placeholder="e.g. Email, Organisation Name"></div>
+    <div class="fg"><label>Reason for Change</label><textarea id="edit-reason" placeholder="Briefly explain why this update is needed..."></textarea></div>
+    <div id="edit-msg" style="display:none"></div>
+    <div class="modal-footer">
+      <button class="btn-modal-cancel" onclick="closeModal('editModal')">Cancel</button>
+      <button class="btn-modal-submit" onclick="submitEditReq()">Submit Request</button>
+    </div>
+  </div>
+</div>
+
+<div id="addProductModal" class="modal-wrap">
+  <div class="modal-box">
+    <div class="modal-title">Add New Product</div>
+    <div class="modal-sub">Add a product to your showcase. All listings are visible to verified TEFC members.</div>
+    <div class="fg"><label>Product Name *</label><input id="ap-name" type="text" placeholder="e.g. Organic Cotton Fabric GSM 200"></div>
+    <div class="fg"><label>Description *</label><textarea id="ap-desc" placeholder="Product details, specifications, certifications, MOQ..."></textarea></div>
+    <div class="fg"><label>Category / Tags</label><input id="ap-tags" type="text" placeholder="e.g. Cotton, Woven, GOTS Certified"></div>
+    <div class="fg"><label>Product Image</label>
+      <input type="file" id="ap-img" accept="image/*" style="border:1px solid var(--border);border-radius:5px;padding:5px;width:100%;font-size:0.78rem;background:#fff;">
+    </div>
+    <div id="ap-msg" style="display:none"></div>
+    <div class="modal-footer">
+      <button class="btn-modal-cancel" onclick="closeModal('addProductModal')">Cancel</button>
+      <button class="btn-modal-submit" onclick="addProduct()">Add Product</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let user=null;
+let products=[
+  {id:1,name:'Handloom Silk Sarees',desc:'Premium handwoven silk sarees from Varanasi. Available in 200+ designs. Minimum order 50 pcs. Export quality packaging available.',tags:['Silk','Handloom','Varanasi'],img:null,emoji:'🧣'},
+  {id:2,name:'Organic Cotton Fabric',desc:'GOTS certified organic cotton fabric. GSM 160-240, width 60". MOQ 500 metres. All certifications available.',tags:['Cotton','Organic','GOTS'],img:null,emoji:'🧶'}
+];
+let posts=[
+  {id:1,name:'Ravi Sharma',org:'ShreeTex Exports',init:'RS',avatar:null,time:'2 hours ago',text:'Excited to announce our new line of organic cotton fabric now available for Q2 export. All FSSAI & EU Organic certified. Interested buyers may reach out via the TEFC portal.',img:null,doc:null,status:'approved',likes:12,comments:3},
+  {id:2,name:'Priya Mehta',org:'GreenSpice Textiles',init:'PM',avatar:null,time:'Yesterday',text:'Fresh stock of certified Chanderi silk fabric ready for bulk export. Width 44", minimum 200 metres, GST invoicing. Contact through portal.',img:null,doc:null,status:'approved',likes:18,comments:5}
+];
+let postFilter='all';
+let pendingAttach=null;
+const BANNED=['scam','fraud','hate','xxx','porn','fake','illegal','violence'];
+
+function $(id){return document.getElementById(id);}
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));$(id).classList.add('active');}
+function showAuth(tab){showPage('pg-auth');switchAuthTab(tab==='signup'?'reg':tab);}
+function switchAuthTab(t){
+  ['panel-reg','panel-login','panel-exporter-details'].forEach(p=>$(p).classList.remove('active'));
+  ['tab-reg-btn','tab-login-btn'].forEach(b=>$(b).classList.remove('active'));
+  if(t==='reg'){$('panel-reg').classList.add('active');$('tab-reg-btn').classList.add('active');}
+  else{$('panel-login').classList.add('active');$('tab-login-btn').classList.add('active');}
+}
+function backStep(show,hide){$(hide).classList.remove('active');$(show).classList.add('active');}
+function onext(el,nid){if(el.value&&nid)$(nid).focus();}
+function getotp(p){return [1,2,3,4,5,6].map(i=>$(p+i).value).join('');}
+function esc(v){return String(v||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+
+function submitRegStep1(){
+  const n=$('r-name').value.trim(),o=$('r-org').value.trim(),p=$('r-phone').value.trim(),e=$('r-email').value.trim(),iec=$('r-iec').value.trim();
+  if(!n||!o||!p||!e||!iec){showErr('reg-err1','Please fill all required fields, including IEC No.');return;}
+  if(!/\S+@\S+\.\S+/.test(e)){showErr('reg-err1','Please enter a valid email address.');return;}
+  if(!/^[A-Za-z0-9]{10}$/.test(iec)){showErr('reg-err1','IEC No must be exactly 10 alphanumeric characters.');return;}
+  $('reg-err1').style.display='none';
+  $('reg-step1').classList.remove('active');$('reg-step2').classList.add('active');
+}
+function verifyRegOTP(){
+  if(getotp('ro')!=='123456'){showErr('reg-err2','Invalid OTP. Hint: 123456');return;}
+  user={name:$('r-name').value.trim(),org:$('r-org').value.trim(),phone:$('r-phone').value.trim(),email:$('r-email').value.trim(),iec:$('r-iec').value.trim(),avatar:null};
+  showExporterDetails();
+}
+function submitLoginStep1(){
+  if(!$('l-phone').value.trim()){showErr('login-err1','Please enter your registered mobile number.');return;}
+  $('login-err1').style.display='none';
+  $('login-step1').classList.remove('active');$('login-step2').classList.add('active');
+}
+function verifyLoginOTP(){
+  if(getotp('lo')!=='123456'){showErr('login-err2','Invalid OTP. Hint: 123456');return;}
+  if(!user){user={name:'Demo Exporter',org:'Demo Exports Pvt Ltd',phone:$('l-phone').value.trim(),email:'demo@exports.com',iec:'IEC1234567',avatar:null};}
+  showExporterDetails();
+}
+function showErr(id,msg){$(id).textContent=msg;$(id).style.display='block';}
+
+function showExporterDetails(){
+  ['panel-reg','panel-login'].forEach(p=>$(p).classList.remove('active'));
+  ['tab-reg-btn','tab-login-btn'].forEach(b=>$(b).classList.remove('active'));
+  $('panel-exporter-details').classList.add('active');
+}
+
+function submitExporterDetails(){
+  const details={
+    address:$('ed-address').value.trim(),
+    year:$('ed-year').value.trim(),
+    cluster:$('ed-cluster').value,
+    existingProduct:$('ed-existing-product').value.trim(),
+    potentialProduct:$('ed-potential-product').value.trim(),
+    productionVolume:$('ed-volume').value.trim()
+  };
+  const yearNum=Number(details.year);
+  if(!details.address||!details.year||!details.cluster||!details.existingProduct||!details.potentialProduct||!details.productionVolume){
+    showErr('ed-err','Please fill all required exporter details.');
+    return;
+  }
+  if(!Number.isInteger(yearNum)||yearNum<1800||yearNum>2026){
+    showErr('ed-err','Please enter a valid year of establishment.');
+    return;
+  }
+  $('ed-err').style.display='none';
+  const file=$('ed-existing-img').files[0];
+  const finish=img=>{
+    user.details={...details,existingImage:img||null};
+    // Push application to shared store (simulating backend)
+    const appId='APP-'+String(Date.now()).slice(-6);
+    const now=new Date().toISOString().slice(0,16).replace('T',' ');
+    const newApp={
+      id:appId,
+      name:user.name,org:user.org,phone:user.phone,email:user.email,iec:user.iec,
+      cluster:details.cluster,address:details.address,year:details.year,
+      existingProduct:details.existingProduct,potentialProduct:details.potentialProduct,
+      volume:details.productionVolume,existingImage:img||null,
+      submittedAt:now,status:'pending',
+      statusHistory:[{action:'submitted',by:'Applicant',at:now,note:'New registration submitted.'}]
+    };
+    // Push to shared array (admin dashboard reads this)
+    if(window.TEFC_APPLICATIONS){window.TEFC_APPLICATIONS.push(newApp);}
+    user.applicationId=appId;
+    user.applicationStatus='pending';
+    const productName=details.existingProduct.split(/[.,\n]/)[0].trim().slice(0,60)||'Existing Product';
+    products=products.filter(p=>!p.fromExporterDetails);
+    products.unshift({
+      id:Date.now(),
+      name:productName,
+      desc:details.existingProduct,
+      tags:[details.cluster,'Existing Product'],
+      img:img||null,
+      emoji:'EX',
+      fromExporterDetails:true
+    });
+    launchApp();
+  };
+  if(file){
+    const reader=new FileReader();
+    reader.onload=e=>finish(e.target.result);
+    reader.readAsDataURL(file);
+  } else {
+    finish(null);
+  }
+}
+
+function launchApp(){
+  const init=user.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  $('topbar-name').textContent=user.name;
+  $('sc-name').textContent=user.name;
+  $('sc-org').textContent=user.org;
+  $('sc-phone').textContent=user.phone;
+  $('sc-email').textContent=user.email;
+  setAvatar($('sc-av'),init,user.avatar);
+  setAvatar($('compose-av'),init,user.avatar);
+  const d=user.details||{};
+
+  // Application status badge in sidebar
+  const appStatus=user.applicationStatus||'approved';
+  const statusBadgeHtml=appStatus==='pending'
+    ?`<span style="display:inline-flex;align-items:center;gap:4px;background:#fff8e1;color:#9c6a00;font-size:0.65rem;font-weight:600;padding:2px 8px;border-radius:10px;border:1px solid #ffe082;margin-top:5px;">⏳ Application Pending</span>`
+    :appStatus==='rejected'
+    ?`<span style="display:inline-flex;align-items:center;gap:4px;background:#fdf0f0;color:#c0392b;font-size:0.65rem;font-weight:600;padding:2px 8px;border-radius:10px;border:1px solid #f5c6c6;margin-top:5px;">✕ Application Rejected</span>`
+    :`<span style="display:inline-flex;align-items:center;gap:4px;background:var(--sky);color:var(--navy);font-size:0.65rem;font-weight:600;padding:2px 8px;border-radius:10px;margin-top:5px;">✓ Verified Exporter</span>`;
+  const appStatusEl=$('sc-badge-wrap');
+  if(appStatusEl) appStatusEl.innerHTML=statusBadgeHtml;
+
+  $('profile-details-grid').innerHTML=`
+    <div class="pf-field"><div class="pf-label">Full Name</div><div class="pf-val">${esc(user.name)}</div></div>
+    <div class="pf-field"><div class="pf-label">Organisation</div><div class="pf-val">${esc(user.org)}</div></div>
+    <div class="pf-field"><div class="pf-label">Email ID</div><div class="pf-val">${esc(user.email)}</div></div>
+    <div class="pf-field"><div class="pf-label">Mobile Number</div><div class="pf-val">${esc(user.phone)}</div></div>
+    <div class="pf-field"><div class="pf-label">IEC No</div><div class="pf-val">${esc(user.iec)}</div></div>
+    <div class="pf-field"><div class="pf-label">Address of Unit</div><div class="pf-val">${esc(d.address)}</div></div>
+    <div class="pf-field"><div class="pf-label">Year of Establishment</div><div class="pf-val">${esc(d.year)}</div></div>
+    <div class="pf-field"><div class="pf-label">Cluster Name</div><div class="pf-val">${esc(d.cluster)}</div></div>
+    <div class="pf-field"><div class="pf-label">Production Volume</div><div class="pf-val">${esc(d.productionVolume)}</div></div>
+    <div class="pf-field"><div class="pf-label">Existing Product Details</div><div class="pf-val">${esc(d.existingProduct)}</div></div>
+    <div class="pf-field"><div class="pf-label">Potential Product Details</div><div class="pf-val">${esc(d.potentialProduct)}</div></div>
+    ${d.existingImage?`<div class="pf-field pf-field-img"><div class="pf-label">Existing Product Image</div><img src="${d.existingImage}" alt="Existing product image"></div>`:''}
+  `;
+
+  // Show/hide pending banner
+  const pendingBanner=$('pending-review-banner');
+  const rejectedBanner=$('rejected-banner');
+  if(pendingBanner) pendingBanner.style.display=appStatus==='pending'?'flex':'none';
+  if(rejectedBanner) rejectedBanner.style.display=appStatus==='rejected'?'flex':'none';
+
+  // Lock timeline/products if pending or rejected
+  const timelineNav=$('nav-timeline');
+  const productsNav=$('nav-products');
+  if(appStatus==='pending'||appStatus==='rejected'){
+    if(timelineNav){timelineNav.title='Available after application approval';}
+    if(productsNav){productsNav.title='Available after application approval';}
+  }
+
+  // Update app ID display and account status
+  const appIdEl=$('app-id-display');
+  if(appIdEl&&user.applicationId) appIdEl.textContent=user.applicationId;
+  const acctField=$('acct-status-field');
+  if(acctField){
+    if(appStatus==='pending'){acctField.style.color='#9c6a00';acctField.textContent='⏳ Pending Approval';}
+    else if(appStatus==='rejected'){acctField.style.color='#c0392b';acctField.textContent='✕ Application Rejected';}
+    else{acctField.style.color='#1e7e44';acctField.textContent='✓ Active & Verified';}
+  }
+
+  $('prod-count').textContent=products.length;
+  renderProducts();renderPosts();
+  showSection('profile');
+  showPage('pg-app');
+}
+function setAvatar(el,init,img){
+  if(img){el.innerHTML=`<img src="${img}" alt="">`;}else{el.textContent=init;}
+}
+function uploadAvatar(e){
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=ev=>{
+    user.avatar=ev.target.result;
+    const init=user.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+    setAvatar($('sc-av'),init,user.avatar);setAvatar($('compose-av'),init,user.avatar);
+  };r.readAsDataURL(f);
+}
+function showSection(s){
+  const appStatus=user?user.applicationStatus||'approved':'approved';
+  if((s==='timeline'||s==='products')&&(appStatus==='pending'||appStatus==='rejected')){
+    const msg=appStatus==='pending'
+      ?'Timeline and Product features will be available once your application is approved by TEFC admin.'
+      :'Your application has been rejected. Please contact your cluster office.';
+    alert(msg);
+    return;
+  }
+  ['profile','products','timeline'].forEach(x=>{$('sec-'+x).style.display='none';$('nav-'+x).classList.remove('active');});
+  $('sec-'+s).style.display='block';$('nav-'+s).classList.add('active');
+}
+function signOut(){
+  user=null;pendingAttach=null;
+  $('r-name').value='';$('r-org').value='';$('r-phone').value='';$('r-email').value='';$('r-iec').value='';
+  $('l-phone').value='';
+  ['ed-address','ed-year','ed-existing-product','ed-potential-product','ed-volume'].forEach(id=>{const el=$(id);if(el)el.value='';});
+  if($('ed-cluster'))$('ed-cluster').value='';
+  if($('ed-existing-img'))$('ed-existing-img').value='';
+  ['ro1','ro2','ro3','ro4','ro5','ro6','lo1','lo2','lo3','lo4','lo5','lo6'].forEach(id=>{const el=$(id);if(el)el.value='';});
+  $('reg-step1').classList.add('active');$('reg-step2').classList.remove('active');
+  $('login-step1').classList.add('active');$('login-step2').classList.remove('active');
+  $('panel-exporter-details').classList.remove('active');
+  showAuth('login');
+}
+
+function renderProducts(){
+  const g=$('products-grid');
+  let html=products.map(p=>`
+    <div class="product-card">
+      <div class="product-img">
+        ${p.img?`<img src="${p.img}" alt="${p.name}">`:`<div class="product-img-placeholder">${p.emoji||'🧵'}</div>`}
+        <button class="product-img-upload" onclick="triggerProdImg(${p.id})">&#128247; Change Photo</button>
+        <input type="file" id="pimg-${p.id}" accept="image/*" style="display:none" onchange="setProdImg(event,${p.id})">
+      </div>
+      <div class="product-body">
+        <h4>${esc(p.name)}</h4>
+        <p>${esc(p.desc)}</p>
+        <div class="product-tags">${p.tags.map(t=>`<span class="ptag">${esc(t)}</span>`).join('')}</div>
+        <div class="product-actions">
+          <button class="btn-prod-edit" onclick="openEditProduct(${p.id})">✎ Edit</button>
+          <button class="btn-prod-del" onclick="deleteProduct(${p.id})">✕ Remove</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  html+=`<div class="add-product-btn" onclick="openModal('addProductModal')"><div class="apb-icon">+</div><p>Add New Product</p></div>`;
+  g.innerHTML=html;
+  $('prod-count').textContent=products.length;
+}
+function triggerProdImg(id){$('pimg-'+id).click();}
+function setProdImg(e,id){
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();r.onload=ev=>{const p=products.find(x=>x.id===id);if(p){p.img=ev.target.result;renderProducts();}};r.readAsDataURL(f);
+}
+function deleteProduct(id){products=products.filter(x=>x.id!==id);renderProducts();}
+function openEditProduct(id){
+  const p=products.find(x=>x.id===id);if(!p)return;
+  $('ap-name').value=p.name;$('ap-desc').value=p.desc;$('ap-tags').value=p.tags.join(', ');
+  $('ap-msg').dataset.editId=id;
+  openModal('addProductModal');
+}
+
+function addProduct(){
+  const n=$('ap-name').value.trim(),d=$('ap-desc').value.trim();
+  if(!n||!d){showModalMsg('ap-msg','Please fill required fields.','err');return;}
+  const tags=$('ap-tags').value.split(',').map(t=>t.trim()).filter(Boolean);
+  const editId=$('ap-msg').dataset.editId;
+  if(editId){
+    const p=products.find(x=>x.id==editId);if(p){p.name=n;p.desc=d;p.tags=tags;delete $('ap-msg').dataset.editId;}
+  } else {
+    const f=$('ap-img').files[0];
+    if(f){const r=new FileReader();r.onload=ev=>{products.push({id:Date.now(),name:n,desc:d,tags,img:ev.target.result,emoji:'🧵'});renderProducts();};r.readAsDataURL(f);}
+    else{products.push({id:Date.now(),name:n,desc:d,tags,img:null,emoji:'🧵'});renderProducts();}
+  }
+  renderProducts();
+  $('ap-name').value='';$('ap-desc').value='';$('ap-tags').value='';$('ap-img').value='';
+  closeModal('addProductModal');
+}
+
+function attachImg(e){
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();r.onload=ev=>{pendingAttach={type:'img',data:ev.target.result,name:f.name};$('attach-note').textContent='📷 '+f.name+' attached';};r.readAsDataURL(f);
+}
+function attachDoc(e){
+  const f=e.target.files[0];if(!f)return;
+  pendingAttach={type:'doc',name:f.name};$('attach-note').textContent='📄 '+f.name+' attached';
+}
+function submitPost(){
+  const txt=$('post-text').value.trim();
+  if(!txt){showPostWarn('Please write something before posting.');return;}
+  if(BANNED.some(w=>txt.toLowerCase().includes(w))){showPostWarn('Your post contains content that violates TEFC community guidelines.');return;}
+  $('post-warn').style.display='none';
+  const init=user.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  posts.unshift({id:Date.now(),name:user.name,org:user.org,init,avatar:user.avatar||null,time:'Just now',text:txt,img:pendingAttach&&pendingAttach.type==='img'?pendingAttach.data:null,doc:pendingAttach&&pendingAttach.type==='doc'?pendingAttach.name:null,status:'pending',likes:0,comments:0});
+  $('post-text').value='';pendingAttach=null;$('attach-note').textContent='';
+  renderPosts();
+  const n=document.createElement('div');n.className='alert alert-ok';n.style.marginBottom='0.8rem';
+  n.textContent='Your post has been submitted for TEFC admin review. It will appear publicly once approved.';
+  $('post-feed').insertAdjacentElement('beforebegin',n);setTimeout(()=>n.remove(),4000);
+  $('post-count').textContent=posts.filter(p=>p.status==='approved').length;
+}
+function showPostWarn(m){$('post-warn').textContent=m;$('post-warn').style.display='block';}
+function filterPosts(f,btn){postFilter=f;document.querySelectorAll('.tl-fb').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderPosts();}
+function renderPosts(){
+  const feed=$('post-feed');
+  const filtered=postFilter==='all'?posts:posts.filter(p=>p.status===postFilter);
+  if(!filtered.length){feed.innerHTML=`<div style="text-align:center;padding:2rem;color:var(--muted);font-size:0.85rem;">No posts to show in this filter.</div>`;return;}
+  feed.innerHTML=filtered.map(p=>`
+    <div class="tl-post-card">
+      <div class="tl-ph">
+        <div class="tl-av">${p.avatar?`<img src="${p.avatar}" alt="">`:(p.init||'EX')}</div>
+        <div class="tl-pm">
+          <div class="tl-pn">${p.name}</div>
+          <div class="tl-po">${p.org}</div>
+          <div class="tl-pt">${p.time}</div>
+        </div>
+        <div class="post-status-badge">${p.status==='pending'?'<span class="badge-pending">⏳ Pending Review</span>':'<span class="badge-approved">✓ Approved</span>'}</div>
+      </div>
+      ${p.status==='pending'?'<div class="tl-pending-note">This post is under TEFC admin review and not yet visible to other members.</div>':''}
+      <div class="tl-body">${p.text}</div>
+      ${p.img?`<img src="${p.img}" class="tl-post-img" alt="Post">`:''}
+      ${p.doc?`<div style="font-size:0.75rem;color:var(--navy);margin-bottom:0.5rem;">📄 ${p.doc}</div>`:''}
+      <div class="tl-actions">
+        <button class="tl-act" onclick="likePost(${p.id})"><svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg> Like${p.likes>0?' ('+p.likes+')':''}</button>
+        <button class="tl-act"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg> Comment${p.comments>0?' ('+p.comments+')':''}</button>
+        <button class="tl-act"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>
+      </div>
+    </div>
+  `).join('');
+}
+function likePost(id){const p=posts.find(x=>x.id===id);if(p&&p.status==='approved'){p.likes++;renderPosts();}}
+
+function openModal(id){$(id).classList.add('open');}
+function closeModal(id){$(id).classList.remove('open');}
+function showModalMsg(id,msg,type){const el=$(id);el.className='alert '+(type==='err'?'alert-err':'alert-ok');el.textContent=msg;el.style.display='block';}
+
+function submitEditReq(){
+  const f=$('edit-field').value.trim(),r=$('edit-reason').value.trim();
+  if(!f||!r){showModalMsg('edit-msg','Please fill in both fields.','err');return;}
+  showModalMsg('edit-msg','Request submitted! TEFC admin will respond within 48 working hours.','ok');
+  setTimeout(()=>{closeModal('editModal');$('edit-field').value='';$('edit-reason').value='';$('edit-msg').style.display='none';},2800);
+}
+</script>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEFC Unified Admin Dashboard</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#6c153f;--navy-dark:#4a0e2b;--navy-light:#8a1e50;
+  --sky:#f9eaf1;--sky2:#fdf4f8;--white:#fff;--text:#1a1a2e;
+  --muted:#5a6a82;--border:#e8d0dc;--ok:#1e7e44;--danger:#c0392b;--warning:#f5a623;
+}
+body{font-family:'Inter',sans-serif;background:var(--sky2);color:var(--text);font-size:14px;min-height:100vh}
+button,input,textarea,select{font-family:inherit}
+button{cursor:pointer}
+.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;background:linear-gradient(135deg,var(--navy-dark),var(--navy) 58%,#a0245e)}
+.login-card{width:100%;max-width:430px;background:#fff;border-radius:10px;padding:2rem;box-shadow:0 18px 55px rgba(0,0,0,.25)}
+.login-brand{display:flex;align-items:center;gap:14px;margin-bottom:1.5rem}
+.login-brand img{height:56px;width:auto}
+.login-brand h1{font-size:1.15rem;color:var(--navy);line-height:1.2}
+.login-brand p{font-size:.76rem;color:#7a4060;margin-top:3px}
+.fg{margin-bottom:1rem}
+.fg label{display:block;font-size:.75rem;font-weight:700;margin-bottom:5px;color:var(--text)}
+.fg input,.fg select{width:100%;border:1px solid var(--border);border-radius:6px;padding:.58rem .72rem;background:#fff;color:var(--text);font-size:.82rem}
+.fg input:focus,.fg select:focus{outline:none;border-color:var(--navy)}
+.btn-primary{background:var(--navy);color:#fff;border:0;border-radius:5px;padding:.62rem 1rem;font-weight:700;font-size:.84rem;transition:background 0.2s}
+.btn-primary:hover{background:var(--navy-dark)}
+.btn-success{background:var(--ok);color:#fff;border:0;border-radius:5px;padding:.62rem 1rem;font-weight:700;font-size:.84rem;transition:background 0.2s}
+.btn-success:hover{background:#176536}
+.btn-danger{background:var(--danger);color:#fff;border:0;border-radius:5px;padding:.62rem 1rem;font-weight:700;font-size:.84rem;transition:background 0.2s}
+.btn-danger:hover{background:#a32f23}
+.btn-ghost{background:#fff;color:var(--navy);border:1px solid var(--navy);border-radius:5px;padding:.55rem .9rem;font-weight:700;font-size:.78rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.alert{display:none;margin:.75rem 0 0;padding:.65rem .8rem;border-radius:6px;font-size:.78rem;line-height:1.45}
+.alert.err{display:block;background:#fff0f0;border:1px solid #f2c1bd;color:var(--danger)}
+.alert.ok{display:block;background:#eafaf1;border:1px solid #b7e4c7;color:var(--ok)}
+
+/* Dashboard */
+.app-screen{display:none;min-height:100vh}
+.app-screen.active{display:block}
+.topbar{background:#fce8f2;padding:.32rem 1.5rem;border-bottom:1px solid #e8c8d8;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.topbar small{color:var(--navy);font-weight:700}
+.logobar{background:#fff;padding:.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.logobar-left{display:flex;align-items:center;gap:14px;min-width:0}
+.logo-emblem{border-right:1px solid var(--border);padding-right:1.2rem;margin-right:.4rem}
+.main-logo-img{height:56px;width:auto;display:block}
+.logo-title{font-size:1.55rem;font-weight:800;color:var(--navy);line-height:1.2}
+.logo-subtitle{font-size:.82rem;color:#7a4060;margin-top:2px}
+.workarea{padding:1.4rem;max-width:1200px;margin:0 auto}
+
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
+.stat-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:1.2rem;display:flex;flex-direction:column;align-items:flex-start}
+.stat-title{font-size:0.8rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+.stat-value{font-size:2rem;color:var(--navy);font-weight:800;margin-top:0.3rem}
+
+.panel{background:#fff;border:1px solid var(--border);border-radius:9px;padding:1.5rem;overflow:hidden}
+.panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.panel-head h2{font-size:1.1rem;color:var(--navy)}
+
+/* Table */
+.data-table{width:100%;border-collapse:collapse}
+.data-table th,.data-table td{padding:0.75rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+.data-table th{background:var(--sky);font-size:0.75rem;color:var(--navy);font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
+.data-table td{font-size:0.85rem;color:var(--text)}
+.data-table tr:hover td{background:var(--sky2)}
+.badge{padding:0.25rem 0.6rem;border-radius:20px;font-size:0.7rem;font-weight:700}
+.badge-pending{background:#fff8e1;color:#9c6a00;border:1px solid #ffe082}
+.badge-approved{background:#eafaf1;color:#1e7e44;border:1px solid #b7e4c7}
+.badge-rejected{background:#fdf0f0;color:#c0392b;border:1px solid #f2c1bd}
+.action-btn{background:transparent;border:1px solid var(--navy);color:var(--navy);border-radius:4px;padding:0.3rem 0.7rem;font-size:0.75rem;font-weight:600}
+.action-btn:hover{background:var(--navy);color:#fff}
+
+/* Modal */
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center}
+.modal-overlay.active{display:flex}
+.modal{background:#fff;width:100%;max-width:600px;border-radius:10px;padding:2rem;box-shadow:0 10px 40px rgba(0,0,0,0.2);max-height:90vh;overflow-y:auto}
+.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem}
+.modal-header h3{font-size:1.2rem;color:var(--navy)}
+.modal-close{background:none;border:none;font-size:1.5rem;color:var(--muted);cursor:pointer}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.detail-item{margin-bottom:0.8rem}
+.detail-label{font-size:0.75rem;color:var(--muted);font-weight:600;margin-bottom:0.2rem}
+.detail-value{font-size:0.9rem;color:var(--text);font-weight:500;word-break:break-word}
+.modal-actions{display:flex;gap:1rem;justify-content:flex-end;border-top:1px solid var(--border);padding-top:1rem}
+
+.footer-note{font-size:.72rem;color:var(--muted);line-height:1.55;margin-top:1.2rem;text-align:center}
+
+@media(max-width:768px){
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .logobar{flex-direction:column;align-items:flex-start}
+  .data-table{display:block;overflow-x:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- Login Screen -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <div class="login-brand">
+      <img src="https://lh3.googleusercontent.com/d/1XPXkbU4ohi6fO85V4Dz34Ghp73AJj1ti" alt="TEFC logo">
+      <div>
+        <h1>Unified Admin Portal</h1>
+        <p>Head Office & Cluster Management</p>
+      </div>
+    </div>
+    <div class="fg">
+      <label>Login Type / Role</label>
+      <select id="loginRole">
+        <option value="ho">Head Office Admin</option>
+        <option value="Karur">Cluster Admin - Karur</option>
+        <option value="Surat">Cluster Admin - Surat</option>
+        <option value="Ichalkaranji">Cluster Admin - Ichalkaranji</option>
+        <option value="Jaipur">Cluster Admin - Jaipur</option>
+        <option value="Varanasi">Cluster Admin - Varanasi</option>
+        <option value="Ludhiana">Cluster Admin - Ludhiana</option>
+      </select>
+    </div>
+    <div class="fg"><label>Username</label><input id="loginUser" type="text" autocomplete="username" placeholder="admin_ho"></div>
+    <div class="fg"><label>Password</label><input id="loginPass" type="password" autocomplete="current-password" placeholder="pass123"></div>
+    <button class="btn-primary" style="width:100%" onclick="login()">Login to Dashboard</button>
+    <div id="loginMsg" class="alert"></div>
+    <p class="footer-note">Demo credentials: username matches role (e.g., <strong>admin_ho</strong>, <strong>admin_karur</strong>), password is <strong>pass123</strong>.</p>
+  </div>
+</div>
+
+<!-- Application Dashboard -->
+<div class="app-screen" id="appScreen">
+  <div class="topbar">
+    <small id="userGreeting">Logged in as Head Office</small>
+    <div style="display:flex;gap:1rem;">
+      <a class="btn-ghost" href="TEFC_Home_Page.html">View Home Page</a>
+      <button class="btn-ghost" onclick="logout()">Logout</button>
+    </div>
+  </div>
+  <div class="logobar">
+    <div class="logobar-left">
+      <div class="logo-emblem"><img src="https://lh3.googleusercontent.com/d/1XPXkbU4ohi6fO85V4Dz34Ghp73AJj1ti" class="main-logo-img" alt=""></div>
+      <div>
+        <div class="logo-title">Application Management Dashboard</div>
+        <div class="logo-subtitle">Review Exporter Registrations</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="workarea">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-title">Total Received</div>
+        <div class="stat-value" id="stat-total">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Pending</div>
+        <div class="stat-value" id="stat-pending" style="color:var(--warning)">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Approved</div>
+        <div class="stat-value" id="stat-approved" style="color:var(--ok)">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Rejected</div>
+        <div class="stat-value" id="stat-rejected" style="color:var(--danger)">0</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <h2 id="tableTitle">Recent Applications</h2>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Exporter Name</th>
+            <th>IEC No.</th>
+            <th>Cluster</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="appTableBody">
+          <!-- Populated by JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Preview Modal -->
+<div class="modal-overlay" id="previewModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Application Details</h3>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div id="modalContent">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</div>
+
+<script>
+let currentRole = null;
+let currentAppId = null;
+
+// Fake database via localStorage
+function getApplications() {
+  const data = localStorage.getItem('tefcApplications');
+  if (data) {
+    try {
+      return JSON.parse(data);
+    } catch (e) {
+      return [];
+    }
+  }
+  // Fallback demo data
+  return [
+    { id: 1713589000000, name: 'Amit Singh', org: 'Singh Exports', phone: '9876543210', email: 'amit@singhexports.in', iec: 'IEC8833991', cluster: 'Varanasi', address: 'Plot 12, Weavers Colony, Varanasi', year: '2015', productionVolume: '10000 sarees/month', existingProduct: 'Silk Sarees', potentialProduct: 'Cotton blend sarees', status: 'pending', timestamp: 1713589000000 },
+    { id: 1713589100000, name: 'Priya Patel', org: 'Surat Textiles', phone: '9988776655', email: 'priya@surattextiles.com', iec: 'IEC5544332', cluster: 'Surat', address: 'GIDC, Surat', year: '2010', productionVolume: '50000 m/month', existingProduct: 'Synthetic fabrics', potentialProduct: 'Readymade garments', status: 'approved', timestamp: 1713589100000 },
+    { id: 1713589200000, name: 'Raj Kumar', org: 'Karur Home Linens', phone: '9123456789', email: 'raj@karurlinens.in', iec: 'IEC1122334', cluster: 'Karur', address: 'Industrial Estate, Karur', year: '2018', productionVolume: '20000 pcs/month', existingProduct: 'Bed linens, towels', potentialProduct: 'Organic cotton towels', status: 'rejected', timestamp: 1713589200000 }
+  ];
+}
+
+function saveApplications(apps) {
+  localStorage.setItem('tefcApplications', JSON.stringify(apps));
+}
+
+// Initialize localStorage with demo data if empty
+if (!localStorage.getItem('tefcApplications')) {
+  saveApplications(getApplications());
+}
+
+function login() {
+  const role = document.getElementById('loginRole').value;
+  const user = document.getElementById('loginUser').value.trim();
+  const pass = document.getElementById('loginPass').value;
+  const msg = document.getElementById('loginMsg');
+
+  const expectedUser = role === 'ho' ? 'admin_ho' : 'admin_' + role.toLowerCase();
+  
+  if (user === expectedUser && pass === 'pass123') {
+    sessionStorage.setItem('unifiedAdminRole', role);
+    showApp();
+  } else {
+    msg.className = 'alert err';
+    msg.textContent = 'Invalid username or password.';
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem('unifiedAdminRole');
+  location.reload();
+}
+
+function showApp() {
+  currentRole = sessionStorage.getItem('unifiedAdminRole');
+  if (!currentRole) return;
+
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('appScreen').classList.add('active');
+  
+  document.getElementById('userGreeting').textContent = currentRole === 'ho' ? 'Logged in as Head Office Admin' : `Logged in as Cluster Admin - ${currentRole}`;
+  document.getElementById('tableTitle').textContent = currentRole === 'ho' ? 'All Applications' : `${currentRole} Cluster Applications`;
+
+  renderDashboard();
+}
+
+if (sessionStorage.getItem('unifiedAdminRole')) {
+  showApp();
+}
+
+function renderDashboard() {
+  const allApps = getApplications();
+  let visibleApps = allApps;
+
+  if (currentRole !== 'ho') {
+    visibleApps = allApps.filter(app => app.cluster.toLowerCase() === currentRole.toLowerCase());
+  }
+
+  // Sort by date descending
+  visibleApps.sort((a, b) => b.timestamp - a.timestamp);
+
+  // Update Stats
+  const total = visibleApps.length;
+  const pending = visibleApps.filter(a => a.status === 'pending').length;
+  const approved = visibleApps.filter(a => a.status === 'approved').length;
+  const rejected = visibleApps.filter(a => a.status === 'rejected').length;
+
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-pending').textContent = pending;
+  document.getElementById('stat-approved').textContent = approved;
+  document.getElementById('stat-rejected').textContent = rejected;
+
+  // Render Table
+  const tbody = document.getElementById('appTableBody');
+  tbody.innerHTML = '';
+
+  if (visibleApps.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--muted)">No applications found.</td></tr>';
+    return;
+  }
+
+  visibleApps.forEach(app => {
+    const dateStr = new Date(app.timestamp).toLocaleDateString();
+    let badgeClass = 'badge-pending';
+    let statusText = 'Pending';
+    if (app.status === 'approved') { badgeClass = 'badge-approved'; statusText = 'Approved'; }
+    if (app.status === 'rejected') { badgeClass = 'badge-rejected'; statusText = 'Rejected'; }
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${dateStr}</td>
+      <td><strong>${escapeHtml(app.name)}</strong><br><span style="font-size:0.75rem;color:var(--muted)">${escapeHtml(app.org)}</span></td>
+      <td>${escapeHtml(app.iec)}</td>
+      <td>${escapeHtml(app.cluster)}</td>
+      <td><span class="badge ${badgeClass}">${statusText}</span></td>
+      <td><button class="action-btn" onclick="previewApp(${app.id})">Preview</button></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function previewApp(appId) {
+  const allApps = getApplications();
+  const app = allApps.find(a => a.id === appId);
+  if (!app) return;
+
+  currentAppId = appId;
+  
+  let actionsHtml = '';
+  if (app.status === 'pending') {
+    actionsHtml = `
+      <button class="btn-danger" onclick="updateStatus('rejected')">Reject</button>
+      <button class="btn-success" onclick="updateStatus('approved')">Accept Application</button>
+    `;
+  } else if (app.status === 'rejected' && currentRole === 'ho') {
+    actionsHtml = `
+      <span style="color:var(--muted);font-size:0.8rem;margin-right:auto;">Currently Rejected</span>
+      <button class="btn-success" onclick="updateStatus('approved')">Override & Accept</button>
+    `;
+  } else {
+    actionsHtml = `<span style="color:var(--muted);font-size:0.85rem">Application is ${app.status}. No further actions available.</span>`;
+  }
+
+  const content = document.getElementById('modalContent');
+  content.innerHTML = `
+    <div class="detail-grid">
+      <div class="detail-item">
+        <div class="detail-label">Applicant Name</div>
+        <div class="detail-value">${escapeHtml(app.name)}</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Organisation</div>
+        <div class="detail-value">${escapeHtml(app.org)}</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Email ID</div>
+        <div class="detail-value">${escapeHtml(app.email)}</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Phone Number</div>
+        <div class="detail-value">${escapeHtml(app.phone)}</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">IEC Number</div>
+        <div class="detail-value">${escapeHtml(app.iec)}</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Cluster</div>
+        <div class="detail-value">${escapeHtml(app.cluster)}</div>
+      </div>
+    </div>
+    
+    <div class="detail-item">
+      <div class="detail-label">Unit Address</div>
+      <div class="detail-value">${escapeHtml(app.address)}</div>
+    </div>
+    
+    <div class="detail-grid">
+      <div class="detail-item">
+        <div class="detail-label">Year of Establishment</div>
+        <div class="detail-value">${escapeHtml(app.year)}</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Production Volume</div>
+        <div class="detail-value">${escapeHtml(app.productionVolume)}</div>
+      </div>
+    </div>
+    
+    <div class="detail-item">
+      <div class="detail-label">Existing Products</div>
+      <div class="detail-value">${escapeHtml(app.existingProduct)}</div>
+    </div>
+    <div class="detail-item">
+      <div class="detail-label">Potential Products</div>
+      <div class="detail-value">${escapeHtml(app.potentialProduct)}</div>
+    </div>
+    
+    <div class="modal-actions">
+      ${actionsHtml}
+    </div>
+  `;
+
+  document.getElementById('previewModal').classList.add('active');
+}
+
+function updateStatus(newStatus) {
+  if (!currentAppId) return;
+  const apps = getApplications();
+  const appIndex = apps.findIndex(a => a.id === currentAppId);
+  if (appIndex !== -1) {
+    apps[appIndex].status = newStatus;
+    saveApplications(apps);
+    renderDashboard();
+    closeModal();
+  }
+}
+
+function closeModal() {
+  document.getElementById('previewModal').classList.remove('active');
+  currentAppId = null;
+}
+
+function escapeHtml(v) {
+  return String(v || '').replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+}
+</script>
+</body>
+</html>

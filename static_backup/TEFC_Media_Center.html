@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Media Center — TEFC | Textiles Exports Facilitation Centre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#6c153f;
+  --navy-dark:#4a0e2b;
+  --navy-light:#8a1e50;
+  --blue-accent:#6c153f;
+  --sky:#f9eaf1;
+  --sky2:#fdf4f8;
+  --white:#ffffff;
+  --text:#1a1a2e;
+  --muted:#5a6a82;
+  --border:#e8d0dc;
+  --gold:#f5a623;
+}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--text);font-size:14px;}
+
+/* ── TOPBAR ── */
+.topbar{background:#fce8f2;padding:0.28rem 2.5rem;display:flex;align-items:center;justify-content:flex-end;gap:0.6rem;border-bottom:1px solid #e8c8d8;}
+.topbar-btn{display:flex;align-items:center;gap:5px;background:none;border:1px solid #c97aab;border-radius:4px;padding:0.22rem 0.65rem;font-size:0.72rem;color:var(--navy);cursor:pointer;font-family:'Inter',sans-serif;font-weight:500;transition:background 0.15s;}
+.topbar-btn:hover{background:rgba(108,21,63,0.08);}
+.topbar-btn svg{width:14px;height:14px;fill:none;stroke:var(--navy);stroke-width:1.8;flex-shrink:0;}
+.topbar-divider{width:1px;height:18px;background:#c97aab;opacity:0.4;}
+
+/* ── LOGOBAR ── */
+.logobar{background:#fff;padding:0.7rem 2.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+.logobar-left{display:flex;align-items:center;gap:14px;}
+.logo-emblem{width:auto;height:70px;padding-right:14px;border-right:1px solid var(--border);display:flex;align-items:center;justify-content:center;}
+.logo-emblem-svg{width:54px;height:54px;}
+.logo-title{font-size:2.05rem;font-weight:700;color:var(--navy);line-height:1.2;letter-spacing:0.01em;}
+.logo-subtitle{font-size:0.95rem;color:#7a4060;font-weight:400;margin-top:0.15rem;line-height:1.35;}
+.logo-text-block{padding-left:14px;}
+.gov-badge-box{display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;border:1px solid var(--border);border-radius:6px;padding:0.3rem 0.7rem;font-size:0.6rem;color:var(--muted);text-align:center;line-height:1.3;}
+.gov-badge-icon{font-size:1.5rem;margin-bottom:2px;}
+
+/* ── NAV ── */
+nav{background:var(--navy);padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:48px;position:sticky;top:0;z-index:200;}
+.nav-links{display:flex;gap:0;list-style:none;}
+.nav-links li{position:relative;}
+.nav-links li a{color:rgba(255,255,255,0.88);font-size:0.78rem;padding:0.38rem 0.8rem;text-decoration:none;border-radius:3px;transition:background 0.15s,color 0.15s;display:flex;align-items:center;gap:4px;white-space:nowrap;}
+.nav-links li a:hover,.nav-links li a.active{background:rgba(255,255,255,0.16);color:#fff;}
+.nav-links li a .arr{font-size:0.55rem;opacity:0.65;transition:transform 0.2s ease;}
+.nav-links li:hover .arr{transform:rotate(180deg);}
+.dropdown-menu{position:absolute;top:100%;left:0;background:var(--white);min-width:200px;border-radius:5px;padding:0.35rem 0;box-shadow:0 6px 18px rgba(0,0,0,0.14);z-index:300;opacity:0;visibility:hidden;transform:translateY(5px);transition:all 0.18s ease;}
+.dropdown-menu li{list-style:none;}
+.dropdown-menu li a{color:#333;font-size:0.78rem;padding:0.5rem 1rem;display:block;text-decoration:none;border-radius:0;white-space:nowrap;}
+.dropdown-menu li a:hover{background:#fce8f2;color:var(--navy);}
+.nav-links li:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0);}
+.nav-search{display:flex;align-items:center;gap:0;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;overflow:hidden;}
+.nav-search input{background:transparent;border:none;outline:none;color:#fff;font-size:0.75rem;font-family:'Inter',sans-serif;padding:0.3rem 0.65rem;width:150px;}
+.nav-search input::placeholder{color:rgba(255,255,255,0.5);}
+.nav-search button{background:rgba(255,255,255,0.15);border:none;border-left:1px solid rgba(255,255,255,0.2);color:#fff;padding:0 0.55rem;cursor:pointer;height:30px;display:flex;align-items:center;}
+.nav-search button svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2;}
+
+/* ── PAGE HERO ── */
+.page-hero{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%,#a0245e 100%);padding:2.8rem 2.5rem;position:relative;overflow:hidden;}
+.page-hero::after{content:'';position:absolute;right:0;top:0;bottom:0;width:45%;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200"><rect width="400" height="200" fill="%234a0e2b"/><line x1="0" y1="0" x2="400" y2="200" stroke="%23ffffff08" stroke-width="1"/><line x1="50" y1="0" x2="450" y2="200" stroke="%23ffffff06" stroke-width="1"/><line x1="100" y1="0" x2="500" y2="200" stroke="%23ffffff06" stroke-width="1"/></svg>') center/cover;opacity:0.6;}
+.page-hero-inner{position:relative;z-index:2;}
+.breadcrumb{display:flex;align-items:center;gap:6px;margin-bottom:0.9rem;}
+.breadcrumb a,.breadcrumb span{font-size:0.74rem;color:rgba(255,255,255,0.65);text-decoration:none;}
+.breadcrumb a:hover{color:#fff;}
+.breadcrumb .sep{color:rgba(255,255,255,0.35);}
+.breadcrumb .cur{color:rgba(255,255,255,0.9);}
+.page-hero h1{color:#fff;font-size:1.9rem;font-weight:700;line-height:1.25;margin-bottom:0.6rem;}
+.page-hero p{color:rgba(255,255,255,0.75);font-size:0.88rem;max-width:560px;line-height:1.6;}
+.hero-meta{display:flex;gap:1.4rem;margin-top:1.4rem;flex-wrap:wrap;}
+.hero-meta-item{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:6px;padding:0.45rem 1rem;color:#fff;font-size:0.78rem;display:flex;align-items:center;gap:6px;}
+.hero-meta-item svg{width:14px;height:14px;fill:none;stroke:#fff;stroke-width:2;flex-shrink:0;}
+
+/* ── SECTION COMMON ── */
+.section{padding:2.5rem 2.5rem;}
+.section-alt{background:var(--sky2);}
+.sec-head{margin-bottom:1.8rem;}
+.sec-head h2{color:var(--navy);font-size:1.25rem;font-weight:700;margin-bottom:0.3rem;display:flex;align-items:center;gap:10px;}
+.sec-head h2 .sec-icon{width:34px;height:34px;background:var(--sky);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.sec-head h2 .sec-icon svg{width:18px;height:18px;fill:none;stroke:var(--navy);stroke-width:1.8;}
+.sec-head p{color:var(--muted);font-size:0.82rem;margin-top:0.3rem;padding-left:44px;}
+.sec-head-line{width:48px;height:3px;background:var(--blue-accent);margin-top:0.7rem;margin-left:44px;border-radius:2px;}
+.sec-head-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:1.8rem;}
+.sec-head-row .sec-head{margin-bottom:0;}
+.view-all-btn{display:flex;align-items:center;gap:5px;color:var(--navy);font-size:0.78rem;font-weight:500;cursor:pointer;background:none;border:1px solid var(--border);border-radius:4px;padding:0.35rem 0.85rem;font-family:'Inter',sans-serif;transition:all 0.15s;}
+.view-all-btn:hover{background:var(--sky);border-color:var(--navy);}
+
+/* ── FILTER TABS ── */
+.filter-bar{display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+.filter-tab{padding:0.35rem 1rem;border-radius:20px;font-size:0.76rem;font-weight:500;cursor:pointer;border:1px solid var(--border);background:#fff;color:var(--muted);font-family:'Inter',sans-serif;transition:all 0.15s;}
+.filter-tab:hover{border-color:var(--navy);color:var(--navy);}
+.filter-tab.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+/* ── FEATURED VIDEO ── */
+.featured-video-wrap{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:2rem;display:grid;grid-template-columns:1.6fr 1fr;}
+.featured-thumb{background:linear-gradient(135deg,#4a0e2b,#6c153f,#8a1e50);position:relative;min-height:280px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.featured-thumb::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(255,255,255,0.02) 30px,rgba(255,255,255,0.02) 31px);}
+.featured-play{width:64px;height:64px;background:rgba(255,255,255,0.92);border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;z-index:2;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 20px rgba(0,0,0,0.3);}
+.featured-play:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(0,0,0,0.4);}
+.featured-play-arrow{width:0;height:0;border-top:13px solid transparent;border-bottom:13px solid transparent;border-left:20px solid var(--navy);margin-left:4px;}
+.featured-badge{position:absolute;top:14px;left:14px;background:var(--gold);color:#fff;font-size:0.65rem;font-weight:700;padding:3px 9px;border-radius:10px;z-index:2;text-transform:uppercase;letter-spacing:0.04em;}
+.featured-duration{position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,0.65);color:#fff;font-size:0.68rem;padding:2px 8px;border-radius:4px;z-index:2;}
+.featured-info{padding:1.8rem;display:flex;flex-direction:column;justify-content:center;}
+.featured-tag{display:inline-flex;align-items:center;gap:5px;background:var(--sky);color:var(--navy);font-size:0.68rem;font-weight:600;padding:3px 9px;border-radius:10px;margin-bottom:0.8rem;width:fit-content;}
+.featured-tag svg{width:11px;height:11px;stroke:var(--navy);fill:none;stroke-width:2;}
+.featured-info h3{color:var(--navy);font-size:1.05rem;font-weight:700;line-height:1.4;margin-bottom:0.7rem;}
+.featured-info p{color:var(--muted);font-size:0.8rem;line-height:1.65;margin-bottom:1.2rem;}
+.featured-meta{display:flex;gap:1rem;margin-bottom:1.3rem;flex-wrap:wrap;}
+.featured-meta-item{display:flex;align-items:center;gap:4px;font-size:0.72rem;color:var(--muted);}
+.featured-meta-item svg{width:12px;height:12px;stroke:var(--muted);fill:none;stroke-width:2;}
+.btn-watch{display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:#fff;padding:0.5rem 1.2rem;font-size:0.78rem;font-weight:600;border:none;border-radius:5px;cursor:pointer;font-family:'Inter',sans-serif;transition:background 0.15s;}
+.btn-watch:hover{background:var(--navy-dark);}
+.btn-watch svg{width:13px;height:13px;fill:#fff;stroke:none;}
+
+/* ── VIDEO GRID ── */
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;}
+.video-card{background:#fff;border:1px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:box-shadow 0.2s,transform 0.15s;}
+.video-card:hover{box-shadow:0 5px 20px rgba(108,21,63,0.14);transform:translateY(-2px);}
+.vc-thumb{height:148px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.vc-thumb-1{background:linear-gradient(135deg,#6c153f,#8a1e50);}
+.vc-thumb-2{background:linear-gradient(135deg,#5a1238,#7c1a4a);}
+.vc-thumb-3{background:linear-gradient(135deg,#4a0e2b,#700f40);}
+.vc-thumb-4{background:linear-gradient(135deg,#7a1845,#9a2458);}
+.vc-thumb-5{background:linear-gradient(135deg,#7e1a48,#a0245e);}
+.vc-thumb-6{background:linear-gradient(135deg,#600f35,#8a1e50);}
+.vc-thumb-7{background:linear-gradient(135deg,#3d0a24,#6c153f);}
+.vc-thumb-8{background:linear-gradient(135deg,#8a1e50,#b03060);}
+.vc-thumb-9{background:linear-gradient(135deg,#521035,#7a1845);}
+.vc-thumb-10{background:linear-gradient(135deg,#6c153f,#a0245e);}
+.vc-thumb-11{background:linear-gradient(135deg,#4a0e2b,#8a1e50);}
+.vc-thumb-12{background:linear-gradient(135deg,#5a1238,#9a2458);}
+.vc-thumb::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(255,255,255,0.025) 20px,rgba(255,255,255,0.025) 21px);}
+.play-btn{width:40px;height:40px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;z-index:2;transition:transform 0.2s;}
+.video-card:hover .play-btn{transform:scale(1.1);}
+.play-arrow{width:0;height:0;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:13px solid var(--navy);margin-left:3px;}
+.vc-duration{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.65);color:#fff;font-size:0.63rem;padding:2px 6px;border-radius:3px;z-index:2;}
+.vc-cat-badge{position:absolute;top:8px;left:8px;font-size:0.6rem;font-weight:700;padding:2px 7px;border-radius:8px;z-index:2;text-transform:uppercase;letter-spacing:0.04em;}
+.badge-training{background:#2a9d54;color:#fff;}
+.badge-cluster{background:#e07b00;color:#fff;}
+.badge-other{background:#1a7db5;color:#fff;}
+.vc-body{padding:0.85rem 0.9rem;}
+.vc-body h4{color:var(--navy);font-size:0.85rem;font-weight:600;line-height:1.4;margin-bottom:0.5rem;}
+.vc-body-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px;}
+.vc-meta-left{display:flex;align-items:center;gap:8px;}
+.vc-tag{display:inline-flex;align-items:center;gap:3px;font-size:0.65rem;font-weight:500;padding:2px 7px;border-radius:8px;}
+.tag-training{background:#e8f5ee;color:#2a7a44;}
+.tag-cluster{background:#fff3e6;color:#a05800;}
+.tag-other{background:#e6f2fa;color:#1a5d8a;}
+.vc-date{font-size:0.65rem;color:var(--muted);}
+.vc-views{font-size:0.65rem;color:var(--muted);display:flex;align-items:center;gap:3px;}
+.vc-views svg{width:11px;height:11px;fill:none;stroke:var(--muted);stroke-width:2;}
+
+/* ── IMAGE GRID ── */
+.image-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.image-card{border-radius:8px;overflow:hidden;cursor:pointer;position:relative;transition:box-shadow 0.2s,transform 0.15s;}
+.image-card:hover{box-shadow:0 5px 20px rgba(108,21,63,0.16);transform:translateY(-2px);}
+.img-thumb{height:170px;position:relative;overflow:hidden;}
+.img-thumb-1{background:linear-gradient(135deg,#6c153f,#8a1e50);}
+.img-thumb-2{background:linear-gradient(135deg,#4a0e2b,#700f40);}
+.img-thumb-3{background:linear-gradient(135deg,#7a1845,#9a2458);}
+.img-thumb-4{background:linear-gradient(135deg,#5a1238,#7c1a4a);}
+.img-thumb-5{background:linear-gradient(135deg,#600f35,#8a1e50);}
+.img-thumb-6{background:linear-gradient(135deg,#7e1a48,#a0245e);}
+.img-thumb-7{background:linear-gradient(135deg,#3d0a24,#6c153f);}
+.img-thumb-8{background:linear-gradient(135deg,#8a1e50,#b03060);}
+.img-thumb::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(60deg,transparent,transparent 18px,rgba(255,255,255,0.025) 18px,rgba(255,255,255,0.025) 19px);}
+.img-icon-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.img-icon-center svg{width:36px;height:36px;fill:none;stroke:rgba(255,255,255,0.25);stroke-width:1.2;}
+.img-overlay{position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,0.72));opacity:0;transition:opacity 0.2s;}
+.image-card:hover .img-overlay{opacity:1;}
+.img-zoom-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;}
+.image-card:hover .img-zoom-icon{opacity:1;}
+.img-zoom-icon svg{width:16px;height:16px;fill:none;stroke:var(--navy);stroke-width:2;}
+.img-caption{padding:0.65rem 0.8rem;background:#fff;border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;}
+.img-caption p{font-size:0.72rem;color:var(--text);font-weight:500;line-height:1.4;margin-bottom:2px;}
+.img-caption span{font-size:0.63rem;color:var(--muted);}
+.img-thumb{border-radius:8px 8px 0 0;}
+
+/* ── LIGHTBOX ── */
+.lightbox-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1000;align-items:center;justify-content:center;}
+.lightbox-overlay.open{display:flex;}
+.lightbox-box{background:#fff;border-radius:10px;overflow:hidden;max-width:560px;width:90%;position:relative;}
+.lightbox-media{height:280px;background:linear-gradient(135deg,#4a0e2b,#6c153f);display:flex;align-items:center;justify-content:center;}
+.lightbox-play{width:60px;height:60px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.lightbox-play-arrow{width:0;height:0;border-top:12px solid transparent;border-bottom:12px solid transparent;border-left:18px solid var(--navy);margin-left:4px;}
+.lightbox-info{padding:1.2rem 1.4rem;}
+.lightbox-info h3{color:var(--navy);font-size:0.98rem;font-weight:700;margin-bottom:0.4rem;}
+.lightbox-info p{color:var(--muted);font-size:0.77rem;line-height:1.6;}
+.lightbox-close{position:absolute;top:10px;right:12px;background:rgba(255,255,255,0.9);border:none;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:#333;z-index:2;}
+
+/* ── STATS BAR ── */
+.stats-bar{background:var(--navy);padding:1.2rem 2.5rem;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;}
+.stat-item{text-align:center;padding:0.6rem 1rem;}
+.stat-item .big{color:#fff;font-size:1.55rem;font-weight:700;}
+.stat-item .big sub{font-size:0.85rem;}
+.stat-item .lbl{color:rgba(255,255,255,0.65);font-size:0.72rem;margin-top:3px;}
+
+/* ── LOAD MORE ── */
+.load-more-wrap{text-align:center;margin-top:1.8rem;}
+.btn-load-more{background:#fff;color:var(--navy);border:1.5px solid var(--navy);padding:0.55rem 2rem;font-size:0.8rem;font-weight:600;border-radius:5px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;}
+.btn-load-more:hover{background:var(--navy);color:#fff;}
+
+/* ── HELP BANNER ── */
+.help-banner{background:linear-gradient(135deg,var(--navy-dark),var(--navy));padding:2rem 2.5rem;text-align:center;position:relative;overflow:hidden;}
+.help-banner::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(255,255,255,0.02) 20px,rgba(255,255,255,0.02) 21px);}
+.help-banner h3{color:#fff;font-size:1.1rem;font-weight:600;position:relative;margin-bottom:1rem;}
+.btn-support{background:#fff;color:var(--navy);padding:0.55rem 1.8rem;font-size:0.82rem;font-weight:600;border:none;border-radius:5px;cursor:pointer;font-family:'Inter',sans-serif;position:relative;}
+
+/* ── FOOTER ── */
+footer{background:var(--sky2);border-top:1px solid var(--border);padding:2rem 2.5rem;}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;margin-bottom:1.5rem;}
+.footer-col h4{color:var(--navy);font-size:0.88rem;font-weight:700;margin-bottom:0.8rem;display:flex;align-items:center;gap:6px;}
+.footer-col h4 svg{width:18px;height:18px;stroke:var(--navy);fill:none;stroke-width:1.8;}
+.footer-col p,.footer-col a{color:var(--muted);font-size:0.78rem;line-height:1.8;display:block;text-decoration:none;}
+.footer-col a:hover{color:var(--navy);}
+.footer-col a::before{content:'›';margin-right:6px;color:var(--blue-accent);}
+.footer-contact-item{display:flex;align-items:flex-start;gap:8px;color:var(--muted);font-size:0.78rem;margin-bottom:0.5rem;}
+.footer-contact-item svg{width:14px;height:14px;stroke:var(--navy);fill:none;stroke-width:2;flex-shrink:0;margin-top:2px;}
+.footer-bottom{border-top:1px solid var(--border);padding-top:1rem;display:flex;justify-content:space-between;align-items:center;}
+.footer-bottom p{color:var(--muted);font-size:0.72rem;}
+.footer-logo{display:flex;align-items:center;gap:8px;}
+.footer-logo-circle{width:26px;height:26px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.footer-logo-text{color:var(--navy);font-weight:700;font-size:0.95rem;}
+
+/* ── SECTION DIVIDER ── */
+.section-divider{height:1px;background:var(--border);margin:0 2.5rem;}
+
+/* ── TABS (top section nav) ── */
+.media-page-tabs{background:#fff;border-bottom:2px solid var(--border);padding:0 2.5rem;display:flex;gap:0;position:sticky;top:48px;z-index:100;}
+.media-tab{padding:0.85rem 1.2rem;font-size:0.82rem;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;display:flex;align-items:center;gap:6px;transition:color 0.15s;white-space:nowrap;}
+.media-tab svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;}
+.media-tab:hover{color:var(--navy);}
+.media-tab.active{color:var(--navy);border-bottom-color:var(--navy);font-weight:600;}
+.tab-count{background:var(--sky);color:var(--navy);font-size:0.62rem;font-weight:700;padding:1px 6px;border-radius:8px;}
+.media-tab.active .tab-count{background:var(--navy);color:#fff;}
+</style>
+</head>
+<body>
+
+<!-- UTILITY BAR -->
+<div class="topbar">
+  <button class="topbar-btn">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+    Bhasini
+  </button>
+  <div class="topbar-divider"></div>
+  <button class="topbar-btn">
+    <svg viewBox="0 0 24 24"><path d="M5 8l6 6M4 6h7M2 6h2m12 12l4 4m-4-4l-4 4m4-4V11a4 4 0 00-4-4h-1"/><path d="M11 6a9 9 0 010 12"/></svg>
+    Translate
+  </button>
+  <div class="topbar-divider"></div>
+  <button class="topbar-btn">
+    <svg viewBox="0 0 24 24"><text x="4" y="18" font-size="14" font-weight="700" fill="#6c153f" stroke="none">A</text><text x="13" y="14" font-size="9" fill="#6c153f" stroke="none">A</text></svg>
+    A&thinsp;A
+  </button>
+  <div class="topbar-divider"></div>
+  <button class="topbar-btn">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M6 20v-2a6 6 0 0112 0v2"/><path d="M3 13s2-2 9-2 9 2 9 2"/></svg>
+    Accessibility
+  </button>
+</div>
+
+<!-- LOGO BAR -->
+<div class="logobar">
+  <div class="logobar-left">
+    <div class="logo-emblem">
+      <img src="images/Textiles_Committee_Logo_2.png">
+     </div>
+    <div class="logo-text-block">
+      <div class="logo-title">Textile Export Facilitation Centre (TEFC)</div>
+      <div class="logo-subtitle">Under the initiative of Textiles Committee, Ministry of Textiles, Government of India</div>
+    </div>
+  </div>
+  <div>
+    
+  </div>
+</div>
+
+<!-- MAIN NAV -->
+  <nav>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="TEFC_About.html">About TEFC <span class="arr">▼</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="TEFC_About.html">Overview</a></li>
+          <li><a href="TEFC_About.html">Mission &amp; Vision</a></li>
+          <li><a href="TEFC_About.html">Objectives</a></li>
+          <li><a href="TEFC_About.html">Organisational Structure</a></li>
+          <li><a href="TEFC_About.html">Partners</a></li>
+        </ul>
+      </li>
+      <li><a href="#">6 TEFC's <span class="arr">▼</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="tefc_clusters_page.html">Karur</a></li>
+          <li><a href="tefc_clusters_page.html">Surat</a></li>
+          <li><a href="tefc_clusters_page.html">Ichalkaranji</a></li>
+          <li><a href="tefc_clusters_page.html">Jaipur</a></li>
+          <li><a href="tefc_clusters_page.html">Varanasi</a></li>
+          <li><a href="tefc_clusters_page.html">Ludhiana</a></li>
+        </ul>
+      </li>
+      <li><a href="#">FTA Benefits</a></li>
+      <li><a href="#">Online Services</a></li>
+      <li><a href="tefc_exporter_portal_v4.html">Exporter Portal</a></li>
+      <li><a href="TEFC_Media_Center.html">Media Center</a></li>
+      <li><a href="#">Resources <span class="arr">▼</span></a>
+        <ul class="dropdown-menu">
+          <li><a href="TEFC_Resources.html">Market Opportunities</a></li>
+          <li><a href="TEFC_Resources.html">Export Process</a></li>
+          <li><a href="TEFC_Resources.html">Trade Fairs</a></li>
+          <li><a href="TEFC_Resources.html">Government Schemes</a></li>
+          <li><a href="TEFC_Resources.html">FTA/PTA List</a></li>
+        </ul>
+      </li>
+      <li><a href="TEFC_News.html">News</a></li>
+      <li><a href="help_and_ support.html">Help &amp; Support</a></li>
+    </ul>
+    <div class="nav-actions">
+      
+      <div class="nav-search">
+        <input type="text" placeholder="Search..." />
+        <button><svg viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg></button>
+      </div>
+    </div>
+  </nav>
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="#">Home</a><span class="sep">›</span><span class="cur">Media Center</span>
+    </div>
+    <h1>Media Center</h1>
+    <p>Access training videos, cluster highlights, event coverage, photo galleries and more — all in one place for India's textile export community.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+        36 Videos
+      </div>
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        48 Images
+      </div>
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Updated Monthly
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MEDIA PAGE SECTION TABS -->
+<div class="media-page-tabs">
+  <div class="media-tab active" onclick="scrollToSection('training')">
+    <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+    Training Videos
+    <span class="tab-count">12</span>
+  </div>
+  <div class="media-tab" onclick="scrollToSection('cluster')">
+    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+    Cluster Videos
+    <span class="tab-count">10</span>
+  </div>
+  <div class="media-tab" onclick="scrollToSection('other')">
+    <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+    Other Videos
+    <span class="tab-count">14</span>
+  </div>
+  <div class="media-tab" onclick="scrollToSection('images')">
+    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    Photo Gallery
+    <span class="tab-count">48</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- SECTION 1: TRAINING VIDEOS                           -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section class="section" id="training">
+  <div class="sec-head-row">
+    <div class="sec-head">
+      <h2>
+        <div class="sec-icon"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
+        Training Videos
+      </h2>
+      <p>Capacity building &amp; skill development sessions for textile exporters and MSMEs</p>
+      <div class="sec-head-line"></div>
+    </div>
+    <button class="view-all-btn">View All Training Videos ›</button>
+  </div>
+
+  <!-- Filter -->
+  <div class="filter-bar">
+    <button class="filter-tab active">All</button>
+    <button class="filter-tab">Export Procedures</button>
+    <button class="filter-tab">Quality Standards</button>
+    <button class="filter-tab">Documentation</button>
+    <button class="filter-tab">FTA Orientation</button>
+    <button class="filter-tab">MSME Capacity</button>
+  </div>
+
+  <!-- Featured Training Video -->
+  <div class="featured-video-wrap">
+    <div class="featured-thumb" onclick="openLightbox('Export Readiness Training — Batch 5', 'A comprehensive session on export documentation, compliance checklists, and FTA route guidance for MSME textile manufacturers.')">
+      <div class="featured-badge">⭐ Featured</div>
+      <div class="featured-play"><div class="featured-play-arrow"></div></div>
+      <div class="featured-duration">42:18</div>
+    </div>
+    <div class="featured-info">
+      <div class="featured-tag">
+        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        Training
+      </div>
+      <h3>Export Readiness Training — Batch 5</h3>
+      <p>A comprehensive walkthrough of export documentation, compliance procedures, and FTA route guidance designed specifically for MSME textile manufacturers across India.</p>
+      <div class="featured-meta">
+        <div class="featured-meta-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          42 min
+        </div>
+        <div class="featured-meta-item">
+          <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          2,840 views
+        </div>
+        <div class="featured-meta-item">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          March 2025
+        </div>
+      </div>
+      <button class="btn-watch" onclick="openLightbox('Export Readiness Training — Batch 5','A comprehensive session on export documentation and FTA guidance.')">
+        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3" fill="#fff"/></svg>
+        Watch Now
+      </button>
+    </div>
+  </div>
+
+  <!-- Training Video Grid -->
+  <div class="video-grid">
+    <!-- Card 1 -->
+    <div class="video-card" onclick="openLightbox('Introduction to Export Documentation','An introductory guide to all key documents required for textile exports under DGFT regulations.')">
+      <div class="vc-thumb vc-thumb-1">
+        <span class="vc-cat-badge badge-training">Training</span>
+        <div class="play-btn"><div class="play-arrow"></div></div>
+        <div class="vc-duration">28:45</div>
+      </div>
+      <div class="vc-body">
+        <h4>Introduction to Export Documentation</h4>
+        <div class="vc-body-meta">
+          <div class="vc-meta-left"><span class="vc-tag tag-training">Training</span><span class="vc-date">Jan 2025</span></div>
+          <div class="vc-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>1.2K</div>
+        </div>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="video-card" onclick="openLightbox('Quality Compliance for Global Markets','A deep dive into international textile quality standards including ISO, OEKO-TEX, and buyer requirements.')">
+      <div class="vc-thumb vc-thumb-2">
+        <span class="vc-cat-badge badge-training">Training</span>
+        <div class="play-btn"><div class="play-arrow"></div></div>
+        <div class="vc-duration">35:10</div>
+      </div>
+      <div class="vc-body">
+        <h4>Quality Compliance for Global Markets</h4>
+        <div class="vc-body-meta">
+          <div class="vc-meta-left"><span class="vc-tag tag-training">Training</span><span class="vc-date">Feb 2025</span></div>
+          <div class="vc-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>980</div>
+        </div>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="video-card" onclick="openLightbox('RoDTEP & PLI Scheme Walkthrough','Step-by-step guidance on how to apply for and benefit from the RoDTEP and PLI government schemes.')">
+      <div class="vc-thumb vc-thumb-3">
+        <span class="vc-cat-badge badge-training">Training</span>
+        <div class="play-btn"><div class="play-arrow"></div></div>
+        <div class="vc-duration">22:30</div>
+      </div>
+      <div class="vc-body">
+        <h4>RoDTEP &amp; PLI Scheme Walkthrough</h4>
+        <div class="vc-body-meta">
+          <div class="vc-meta-left"><span class="vc-tag tag-training">Training</span><span class="vc-date">Dec 2024</span></div>
+          <div class="vc-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>1.5K</div>
+        </div>
+      </div>
+    </div>
+    <!-- Card 4 -->
+    <div class="video-card" onclick="openLightbox('FTA Utilisation for Textile Exporters','Understand how to leverage India\'s Free Trade Agreements to reduce duty burden and expand markets.')">
+      <div class="vc-thumb vc-thumb-4">
+        <span class="vc-cat-badge badge-training">Training</span>
+        <div class="play-btn"><div class="play-arrow"></div></div>
+        <div class="vc-duration">31:55</div>
+      </div>
+      <div class="vc-body">
+        <h4>FTA Utilisation for Textile Exporters</h4>
+        <div class="vc-body-meta">
+          <div class="vc-meta-left"><span class="vc-tag tag-training">Training</span><span class="vc-date">Nov 2024</span></div>
+          <div class="vc-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>2.1K</div>
+        </div>
+      </div>
+    </div>
+    <!-- Card 5 -->
+    <div class="video-card" onclick="openLightbox('Packaging & Labelling Standards','Best practices for international textile packaging, labelling requirements, and country-specific regulations.')">
+      <div class="vc-thumb vc-thumb-5">
+        <span class="vc-cat-badge badge-training">Training</span>
+        <div class="play-btn"><div class="play-arrow"></div></div>
+        <div class="vc-duration">18:20</div>
+      </div>
+      <div class="vc-body">
+        <h4>Packaging &amp; Labelling Standards</h4>
+        <div class="vc-body-meta">
+          <div class="vc-meta-left"><span class="vc-tag tag-training">Training</span><span class="vc-date">Oct 2024</span></div>
+          <div class="vc-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>750</div>
+        </div>
+      </div>
+    </div>
+    <!-- Card 6 -->
+    <div class="video-card" onclick="openLightbox('Digital Tools for MSME Exporters','Leveraging e-commerce, trade portals, and digital payments for textile export businesses.')">
+      <div class="vc-thumb vc-thumb-6">
+        <span class="vc-cat-badge badge-training">Training</span>
+        <div class="play-btn"><div class="play-arrow"></div></div>
+        <div class="vc-duration">26:00</div>
+      </div>
+      <div class="vc-body">
+        <h4>Digital Tools for MSME Exporters</h4>
+        <div class="vc-body-meta">
+          <div class="vc-meta-left"><span class="vc-tag tag-training">Training</span><span class="vc-date">Sep 2024</span></div>
+          <div class="vc-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>1.8K</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="load-more-wrap"><button class="btn-load-more">Load More Training Videos</button></div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- SECTION 2: CLUSTER VIDEOS                            -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section class="section section-alt" id="cluster">
+  <div class="sec-head-row">
+    <div class="sec-head">
+      <h2>
+        <div class="sec-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div>
+        Cluster Videos
+      </h2>
+      <p>Showcasing India's premier textile clusters — stories of craft, community and commerce</p>
+      <div class="sec-head-line"></div>
+    </div>
+    <button class="view-all-btn">View All Cluster Videos ›</button>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-tab active">All Clusters</button>
+    <button class="filter-tab">Karur</button>
+    <button class="filter-tab">Surat</button>
+    <button class="filter-tab">Ichalkaranji</button>
+    <button class="filter-tab">Jaipur</button>
+    <button class="filter-tab">Varanasi</button>
+    <button class="filter-tab">Ludhiana</button>
+  </div>
+
+  <!-- Featured Cluster Video -->
+  <div class="featured-video-wrap">
+    <div class="featured-thumb" onclick="openLightbox('Karur Cluster — Weaving a Global Story','An in-depth documentary on the Karur textile cluster — home linen, bedsheets and the artisans driving India\'s home textile exports.')">
+      <div class="featured-badge">🏆 Spotlight</div>
+      <div class="featured-play"><div class="featured-play-arrow"></div></div>
+      <div class="featured-duration">18:42</div>
+    </div>
+    <div class="featured-info">
+      <div class="featured-tag">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        Cluster
+      </div>
+      <h3>Karur Cluster — Weaving a Global Story</h3>
+      <p>An in-depth documentary on the Karur textile cluster — home linen, bed sheets and the artisans driving India's home textile exports. From loom to logistics, a complete view.</p>
+      <div class="featured-meta">
+        <div class="featured-meta-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          18 min
+        </div>
+        <div class="featured-meta-item">
+          <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          4,210 views
+        </div>
+        <div class="featured-meta-item">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          April 2025
+        </div>
+      </div>
+      <button class="btn-watch" onclick="openLightbox('Karur Cluster — Weaving a Global Story','An in-depth documentary on the Karur textile cluster.')">
+        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3" fill="#fff"/></svg>
+        Watch Now
+      </button>
+    </div>
+  </div>
+
+  <div class="video-grid">
+    <div class="video-card" onclick="openLightbox('Surat Synthetic Textiles — The Fabric City','Surat processes over 40% of India\'s synthetic fabrics. This documentary explores the city\'s export journey.')">
+      <div class="vc-thumb vc-thumb-7">
+        <span class="vc-cat-badge badge-cluster">Cluster</span>
+        <div class="play-btn"><div class="play-arrow"></div></div>
+        <div class="vc-duration">14:30</div>
+      </div>
+      <div class="vc-body">
+        <h4>Surat — The Synthetic Fabric City</h4>
+        <div class="vc-body-meta">
+          <div class="vc-meta-left"><span class="vc-tag tag-cluster">Surat</span><span class="vc-date">Mar 2025</span></div>
+          <div class="vc-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>3.4K</div>
+        </div>
+      </div>
+    </div>
+    <div class="video-card" onclick="openLightbox('Varanasi Banarasi Silk — Heritage in Every Thread','The story of Varanasi\'s iconic Banarasi sarees and how GI-tagged heritage products are reaching global markets.')">
+      <div class="vc-thumb vc-thumb-8">
+        <span class="vc-cat-badge badge-cluster">Cluster</span>
+        <div class="play-btn"><div class="play-arrow"></div></div>
+        <div class="vc-duration">20:05</div>
+      </div>
+      <div class="vc-body">
+        <h4>Varanasi — Heritage in Every Thread</h4>
+        <div class="vc-body-meta">
+          <div class="vc-meta-left"><span class="vc-tag tag-cluster">Varanasi</span><span class="vc-date">Feb 2025</span></div>
+          <div class="vc-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>5.1K</div>
+        </div>
+      </div>
+    </div>
+    <div class="video-card" onclick="openLightbox('Ludhiana Knitwear Hub — Powering Punjab\'s Exports','India\'s knitwear capital Ludhiana and how its MSME units are scaling up for international markets.')">
+      <div class="vc-thumb vc-thumb-9">
+        <span class="vc-cat-badge badge-cluster">Cluster</span>
+        <div class="play-btn"><div class="play-arrow"></div></div>
+        <div class="vc-duration">16:50</div>
+      </div>
+      <div class="vc-body">
+        <h4>Ludhiana — Powering Punjab's Exports</h4>
+        <div class="vc-body-meta">
+          <div class="vc-meta-left"><span class="vc-tag tag-cluster">Ludhiana</span><span class="vc-date">Jan 2025</span></div>
+          <div class="vc-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>2.6K</div>
+        </div>
+      </div>
+    </div>
+    <div class="video-card" onclick="openLightbox('Jaipur Block Prints — Art Meets Export','The colourful world of Jaipur block print textiles and the artisan communities behind India\'s ethnic fashion exports.')">
+      <div class="vc-thumb vc-thumb-10">
+        <span class="vc-cat-badge badge-cluster">Cluster</span>
+        <div class="play-btn"><div class="play-arrow"></div></div>
+        <div class="vc-duration">12:40</div>
+      </div>
+      <div class="vc-body">
+        <h4>Jaipur — Art Meets Export</h4>
+        <div class="vc-body-meta">
+          <div class="vc-meta-left"><span class="vc-tag tag-cluster">Jaipur</span><span class="vc-date">Dec 2024</span></div>
+          <div class="vc-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>3.8K</div>
+        </div>
+      </div>
+    </div>
+    <div class="video-card" onclick="openLightbox('Ichalkaranji Powerloom Centre','Maharashtra\'s powerloom capital and its contribution to India\'s cotton fabric supply chain.')">
+      <div class="vc-thumb vc-thumb-11">
+        <span class="vc-cat-badge badge-cluster">Cluster</span>
+        <div class="play-btn"><div class="play-arrow"></div></div>
+        <div class="vc-duration">15:20</div>
+      </div>
+      <div class="vc-body">
+        <h4>Ichalkaranji — Powerloom Heartland</h4>
+        <div class="vc-body-meta">
+          <div class="vc-meta-left"><span class="vc-tag tag-cluster">Ichalkaranji</span><span class="vc-date">Nov 2024</span></div>
+          <div class="vc-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>1.9K</div>
+        </div>
+      </div>
+    </div>
+    <div class="video-card" onclick="openLightbox('Cluster Success Stories — MSME Spotlights','Individual MSME exporter success stories from across the 6 TEFC clusters, in their own words.')">
+      <div class="vc-thumb vc-thumb-12">
+        <span class="vc-cat-badge badge-cluster">Cluster</span>
+        <div class="play-btn"><div class="play-arrow"></div></div>
+        <div class="vc-duration">24:15</div>
+      </div>
+      <div class="vc-body">
+        <h4>Cluster Success Stories — MSME Spotlights</h4>
+        <div class="vc-body-meta">
+          <div class="vc-meta-left"><span class="vc-tag tag-cluster">All Clusters</span><span class="vc-date">Oct 2024</span></div>
+          <div class="vc-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>4.0K</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="load-more-wrap"><button class="btn-load-more">Load More Cluster Videos</button></div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- SECTION 3: OTHER VIDEOS                              -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section class="section" id="other">
+  <div class="sec-head-row">
+    <div class="sec-head">
+      <h2>
+        <div class="sec-icon"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+        Other Videos
+      </h2>
+      <p>Events, webinars, policy briefings, trade fair coverage and more</p>
+      <div class="sec-head-line"></div>
+    </div>
+    <button class="view-all-btn">View All Other Videos ›</button>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-tab active">All</button>
+    <button class="filter-tab">Events &amp; Trade Fairs</button>
+    <button class="filter-tab">Webinars</button>
+    <button class="filter-tab">Policy Updates</button>
+    <button class="filter-tab">Interviews</button>
+  </div>
+
+  <div class="video-grid">
+    <div class="video-card" onclick="openLightbox('India International Textile Expo 2025 Highlights','Highlights from the IITEX 2025 trade fair featuring 400+ exhibitors and buyers from 30 countries.')">
+      <div class="vc-thumb vc-thumb-2">
+        <span class="vc-cat-badge badge-other">Event</span>
+        <div class="play-btn"><div class="play-arrow"></div></div>
+        <div class="vc-duration">08:30</div>
+      </div>
+      <div class="vc-body">
+        <h4>IITEX 2025 — Trade Fair Highlights</h4>
+        <div class="vc-body-meta">
+          <div class="vc-meta-left"><span class="vc-tag tag-other">Event</span><span class="vc-date">Apr 2025</span></div>
+          <div class="vc-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>6.2K</div>
+        </div>
+      </div>
+    </div>
+    <div class="video-card" onclick="openLightbox('Budget 2025 — What It Means for Textile Exporters','A post-budget analysis webinar on key allocations, duty changes, and new incentives for the textile sector.')">
+      <div class="vc-thumb vc-thumb-4">
+        <span class="vc-cat-badge badge-other">Webinar</span>
+        <div class="play-btn"><div class="play-arrow"></div></div>
+        <div class="vc-duration">52:10</div>
+      </div>
+      <div class="vc-body">
+        <h4>Budget 2025 — Textile Sector Analysis</h4>
+        <div class="vc-body-meta">
+          <div class="vc-meta-left"><span class="vc-tag tag-other">Webinar</span><span class="vc-date">Feb 2025</span></div>
+          <div class="vc-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>3.1K</div>
+        </div>
+      </div>
+    </div>
+    <div class="video-card" onclick="openLightbox('Minister\'s Address — TEFC Launch Ceremony','Secretary, Ministry of Textiles addresses the launch of TEFC\'s expanded operations across 6 clusters.')">
+      <div class="vc-thumb vc-thumb-6">
+        <span class="vc-cat-badge badge-other">Policy</span>
+        <div class="play-btn"><div class="play-arrow"></div></div>
+        <div class="vc-duration">11:55</div>
+      </div>
+      <div class="vc-body">
+        <h4>Ministry Address — TEFC Launch Ceremony</h4>
+        <div class="vc-body-meta">
+          <div class="vc-meta-left"><span class="vc-tag tag-other">Policy</span><span class="vc-date">Jan 2025</span></div>
+          <div class="vc-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>7.8K</div>
+        </div>
+      </div>
+    </div>
+    <div class="video-card" onclick="openLightbox('Interview: Exporter Success from Karur','Mr. Ramachandran, Karur exporter, shares how TEFC helped him break into European markets for home textiles.')">
+      <div class="vc-thumb vc-thumb-1">
+        <span class="vc-cat-badge badge-other">Interview</span>
+        <div class="play-btn"><div class="play-arrow"></div></div>
+        <div class="vc-duration">09:40</div>
+      </div>
+      <div class="vc-body">
+        <h4>Interview: Exporter Success from Karur</h4>
+        <div class="vc-body-meta">
+          <div class="vc-meta-left"><span class="vc-tag tag-other">Interview</span><span class="vc-date">Dec 2024</span></div>
+          <div class="vc-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>2.2K</div>
+        </div>
+      </div>
+    </div>
+    <div class="video-card" onclick="openLightbox('Texworld Paris 2024 — India Pavilion','Coverage of India\'s participation at Texworld Paris 2024, featuring TEFC-supported clusters.')">
+      <div class="vc-thumb vc-thumb-3">
+        <span class="vc-cat-badge badge-other">Event</span>
+        <div class="play-btn"><div class="play-arrow"></div></div>
+        <div class="vc-duration">07:15</div>
+      </div>
+      <div class="vc-body">
+        <h4>Texworld Paris 2024 — India Pavilion</h4>
+        <div class="vc-body-meta">
+          <div class="vc-meta-left"><span class="vc-tag tag-other">Event</span><span class="vc-date">Sep 2024</span></div>
+          <div class="vc-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>4.5K</div>
+        </div>
+      </div>
+    </div>
+    <div class="video-card" onclick="openLightbox('Sustainability Webinar — Eco-Textiles & Green Export','Industry experts discuss sustainable textile production, certification, and market access for green products.')">
+      <div class="vc-thumb vc-thumb-5">
+        <span class="vc-cat-badge badge-other">Webinar</span>
+        <div class="play-btn"><div class="play-arrow"></div></div>
+        <div class="vc-duration">48:00</div>
+      </div>
+      <div class="vc-body">
+        <h4>Sustainability Webinar — Eco-Textiles &amp; Green Export</h4>
+        <div class="vc-body-meta">
+          <div class="vc-meta-left"><span class="vc-tag tag-other">Webinar</span><span class="vc-date">Aug 2024</span></div>
+          <div class="vc-views"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>2.9K</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="load-more-wrap"><button class="btn-load-more">Load More Videos</button></div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="big">36<sub>+</sub></div>
+    <div class="lbl">Total Videos</div>
+  </div>
+  <div class="stat-item">
+    <div class="big">1.2<sub>L+</sub></div>
+    <div class="lbl">Total Views</div>
+  </div>
+  <div class="stat-item">
+    <div class="big">48<sub>+</sub></div>
+    <div class="lbl">Photo Galleries</div>
+  </div>
+  <div class="stat-item">
+    <div class="big">6</div>
+    <div class="lbl">Cluster Coverage</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- SECTION 4: PHOTO GALLERY                             -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section class="section section-alt" id="images">
+  <div class="sec-head-row">
+    <div class="sec-head">
+      <h2>
+        <div class="sec-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+        Photo Gallery
+      </h2>
+      <p>Images from cluster visits, training programmes, trade events and government initiatives</p>
+      <div class="sec-head-line"></div>
+    </div>
+    <button class="view-all-btn">View Full Gallery ›</button>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-tab active">All Photos</button>
+    <button class="filter-tab">Cluster Visits</button>
+    <button class="filter-tab">Training Sessions</button>
+    <button class="filter-tab">Trade Fairs</button>
+    <button class="filter-tab">Inaugurations</button>
+    <button class="filter-tab">Artisans</button>
+  </div>
+
+  <div class="image-grid">
+    <!-- Row 1 -->
+    <div class="image-card" onclick="openImgLightbox('Karur Weaving Unit — Shop Floor Visit')">
+      <div class="img-thumb img-thumb-1">
+        <div class="img-icon-center"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+        <div class="img-overlay"></div>
+        <div class="img-zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </div>
+      <div class="img-caption"><p>Karur Weaving Unit — Shop Floor</p><span>Cluster Visit · Feb 2025</span></div>
+    </div>
+    <div class="image-card" onclick="openImgLightbox('Export Training Programme — Surat Batch')">
+      <div class="img-thumb img-thumb-2">
+        <div class="img-icon-center"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+        <div class="img-overlay"></div>
+        <div class="img-zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </div>
+      <div class="img-caption"><p>Export Training Programme — Surat</p><span>Training Session · Jan 2025</span></div>
+    </div>
+    <div class="image-card" onclick="openImgLightbox('IITEX 2025 — India Pavilion Inauguration')">
+      <div class="img-thumb img-thumb-3">
+        <div class="img-icon-center"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+        <div class="img-overlay"></div>
+        <div class="img-zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </div>
+      <div class="img-caption"><p>IITEX 2025 — Inauguration</p><span>Trade Fair · Apr 2025</span></div>
+    </div>
+    <div class="image-card" onclick="openImgLightbox('Varanasi Silk Artisans — GI Workshop')">
+      <div class="img-thumb img-thumb-4">
+        <div class="img-icon-center"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+        <div class="img-overlay"></div>
+        <div class="img-zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </div>
+      <div class="img-caption"><p>Varanasi Silk Artisans — GI Workshop</p><span>Artisans · Dec 2024</span></div>
+    </div>
+    <!-- Row 2 -->
+    <div class="image-card" onclick="openImgLightbox('Ludhiana Knitwear Factory — Quality Inspection')">
+      <div class="img-thumb img-thumb-5">
+        <div class="img-icon-center"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+        <div class="img-overlay"></div>
+        <div class="img-zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </div>
+      <div class="img-caption"><p>Ludhiana — Quality Inspection Visit</p><span>Cluster Visit · Nov 2024</span></div>
+    </div>
+    <div class="image-card" onclick="openImgLightbox('Jaipur Block Print Workshop — Master Artisan')">
+      <div class="img-thumb img-thumb-6">
+        <div class="img-icon-center"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+        <div class="img-overlay"></div>
+        <div class="img-zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </div>
+      <div class="img-caption"><p>Jaipur Block Print Workshop</p><span>Artisans · Oct 2024</span></div>
+    </div>
+    <div class="image-card" onclick="openImgLightbox('TEFC Office Launch — Ichalkaranji')">
+      <div class="img-thumb img-thumb-7">
+        <div class="img-icon-center"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+        <div class="img-overlay"></div>
+        <div class="img-zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </div>
+      <div class="img-caption"><p>TEFC Office Launch — Ichalkaranji</p><span>Inauguration · Sep 2024</span></div>
+    </div>
+    <div class="image-card" onclick="openImgLightbox('Texworld Paris 2024 — Buyer Meetings')">
+      <div class="img-thumb img-thumb-8">
+        <div class="img-icon-center"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+        <div class="img-overlay"></div>
+        <div class="img-zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></div>
+      </div>
+      <div class="img-caption"><p>Texworld Paris — Buyer Meetings</p><span>Trade Fair · Sep 2024</span></div>
+    </div>
+  </div>
+  <div class="load-more-wrap"><button class="btn-load-more">Load More Photos</button></div>
+</section>
+
+<!-- HELP BANNER -->
+<div class="help-banner">
+  <h3>Need Assistance? We're here to help.</h3>
+  <button class="btn-support">Contact Support</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        About TEFC
+      </h4>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        123 Textile Road, New Delhi
+      </div>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        info@tefc.gov.in
+      </div>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.11 1.18 2 2 0 012.09 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        +91 12356 67890
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>
+        <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+        Quick Links
+      </h4>
+      <a href="#">Homepage</a>
+      <a href="#">About TEFC</a>
+      <a href="#">Clusters</a>
+      <a href="#">Online Services</a>
+      <a href="#">FTA Benefits</a>
+      <a href="#">Media Center</a>
+    </div>
+    <div class="footer-col">
+      <h4>
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        Contact Us
+      </h4>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        123 Textile Road, New Delhi
+      </div>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        contact@tefc.gov.in
+      </div>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.11 1.18 2 2 0 012.09 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Phone: +91 12335 6790
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Textiles Exports Facilitation Centre (TEFC) | Ministry of Textiles, Government of India</p>
+    <div class="footer-logo">
+      <div class="footer-logo-circle">
+        <svg viewBox="0 0 20 20" width="14" height="14" fill="none"><path d="M4 10s2-4 6-4 6 4 6 4-2 4-6 4-6-4-6-4z" stroke="#fff" stroke-width="1.5"/><circle cx="10" cy="10" r="2" stroke="#fff" stroke-width="1.5"/></svg>
+      </div>
+      <span class="footer-logo-text">TEFC</span>
+    </div>
+  </div>
+</footer>
+
+<!-- LIGHTBOX (Video) -->
+<div class="lightbox-overlay" id="videoLightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-box">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <div class="lightbox-media">
+      <div class="lightbox-play"><div class="lightbox-play-arrow"></div></div>
+    </div>
+    <div class="lightbox-info">
+      <h3 id="lbTitle">Video Title</h3>
+      <p id="lbDesc">Video description goes here.</p>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX (Image) -->
+<div class="lightbox-overlay" id="imgLightbox" onclick="closeImgLightbox(event)">
+  <div class="lightbox-box">
+    <button class="lightbox-close" onclick="closeImgLightbox()">✕</button>
+    <div class="lightbox-media" style="background:linear-gradient(135deg,#4a0e2b,#8a1e50);">
+      <div style="text-align:center;color:rgba(255,255,255,0.5);">
+        <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      </div>
+    </div>
+    <div class="lightbox-info">
+      <h3 id="lbImgTitle">Image Title</h3>
+      <p style="font-size:0.74rem;color:var(--muted);">High-resolution image preview — click download to save.</p>
+      <button style="margin-top:0.8rem;background:var(--navy);color:#fff;border:none;padding:0.42rem 1.1rem;border-radius:4px;font-size:0.76rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;">⬇ Download Image</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelectorAll('.media-tab').forEach(t => t.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+}
+function openLightbox(title, desc) {
+  document.getElementById('lbTitle').textContent = title;
+  document.getElementById('lbDesc').textContent = desc;
+  document.getElementById('videoLightbox').classList.add('open');
+}
+function closeLightbox(e) {
+  if (!e || e.target === document.getElementById('videoLightbox') || e.target.classList.contains('lightbox-close')) {
+    document.getElementById('videoLightbox').classList.remove('open');
+  }
+}
+function openImgLightbox(title) {
+  document.getElementById('lbImgTitle').textContent = title;
+  document.getElementById('imgLightbox').classList.add('open');
+}
+function closeImgLightbox(e) {
+  if (!e || e.target === document.getElementById('imgLightbox') || e.target.classList.contains('lightbox-close')) {
+    document.getElementById('imgLightbox').classList.remove('open');
+  }
+}
+// Filter tab click
+document.querySelectorAll('.filter-bar').forEach(bar => {
+  bar.querySelectorAll('.filter-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      bar.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+});
+// Sticky tab highlight on scroll
+const sections = ['training','cluster','other','images'];
+const tabs = document.querySelectorAll('.media-tab');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 130) current = id;
+  });
+  tabs.forEach((tab, i) => {
+    tab.classList.toggle('active', sections[i] === current);
+  });
+});
+</script>
+</body>
+</html>
