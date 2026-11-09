@@ -503,6 +503,27 @@
   min-width: 960px;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  padding-top: 32px;
+}
+.org-stem-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 34px;
+  background: var(--accent-gold);
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.org-horizontal-bus {
+  position: absolute;
+  top: 32px;
+  left: calc(100% / 12);
+  right: calc(100% / 12);
+  height: 2px;
+  background: var(--accent-gold);
+  z-index: 2;
 }
 .org-tree-branches {
   display: flex;
@@ -520,44 +541,13 @@
   padding: 0 8px;
 }
 
-/* Branch top connector bars */
-.org-col-top-bar {
-  position: relative;
-  width: 100%;
-  height: 28px;
-}
-/* Horizontal line segment across column */
-.org-col-top-bar::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  height: 2px;
-  background: var(--accent-gold);
-  left: 0;
-  right: 0;
-}
-/* First column: line starts at center (50%) */
-.org-tree-col:first-child .org-col-top-bar::before {
-  left: 50%;
-}
-/* Last column: line ends at center (50%) */
-.org-tree-col:last-child .org-col-top-bar::before {
-  right: 50%;
-}
-/* Single column (if only 1 column): no horizontal line */
-.org-tree-col:only-child .org-col-top-bar::before {
-  display: none;
-}
-/* Vertical drop line from horizontal bus into the top card */
-.org-col-top-bar::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
+/* Vertical drop line from horizontal bus into each column's top card */
+.org-col-drop-line {
   width: 2px;
-  height: 100%;
+  height: 26px;
   background: var(--accent-gold);
-  transform: translateX(-50%);
+  margin: 0 auto;
+  flex-shrink: 0;
 }
 
 /* Intra-column vertical connecting lines */
@@ -1000,7 +990,6 @@
         <div class="org-node org-node-level2">{{ $orgData['level_2'] ?? 'Textiles Committee' }}</div>
         <div class="org-line"></div>
         <div class="org-node org-node-level3">{{ $orgData['level_3'] ?? 'Textiles Export Facilitation Center (TEFC)' }}</div>
-        <div class="org-line"></div>
         
         <div class="org-tree-outer">
           <div class="org-tree-inner">
@@ -1044,11 +1033,15 @@
               }
             @endphp
 
+            <!-- Single continuous stem and horizontal bus bar -->
+            <div class="org-stem-line"></div>
+            <div class="org-horizontal-bus" style="left: calc(100% / {{ count($columns) * 2 }}); right: calc(100% / {{ count($columns) * 2 }});"></div>
+
             <div class="org-tree-branches">
               @foreach($columns as $col)
                 <div class="org-tree-col">
-                  <!-- Branch top bus connector -->
-                  <div class="org-col-top-bar"></div>
+                  <!-- Drop line from horizontal bus into cluster card -->
+                  <div class="org-col-drop-line"></div>
 
                   <!-- Tier 1: Cluster Name -->
                   <div class="org-branch-node org-node-cluster">{{ $col['cluster'] }}</div>
