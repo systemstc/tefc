@@ -325,7 +325,7 @@
             @if(isset($headerMenu) && $headerMenu->items->count() > 0)
                 @foreach($headerMenu->items as $item)
                     <li class="{{ Request::is(trim($item->url, '/')) ? 'active' : '' }}">
-                        <a href="{{ $item->final_url }}">
+                        <a href="{{ $item->final_url }}" @if(Str::startsWith($item->final_url, 'http') && !Str::contains($item->final_url, request()->getHost())) target="_blank" rel="noopener noreferrer" @endif>
                             {{ $item->label }}
                             @if($item->children->count() > 0)
                                 <span class="arr">▼</span>
@@ -334,7 +334,7 @@
                         @if($item->children->count() > 0)
                             <ul class="dropdown-menu">
                                 @foreach($item->children as $child)
-                                    <li><a href="{{ $child->final_url }}">{{ $child->label }}</a></li>
+                                    <li><a href="{{ $child->final_url }}" @if(Str::startsWith($child->final_url, 'http') && !Str::contains($child->final_url, request()->getHost())) target="_blank" rel="noopener noreferrer" @endif>{{ $child->label }}</a></li>
                                 @endforeach
                             </ul>
                         @endif
@@ -345,6 +345,7 @@
             @else
                 <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/">Home</a></li>
                 <li class="{{ Request::is('p/about*') ? 'active' : '' }}"><a href="/p/about">About</a></li>
+                <li><a href="https://textilescommittee.gov.in" target="_blank" rel="noopener noreferrer">About TC</a></li>
                 <li class="{{ Request::is('p/clusters*') ? 'active' : '' }}"><a href="/p/clusters">Clusters</a></li>
                 <li class="{{ Request::is('resources*') ? 'active' : '' }}"><a href="/resources">Resources</a></li>
                 <li class="{{ Request::is('p/fta-benefits*') ? 'active' : '' }}"><a href="/p/fta-benefits">FTA Benefits</a></li>
@@ -461,6 +462,7 @@
                     <ul class="tefc-footer-menu-grid">
                         <li><a href="{{ url('/') }}"><i class="fas fa-angle-right"></i> Home</a></li>
                         <li><a href="{{ url('/p/about') }}"><i class="fas fa-angle-right"></i> About Us</a></li>
+                        <li><a href="https://textilescommittee.gov.in" target="_blank" rel="noopener noreferrer"><i class="fas fa-angle-right"></i> About TC</a></li>
                         <li><a href="{{ url('/p/clusters') }}"><i class="fas fa-angle-right"></i> Clusters</a></li>
                         <li><a href="{{ url('/p/fta-benefits') }}"><i class="fas fa-angle-right"></i> FTA Strategic Benefits</a></li>
                         <li><a href="{{ url('/p/online-services') }}"><i class="fas fa-angle-right"></i> Online Services</a></li>

@@ -2970,3 +2970,20 @@ article p,
 .about-intro-section .sec-head p {
   text-align: left !important;
 }
+
+/* ── UNIVERSAL INNER PAGE HERO BACKGROUND ── */
+.page-hero-bg,
+.about-hero,
+.cluster-hero,
+.detail-hero,
+.fta-hero,
+.services-hero,
+.media-hero,
+.news-hero,
+.help-hero,
+.support-hero,
+.resources-hero,
+.page-hero {
+  background: linear-gradient(135deg, rgba(40, 5, 22, 0.45) 0%, rgba(108, 19, 64, 0.35) 100%),
+              url('../images/page-hero-bg.jpg') center center / cover no-repeat !important;
+}

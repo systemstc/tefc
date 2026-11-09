@@ -6,7 +6,8 @@
 <style>
 /* ── HERO ── */
 .support-hero {
-  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-light) 100%);
+  background: linear-gradient(135deg, rgba(40, 5, 22, 0.45) 0%, rgba(108, 19, 64, 0.35) 100%),
+              url('{{ asset('images/page-hero-bg.jpg') }}') center center / cover no-repeat;
   padding: 4rem 2.5rem;
   text-align: center;
   color: white;

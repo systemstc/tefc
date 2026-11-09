@@ -5,7 +5,8 @@
 @section('styles')
 <style>
 .page-hero {
-  background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+  background: linear-gradient(135deg, rgba(40, 5, 22, 0.45) 0%, rgba(108, 19, 64, 0.35) 100%),
+              url('{{ asset('images/page-hero-bg.jpg') }}') center center / cover no-repeat;
   padding: 50px 0;
   color: #fff;
 }

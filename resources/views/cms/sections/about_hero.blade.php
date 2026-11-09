@@ -1,4 +1,4 @@
-<section class="about-hero" style="background: var(--primary); color: #fff; padding: 6rem 0; position: relative; overflow: hidden;">
+<section class="about-hero" style="background: linear-gradient(135deg, rgba(40, 5, 22, 0.45) 0%, rgba(108, 19, 64, 0.35) 100%), url('{{ asset('images/page-hero-bg.jpg') }}') center center / cover no-repeat; color: #fff; padding: 6rem 0; position: relative; overflow: hidden;">
     <div class="container">
         <div style="display: grid; grid-template-columns: 1fr 350px; gap: 5rem; align-items: center;">
             <div>

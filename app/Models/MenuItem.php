@@ -18,8 +18,22 @@ class MenuItem extends Model
         if ($this->page_slug) {
             return url('/p/' . $this->page_slug);
         }
+
+        if (!$this->url) {
+            return '#';
+        }
+
+        // External URLs starting with http://, https://, or //
+        if (preg_match('/^(https?:\/\/|\/\/)/i', $this->url)) {
+            return $this->url;
+        }
+
+        // Domain-like external URLs without protocol
+        if (preg_match('/^[a-z0-9-]+(\.[a-z0-9-]+)+/i', $this->url) && !str_starts_with($this->url, '/')) {
+            return 'https://' . $this->url;
+        }
         
         // Ensure relative URLs are handled by Laravel's url helper
-        return $this->url ? url($this->url) : '#';
+        return url($this->url);
     }
 }

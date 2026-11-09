@@ -31,7 +31,8 @@
 
 /* Hero Section */
 .kpi-hero {
-    background: linear-gradient(135deg, #4a0e2b 0%, #6c1340 60%, #852250 100%);
+    background: linear-gradient(135deg, rgba(40, 5, 22, 0.45) 0%, rgba(108, 19, 64, 0.35) 100%),
+                url('{{ asset('images/page-hero-bg.jpg') }}') center center / cover no-repeat;
     color: #fff;
     padding: 3.5rem 0 3.2rem 0;
     position: relative;

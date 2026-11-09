@@ -26,7 +26,8 @@
 
 /* ── HERO BANNER ── */
 .resources-hero {
-  background: linear-gradient(135deg, var(--primary-burgundy-dark) 0%, var(--primary-burgundy) 100%);
+  background: linear-gradient(135deg, rgba(40, 5, 22, 0.45) 0%, rgba(108, 19, 64, 0.35) 100%),
+              url('{{ asset('images/page-hero-bg.jpg') }}') center center / cover no-repeat;
   padding: 4.5rem 0;
   position: relative;
   overflow: hidden;
@@ -36,9 +37,9 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle at 80% 20%, rgba(179, 142, 93, 0.15) 0%, transparent 50%),
-                    repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.02) 40px, rgba(255,255,255,0.02) 41px);
+  background-image: radial-gradient(circle at 80% 20%, rgba(179, 142, 93, 0.15) 0%, transparent 50%);
   opacity: 0.8;
+  pointer-events: none;
 }
 .resources-hero-inner {
   position: relative;

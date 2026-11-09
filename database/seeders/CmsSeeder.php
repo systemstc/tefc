@@ -55,13 +55,14 @@ class CmsSeeder extends Seeder
 
         MenuItem::create(['menu_id' => $headerMenu->id, 'label' => 'Home', 'url' => '/', 'page_slug' => 'home', 'order' => 1]);
         MenuItem::create(['menu_id' => $headerMenu->id, 'label' => 'About', 'url' => '/p/about', 'page_slug' => 'about', 'order' => 2]);
-        MenuItem::create(['menu_id' => $headerMenu->id, 'label' => 'Clusters', 'url' => '/p/clusters', 'page_slug' => 'clusters', 'order' => 3]);
-        MenuItem::create(['menu_id' => $headerMenu->id, 'label' => 'Resources', 'url' => '/resources', 'page_slug' => null, 'order' => 4]);
-        MenuItem::create(['menu_id' => $headerMenu->id, 'label' => 'FTA Benefits', 'url' => '/p/fta-benefits', 'page_slug' => 'fta-benefits', 'order' => 5]);
-        MenuItem::create(['menu_id' => $headerMenu->id, 'label' => 'Online Services', 'url' => '/p/online-services', 'page_slug' => 'online-services', 'order' => 6]);
-        MenuItem::create(['menu_id' => $headerMenu->id, 'label' => 'News', 'url' => '/p/news', 'page_slug' => 'news', 'order' => 7]);
-        MenuItem::create(['menu_id' => $headerMenu->id, 'label' => 'Media Center', 'url' => '/p/media', 'page_slug' => 'media', 'order' => 8]);
-        MenuItem::create(['menu_id' => $headerMenu->id, 'label' => 'Help & Support', 'url' => '/p/help-support', 'page_slug' => 'help-support', 'order' => 9]);
+        MenuItem::create(['menu_id' => $headerMenu->id, 'label' => 'About TC', 'url' => 'https://textilescommittee.gov.in', 'page_slug' => null, 'order' => 3]);
+        MenuItem::create(['menu_id' => $headerMenu->id, 'label' => 'Clusters', 'url' => '/p/clusters', 'page_slug' => 'clusters', 'order' => 4]);
+        MenuItem::create(['menu_id' => $headerMenu->id, 'label' => 'Resources', 'url' => '/resources', 'page_slug' => null, 'order' => 5]);
+        MenuItem::create(['menu_id' => $headerMenu->id, 'label' => 'FTA Benefits', 'url' => '/p/fta-benefits', 'page_slug' => 'fta-benefits', 'order' => 6]);
+        MenuItem::create(['menu_id' => $headerMenu->id, 'label' => 'Online Services', 'url' => '/p/online-services', 'page_slug' => 'online-services', 'order' => 7]);
+        MenuItem::create(['menu_id' => $headerMenu->id, 'label' => 'News', 'url' => '/p/news', 'page_slug' => 'news', 'order' => 8]);
+        MenuItem::create(['menu_id' => $headerMenu->id, 'label' => 'Media Center', 'url' => '/p/media', 'page_slug' => 'media', 'order' => 9]);
+        MenuItem::create(['menu_id' => $headerMenu->id, 'label' => 'Help & Support', 'url' => '/p/help-support', 'page_slug' => 'help-support', 'order' => 10]);
 
         // Clear existing sections
         Section::truncate();

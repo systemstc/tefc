@@ -29,6 +29,7 @@ Route::get('/p/{slug}', [CmsController::class, 'show']);
 
 // Static / Hardcoded Pages (Fallback)
 Route::get('/about', function () { return redirect('/p/about'); });
+Route::get('/about-tc', function () { return redirect()->away('https://textilescommittee.gov.in'); })->name('about-tc');
 Route::get('/clusters', function () { return redirect('/p/clusters'); });
 Route::get('/fta-benefits', function () { return redirect('/p/fta-benefits'); });
 Route::get('/online-services', function () { return redirect('/p/online-services'); });

@@ -26,7 +26,8 @@
 
 /* ── HERO BANNER ── */
 .about-hero {
-  background: linear-gradient(135deg, var(--primary-burgundy-dark) 0%, var(--primary-burgundy) 100%);
+  background: linear-gradient(135deg, rgba(40, 5, 22, 0.45) 0%, rgba(108, 19, 64, 0.35) 100%),
+              url('{{ asset('images/page-hero-bg.jpg') }}') center center / cover no-repeat;
   padding: 4.5rem 0;
   position: relative;
   overflow: hidden;
@@ -36,9 +37,9 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle at 80% 20%, rgba(179, 142, 93, 0.15) 0%, transparent 50%),
-                    repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.02) 40px, rgba(255,255,255,0.02) 41px);
+  background-image: radial-gradient(circle at 80% 20%, rgba(179, 142, 93, 0.15) 0%, transparent 50%);
   opacity: 0.8;
+  pointer-events: none;
 }
 .about-hero-inner {
   position: relative;
@@ -175,14 +176,12 @@
   border-radius: 2px;
 }
 
-/* ── OVERVIEW SPLIT ── */
-.overview-grid {
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 4rem;
+/* ── OVERVIEW ── */
+.overview-content {
+  width: 100%;
 }
 .overview-text h3 {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 800;
   color: var(--primary-burgundy);
   margin-bottom: 1.2rem;
@@ -191,14 +190,14 @@
   font-size: 1.02rem;
   line-height: 1.85;
   color: var(--text-muted);
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   text-align: justify !important;
   text-justify: inter-word !important;
   hyphens: auto;
 }
 .feature-cards-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
 }
 .feature-card {
@@ -236,55 +235,6 @@
   color: var(--text-muted);
   line-height: 1.6;
   margin: 0;
-}
-
-.pulse-card {
-  background: var(--primary-burgundy);
-  color: #fff;
-  border-radius: 16px;
-  padding: 2.2rem;
-  box-shadow: 0 10px 30px rgba(108, 21, 63, 0.1);
-  position: relative;
-  overflow: hidden;
-}
-.pulse-card::after {
-  content: '';
-  position: absolute;
-  right: -20px;
-  top: -20px;
-  width: 100px;
-  height: 100px;
-  background: rgba(255,255,255,0.03);
-  border-radius: 50%;
-}
-.pulse-card h3 {
-  font-size: 1.25rem;
-  font-weight: 800;
-  margin-bottom: 1.8rem;
-  border-bottom: 2px solid var(--accent-gold);
-  padding-bottom: 0.6rem;
-}
-.pulse-stat-row {
-  margin-bottom: 1.5rem;
-}
-.pulse-stat-row:last-child {
-  margin-bottom: 0;
-}
-.pulse-stat-lbl {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  opacity: 0.7;
-  margin-bottom: 0.2rem;
-}
-.pulse-stat-val {
-  font-size: 1.8rem;
-  font-weight: 800;
-}
-.pulse-stat-trend {
-  font-size: 0.76rem;
-  color: var(--accent-gold-light);
-  margin-top: 0.1rem;
 }
 
 /* ── MISSION, VISION & OBJECTIVES ── */
@@ -709,8 +659,7 @@
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .hero-stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .overview-grid { grid-template-columns: 1fr; }
-  .feature-cards-grid { grid-template-columns: 1fr; }
+  .feature-cards-grid { grid-template-columns: repeat(2, 1fr); }
   .mvo-grid { grid-template-columns: 1fr; }
   .person-card { flex: 0 1 calc(50% - 1.5rem); max-width: 320px; }
   .people-footer-about { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; }
@@ -722,6 +671,7 @@
 @media (max-width: 768px) {
   .about-hero h1 { font-size: 2.2rem; }
   .about-hero p { font-size: 0.95rem; }
+  .feature-cards-grid { grid-template-columns: 1fr; }
   .person-card { flex: 1 1 100%; max-width: 320px; }
 }
 </style>
@@ -813,56 +763,29 @@
         <div class="sec-head-line"></div>
       </div>
       
-      <div class="overview-grid">
+      <div class="overview-content">
         <div class="overview-text">
           <h3>{{ $overviewData['heading'] ?? 'Facilitating Excellence' }}</h3>
-          <p>{{ $overviewData['description'] ?? 'The Textiles Export Facilitation Centre (TEFC) is a dedicated support ecosystem established by the Textiles Committee. We serve as a one-stop-shop for Indian textile exporters, providing technical guidance, market intelligence, and logistical support to ensure that the heritage of Indian textiles reaches every corner of the world.' }}</p>
-          
-          <div class="feature-cards-grid">
-            @php
-              $defaultFeatures = [
-                ['icon' => 'fas fa-globe', 'title' => 'Global Market Access', 'text' => 'Connecting local weavers to international buyers through verified trade portals.'],
-                ['icon' => 'fas fa-hand-holding-heart', 'title' => 'Handholding Support', 'text' => 'End-to-end guidance from registration to final export documentation.'],
-                ['icon' => 'fas fa-chart-line', 'title' => 'Capacity Building', 'text' => 'Regular workshops on quality standards and global market trends.'],
-                ['icon' => 'fas fa-file-contract', 'title' => 'Policy Guidance', 'text' => 'Detailed information on FTAs and government scheme benefits.']
-              ];
-              $features = $overviewData['features'] ?? $defaultFeatures;
-            @endphp
-            @foreach($features as $feature)
-              <div class="feature-card">
-                <div class="feature-icon-circle"><i class="{{ $feature['icon'] }}"></i></div>
-                <h4>{{ $feature['title'] }}</h4>
-                <p>{{ $feature['text'] }}</p>
-              </div>
-            @endforeach
-          </div>
+          <p>{!! nl2br(e($overviewData['description'] ?? 'The Textiles Export Facilitation Centre (TEFC) is a dedicated support ecosystem established by the Textiles Committee. We serve as a one-stop-shop for Indian textile exporters, providing technical guidance, market intelligence, and logistical support to ensure that the heritage of Indian textiles reaches every corner of the world.')) !!}</p>
         </div>
-
-        <!-- Platform Pulse Card -->
-        <div>
-          <div class="pulse-card">
-            <h3>Platform Pulse</h3>
-            @php
-              $defaultPulse = [
-                ['label' => 'Daily Traffic', 'value' => '12,500+', 'trend' => '+15% this month'],
-                ['label' => 'Active Countries', 'value' => '45+', 'trend' => 'Recently added: UAE, Japan'],
-                ['label' => 'Verified Sellers', 'value' => '1,800+', 'trend' => 'Verified by Textiles Committee']
-              ];
-              $pulseStats = $overviewData['pulse_stats'] ?? $defaultPulse;
-            @endphp
-            @foreach($pulseStats as $pulse)
-              <div class="pulse-stat-row">
-                <div class="pulse-stat-lbl">{{ $pulse['label'] }}</div>
-                <div class="pulse-stat-val">{{ $pulse['value'] }}</div>
-                @if(isset($pulse['trend']) && $pulse['trend'])
-                  <div class="pulse-stat-trend"><i class="fas fa-arrow-trend-up" style="font-size:0.7rem; margin-right:2px;"></i> {{ $pulse['trend'] }}</div>
-                @endif
-              </div>
-            @endforeach
-            <div style="margin-top: 2rem; background: rgba(255,255,255,0.08); padding: 1rem; border-radius: 12px; font-size: 0.76rem; opacity:0.9;">
-              <i class="fas fa-info-circle" style="margin-right: 4px;"></i> Statistics verified as of {{ date('M Y') }}
+          
+        <div class="feature-cards-grid">
+          @php
+            $defaultFeatures = [
+              ['icon' => 'fas fa-globe', 'title' => 'Global Market Access', 'text' => 'Connecting local weavers to international buyers through verified trade portals.'],
+              ['icon' => 'fas fa-hand-holding-heart', 'title' => 'Handholding Support', 'text' => 'End-to-end guidance from registration to final export documentation.'],
+              ['icon' => 'fas fa-chart-line', 'title' => 'Capacity Building', 'text' => 'Regular workshops on quality standards and global market trends.'],
+              ['icon' => 'fas fa-file-contract', 'title' => 'Policy Guidance', 'text' => 'Detailed information on FTAs and government scheme benefits.']
+            ];
+            $features = $overviewData['features'] ?? $defaultFeatures;
+          @endphp
+          @foreach($features as $feature)
+            <div class="feature-card">
+              <div class="feature-icon-circle"><i class="{{ $feature['icon'] }}"></i></div>
+              <h4>{{ $feature['title'] }}</h4>
+              <p>{{ $feature['text'] }}</p>
             </div>
-          </div>
+          @endforeach
         </div>
       </div>
     </div>
