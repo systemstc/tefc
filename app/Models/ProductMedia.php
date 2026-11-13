@@ -9,7 +9,12 @@ class ProductMedia extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['product_id', 'file_path', 'media_type'];
+    protected $fillable = ['product_id', 'file_path', 'media_type', 'is_primary', 'sort_order'];
+
+    protected $casts = [
+        'is_primary' => 'boolean',
+        'sort_order' => 'integer',
+    ];
 
     public function product()
     {

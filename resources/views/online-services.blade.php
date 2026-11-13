@@ -381,7 +381,10 @@ body {
   $heroSubtitle = $heroSection && isset($heroSection->content['subtitle']) 
     ? $heroSection->content['subtitle'] 
     : 'Access all TEFC digital services and government portals from one place. Submit applications, track status, register for training, apply for certifications and more — all online, all paperless.';
+
+  $servicesGrid = isset($page) && $page->sections ? $page->sections->where('type', 'services_grid')->first() : null;
 @endphp
+@if($heroSection)
 <div class="services-hero">
   <div class="services-hero-inner">
     <div class="breadcrumb">
@@ -391,14 +394,16 @@ body {
     <p>{{ $heroSubtitle }}</p>
   </div>
 </div>
+@endif
 
 <div class="container my-5">
   
+  @if($servicesGrid || ($page->sections->count() === 0))
   <!-- SECTION 1: TEFC DIGITAL SERVICES -->
   <section class="services-section">
     <div class="section-title-wrap">
       <div class="section-icon"><i class="fas fa-desktop"></i></div>
-      <h2>TEFC Digital Services</h2>
+      <h2>{{ ($servicesGrid && $servicesGrid->title) ? $servicesGrid->title : 'TEFC Digital Services' }}</h2>
     </div>
     
     <div class="digital-services-grid">
@@ -503,6 +508,7 @@ body {
       </div>
     </div>
   </section>
+  @endif
 
   <!-- SECTION 2: EXTERNAL GOVERNMENT PORTALS -->
   <section class="services-section">

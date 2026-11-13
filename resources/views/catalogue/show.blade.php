@@ -67,7 +67,21 @@
 @section('content')
 <div class="container py-5">
     <div class="mb-4">
-        <a href="{{ route('catalogue.index') }}" class="text-decoration-none"><i class="fas fa-arrow-left me-1"></i> Back to Catalogue</a>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{{ url('/') }}" class="text-decoration-none text-muted">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('catalogue.index') }}" class="text-decoration-none text-muted">Catalogue</a></li>
+                @if($product->textileCategory)
+                    <li class="breadcrumb-item"><a href="{{ route('catalogue.index', ['category_id' => $product->textileCategory->id]) }}" class="text-decoration-none text-muted">{{ $product->textileCategory->name }}</a></li>
+                @elseif(is_array($product->category) && count($product->category) > 0)
+                    <li class="breadcrumb-item"><a href="{{ route('catalogue.index', ['category' => $product->category[0]]) }}" class="text-decoration-none text-muted">{{ $product->category[0] }}</a></li>
+                @endif
+                @if($product->textileSubcategory)
+                    <li class="breadcrumb-item"><a href="{{ route('catalogue.index', ['category_id' => $product->textileCategory?->id, 'subcategory_id' => $product->textileSubcategory->id]) }}" class="text-decoration-none text-muted">{{ $product->textileSubcategory->name }}</a></li>
+                @endif
+                <li class="breadcrumb-item active text-truncate" aria-current="page" style="max-width: 250px;">{{ $product->name }}</li>
+            </ol>
+        </nav>
     </div>
 
     <div class="row">
@@ -78,7 +92,12 @@
                 <div class="mb-4">
                     @foreach($images as $img)
                         <div class="card shadow-sm border-0 mb-3 overflow-hidden">
-                            <div class="card-body p-0 img-zoom-container">
+                            <div class="card-body p-0 img-zoom-container position-relative">
+                                @if($img->is_primary)
+                                    <span class="position-absolute top-0 start-0 m-2 badge bg-success shadow-sm" style="font-size: 0.75rem;">
+                                        <i class="fas fa-check-circle me-1"></i> Main Photo
+                                    </span>
+                                @endif
                                 <img src="{{ asset('storage/' . $img->file_path) }}" class="img-fluid rounded" alt="{{ $product->name }}" style="width: 100%; max-height: 500px; object-fit: contain; background: #f8f9fa;">
                             </div>
                         </div>
@@ -112,94 +131,207 @@
 
         <!-- Product Information -->
         <div class="col-md-6">
-            <div class="card shadow-sm border-0 mb-4">
-                <div class="card-body">
-                    <h1 class="h2 mb-2">{{ $product->name }}</h1>
-                    <span class="badge bg-secondary mb-3">{{ is_array($product->category) ? implode(', ', $product->category) : $product->category }}</span>
+            <div class="card shadow-sm border-0 mb-4 rounded-4 overflow-hidden">
+                <div class="card-body p-4">
+                    <!-- Classification Header -->
+                    <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                        @if($product->textileCategory)
+                            <span class="badge" style="background-color: var(--primary); color: #fff;">{{ $product->textileCategory->name }}</span>
+                            @if($product->textileSubcategory)
+                                <span class="badge bg-light text-dark border">{{ $product->textileSubcategory->name }}</span>
+                            @endif
+                            @if($product->textileProduct)
+                                <span class="badge bg-secondary-subtle text-secondary border">Code: {{ $product->textileProduct->code }}</span>
+                            @endif
+                        @elseif(is_array($product->category))
+                            @foreach($product->category as $cat)
+                                <span class="badge bg-light text-dark border">{{ $cat }}</span>
+                            @endforeach
+                        @else
+                            <span class="badge bg-light text-dark border">{{ $product->category }}</span>
+                        @endif
+
+                        @if($product->hs_code)
+                            <span class="badge bg-info-subtle text-info border">HS: {{ $product->hs_code }}</span>
+                        @endif
+                    </div>
+
+                    <h1 class="h3 fw-bold text-dark mb-3">{{ $product->name }}</h1>
                     
-                    <div class="d-flex align-items-center mb-4 pb-3 border-bottom">
+                    <!-- Exporter / Supplier Profile -->
+                    <div class="d-flex align-items-center mb-4 p-3 rounded-3" style="background-color: var(--sky); border: 1px solid #ebd0de;">
                         <div class="flex-shrink-0">
-                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; font-size: 1.5rem;">
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; font-size: 1.3rem;">
                                 <i class="fas fa-industry"></i>
                             </div>
                         </div>
                         <div class="flex-grow-1 ms-3">
-                            <h5 class="mb-0">{{ optional($product->user->exporterProfile)->company_name ?? $product->user->name ?? 'Verified Exporter' }}</h5>
-                            <small class="text-muted"><i class="fas fa-check-circle text-success"></i> Verified Supplier</small>
+                            <h6 class="mb-0 fw-bold text-dark">{{ optional($product->user->exporterProfile)->company_name ?? $product->user->name ?? 'Verified Exporter' }}</h6>
+                            <small class="text-success fw-semibold"><i class="fas fa-certificate me-1"></i> Verified Indian Exporter &bull; Ministry of Textiles Recognized</small>
                         </div>
                     </div>
 
-                    <h5 class="mb-3">Product Specifications</h5>
-                    <table class="table table-borderless table-sm mb-4">
-                        @if($product->hs_code)
-                        <tr><th class="text-muted w-25">HS Code:</th><td>{{ $product->hs_code }}</td></tr>
-                        @endif
-                        @if($product->cluster)
-                        <tr><th class="text-muted w-25">Cluster:</th><td>{{ $product->cluster }}</td></tr>
-                        @endif
-                        @if($product->production_capacity)
-                        <tr><th class="text-muted">Capacity:</th><td>{{ $product->production_capacity }}</td></tr>
-                        @endif
-                        @if($product->material_composition)
-                        <tr><th class="text-muted">Material:</th><td>{{ $product->material_composition }}</td></tr>
-                        @endif
-                        @if($product->width_size)
-                        <tr><th class="text-muted">Width / Size:</th><td>{{ $product->width_size }}</td></tr>
-                        @endif
-                        @if($product->pattern)
-                        <tr><th class="text-muted">Pattern:</th><td>{{ $product->pattern }}</td></tr>
-                        @endif
-                        @if($product->color)
-                        <tr><th class="text-muted">Color:</th><td>{{ $product->color }}</td></tr>
-                        @endif
-                        @if($product->certifications)
-                        <tr><th class="text-muted">Certifications:</th><td>{{ $product->certifications }}</td></tr>
-                        @endif
-                    </table>
+                    <!-- FIBRE COMPOSITION BREAKDOWN -->
+                    @if($product->fibres->count() > 0)
+                        <div class="mb-4">
+                            <h6 class="fw-bold text-dark mb-2"><i class="fas fa-seedling text-success me-1"></i> Fibre Composition</h6>
+                            <div class="d-flex flex-wrap gap-2">
+                                @foreach($product->fibres as $f)
+                                    <span class="badge bg-white text-dark border px-3 py-2 shadow-sm rounded-pill" style="font-size: 0.85rem;">
+                                        <strong>{{ $f->percentage ? ($f->percentage . '%') : '' }}</strong> {{ $f->attribute_name }}
+                                    </span>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+
+                    <!-- TECHNICAL SPECIFICATIONS TABLE -->
+                    <h6 class="fw-bold text-dark mb-2"><i class="fas fa-sliders-h text-primary me-1"></i> Technical Specifications</h6>
+                    <div class="table-responsive mb-4">
+                        <table class="table table-bordered table-sm small mb-0">
+                            <tbody>
+                                @if($product->material_composition)
+                                <tr>
+                                    <th class="bg-light text-muted w-35">Material Summary</th>
+                                    <td class="fw-semibold">{{ $product->material_composition }}</td>
+                                </tr>
+                                @endif
+
+                                @if($product->yarns->count() > 0)
+                                    @foreach($product->yarns as $y)
+                                    <tr>
+                                        <th class="bg-light text-muted">Yarn ({{ $y->attribute_name }})</th>
+                                        <td>{{ $y->attribute_value ?: 'Standard specification' }}</td>
+                                    </tr>
+                                    @endforeach
+                                @endif
+
+                                @if($product->fabrics->count() > 0)
+                                    @foreach($product->fabrics as $fb)
+                                    <tr>
+                                        <th class="bg-light text-muted">Fabric ({{ $fb->attribute_name }})</th>
+                                        <td>{{ $fb->attribute_value ?: 'Standard specification' }}</td>
+                                    </tr>
+                                    @endforeach
+                                @endif
+
+                                @if($product->width_size)
+                                <tr>
+                                    <th class="bg-light text-muted">Width / Size</th>
+                                    <td>{{ $product->width_size }}</td>
+                                </tr>
+                                @endif
+
+                                @if($product->pattern)
+                                <tr>
+                                    <th class="bg-light text-muted">Pattern / Structure</th>
+                                    <td>{{ $product->pattern }}</td>
+                                </tr>
+                                @endif
+
+                                @if($product->color)
+                                <tr>
+                                    <th class="bg-light text-muted">Color / Shades</th>
+                                    <td>{{ $product->color }}</td>
+                                </tr>
+                                @endif
+
+                                @if($product->processes->count() > 0)
+                                    @foreach($product->processes as $pr)
+                                    <tr>
+                                        <th class="bg-light text-muted">Finishing / Treatment</th>
+                                        <td>{{ $pr->attribute_name }}: {{ $pr->attribute_value }}</td>
+                                    </tr>
+                                    @endforeach
+                                @endif
+
+                                @if($product->moq)
+                                <tr>
+                                    <th class="bg-light text-muted">Minimum Order (MOQ)</th>
+                                    <td class="fw-bold text-primary">{{ $product->moq }} {{ $product->unit_of_measurement ?? 'Units' }}</td>
+                                </tr>
+                                @endif
+
+                                @if($product->production_capacity)
+                                <tr>
+                                    <th class="bg-light text-muted">Production Capacity</th>
+                                    <td>{{ $product->production_capacity }}</td>
+                                </tr>
+                                @endif
+
+                                @if($product->cluster)
+                                <tr>
+                                    <th class="bg-light text-muted">Manufacturing Cluster</th>
+                                    <td><i class="fas fa-map-pin text-danger me-1"></i> {{ $product->cluster }}</td>
+                                </tr>
+                                @endif
+
+                                @if($product->certifications)
+                                <tr>
+                                    <th class="bg-light text-muted">Certifications</th>
+                                    <td>{{ $product->certifications }}</td>
+                                </tr>
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+
+                    @if($product->tags)
+                        <div class="mb-4">
+                            <h6 class="fw-bold text-dark mb-2"><i class="fas fa-tags text-muted me-1"></i> Keywords</h6>
+                            <div class="d-flex flex-wrap gap-1">
+                                @foreach(explode(',', $product->tags) as $tag)
+                                    <span class="badge bg-light text-secondary border">{{ trim($tag) }}</span>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
 
                     @if($product->technical_specifications)
-                    <h5 class="mb-2">Technical Details</h5>
-                    <p class="text-muted mb-4">{{ $product->technical_specifications }}</p>
+                    <div class="mb-4">
+                        <h6 class="fw-bold text-dark mb-2">Additional Technical Notes</h6>
+                        <p class="text-muted small mb-0 p-3 bg-light rounded">{{ $product->technical_specifications }}</p>
+                    </div>
                     @endif
 
                     @if($product->contact_information)
                     <div class="theme-alert rounded p-3 mb-4">
                         <h6 class="mb-2" style="color: var(--primary);"><i class="fas fa-envelope me-2"></i>Product Specific Contact</h6>
-                        <p class="mb-0">{{ $product->contact_information }}</p>
+                        <p class="mb-0 small">{{ $product->contact_information }}</p>
                     </div>
                     @endif
 
                     <div class="theme-alert rounded p-3 mb-4">
-                        <h6 class="mb-2" style="color: var(--primary);"><i class="fas fa-address-card me-2"></i>Supplier Details</h6>
-                        <p class="mb-1"><i class="fas fa-building me-2 text-muted"></i> {{ optional($product->user->exporterProfile)->company_name ?? $product->user->name }}</p>
+                        <h6 class="mb-2" style="color: var(--primary);"><i class="fas fa-address-card me-2"></i>Supplier Direct Connect</h6>
+                        <p class="mb-1 small"><i class="fas fa-building me-2 text-muted"></i> {{ optional($product->user->exporterProfile)->company_name ?? $product->user->name }}</p>
                         @if($product->user->email)
-                        <p class="mb-1"><i class="fas fa-envelope me-2 text-muted"></i> <a href="mailto:{{ $product->user->email }}" style="color: var(--primary); text-decoration: none;" class="track-interaction" data-type="email_click">{{ $product->user->email }}</a></p>
+                        <p class="mb-1 small"><i class="fas fa-envelope me-2 text-muted"></i> <a href="mailto:{{ $product->user->email }}" style="color: var(--primary); text-decoration: none;" class="track-interaction" data-type="email_click">{{ $product->user->email }}</a></p>
                         @endif
                         @if(optional($product->user->exporterProfile)->contact_phone)
-                        <p class="mb-1"><i class="fas fa-phone me-2 text-muted"></i> {{ $product->user->exporterProfile->contact_phone }}</p>
+                        <p class="mb-1 small"><i class="fas fa-phone me-2 text-muted"></i> {{ $product->user->exporterProfile->contact_phone }}</p>
                         @endif
                         @if(optional($product->user->exporterProfile)->website)
-                        <p class="mb-0"><i class="fas fa-globe me-2 text-muted"></i> <a href="{{ $product->user->exporterProfile->website }}" target="_blank" style="color: var(--primary); text-decoration: none;" class="track-interaction" data-type="website_click">{{ $product->user->exporterProfile->website }}</a></p>
+                        <p class="mb-0 small"><i class="fas fa-globe me-2 text-muted"></i> <a href="{{ $product->user->exporterProfile->website }}" target="_blank" style="color: var(--primary); text-decoration: none;" class="track-interaction" data-type="website_click">{{ $product->user->exporterProfile->website }}</a></p>
                         @endif
                     </div>
 
                     <div class="card border-0 shadow-sm mb-4" style="border-left: 4px solid var(--primary) !important;">
                         <div class="card-body">
-                            <h5 class="mb-3" style="color: var(--primary);"><i class="fas fa-paper-plane me-2"></i>I'm Interested</h5>
-                            <p class="text-muted small mb-3">Send a detailed trade enquiry to this exporter for specifications, pricing, and availability.</p>
+                            <h5 class="mb-2" style="color: var(--primary);"><i class="fas fa-paper-plane me-2"></i>Direct Buyer Enquiry</h5>
+                            <p class="text-muted small mb-3">Submit your specifications, request custom quotes, or verify dispatch lead times with this exporter.</p>
                             <button type="button" class="btn btn-primary w-100 py-2 fw-semibold" data-bs-toggle="modal" data-bs-target="#productEnquiryModal">
-                                <i class="fas fa-paper-plane me-1"></i> Send Inquiry
+                                <i class="fas fa-paper-plane me-1"></i> Send Inquiry to Exporter
                             </button>
                         </div>
                     </div>
 
                     @php $brochures = $product->media->where('media_type', 'brochure'); @endphp
                     @if($brochures->count() > 0)
-                        <h5 class="mb-3">Downloads</h5>
+                        <h6 class="fw-bold text-dark mb-2">Technical Downloads</h6>
                         <div class="d-flex flex-wrap gap-2">
                             @foreach($brochures as $brochure)
                                 <a href="{{ asset('storage/' . $brochure->file_path) }}" target="_blank" class="btn btn-outline-secondary btn-sm track-interaction" data-type="brochure_download" data-metadata='{"file": "{{ basename($brochure->file_path) }}"}'>
-                                    <i class="fas fa-file-pdf me-1"></i> Download Brochure
+                                    <i class="fas fa-file-pdf me-1 text-danger"></i> Download Document
                                 </a>
                             @endforeach
                         </div>

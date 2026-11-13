@@ -189,17 +189,11 @@
                   </svg>
                   <span class="cluster-state-pill">{{ strtoupper($item['state'] ?? 'India') }}</span>
                 </div>
-                <div class="unit-tag">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M4 19V9l6 3V9l6 3V7l4 2v10H4zm2-2h12v-6.5l-2-1V13l-6-3v4.5l-4-2V17z"/>
-                  </svg>
-                  <span class="cluster-units-pill">{{ $uCount }} Units</span>
-                </div>
               </div>
 
               <div class="main-info">
                 <h2 class="city district-focus-title">{{ $item['districts'] ?? $item['name'] }}</h2>
-                <p class="jurisdiction district-jurisdiction-label">Designated Revenue Jurisdiction</p>
+                <!-- <p class="jurisdiction district-jurisdiction-label">Designated Revenue Jurisdiction</p> -->
               </div>
 
               <a href="{{ $item['url'] ?? url('/p/clusters?cluster=' . $code) }}" class="explore-btn cluster-explore-btn">

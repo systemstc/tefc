@@ -6,6 +6,14 @@ use Illuminate\Http\Request;
 
 use App\Models\Product;
 use App\Models\ProductMedia;
+use App\Models\ProductAttributeValue;
+use App\Models\TextileCategory;
+use App\Models\TextileSubcategory;
+use App\Models\TextileProduct;
+use App\Models\FibreMaster;
+use App\Models\YarnMaster;
+use App\Models\FabricMaster;
+use App\Models\ProcessMaster;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -26,27 +34,87 @@ class ProductController extends Controller
 
     public function catalogue(Request $request)
     {
-        $query = Product::with(['user', 'media'])->where('status', 'Approved');
+        $query = Product::with(['user.exporterProfile', 'media', 'textileProduct.subcategory.category', 'attributeValues'])
+            ->where('status', 'Approved')
+            ->where('is_published', true);
 
-        if ($request->has('category') && $request->category != '') {
-            $query->whereJsonContains('category', $request->category);
+        // 1. Hierarchical Textile Category Filters
+        if ($request->filled('category_id')) {
+            $query->where('textile_category_id', $request->category_id);
         }
-        if ($request->has('cluster') && $request->cluster != '') {
+        if ($request->filled('subcategory_id')) {
+            $query->where('textile_subcategory_id', $request->subcategory_id);
+        }
+        if ($request->filled('textile_product_id')) {
+            $query->where('textile_product_id', $request->textile_product_id);
+        }
+
+        // 2. Technical Attribute Filters
+        if ($request->filled('fibre')) {
+            $fibre = $request->fibre;
+            $query->whereHas('fibres', function($q) use ($fibre) {
+                $q->where('attribute_name', 'like', "%{$fibre}%");
+            });
+        }
+        if ($request->filled('fabric')) {
+            $fabric = $request->fabric;
+            $query->whereHas('fabrics', function($q) use ($fabric) {
+                $q->where('attribute_name', 'like', "%{$fabric}%");
+            });
+        }
+        if ($request->filled('process')) {
+            $process = $request->process;
+            $query->whereHas('processes', function($q) use ($process) {
+                $q->where('attribute_name', 'like', "%{$process}%");
+            });
+        }
+
+        // 3. Legacy Category filter (with taxonomy fallback)
+        if ($request->filled('category')) {
+            $cat = $request->category;
+            $query->where(function($q) use ($cat) {
+                $q->whereJsonContains('category', $cat)
+                  ->orWhereHas('textileCategory', fn($tc) => $tc->where('name', $cat))
+                  ->orWhereHas('textileSubcategory', fn($ts) => $ts->where('name', $cat))
+                  ->orWhereHas('textileProduct', fn($tp) => $tp->where('name', $cat));
+            });
+        }
+
+        // 4. Cluster filter
+        if ($request->filled('cluster')) {
             $query->where('cluster', $request->cluster);
         }
-        if ($request->has('q') && $request->q != '') {
+
+        // 5. Keyword search across name, material, specs, HS code, tags & taxonomy
+        if ($request->filled('q')) {
             $q = $request->q;
             $query->where(function($query) use ($q) {
-                $query->where('name', 'like', '%' . $q . '%')
-                      ->orWhere('material_composition', 'like', '%' . $q . '%')
-                      ->orWhere('technical_specifications', 'like', '%' . $q . '%')
-                      ->orWhere('hs_code', 'like', '%' . $q . '%')
-                      ->orWhereJsonContains('category', $q);
+                $query->where('name', 'like', "%{$q}%")
+                      ->orWhere('material_composition', 'like', "%{$q}%")
+                      ->orWhere('technical_specifications', 'like', "%{$q}%")
+                      ->orWhere('hs_code', 'like', "%{$q}%")
+                      ->orWhere('tags', 'like', "%{$q}%")
+                      ->orWhereJsonContains('category', $q)
+                      ->orWhereHas('textileProduct', fn($tp) => $tp->where('name', 'like', "%{$q}%"))
+                      ->orWhereHas('textileSubcategory', fn($ts) => $ts->where('name', 'like', "%{$q}%"))
+                      ->orWhereHas('textileCategory', fn($tc) => $tc->where('name', 'like', "%{$q}%"))
+                      ->orWhereHas('attributeValues', fn($av) => $av->where('attribute_name', 'like', "%{$q}%"));
             });
         }
 
         $products = $query->latest()->paginate(12);
-        return view('catalogue.index', compact('products'));
+
+        // Sidebar filters dataset
+        $textileCategories = TextileCategory::with(['subcategories' => fn($q) => $q->where('is_active', true)])
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get();
+
+        $fibreFilterOptions = FibreMaster::where('is_active', true)->orderBy('name')->pluck('name')->unique();
+        $fabricFilterOptions = FabricMaster::where('is_active', true)->orderBy('name')->pluck('name')->unique();
+        $processFilterOptions = ProcessMaster::where('is_active', true)->orderBy('name')->pluck('name')->unique();
+
+        return view('catalogue.index', compact('products', 'textileCategories', 'fibreFilterOptions', 'fabricFilterOptions', 'processFilterOptions'));
     }
 
     public function showCatalogue(Product $product)
@@ -54,7 +122,7 @@ class ProductController extends Controller
         if ($product->status !== 'Approved') {
             abort(404);
         }
-        $product->load(['user.exporterProfile', 'media']);
+        $product->load(['user.exporterProfile', 'media', 'textileProduct.subcategory.category', 'attributeValues']);
 
         // Record View Analytic
         \App\Models\ProductAnalytic::create([
@@ -200,14 +268,16 @@ class ProductController extends Controller
     {
         $user = auth()->user();
         $companyUser = $user->getCompanyUser();
-        return view('seller.products.create', compact('user', 'companyUser'));
+        $textileCategories = TextileCategory::where('is_active', true)->orderBy('sort_order')->get();
+        return view('seller.products.create', compact('user', 'companyUser', 'textileCategories'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'category' => 'required|array',
+            'textile_product_id' => 'nullable|exists:textile_products,id',
+            'category' => 'nullable|array',
             'category.*' => 'string|max:255',
             'cluster' => 'nullable|string|max:255',
             'contact_information' => 'nullable|string',
@@ -215,11 +285,14 @@ class ProductController extends Controller
             'material_composition' => 'nullable|string',
             'production_capacity' => 'nullable|string|max:255',
             'width_size' => 'nullable|string|max:255',
+            'moq' => 'nullable|string|max:255',
+            'unit_of_measurement' => 'nullable|string|max:255',
+            'tags' => 'nullable|string',
             'pattern' => 'nullable|string|max:255',
             'color' => 'nullable|string|max:255',
             'technical_specifications' => 'nullable|string',
             'certifications' => 'nullable|string',
-            'images.*' => 'image|mimes:jpeg,png,jpg|max:10000',
+            'images.*' => 'image|mimes:jpeg,png,jpg,webp|max:10000',
             'brochures.*' => 'mimes:pdf,docx,xlsx|max:15000',
             'videos.*' => 'mimes:mp4|max:10240',
         ]);
@@ -228,12 +301,41 @@ class ProductController extends Controller
         $companyUser = $user->getCompanyUser();
 
         $data = $request->only([
-            'name', 'category', 'cluster', 'contact_information', 'hs_code', 'material_composition', 
-            'production_capacity', 'width_size', 'pattern', 'color', 'technical_specifications', 'certifications'
+            'name', 'cluster', 'contact_information', 'hs_code', 'material_composition', 
+            'production_capacity', 'width_size', 'moq', 'unit_of_measurement', 'tags',
+            'pattern', 'color', 'technical_specifications', 'certifications'
         ]);
 
         $data['user_id'] = $companyUser->id;
         $data['created_by_user_id'] = $user->id;
+        $data['is_published'] = $request->boolean('is_published', true);
+
+        // Resolve Textile Classification Hierarchy
+        if ($request->filled('textile_product_id')) {
+            $tp = TextileProduct::with('subcategory.category')->find($request->textile_product_id);
+            if ($tp) {
+                $data['textile_product_id'] = $tp->id;
+                $data['textile_subcategory_id'] = $tp->subcategory_id;
+                $data['textile_category_id'] = $tp->subcategory?->category_id;
+
+                // Sync category array for legacy backward compatibility
+                $legacyCats = $request->input('category', []);
+                if (empty($legacyCats)) {
+                    $legacyCats = [
+                        $tp->subcategory?->category?->name ?? 'Textiles',
+                        $tp->subcategory?->name ?? '',
+                        $tp->name
+                    ];
+                }
+                $data['category'] = array_values(array_filter($legacyCats));
+
+                if (empty($data['hs_code']) && !empty($tp->default_hs_code)) {
+                    $data['hs_code'] = $tp->default_hs_code;
+                }
+            }
+        } else {
+            $data['category'] = $request->input('category', ['Textiles']);
+        }
 
         if ($user->isOperator()) {
             // Operator data entry: requires Exporter Higher Authority acknowledgment
@@ -250,6 +352,7 @@ class ProductController extends Controller
         }
 
         $product = Product::create($data);
+        $this->syncAttributeValues($request, $product);
         $this->uploadMedia($request, $product);
 
         return redirect()->route('seller.products.index')->with('success', $msg);
@@ -260,7 +363,9 @@ class ProductController extends Controller
         $user = auth()->user();
         $companyUser = $user->getCompanyUser();
         if ($product->user_id !== $companyUser->id) abort(403);
-        return view('seller.products.edit', compact('product', 'user', 'companyUser'));
+        $product->load(['textileProduct.subcategory.category', 'attributeValues', 'media']);
+        $textileCategories = TextileCategory::where('is_active', true)->orderBy('sort_order')->get();
+        return view('seller.products.edit', compact('product', 'user', 'companyUser', 'textileCategories'));
     }
 
     public function update(Request $request, Product $product)
@@ -271,7 +376,8 @@ class ProductController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'category' => 'required|array',
+            'textile_product_id' => 'nullable|exists:textile_products,id',
+            'category' => 'nullable|array',
             'category.*' => 'string|max:255',
             'cluster' => 'nullable|string|max:255',
             'contact_information' => 'nullable|string',
@@ -279,19 +385,51 @@ class ProductController extends Controller
             'material_composition' => 'nullable|string',
             'production_capacity' => 'nullable|string|max:255',
             'width_size' => 'nullable|string|max:255',
+            'moq' => 'nullable|string|max:255',
+            'unit_of_measurement' => 'nullable|string|max:255',
+            'tags' => 'nullable|string',
             'pattern' => 'nullable|string|max:255',
             'color' => 'nullable|string|max:255',
             'technical_specifications' => 'nullable|string',
             'certifications' => 'nullable|string',
-            'images.*' => 'image|mimes:jpeg,png,jpg|max:5120',
-            'brochures.*' => 'mimes:pdf,docx,xlsx|max:5120',
+            'images.*' => 'image|mimes:jpeg,png,jpg,webp|max:10000',
+            'brochures.*' => 'mimes:pdf,docx,xlsx|max:15000',
             'videos.*' => 'mimes:mp4|max:10240',
         ]);
 
         $data = $request->only([
-            'name', 'category', 'cluster', 'contact_information', 'hs_code', 'material_composition', 
-            'production_capacity', 'width_size', 'pattern', 'color', 'technical_specifications', 'certifications'
+            'name', 'cluster', 'contact_information', 'hs_code', 'material_composition', 
+            'production_capacity', 'width_size', 'moq', 'unit_of_measurement', 'tags',
+            'pattern', 'color', 'technical_specifications', 'certifications'
         ]);
+
+        $data['is_published'] = $request->boolean('is_published', true);
+
+        // Resolve Textile Classification Hierarchy
+        if ($request->filled('textile_product_id')) {
+            $tp = TextileProduct::with('subcategory.category')->find($request->textile_product_id);
+            if ($tp) {
+                $data['textile_product_id'] = $tp->id;
+                $data['textile_subcategory_id'] = $tp->subcategory_id;
+                $data['textile_category_id'] = $tp->subcategory?->category_id;
+
+                $legacyCats = $request->input('category', []);
+                if (empty($legacyCats)) {
+                    $legacyCats = [
+                        $tp->subcategory?->category?->name ?? 'Textiles',
+                        $tp->subcategory?->name ?? '',
+                        $tp->name
+                    ];
+                }
+                $data['category'] = array_values(array_filter($legacyCats));
+
+                if (empty($data['hs_code']) && !empty($tp->default_hs_code)) {
+                    $data['hs_code'] = $tp->default_hs_code;
+                }
+            }
+        } elseif ($request->has('category')) {
+            $data['category'] = $request->input('category');
+        }
 
         if ($user->isOperator()) {
             $data['status'] = 'Pending Exporter Review';
@@ -306,6 +444,7 @@ class ProductController extends Controller
         }
 
         $product->update($data);
+        $this->syncAttributeValues($request, $product);
         $this->uploadMedia($request, $product);
 
         return redirect()->route('seller.products.index')->with('success', $msg);
@@ -356,12 +495,124 @@ class ProductController extends Controller
         return redirect()->route('seller.products.index')->with('info', "Revision request sent for \"{$product->name}\". Operator can now update specifications.");
     }
 
+    public function destroyMedia(Product $product, \App\Models\ProductMedia $media)
+    {
+        $user = auth()->user();
+        $companyUser = $user->getCompanyUser();
+        if ($product->user_id !== $companyUser->id || $media->product_id !== $product->id) {
+            abort(403);
+        }
+
+        $wasPrimary = $media->is_primary;
+        \Illuminate\Support\Facades\Storage::disk('public')->delete($media->file_path);
+        $media->delete();
+
+        if ($wasPrimary) {
+            $first = $product->media()->where('media_type', 'image')->first();
+            if ($first) {
+                $first->update(['is_primary' => true]);
+            }
+        }
+
+        return back()->with('success', 'Media file removed successfully.');
+    }
+
+    public function setPrimaryMedia(Product $product, \App\Models\ProductMedia $media)
+    {
+        $user = auth()->user();
+        $companyUser = $user->getCompanyUser();
+        if ($product->user_id !== $companyUser->id || $media->product_id !== $product->id) {
+            abort(403);
+        }
+
+        $product->media()->where('media_type', 'image')->update(['is_primary' => false]);
+        $media->update(['is_primary' => true]);
+
+        return back()->with('success', 'Primary product image updated.');
+    }
+
+    protected function syncAttributeValues(Request $request, Product $product): void
+    {
+        // Delete previous attribute values
+        $product->attributeValues()->delete();
+
+        $sort = 0;
+
+        // 1. Fibres
+        if ($request->has('fibres') && is_array($request->fibres)) {
+            foreach ($request->fibres as $f) {
+                if (empty($f['name']) && empty($f['master_id'])) continue;
+                $product->attributeValues()->create([
+                    'attribute_type' => 'fibre',
+                    'master_id' => !empty($f['master_id']) ? (int)$f['master_id'] : null,
+                    'attribute_name' => $f['name'] ?? 'Fibre',
+                    'attribute_value' => !empty($f['percentage']) ? ($f['percentage'] . '%') : ($f['value'] ?? null),
+                    'percentage' => !empty($f['percentage']) ? (float)$f['percentage'] : null,
+                    'sort_order' => $sort++,
+                ]);
+            }
+        }
+
+        // 2. Yarns
+        if ($request->has('yarns') && is_array($request->yarns)) {
+            foreach ($request->yarns as $y) {
+                if (empty($y['name']) && empty($y['master_id'])) continue;
+                $product->attributeValues()->create([
+                    'attribute_type' => 'yarn',
+                    'master_id' => !empty($y['master_id']) ? (int)$y['master_id'] : null,
+                    'attribute_name' => $y['name'] ?? 'Yarn',
+                    'attribute_value' => $y['value'] ?? null,
+                    'percentage' => null,
+                    'sort_order' => $sort++,
+                ]);
+            }
+        }
+
+        // 3. Fabrics
+        if ($request->has('fabrics') && is_array($request->fabrics)) {
+            foreach ($request->fabrics as $fb) {
+                if (empty($fb['name']) && empty($fb['master_id'])) continue;
+                $product->attributeValues()->create([
+                    'attribute_type' => 'fabric',
+                    'master_id' => !empty($fb['master_id']) ? (int)$fb['master_id'] : null,
+                    'attribute_name' => $fb['name'] ?? 'Fabric',
+                    'attribute_value' => $fb['value'] ?? null,
+                    'percentage' => null,
+                    'sort_order' => $sort++,
+                ]);
+            }
+        }
+
+        // 4. Processes
+        if ($request->has('processes') && is_array($request->processes)) {
+            foreach ($request->processes as $p) {
+                if (empty($p['name']) && empty($p['master_id'])) continue;
+                $product->attributeValues()->create([
+                    'attribute_type' => 'process',
+                    'master_id' => !empty($p['master_id']) ? (int)$p['master_id'] : null,
+                    'attribute_name' => $p['name'] ?? 'Process',
+                    'attribute_value' => $p['value'] ?? null,
+                    'percentage' => null,
+                    'sort_order' => $sort++,
+                ]);
+            }
+        }
+    }
+
     protected function uploadMedia(Request $request, Product $product)
     {
+        $hasPrimary = $product->media()->where('is_primary', true)->exists();
+
         if ($request->hasFile('images')) {
+            $isFirst = !$hasPrimary;
             foreach ($request->file('images') as $file) {
                 $path = $file->store('product_media', 'public');
-                $product->media()->create(['file_path' => $path, 'media_type' => 'image']);
+                $product->media()->create([
+                    'file_path' => $path,
+                    'media_type' => 'image',
+                    'is_primary' => $isFirst,
+                ]);
+                $isFirst = false;
             }
         }
         if ($request->hasFile('brochures')) {

@@ -11,71 +11,214 @@
     .btn-outline-primary:hover { background-color: var(--primary); color: #fff; }
     .btn-primary { background-color: var(--primary); border-color: var(--primary); }
     .btn-primary:hover { background-color: #4a0e2b; border-color: #4a0e2b; }
-    .list-group-item.active { background-color: var(--primary) !important; border-color: var(--primary) !important; }
     .pagination .page-item.active .page-link {
         background-color: var(--primary) !important;
         border-color: var(--primary) !important;
         color: #fff !important;
     }
-    .pagination .page-link {
-        color: var(--primary);
-    }
-    .pagination .page-link:hover {
+    .pagination .page-link { color: var(--primary); }
+    .pagination .page-link:hover { background-color: var(--sky); color: var(--primary); }
+    
+    .cat-accordion .accordion-button:not(.collapsed) {
         background-color: var(--sky);
         color: var(--primary);
+        font-weight: 700;
+        box-shadow: none;
     }
-    .pagination .page-item.disabled .page-link {
-        color: #6c757d;
+    .cat-accordion .accordion-button:focus {
+        box-shadow: none;
+        border-color: rgba(108, 19, 64, 0.2);
+    }
+    .cat-sub-item {
+        display: block;
+        padding: 6px 12px;
+        color: #495057;
+        text-decoration: none;
+        font-size: 0.85rem;
+        border-radius: 6px;
+        transition: all 0.15s;
+    }
+    .cat-sub-item:hover, .cat-sub-item.active {
+        background-color: var(--primary);
+        color: #fff;
+    }
+    .filter-chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 10px;
+        background: #f1f3f5;
+        border: 1px solid #dee2e6;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        color: #495057;
+        margin-right: 6px;
+        margin-bottom: 6px;
+        text-decoration: none;
+        transition: all 0.15s;
+    }
+    .filter-chip:hover, .filter-chip.active {
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+    }
+    .product-card {
+        transition: transform 0.2s, box-shadow 0.2s;
+        border: 1px solid #e9ecef;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08) !important;
     }
 </style>
 @endsection
 
 @section('content')
 <div class="container py-5">
+    <!-- Top Banner & Header -->
     <div class="row mb-4 align-items-center">
         <div class="col-md-6">
-            <h2>Product Catalogue</h2>
-            <p class="text-muted mb-0">Discover verified textile products from Indian exporters.</p>
+            <h2 class="fw-bold mb-1" style="color: var(--primary);">Textile Product Catalogue</h2>
+            <p class="text-muted mb-0">Discover verified Indian textile products categorized by standard classification taxonomy.</p>
         </div>
         <div class="col-md-6 mt-3 mt-md-0">
             <div class="d-flex justify-content-md-end gap-2">
-                <form action="{{ route('catalogue.index') }}" method="GET" class="d-flex flex-grow-1" style="max-width: 350px;">
-                    <input type="text" name="q" class="form-control me-2" placeholder="Search products..." value="{{ request('q') }}">
-                    <button type="submit" class="btn btn-primary">Search</button>
+                <form action="{{ route('catalogue.index') }}" method="GET" class="d-flex flex-grow-1" style="max-width: 380px;">
+                    @if(request('category_id')) <input type="hidden" name="category_id" value="{{ request('category_id') }}"> @endif
+                    @if(request('subcategory_id')) <input type="hidden" name="subcategory_id" value="{{ request('subcategory_id') }}"> @endif
+                    @if(request('cluster')) <input type="hidden" name="cluster" value="{{ request('cluster') }}"> @endif
+                    @if(request('fibre')) <input type="hidden" name="fibre" value="{{ request('fibre') }}"> @endif
+                    
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search product, fibre, HS code..." value="{{ request('q') }}">
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                    </div>
                 </form>
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#generalEnquiryModal" style="background-color: var(--accent); color: #1b1b18; font-weight: 600; white-space: nowrap; transition: all 0.2s;">
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#generalEnquiryModal" style="background-color: var(--accent); color: #1b1b18; font-weight: 600; white-space: nowrap;">
                     <i class="fas fa-paper-plane me-1"></i> Send Enquiry
                 </button>
             </div>
         </div>
     </div>
 
+    <!-- Active Filters Row -->
+    @if(request()->hasAny(['category_id', 'subcategory_id', 'fibre', 'fabric', 'process', 'cluster', 'category', 'q']))
+        <div class="card bg-light border-0 rounded-4 p-3 mb-4">
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <span class="small fw-bold text-muted me-2"><i class="fas fa-filter me-1"></i> Active Filters:</span>
+                @if(request('category_id'))
+                    @php $actCat = $textileCategories->firstWhere('id', request('category_id')); @endphp
+                    <span class="badge bg-white text-dark border px-2 py-1">
+                        Category: {{ $actCat->name ?? request('category_id') }}
+                        <a href="{{ route('catalogue.index', request()->except(['category_id', 'subcategory_id'])) }}" class="text-danger ms-1 text-decoration-none">&times;</a>
+                    </span>
+                @endif
+                @if(request('subcategory_id'))
+                    <span class="badge bg-white text-dark border px-2 py-1">
+                        Subcategory Filtered
+                        <a href="{{ route('catalogue.index', request()->except('subcategory_id')) }}" class="text-danger ms-1 text-decoration-none">&times;</a>
+                    </span>
+                @endif
+                @if(request('category'))
+                    <span class="badge bg-white text-dark border px-2 py-1">
+                        {{ request('category') }}
+                        <a href="{{ route('catalogue.index', request()->except('category')) }}" class="text-danger ms-1 text-decoration-none">&times;</a>
+                    </span>
+                @endif
+                @if(request('fibre'))
+                    <span class="badge bg-white text-dark border px-2 py-1">
+                        Fibre: {{ request('fibre') }}
+                        <a href="{{ route('catalogue.index', request()->except('fibre')) }}" class="text-danger ms-1 text-decoration-none">&times;</a>
+                    </span>
+                @endif
+                @if(request('cluster'))
+                    <span class="badge bg-white text-dark border px-2 py-1">
+                        Cluster: {{ request('cluster') }}
+                        <a href="{{ route('catalogue.index', request()->except('cluster')) }}" class="text-danger ms-1 text-decoration-none">&times;</a>
+                    </span>
+                @endif
+                @if(request('q'))
+                    <span class="badge bg-white text-dark border px-2 py-1">
+                        "{{ request('q') }}"
+                        <a href="{{ route('catalogue.index', request()->except('q')) }}" class="text-danger ms-1 text-decoration-none">&times;</a>
+                    </span>
+                @endif
+                <a href="{{ route('catalogue.index') }}" class="btn btn-link btn-sm text-danger p-0 ms-auto text-decoration-none">Clear All Filters</a>
+            </div>
+        </div>
+    @endif
+
     <div class="row">
         <!-- Sidebar filters -->
-        <div class="col-md-3 mb-4">
-            <div class="card shadow-sm border-0 mb-4">
-                <div class="card-body">
-                    <h5 class="card-title mb-3">Categories</h5>
-                    @php $categories = ['Home Textiles', 'Technical Textiles', 'Handloom Products', 'Carpets', 'Woollen Products', 'Garments', 'Yarn', 'Fabrics', 'Sustainable Textiles', 'Organic Products', 'Other']; @endphp
-                    <div class="list-group list-group-flush">
-                        <a href="{{ route('catalogue.index', request()->except('category')) }}" class="list-group-item list-group-item-action @if(!request('category')) active @endif">All Categories</a>
-                        @foreach($categories as $cat)
-                            <a href="{{ route('catalogue.index', array_merge(request()->query(), ['category' => $cat])) }}" class="list-group-item list-group-item-action @if(request('category') == $cat) active @endif">
-                                {{ $cat }}
+        <div class="col-lg-3 col-md-4 mb-4">
+            <!-- TEXTILE HIERARCHICAL CLASSIFICATION -->
+            <div class="card shadow-sm border-0 rounded-4 mb-4 overflow-hidden">
+                <div class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center">
+                    <h6 class="fw-bold mb-0 text-dark"><i class="fas fa-sitemap me-2 text-primary"></i> Textile Categories</h6>
+                    <a href="{{ route('catalogue.index', request()->except(['category_id', 'subcategory_id', 'category'])) }}" class="small text-muted text-decoration-none">All</a>
+                </div>
+                <div class="accordion accordion-flush cat-accordion" id="categoryAccordion">
+                    @foreach($textileCategories as $idx => $tCat)
+                        @php $isCatActive = request('category_id') == $tCat->id; @endphp
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading{{ $tCat->id }}">
+                                <button class="accordion-button {{ $isCatActive ? '' : 'collapsed' }} py-2 px-3 small" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $tCat->id }}">
+                                    <span class="badge bg-secondary-subtle text-secondary me-2" style="font-size:0.65rem;">{{ $tCat->code }}</span>
+                                    {{ $tCat->name }}
+                                </button>
+                            </h2>
+                            <div id="collapse{{ $tCat->id }}" class="accordion-collapse collapse {{ $isCatActive ? 'show' : '' }}" data-bs-parent="#categoryAccordion">
+                                <div class="accordion-body p-2 bg-light">
+                                    <a href="{{ route('catalogue.index', array_merge(request()->query(), ['category_id' => $tCat->id, 'subcategory_id' => null])) }}" 
+                                       class="cat-sub-item fw-bold {{ $isCatActive && !request('subcategory_id') ? 'active' : '' }}">
+                                        All in {{ $tCat->name }}
+                                    </a>
+                                    @foreach($tCat->subcategories as $sub)
+                                        @php $isSubActive = request('subcategory_id') == $sub->id; @endphp
+                                        <a href="{{ route('catalogue.index', array_merge(request()->query(), ['category_id' => $tCat->id, 'subcategory_id' => $sub->id])) }}" 
+                                           class="cat-sub-item {{ $isSubActive ? 'active' : '' }}">
+                                            {{ $sub->name }}
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <!-- FIBRE / MATERIAL FILTER -->
+            <div class="card shadow-sm border-0 rounded-4 mb-4">
+                <div class="card-body p-3">
+                    <h6 class="fw-bold mb-3 text-dark"><i class="fas fa-seedling me-2 text-success"></i> Fibre / Material</h6>
+                    <div class="d-flex flex-wrap">
+                        @php 
+                            $popularFibres = ['Cotton', 'Polyester', 'Silk', 'Wool', 'Linen', 'Viscose', 'Acrylic', 'Nylon', 'Jute', 'Spandex']; 
+                        @endphp
+                        @foreach($popularFibres as $f)
+                            <a href="{{ route('catalogue.index', array_merge(request()->query(), ['fibre' => request('fibre') == $f ? null : $f])) }}" 
+                               class="filter-chip {{ request('fibre') == $f ? 'active' : '' }}">
+                                {{ $f }}
                             </a>
                         @endforeach
                     </div>
                 </div>
             </div>
 
-            <div class="card shadow-sm border-0">
-                <div class="card-body">
-                    <h5 class="card-title mb-3">Clusters</h5>
-                    @php $clusters = ['Tirupur', 'Surat', 'Panipat', 'Ludhiana', 'Varanasi', 'Bhilwara', 'Kanchipuram', 'Bhagalpur', 'Kolkata', 'Other']; @endphp
-                    <div class="list-group list-group-flush">
-                        <a href="{{ route('catalogue.index', request()->except('cluster')) }}" class="list-group-item list-group-item-action @if(!request('cluster')) active @endif">All Clusters</a>
+            <!-- CLUSTERS FILTER -->
+            <div class="card shadow-sm border-0 rounded-4 mb-4">
+                <div class="card-body p-3">
+                    <h6 class="fw-bold mb-3 text-dark"><i class="fas fa-map-marker-alt me-2 text-danger"></i> Manufacturing Clusters</h6>
+                    @php $clusters = ['Tirupur', 'Surat', 'Panipat', 'Ludhiana', 'Varanasi', 'Bhilwara', 'Karur', 'Ichalkaranji', 'Jaipur', 'Kanchipuram']; @endphp
+                    <div class="list-group list-group-flush small">
+                        <a href="{{ route('catalogue.index', request()->except('cluster')) }}" 
+                           class="list-group-item list-group-item-action border-0 py-1 px-2 rounded {{ !request('cluster') ? 'fw-bold text-primary' : 'text-muted' }}">
+                            All Clusters
+                        </a>
                         @foreach($clusters as $c)
-                            <a href="{{ route('catalogue.index', array_merge(request()->query(), ['cluster' => $c])) }}" class="list-group-item list-group-item-action @if(request('cluster') == $c) active @endif">
+                            <a href="{{ route('catalogue.index', array_merge(request()->query(), ['cluster' => request('cluster') == $c ? null : $c])) }}" 
+                               class="list-group-item list-group-item-action border-0 py-1 px-2 rounded {{ request('cluster') == $c ? 'fw-bold text-primary bg-light' : 'text-muted' }}">
                                 {{ $c }}
                             </a>
                         @endforeach
@@ -85,54 +228,111 @@
         </div>
 
         <!-- Product Grid -->
-        <div class="col-md-9">
-            <div class="row">
+        <div class="col-lg-9 col-md-8">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted small">Showing <strong>{{ $products->total() }}</strong> verified products</span>
+            </div>
+
+            <div class="row g-4">
                 @forelse($products as $product)
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm product-card transition-all" style="transition: transform 0.2s;">
-                        @php $img = $product->media->where('media_type', 'image')->first(); @endphp
-                        @if($img)
-                            <img src="{{ asset('storage/' . $img->file_path) }}" class="card-img-top" alt="{{ $product->name }}" style="height: 200px; object-fit: cover;">
-                        @else
-                            <div class="bg-light text-center d-flex align-items-center justify-content-center" style="height: 200px;">
-                                <span class="text-muted">No Image</span>
-                            </div>
-                        @endif
-                        <div class="card-body">
-                            <h5 class="card-title text-truncate">{{ $product->name }}</h5>
-                            <p class="card-text text-muted small mb-2">{{ is_array($product->category) ? implode(', ', $product->category) : $product->category }}</p>
-                            <p class="card-text small text-truncate">{{ Str::limit($product->material_composition, 50) }}</p>
-                            <p class="mb-0 small text-primary"><i class="fas fa-industry me-1"></i> {{ optional($product->user->exporterProfile)->company_name ?? $product->user->name ?? 'Verified Exporter' }}</p>
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 product-card shadow-sm">
+                        <!-- Primary Image -->
+                        @php 
+                            $primaryImg = $product->media->where('media_type', 'image')->where('is_primary', true)->first() 
+                                       ?? $product->media->where('media_type', 'image')->first(); 
+                        @endphp
+                        <div class="position-relative overflow-hidden bg-light text-center" style="height: 210px;">
+                            @if($primaryImg)
+                                <img src="{{ asset('storage/' . $primaryImg->file_path) }}" alt="{{ $product->name }}" style="width: 100%; height: 100%; object-fit: cover;">
+                            @else
+                                <div class="h-100 d-flex flex-column align-items-center justify-content-center text-muted">
+                                    <i class="fas fa-boxes fa-2x mb-2 text-secondary opacity-50"></i>
+                                    <span class="small">No Image Provided</span>
+                                </div>
+                            @endif
+
+                            @if($product->cluster)
+                                <span class="position-absolute top-0 end-0 m-2 badge bg-dark bg-opacity-75 text-white" style="font-size: 0.7rem;">
+                                    <i class="fas fa-map-pin me-1"></i> {{ explode(' ', $product->cluster)[0] }}
+                                </span>
+                            @endif
                         </div>
-                        <div class="card-footer bg-white border-top-0">
-                            <a href="{{ route('catalogue.show', $product) }}" class="btn btn-outline-primary w-100">View Details</a>
+
+                        <div class="card-body p-3 d-flex flex-column">
+                            <!-- Classification Category Badge -->
+                            <div class="mb-1">
+                                @if($product->textileCategory)
+                                    <span class="badge bg-light text-dark border" style="font-size: 0.7rem;">{{ $product->textileCategory->name }}</span>
+                                    @if($product->textileSubcategory)
+                                        <span class="text-muted" style="font-size: 0.65rem;">&bull; {{ $product->textileSubcategory->name }}</span>
+                                    @endif
+                                @elseif(is_array($product->category) && count($product->category) > 0)
+                                    <span class="badge bg-light text-dark border" style="font-size: 0.7rem;">{{ $product->category[0] }}</span>
+                                @endif
+                            </div>
+
+                            <!-- Product Name -->
+                            <h6 class="fw-bold text-dark mb-1 text-truncate" title="{{ $product->name }}">
+                                <a href="{{ route('catalogue.show', $product) }}" class="text-dark text-decoration-none">{{ $product->name }}</a>
+                            </h6>
+
+                            <!-- Material / Fibre composition -->
+                            <p class="text-muted small mb-2 text-truncate" style="font-size: 0.8rem;">
+                                {{ $product->material_composition ?: ($product->fibres->first()?->attribute_name ? $product->fibres->pluck('attribute_name')->implode(', ') : 'Verified Textile Product') }}
+                            </p>
+
+                            <!-- Commercial & Capacity Details -->
+                            <div class="mt-auto pt-2 border-top">
+                                <div class="d-flex justify-content-between align-items-center small text-muted mb-2" style="font-size: 0.75rem;">
+                                    <span>
+                                        @if($product->moq)
+                                            <strong>MOQ:</strong> {{ $product->moq }} {{ $product->unit_of_measurement ?? '' }}
+                                        @else
+                                            <strong>HS:</strong> {{ $product->hs_code ?: 'Tariff Code' }}
+                                        @endif
+                                    </span>
+                                    @if($product->production_capacity)
+                                        <span title="Production Capacity"><i class="fas fa-tachometer-alt me-1"></i> {{ Str::limit($product->production_capacity, 15) }}</span>
+                                    @endif
+                                </div>
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="small text-truncate" style="max-width: 130px; font-size: 0.75rem; color: var(--primary);">
+                                        <i class="fas fa-industry me-1"></i>
+                                        {{ optional($product->user->exporterProfile)->company_name ?? $product->user->name ?? 'Verified Exporter' }}
+                                    </div>
+                                    <a href="{{ route('catalogue.show', $product) }}" class="btn btn-sm btn-outline-primary px-2 py-1" style="font-size: 0.8rem;">
+                                        View Specs <i class="fas fa-arrow-right ms-1"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 @empty
-                <div class="col-12">
-                    <div class="alert alert-info">No products found matching your criteria.</div>
+                <div class="col-12 py-5 text-center">
+                    <div class="card border-0 bg-light p-5 rounded-4">
+                        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                        <h5 class="fw-bold text-dark">No Products Found</h5>
+                        <p class="text-muted">No textile products matched your selected criteria or search term.</p>
+                        <div>
+                            <a href="{{ route('catalogue.index') }}" class="btn btn-primary px-4">
+                                <i class="fas fa-undo me-1"></i> Clear Filters
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 @endforelse
             </div>
-            
-            <div class="d-flex justify-content-center mt-4">
-                {{ $products->links() }}
+
+            <!-- Pagination -->
+            <div class="d-flex justify-content-center mt-5">
+                {{ $products->withQueryString()->links() }}
             </div>
         </div>
     </div>
 </div>
-
-<style>
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
-}
-.btn-accent:hover {
-    background-color: #d19a02 !important;
-    border-color: #d19a02 !important;
-}
-</style>
 
 <!-- General Enquiry Modal -->
 <div class="modal fade" id="generalEnquiryModal" tabindex="-1" aria-labelledby="generalEnquiryModalLabel" aria-hidden="true">
@@ -188,8 +388,8 @@
                                     <label class="form-label fw-semibold text-dark small">Category *</label>
                                     <select name="category" class="form-select" required>
                                         <option value="" disabled selected>Select Category</option>
-                                        @foreach($categories as $cat)
-                                            <option value="{{ $cat }}">{{ $cat }}</option>
+                                        @foreach($textileCategories as $tCat)
+                                            <option value="{{ $tCat->name }}">{{ $tCat->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -279,7 +479,6 @@
         </div>
     </div>
 </div>
-
 @endsection
 
 @section('scripts')
@@ -346,12 +545,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 const li = document.createElement('li');
                 li.textContent = 'Network error. Please check your connection and try again.';
                 errorList.appendChild(li);
-                console.error(err);
             });
         });
     }
 
-    // Reset modal when closed
     const modalEl = document.getElementById('generalEnquiryModal');
     if (modalEl) {
         modalEl.addEventListener('hidden.bs.modal', function () {

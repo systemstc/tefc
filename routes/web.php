@@ -10,6 +10,7 @@ use App\Http\Controllers\BuyerController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\TextileClassificationController;
 
 // Auth Routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -23,7 +24,7 @@ Route::post('/api/bhashini/translate', [\App\Http\Controllers\BhashiniController
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Dynamic CMS Routes
-Route::get('/', [CmsController::class, 'show']);
+Route::get('/', [CmsController::class, 'show'])->name('home');
 Route::get('/sitemap', [CmsController::class, 'sitemap'])->name('sitemap');
 Route::get('/p/{slug}', [CmsController::class, 'show']);
 
@@ -40,6 +41,18 @@ Route::get('/help-support', function () { return redirect('/p/help-support'); })
 // Frontend Resource List
 Route::get('/resources', [ResourceController::class, 'list'])->name('resources.list');
 Route::post('/api/chat', [App\Http\Controllers\ChatController::class, 'chat'])->name('api.chat');
+
+// Textile Classification & Attribute Discovery API
+Route::prefix('api/classifications')->name('api.classifications.')->group(function () {
+    Route::get('/search', [TextileClassificationController::class, 'search'])->name('search');
+    Route::get('/tree', [TextileClassificationController::class, 'tree'])->name('tree');
+    Route::get('/subcategories', [TextileClassificationController::class, 'getSubcategories'])->name('subcategories');
+    Route::get('/category/{category?}/subcategories', [TextileClassificationController::class, 'getSubcategories']);
+    Route::get('/products', [TextileClassificationController::class, 'getProducts'])->name('products');
+    Route::get('/subcategory/{subcategory?}/products', [TextileClassificationController::class, 'getProducts']);
+    Route::get('/category-attributes', [TextileClassificationController::class, 'getCategoryAttributes'])->name('category-attributes');
+    Route::get('/category/{category?}/attributes', [TextileClassificationController::class, 'getCategoryAttributes']);
+});
 
 // Product Catalogue Frontend
 Route::get('/catalogue', [ProductController::class, 'catalogue'])->name('catalogue.index');
@@ -83,6 +96,8 @@ Route::middleware(['auth', 'role:buyer,seller'])->group(function () {
         // Exporter Product Acknowledgment (Higher Authority Verification & Direct Publishing)
         Route::post('/seller/products/{product}/acknowledge', [ProductController::class, 'acknowledge'])->name('seller.products.acknowledge');
         Route::post('/seller/products/{product}/request-revision', [ProductController::class, 'requestRevision'])->name('seller.products.request-revision');
+        Route::delete('/seller/products/{product}/media/{media}', [ProductController::class, 'destroyMedia'])->name('seller.products.media.destroy');
+        Route::post('/seller/products/{product}/media/{media}/primary', [ProductController::class, 'setPrimaryMedia'])->name('seller.products.media.primary');
 
         // Data Entry Operator Management (Authorized Signatory / Exporter only)
         Route::get('/exporter/operators', [\App\Http\Controllers\ExporterOperatorController::class, 'index'])->name('exporter.operators.index');

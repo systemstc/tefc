@@ -942,6 +942,15 @@
   $totalExportValueText = $totalExportValueNum > 0 ? ('Rs.' . number_format($totalExportValueNum) . ' Cr') : 'Rs.18,800 Cr';
 @endphp
 
+@if(!$clustersSection)
+<div class="container my-5 py-5 text-center">
+  <div class="alert alert-light border py-5 shadow-sm">
+    <i class="fas fa-cubes fa-3x text-muted mb-3"></i>
+    <h3 class="fw-bold text-dark">Cluster Information Currently Inactive</h3>
+    <p class="text-muted mb-0">The clusters section is currently set to inactive in the portal CMS.</p>
+  </div>
+</div>
+@else
 <div class="clusters-page-container">
   
   <!-- ── LISTING VIEW ── -->
@@ -1254,6 +1263,7 @@
   </div>
 
 </div>
+@endif
 @endsection
 
 @section('scripts')
@@ -1356,17 +1366,10 @@ function renderClusterCards() {
             </svg>
             ${(c.state || '').toUpperCase()}
           </div>
-          <div class="unit-tag">
-            <svg viewBox="0 0 24 24" fill="currentColor" style="display:inline-block; vertical-align:middle; width:18px; height:18px;">
-              <path d="M4 19V9l6 3V9l6 3V7l4 2v10H4zm2-2h12v-6.5l-2-1V13l-6-3v4.5l-4-2V17z"/>
-            </svg>
-            ${unitsText}
-          </div>
         </div>
 
         <div class="main-info">
           <h2 class="city">${distTitle}</h2>
-          <p class="jurisdiction">Designated Revenue Jurisdiction</p>
         </div>
 
         <a href="javascript:void(0)" class="explore-btn">

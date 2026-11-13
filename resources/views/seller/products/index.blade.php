@@ -102,7 +102,14 @@
                         </div>
                     </td>
                     <td>
-                        <span class="badge bg-light text-dark border">{{ is_array($product->category) ? implode(', ', $product->category) : $product->category }}</span>
+                        @if($product->textileCategory)
+                            <span class="badge bg-light text-dark border">{{ $product->textileCategory->name }}</span>
+                            @if($product->textileSubcategory)
+                                <div class="text-muted" style="font-size: 0.72rem;">{{ $product->textileSubcategory->name }}</div>
+                            @endif
+                        @else
+                            <span class="badge bg-light text-dark border">{{ is_array($product->category) ? implode(', ', $product->category) : $product->category }}</span>
+                        @endif
                     </td>
                     <td>
                         @if($product->creator)

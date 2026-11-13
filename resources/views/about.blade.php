@@ -712,6 +712,7 @@
   @endphp
 
   <!-- ── HERO SECTION ── -->
+  @if($heroSection)
   <div class="about-hero">
     <div class="container about-hero-inner">
       <div class="about-breadcrumbs">
@@ -740,20 +741,31 @@
       </div>
     </div>
   </div>
+  @endif
 
+  @php
+    $activeTabs = [];
+    if($overviewSection) $activeTabs[] = ['id' => 'overview', 'label' => 'Overview'];
+    if($mvoSection) $activeTabs[] = ['id' => 'mvo', 'label' => 'Mission & Vision'];
+    if($peopleSection) $activeTabs[] = ['id' => 'people', 'label' => 'Key People'];
+    if($orgSection) $activeTabs[] = ['id' => 'org', 'label' => 'Organisation Structure'];
+    if($timelineSection) $activeTabs[] = ['id' => 'milestones', 'label' => 'Milestones'];
+  @endphp
+
+  @if(count($activeTabs) > 0)
   <!-- ── STICKY TABS STRIP ── -->
   <div class="about-filter-strip">
     <div class="container">
       <div class="about-tabs">
-        <button class="about-tab active" onclick="scrollToSec('overview', this)">Overview</button>
-        <button class="about-tab" onclick="scrollToSec('mvo', this)">Mission &amp; Vision</button>
-        <button class="about-tab" onclick="scrollToSec('people', this)">Key People</button>
-        <button class="about-tab" onclick="scrollToSec('org', this)">Organisation Structure</button>
-        <button class="about-tab" onclick="scrollToSec('milestones', this)">Milestones</button>
+        @foreach($activeTabs as $idx => $tab)
+          <button class="about-tab {{ $idx === 0 ? 'active' : '' }}" onclick="scrollToSec('{{ $tab['id'] }}', this)">{{ $tab['label'] }}</button>
+        @endforeach
       </div>
     </div>
   </div>
+  @endif
 
+  @if($overviewSection)
   <!-- ── OVERVIEW SECTION ── -->
   <section class="about-section" id="overview">
     <div class="container">
@@ -790,7 +802,9 @@
       </div>
     </div>
   </section>
+  @endif
 
+  @if($mvoSection)
   <!-- ── MISSION, VISION & OBJECTIVES ── -->
   <section class="about-section about-section-alt" id="mvo">
     <div class="container">
@@ -849,7 +863,9 @@
       </div>
     </div>
   </section>
+  @endif
 
+  @if($peopleSection)
   <!-- ── KEY PEOPLE GRID ── -->
   <section class="about-section" id="people">
     <div class="container">
@@ -897,7 +913,9 @@
       </div>
     </div>
   </section>
+  @endif
 
+  @if($orgSection)
   <!-- ── ORGANISATIONAL STRUCTURE CHART ── -->
   <section class="about-section about-section-alt" id="org">
     <div class="container">
@@ -988,7 +1006,9 @@
       </div>
     </div>
   </section>
+  @endif
 
+  @if($timelineSection)
   <!-- ── TIMELINE SECTION ── -->
   <section class="about-section" id="milestones">
     <div class="container">
@@ -1023,14 +1043,21 @@
           @endforeach
         </div>
       </div>
+    </div>
+  </section>
+  @endif
 
-      <!-- Assistance Callout Banner -->
+  @if($assistSection)
+  <!-- ── ASSISTANCE CALLOUT BANNER ── -->
+  <div class="about-assistance-wrapper" style="padding: 2rem 0 4rem 0;">
+    <div class="container">
       <div class="about-assistance-banner">
         <h2>{{ $assistTitle }}</h2>
         <a href="{{ $assistData['btn_url'] ?? url('/p/help-support') }}" class="btn-about-assistance">{{ $assistData['btn_text'] ?? 'Contact Us' }}</a>
       </div>
     </div>
-  </section>
+  </div>
+  @endif
 
 </div>
 @endsection
@@ -1055,10 +1082,11 @@ function scrollToSec(id, el) {
 }
 
 // ── TAB ACTIVE CLASS HIGHLIGHT ON SCROLL ──
-const sections = ['overview', 'mvo', 'people', 'org', 'milestones'];
+const sections = @json(array_column($activeTabs ?? [], 'id'));
 const tabs = document.querySelectorAll('.about-tab');
 
 window.addEventListener('scroll', () => {
+  if (!sections || sections.length === 0) return;
   let current = '';
   
   sections.forEach(id => {

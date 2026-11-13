@@ -634,7 +634,11 @@ body {
   $heroSubtitle = $heroSection && isset($heroSection->content['subtitle']) 
     ? $heroSection->content['subtitle'] 
     : 'Leverage India\'s Free Trade Agreements, Preferential Trade Agreements and Government incentive schemes to maximize your textile export competitiveness and access global markets with reduced duties.';
+
+  $schemesSection = isset($page) && $page->sections ? $page->sections->where('type', 'fta_schemes')->first() : null;
+  $agreementsSection = isset($page) && $page->sections ? $page->sections->where('type', 'fta_agreements')->first() : null;
 @endphp
+@if($heroSection)
 <div class="fta-hero">
   <div class="fta-hero-inner">
     <div class="breadcrumb">
@@ -650,6 +654,7 @@ body {
     </div>
   </div>
 </div>
+@endif
 
 <div class="container my-5">
 
@@ -737,13 +742,14 @@ body {
     </div>
   </section>
 
+  @if($schemesSection || ($page->sections->count() === 0))
   <!-- SECTION 3: GOVERNMENT INCENTIVE SCHEMES -->
   <section class="fta-section">
     <div class="section-title-wrap" style="border:none; margin-bottom: 0.5rem;">
       <div class="section-icon"><i class="fas fa-award"></i></div>
-      <h2>Government Incentive Schemes</h2>
+      <h2>{{ ($schemesSection && $schemesSection->title) ? $schemesSection->title : 'Government Incentive Schemes' }}</h2>
     </div>
-    <div class="section-subtitle">Financial and non-financial support programmes available to textile exporters</div>
+    <div class="section-subtitle">{{ ($schemesSection && isset($schemesSection->content['subtitle'])) ? $schemesSection->content['subtitle'] : 'Financial and non-financial support programmes available to textile exporters' }}</div>
 
     <div class="filter-header-wrap">
       <div class="filter-tabs">
@@ -964,14 +970,16 @@ body {
       </div>
     </div>
   </section>
+  @endif
 
+  @if($agreementsSection || ($page->sections->count() === 0))
   <!-- SECTION 4: FREE TRADE & PREFERENTIAL TRADE AGREEMENTS -->
   <section class="fta-section">
     <div class="section-title-wrap" style="border:none; margin-bottom: 0.5rem;">
       <div class="section-icon"><i class="fas fa-file-contract"></i></div>
-      <h2>Free Trade & Preferential Trade Agreements</h2>
+      <h2>{{ ($agreementsSection && $agreementsSection->title) ? $agreementsSection->title : 'Free Trade & Preferential Trade Agreements' }}</h2>
     </div>
-    <div class="section-subtitle">India's trade agreements with textile duty benefits for exporters</div>
+    <div class="section-subtitle">{{ ($agreementsSection && isset($agreementsSection->content['subtitle'])) ? $agreementsSection->content['subtitle'] : "India's trade agreements with textile duty benefits for exporters" }}</div>
 
     <div class="filter-header-wrap">
       <div class="filter-tabs">
@@ -1099,6 +1107,7 @@ body {
       </table>
     </div>
   </section>
+  @endif
 
   <!-- SECTION 5: CERTIFICATE OF ORIGIN (COO) — HOW TO APPLY -->
   <section class="fta-section">
