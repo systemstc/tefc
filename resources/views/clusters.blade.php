@@ -1331,26 +1331,16 @@ function renderClusterCards() {
     'punjab': 'punjab'
   };
 
-  const districtNames = {
-    'surat': 'Surat, Navsari',
-    'karur': 'Karur',
-    'ichalkaranji': 'Kolhapur',
-    'kolhapur': 'Kolhapur',
-    'jaipur': 'Jaipur',
-    'varanasi': 'Varanasi, Sant Ravidas Nagar (Bhadohi), Mirzapur, Chunar',
-    'ludhiana': 'Ludhiana'
-  };
-
   list.forEach(c => {
     const card = document.createElement('div');
     const key = (c.name || '').toLowerCase();
     const stateKey = (c.state || '').toLowerCase();
     const stateClass = stateClassMap[stateKey] || key;
-    const codeKey = (key === 'kolhapur') ? 'ichalkaranji' : key;
+    const codeKey = (key === 'kolhapur' || key === 'ichalkaranji') ? 'ichalkaranji' : key;
     const defaultCard = 'images/clusters/' + codeKey + '_card.png';
     const imgUrl = c.image ? formatAssetUrl(c.image) : formatAssetUrl(defaultCard);
-    const distTitle = districtNames[key] || c.name;
-    const unitsText = c.units || '100+';
+    const distTitle = (c.districts && c.districts.trim() !== '') ? c.districts : (c.name || 'Textile Cluster');
+    const unitsText = c.units ? (c.units.toString().toLowerCase().includes('unit') ? c.units : c.units + ' Units') : '100+ Units';
 
     card.className = `cluster-card ${stateClass} tefc-cluster-card`;
     card.setAttribute('data-centre', key);
@@ -1365,6 +1355,12 @@ function renderClusterCards() {
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/>
             </svg>
             ${(c.state || '').toUpperCase()}
+          </div>
+          <div class="unit-tag">
+            <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px; height:16px; opacity:0.65;">
+              <path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/>
+            </svg>
+            <span>${unitsText}</span>
           </div>
         </div>
 
@@ -1410,11 +1406,25 @@ function sortClusters() {
   renderClusterCards();
 }
 
+// Helper to find cluster by key or name
+function findCluster(identifier) {
+  if (!identifier) return null;
+  if (clustersData[identifier]) return clustersData[identifier];
+  const idLower = identifier.toLowerCase().trim();
+  for (const [k, v] of Object.entries(clustersData)) {
+    if (k.toLowerCase().trim() === idLower) return v;
+    if (v.name && v.name.toLowerCase().trim() === idLower) return v;
+    if (v.districts && v.districts.toLowerCase().trim() === idLower) return v;
+    if ((idLower === 'kolhapur' || idLower === 'ichalkaranji') && (k.toLowerCase() === 'ichalkaranji' || k.toLowerCase() === 'kolhapur' || (v.name && (v.name.toLowerCase() === 'ichalkaranji' || v.name.toLowerCase() === 'kolhapur')))) return v;
+  }
+  return null;
+}
+
 // ── DETAIL VIEW ACTIONS ──
 function viewClusterDetail(name) {
-  activeClusterName = name;
-  const data = clustersData[name];
+  const data = findCluster(name);
   if (!data) return;
+  activeClusterName = data.name || name;
   
   // Update texts
   document.getElementById('det-bc-name').textContent = data.name;
@@ -1811,7 +1821,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', () => {
     const detailView = document.getElementById('detail-view');
     if (detailView.style.display === 'block') {
-      const data = clustersData[activeClusterName];
+      const data = findCluster(activeClusterName);
       if (data) renderSVGChart(data.chartCurr, data.chartPrev);
     }
   });

@@ -73,6 +73,10 @@ class CmsController extends Controller
             return view('iec', compact('page'));
         }
 
+        if ($slug === 'resources') {
+            return redirect()->route('resources.list');
+        }
+
         if ($slug === 'kpi-dashboard' || $slug === 'dashboard') {
             return redirect()->route('kpi.dashboard');
         }

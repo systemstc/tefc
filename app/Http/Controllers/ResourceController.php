@@ -253,7 +253,7 @@ class ResourceController extends Controller
     // Frontend view
     public function list()
     {
-        $page = \App\Models\Page::with('sections')->where('slug', 'resources')->where('is_active', true)->first();
+        $page = \App\Models\Page::with(['sections' => fn($q) => $q->orderBy('order')])->where('slug', 'resources')->where('is_active', true)->first();
         $categories = Resource::where('is_active', true)->select('category')->distinct()->get();
         $resources = Resource::where('is_active', true)->get();
         return view('resources', compact('resources', 'categories', 'page'));

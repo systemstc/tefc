@@ -23,7 +23,7 @@
             <div class="portal-card-header bg-light">
                 <div>
                     <h3 class="mb-0 text-dark" style="font-weight: 800;">{{ $page->title }} Page</h3>
-                    <div class="text-muted small">Live URL: <a href="{{ url('/') . ($page->slug == 'home' ? '' : '/p/' . $page->slug) }}" target="_blank" class="text-primary text-decoration-none">{{ url('/') . ($page->slug == 'home' ? '' : '/p/' . $page->slug) }} <i class="fas fa-external-link-alt ms-1"></i></a></div>
+                    <div class="text-muted small">Live URL: <a href="{{ url('/') . ($page->slug == 'home' ? '' : ($page->slug == 'resources' ? '/resources' : '/p/' . $page->slug)) }}" target="_blank" class="text-primary text-decoration-none">{{ url('/') . ($page->slug == 'home' ? '' : ($page->slug == 'resources' ? '/resources' : '/p/' . $page->slug)) }} <i class="fas fa-external-link-alt ms-1"></i></a></div>
                 </div>
                 <span class="badge bg-white text-primary border rounded-pill px-3">{{ $page->sections->count() }} Modular Sections</span>
             </div>
@@ -45,7 +45,13 @@
                                 <td class="fw-bold text-dark">
                                     <div class="d-flex align-items-center gap-2">
                                         <i class="fas fa-puzzle-piece {{ $section->is_active ? 'text-primary' : 'text-muted' }}"></i>
-                                        <span>{{ $section->title ?: ucwords(str_replace('_', ' ', $section->type)) }}</span>
+                                        <span>
+                                            @if($section->type == 'clusters_data')
+                                                Textile Clusters Directory (Cards, Photos & Details)
+                                            @else
+                                                {{ $section->title ?: ucwords(str_replace('_', ' ', $section->type)) }}
+                                            @endif
+                                        </span>
                                     </div>
                                 </td>
                                 <td>
@@ -127,6 +133,18 @@
                                         Frequently asked questions and direct support contacts.
                                     @elseif($section->type == 'assistance_banner')
                                         Direct call-to-action banner and contact support button.
+                                    @elseif($section->type == 'resources_hero')
+                                        Resource Center header banner, title, subtitle, and breadcrumbs.
+                                    @elseif($section->type == 'resources_export_markets')
+                                        Explore Export Markets with 4 country cards (US, DE, JP, AE), codes, descriptions, and DGFT links.
+                                    @elseif($section->type == 'resources_export_process')
+                                        Comprehensive 12-step export guide, timelines, document checklists, and official portals.
+                                    @elseif($section->type == 'resources_launched_services')
+                                        Recently launched digital tools (HS Code Intelligence Tool, AI Query Assistant), badges, and links.
+                                    @elseif($section->type == 'resources_govt_schemes')
+                                        Government schemes (EPM, RoDTEP, RoSCTL, PLI, PM MITRA, TIES), details, and external links.
+                                    @elseif($section->type == 'resources_downloads')
+                                        Document repository downloads, circulars, notifications, and downloadable PDFs.
                                     @else
                                         Custom modular content block for page data.
                                     @endif

@@ -43,6 +43,7 @@ class CmsSeeder extends Seeder
             ['slug' => 'hs-code', 'title' => 'HS Code Search — TEFC'],
             ['slug' => 'iec', 'title' => 'Import Export Code (IEC) — TEFC'],
             ['slug' => 'letter-of-credit', 'title' => 'Letter of Credit — TEFC'],
+            ['slug' => 'resources', 'title' => 'Resources & Trade Guides — TEFC'],
         ];
 
         foreach ($pageData as $p) {
@@ -263,5 +264,324 @@ class CmsSeeder extends Seeder
                 ]
             ]
         ]);
+
+        // 9. Resource Center Page Content
+        $resourcesPage = Page::where('slug', 'resources')->first();
+        if ($resourcesPage) {
+            Section::create([
+                'page_id' => $resourcesPage->id, 'type' => 'resources_hero', 'order' => 1, 'title' => 'Resource Center Banner',
+                'content' => [
+                    'title' => 'Resource Center',
+                    'subtitle' => 'Access essential export guides, market intelligence reports, government schemes, and step-by-step export processes to accelerate your global textile trade.',
+                    'background_image' => 'images/page-hero-bg.jpg',
+                ]
+            ]);
+
+            Section::create([
+                'page_id' => $resourcesPage->id, 'type' => 'resources_export_markets', 'order' => 2, 'title' => 'Explore Export Markets',
+                'content' => [
+                    'kicker' => 'Market intelligence · International trade',
+                    'heading' => 'Explore your next export market.',
+                    'intro' => 'Start with a featured destination, then continue to Trade Connect for the official country guide and detailed market information.',
+                    'view_all_text' => 'Explore all country guides',
+                    'view_all_url' => 'https://www.trade.gov.in/pages/country-guide',
+                    'cards' => [
+                        [
+                            'code' => 'US', 'name' => 'United States', 'region' => 'North America',
+                            'description' => 'High demand for apparel, home textiles, and technical textiles. Direct access to major retail chains.',
+                            'url' => 'https://www.trade.gov.in/pages/country-guide',
+                            'label' => 'DESTINATION', 'index' => '01', 'style_class' => 'us', 'button_text' => 'Know more',
+                        ],
+                        [
+                            'code' => 'DE', 'name' => 'Germany', 'region' => 'Europe',
+                            'description' => 'Key gateway for sustainable, organic, and circular textiles in the EU market.',
+                            'url' => 'https://www.trade.gov.in/pages/country-guide',
+                            'label' => 'DESTINATION', 'index' => '02', 'style_class' => 'de', 'button_text' => 'Know more',
+                        ],
+                        [
+                            'code' => 'JP', 'name' => 'Japan', 'region' => 'East Asia',
+                            'description' => 'Premium market for high-quality cotton fabrics, silks, and specialized finishes.',
+                            'url' => 'https://www.trade.gov.in/pages/country-guide',
+                            'label' => 'DESTINATION', 'index' => '03', 'style_class' => 'jp', 'button_text' => 'Know more',
+                        ],
+                        [
+                            'code' => 'AE', 'name' => 'United Arab Emirates', 'region' => 'Middle East',
+                            'description' => 'Strategic hub for re-exports and growing direct retail demand under CEPA.',
+                            'url' => 'https://www.trade.gov.in/pages/country-guide',
+                            'label' => 'DESTINATION', 'index' => '04', 'style_class' => 'ae', 'button_text' => 'Know more',
+                        ],
+                    ],
+                    'bottom_note' => 'TEFC and Trade Connect are collaborative initiatives. Country guidance is curated by the Directorate General of Foreign Trade (DGFT) and the Ministry of Commerce & Industry.',
+                ]
+            ]);
+
+            Section::create([
+                'page_id' => $resourcesPage->id, 'type' => 'resources_export_process', 'order' => 3, 'title' => 'Textile Export Process (12-Step Guide)',
+                'content' => [
+                    'eyebrow' => 'Exporter learning guide',
+                    'heading' => 'Textile Export Process',
+                    'intro' => 'A practical guide to exporting textile products from India — from selecting a product and finding a buyer to customs clearance, shipment and receipt of export payment.',
+                    'chips' => ['12 practical steps', 'Document checklists', 'Official resources', 'Indicative timelines'],
+                    'notice' => 'Important: Timelines below are indicative planning estimates, not government-guaranteed service levels. Requirements vary by product/HS code, destination, buyer contract, transport mode and current notifications. Confirm current requirements with DGFT, Customs, your bank, the relevant textile Export Promotion Council and the buyer before shipment.',
+                    'sidebar_heading' => 'Your export journey',
+                    'steps_heading' => '12 steps from order to payment',
+                    'steps_intro' => 'Open each step for documents, actions and source links.',
+                    'steps' => [
+                        [
+                            'num' => '01', 'title' => 'Choose your textile product and target market',
+                            'sub' => 'Define the product and check demand, buyer requirements and destination-market rules.', 'time' => '1–3 weeks*',
+                            'description' => 'Choose a specific product such as cotton bed linen, woven fabric, knitted apparel, towels, carpets, scarves or technical textiles. Research target-market demand, competitors, landed cost and import requirements.',
+                            'checks' => ['Fibre composition and construction (woven, knitted or non-woven).', 'GSM, width, dimensions, colourfastness, shrinkage and finish as relevant.', 'Destination rules for fibre-content/care labels, chemicals, flammability and product safety where applicable.', 'Buyer test protocols and sample approval requirements.'],
+                            'records' => ['Product specification sheet.', 'Market research and landed-cost estimate.', 'Destination compliance matrix.', 'Buyer requirement list.'],
+                            'actions' => ['Shortlist target countries and buyer types.', 'Check tariffs and whether a trade-agreement preference could apply.', 'Ask the importer to confirm standards, labelling language and tests in writing.'],
+                            'links' => [['title' => 'India Trade Portal ↗', 'url' => 'https://www.india.tradeportal.in/'], ['title' => 'Department of Commerce ↗', 'url' => 'https://www.commerce.gov.in/']],
+                            'footnote' => '*Initial research estimate; complexity varies.'
+                        ],
+                        [
+                            'num' => '02', 'title' => 'Identify HS / ITC(HS) classification',
+                            'sub' => 'Classification affects export policy, tariff, origin rules and customs declarations.', 'time' => '1–5 working days*',
+                            'description' => 'Determine the Indian ITC(HS) export code from the product\'s material, construction, use and processing. Textile goods span multiple chapters; do not classify solely by marketing name.',
+                            'checks' => ['Fibre percentages, construction, intended use and finish/coating.', 'Technical description, photos or sample if classification is uncertain.', 'Classification rationale and destination tariff code confirmed with the importer.'],
+                            'records' => ['Whether export is free, restricted, prohibited or subject to a specific condition.', 'Applicable product-specific Rules of Origin if claiming FTA preference.', 'Whether destination-market import permits or product rules apply.'],
+                            'actions' => ['Cross-verify 8-digit ITC(HS) code with current DGFT schedule.', 'Confirm destination tariff line with overseas buyer.', 'Check relevant export policy restrictions and duty drawback/remission tables.'],
+                            'links' => [['title' => 'DGFT portal ↗', 'url' => 'https://www.dgft.gov.in/'], ['title' => 'ICEGATE / Customs ↗', 'url' => 'https://www.icegate.gov.in/'], ['title' => 'India Trade Portal ↗', 'url' => 'https://www.india.tradeportal.in/']],
+                            'footnote' => '*Straightforward products; classification uncertainty can extend this.'
+                        ],
+                        [
+                            'num' => '03', 'title' => 'Set up the exporter business and banking',
+                            'sub' => 'Complete entity basics and arrange a bank relationship for export receipts.', 'time' => '2–10 working days*',
+                            'description' => 'Choose a suitable business form and complete applicable PAN, business and bank formalities. Open a current account with a bank authorised to handle foreign exchange transactions. Discuss export receipts, LC handling, documentary collection and remittance evidence with the bank.',
+                            'checks' => ['PAN and entity constitution documents (as applicable).', 'Business address proof and bank account evidence requested by the relevant service.', 'Authorised signatory details and digital-signature arrangements where needed.', 'Buyer due-diligence records.'],
+                            'records' => ['Entity incorporation / registration certificate.', 'AD Code letter from authorised dealer bank branch.', 'Authorized signatory KYC and resolution.'],
+                            'actions' => ['Obtain AD Code letter on bank letterhead for ICEGATE registration.', 'Activate foreign inward remittance tracking facilities.'],
+                            'links' => [['title' => 'DGFT ↗', 'url' => 'https://www.dgft.gov.in/'], ['title' => 'Reserve Bank of India ↗', 'url' => 'https://www.rbi.org.in/']],
+                            'footnote' => '*Assumes basic records are available; entity/bank setup varies.'
+                        ],
+                        [
+                            'num' => '04', 'title' => 'Obtain IEC and complete applicable registrations',
+                            'sub' => 'Check IEC, GST/LUT treatment and whether RCMC is required for your purpose.', 'time' => 'IEC planning allowance: 1–3 working days*',
+                            'description' => 'IEC: Obtain an Importer-Exporter Code from DGFT unless a specific exemption applies. Keep IEC details accurate and comply with current update/confirmation requirements. GST: Confirm GST registration applicability. Eligible exporters may assess exporting under LUT without payment of IGST. RCMC: If required for a Foreign Trade Policy authorisation or benefit, apply to the appropriate Export Promotion Council.',
+                            'checks' => ['PAN, business details, bank and address/contact details requested by DGFT.', 'Authentication/DSC as applicable to the current online process.', 'GST details and LUT acknowledgement, where applicable.', 'Product/category details and supporting documents for RCMC, if needed.'],
+                            'records' => ['DGFT Importer Exporter Code (IEC) electronic certificate.', 'GST registration certificate & Letter of Undertaking (LUT) acknowledgement.', 'Registration Cum Membership Certificate (RCMC) from AEPC / TEXPROCIL.'],
+                            'actions' => ['File online IEC application at dgft.gov.in with bank proof.', 'Submit annual online LUT on gst.gov.in for zero-rated supplies.'],
+                            'links' => [['title' => 'DGFT — IEC ↗', 'url' => 'https://www.dgft.gov.in/'], ['title' => 'GST portal ↗', 'url' => 'https://www.gst.gov.in/'], ['title' => 'AEPC — apparel ↗', 'url' => 'https://www.aepcindia.com/'], ['title' => 'TEXPROCIL — cotton textiles ↗', 'url' => 'https://texprocil.org/']],
+                            'footnote' => '*Planning estimate, not a DGFT service guarantee.'
+                        ],
+                        [
+                            'num' => '05', 'title' => 'Find buyers, qualify them and approve samples',
+                            'sub' => 'Confirm buyer credibility, textile specifications and acceptance criteria before production.', 'time' => '2–8 weeks*',
+                            'description' => 'Find buyers through trade fairs, buyer-seller meets, recognised export bodies, trade directories and direct outreach. Verify buyer identity, import capability, references and credit risk before accepting open-credit exposure.',
+                            'checks' => ['Lab dip, shade swatch, fabric hanger, strike-off, garment prototype or finished sample as requested.', 'Approved tech pack/specification: composition, GSM, width, dimensions, tolerances, finish, stitching and packing.', 'Test reports from a competent laboratory where required by law or contract.', 'Written sample approval, sealed sample record and revision history.', 'Purchase order or order confirmation.'],
+                            'records' => ['Counter-samples and physical lab dips signed off by buyer.', 'ECGC buyer credit check report / insurance sanction letter.'],
+                            'actions' => ['Submit lab dip swatches under specified light source standards.', 'Obtain written tech pack sign-off before commencing bulk fabric procurement.'],
+                            'links' => [['title' => 'AEPC ↗', 'url' => 'https://www.aepcindia.com/'], ['title' => 'TEXPROCIL ↗', 'url' => 'https://texprocil.org/'], ['title' => 'India Trade Portal ↗', 'url' => 'https://www.india.tradeportal.in/']],
+                            'footnote' => '*Buyer acquisition and approvals vary significantly.'
+                        ],
+                        [
+                            'num' => '06', 'title' => 'Send quotation and finalise the export contract',
+                            'sub' => 'Agree price, Incoterms, payment security, delivery dates and the exact document set.', 'time' => '2–10 working days*',
+                            'description' => 'Cost product, packaging, inland transport, customs/port charges, freight, insurance where applicable, finance cost and margin. State the Incoterms® rule and named place/port precisely. Agree who arranges carriage, insurance, export clearance and import clearance.',
+                            'checks' => ['Pro forma invoice or formal quotation.', 'Purchase order/sales contract and final product specifications.', 'Currency, payment terms, shipment window and agreed Incoterms® rule.', 'LC, if used, reviewed by the bank before production; otherwise documented advance, collection or open-account terms.', 'Agreed document list, including any CoO, insurance or inspection document required by the buyer/LC.'],
+                            'records' => ['Proforma Invoice countersigned by buyer.', 'Irrevocable Letter of Credit (LC) copy verified by advising bank.'],
+                            'actions' => ['Verify all LC terms against production capacity and export policy.', 'Lock exchange rate via forward cover with bank if warranted.'],
+                            'links' => [['title' => 'DGFT ↗', 'url' => 'https://www.dgft.gov.in/'], ['title' => 'RBI ↗', 'url' => 'https://www.rbi.org.in/']],
+                            'footnote' => '*Commercial negotiation estimate; LC amendments can take longer.'
+                        ],
+                        [
+                            'num' => '07', 'title' => 'Manufacture, inspect and release the goods',
+                            'sub' => 'Produce to the approved specification and retain traceable quality evidence.', 'time' => '2–12+ weeks*',
+                            'description' => 'Plan procurement, production, dyeing/processing, finishing, stitching, testing and dispatch. Lead time varies widely between yarn, fabric, apparel, made-ups, carpets and technical textiles.',
+                            'checks' => ['Approved purchase order, technical pack and master specification.', 'Fibre/material records, shade approvals and batch/lot traceability where relevant.', 'In-process and final inspection reports, quantity and defect records.', 'Tests required by buyer contract or destination law, such as colourfastness, dimensional change or restricted-substance testing where relevant.', 'Buyer inspection release/certificate only where required.'],
+                            'records' => ['Mill fabric test certificate & yarn composition certificate.', 'Final Quality Audit Inspection Certificate (AQL standard).'],
+                            'actions' => ['Conduct 4-point fabric inspection system for yardage.', 'Schedule buyer/third-party inspector prior to carton sealing.'],
+                            'links' => [['title' => 'Textiles Committee Testing Labs ↗', 'url' => 'https://textilescommittee.gov.in/']],
+                            'footnote' => '*Production is often the largest variable; estimate from factory capacity and approved lead time.'
+                        ],
+                        [
+                            'num' => '08', 'title' => 'Pack, label and prepare commercial documents',
+                            'sub' => 'Ensure cargo is protected and all descriptions, quantities, values and marks agree.', 'time' => '1–4 working days*',
+                            'description' => 'Pack to protect goods from moisture, contamination, abrasion and handling damage. Confirm packaging with the buyer and carrier. If wooden packaging is used, check whether ISPM 15 requirements apply.',
+                            'checks' => ['Commercial invoice: seller/buyer, number/date, currency, product description, quantity, price, value and agreed delivery terms.', 'Packing list: carton/package numbers, marks, contents, quantities, net/gross weight and dimensions as relevant.', 'Purchase order/contract and buyer packing instructions.', 'Destination-required product labels, such as fibre composition and care information where applicable.'],
+                            'records' => ['Commercial Invoice with LUT statement and export declaration.', 'Carton-wise Packing List with gross/net weights and CBM volume.'],
+                            'actions' => ['Verify barcodes, hangtags, and care labels match destination regulations.', 'Ensure ISPM 15 heat treatment stamps on all wooden pallets/crates.'],
+                            'links' => [['title' => 'Foreign Trade Policy 2023 (PDF) ↗', 'url' => 'https://content.dgft.gov.in/Website/dgftprod/61d61bc2-272e-4880-b96c-c8f685a3b244/Foreign%20Trade%20Policy%202023.pdf'], ['title' => 'ICEGATE eSANCHIT guidance ↗', 'url' => 'https://www.icegate.gov.in/guidelines/electronic-filing/esanchit-advisory']],
+                            'footnote' => '*After goods and final shipping details are ready.'
+                        ],
+                        [
+                            'num' => '09', 'title' => 'Obtain Certificate of Origin, if required',
+                            'sub' => 'Determine whether preferential or non-preferential origin documentation is needed.', 'time' => 'Allow 1–3 working days*',
+                            'description' => 'A Certificate of Origin (CoO) evidences declared origin. A preferential CoO is relevant to an agreement-based tariff preference only if the product meets that agreement\'s Rules of Origin. A non-preferential CoO may be requested by a buyer or importing authority without a tariff preference claim.',
+                            'checks' => ['IEC and registration on the applicable Common Digital Platform/eCoO 2.0 process.', 'Commercial invoice and shipment details.', 'Product description, HS code, origin criterion and manufacturing/material records.', 'For preferential origin, supporting evidence required by the specific agreement\'s product rule.', 'Authorised signatory/digital signature and fee details as required.'],
+                            'records' => ['Draft CoO with origin criterion (e.g., CTH, PSR, Wholly Obtained).', 'Cost accountant certificate / value addition worksheet where required.'],
+                            'actions' => ['Apply on DGFT eCoO platform (coo.dgft.gov.in) with digital signature.', 'Verify designated agency issuance (Textiles Committee / EPC).'],
+                            'links' => [['title' => 'Trade Connect / eCoO 2.0 ↗', 'url' => 'https://www.trade.gov.in/'], ['title' => 'DGFT CoO notices ↗', 'url' => 'https://coo.dgft.gov.in/'], ['title' => 'TEXPROCIL CoO information ↗', 'url' => 'https://texprocil.org/certificateoforigin.htm']],
+                            'footnote' => '*Origin evidence and issuing agency determine actual processing time.'
+                        ],
+                        [
+                            'num' => '10', 'title' => 'File Shipping Bill and complete customs clearance',
+                            'sub' => 'Submit the declaration, respond to queries and obtain Let Export Order.', 'time' => '1–3 working days after cargo/doc readiness*',
+                            'description' => 'The exporter or authorised Customs Broker files the Shipping Bill through the prescribed electronic customs process. The declaration covers exporter/consignee, goods description, classification, quantity, value, port and applicable declarations/claims.',
+                            'checks' => ['IEC and ICEGATE/customs setup; applicable AD Code/bank-account registration and port mapping as required.', 'Commercial invoice and packing list.', 'Purchase order/contract, permits, licences or additional certificates where applicable.', 'eSANCHIT supporting-document references/uploads where applicable.', 'Correct HS code, description, quantity, value, packages, weights and any eligible scheme claim.'],
+                            'records' => ['Checklist copy of Shipping Bill signed by customs broker.', 'Customs Let Export Order (LEO) copy.'],
+                            'actions' => ['Upload digitized documents to eSANCHIT and obtain IRN numbers.', 'Present cargo at CFS / ICD for customs physical examination / scanner.'],
+                            'links' => [['title' => 'ICEGATE ↗', 'url' => 'https://www.icegate.gov.in/'], ['title' => 'Customs export procedure example ↗', 'url' => 'https://mumbaicustomszone3.gov.in/export-commissionerate-export-procedure'], ['title' => 'eSANCHIT guidance ↗', 'url' => 'https://www.icegate.gov.in/guidelines/electronic-filing/esanchit-advisory']],
+                            'footnote' => '*Not a Customs SLA; examination, queries and port congestion can extend time.'
+                        ],
+                        [
+                            'num' => '11', 'title' => 'Hand over cargo, ship goods and present documents',
+                            'sub' => 'Obtain the transport document and submit the agreed set to bank/buyer.', 'time' => 'Transit is route-dependent',
+                            'description' => 'Book freight under the agreed Incoterms® rule and meet carrier cut-offs. After loading/departure, obtain the applicable transport document: Bill of Lading for sea freight, Air Waybill for air freight, or the relevant road/rail/postal document. Check the details against the LC and contract.',
+                            'checks' => ['Final commercial invoice and packing list.', 'Final Shipping Bill and LEO/customs export evidence.', 'Bill of Lading, Air Waybill or other transport document.', 'CoO, insurance, inspection/test or other certificates only where applicable/required.', 'Bill of Exchange and LC/collection documents where relevant.'],
+                            'records' => ['Original Clean on Board Bill of Lading / Master Air Waybill.', 'Marine cargo insurance certificate / policy.'],
+                            'actions' => ['Lodge complete negotiable document set with authorised dealer bank.', 'Dispatch electronic tracking and non-negotiable copies to importer.'],
+                            'links' => [['title' => 'ICEGATE ↗', 'url' => 'https://www.icegate.gov.in/'], ['title' => 'DGFT export procedure guide (PDF) ↗', 'url' => 'https://content.dgft.gov.in/Website/CIEP.pdf']],
+                            'footnote' => '*Transit depends on carrier schedule, route, port and destination.'
+                        ],
+                        [
+                            'num' => '12', 'title' => 'Realise export payment and complete post-shipment compliance',
+                            'sub' => 'Track payment through your bank and reconcile shipment, tax and export records.', 'time' => 'Contract / current RBI rules',
+                            'description' => 'Track payment against the invoice through your authorised dealer bank. Follow up on overdue amounts, document discrepancies, short payments, claims or credit notes. Export proceeds must be realised and repatriated within the period prescribed by current RBI directions.',
+                            'checks' => ['Bank advice/inward remittance evidence and invoice-wise reconciliation.', 'e-BRC or other export-realisation evidence available through current DGFT/banking systems, where applicable.', 'Final invoice, Shipping Bill, LEO, transport document and buyer correspondence.', 'GST/LUT records and refund documents, where applicable.', 'Benefit/remission documents only if the exporter and shipment qualify under current notifications.'],
+                            'records' => ['Foreign Inward Remittance Certificate (FIRC) / bank realization statement.', 'DGFT electronic Bank Realisation Certificate (e-BRC).'],
+                            'actions' => ['Generate self-certification e-BRC on DGFT portal linking Shipping Bill.', 'File monthly/quarterly GST refund claims on inverted duty / unutilized ITC.'],
+                            'links' => [['title' => 'DGFT / e-BRC services ↗', 'url' => 'https://www.dgft.gov.in/'], ['title' => 'RBI directions ↗', 'url' => 'https://www.rbi.org.in/'], ['title' => 'GST portal ↗', 'url' => 'https://www.gst.gov.in/']],
+                            'footnote' => '*Payment timing follows contract/payment instrument and current regulatory framework.'
+                        ]
+                    ],
+                    'checklist_heading' => 'Export readiness checklist',
+                    'checklist_sub' => 'This checklist is for your own tracking. Checking a box does not submit a form to a government department.',
+                    'checklist_items' => [
+                        'Product, market and buyer requirements confirmed',
+                        'HS/ITC(HS) and export policy checked',
+                        'Business, IEC and applicable tax registrations ready',
+                        'Buyer verified; sample/specification approved',
+                        'Price, Incoterms and payment terms agreed',
+                        'Goods inspected and quality records retained',
+                        'Invoice, packing list and labels checked',
+                        'CoO/permits/additional documents assessed',
+                        'Shipping Bill filed and LEO obtained',
+                        'Transport document and bank document set collected',
+                        'Documents presented as required',
+                        'Payment tracked and records reconciled'
+                    ],
+                    'sources_heading' => 'Official portals and textile resources',
+                    'sources_sub' => 'Use these as starting points and check the latest notification, product-specific rule and portal instructions. A general information page is not a substitute for current law.',
+                    'sources' => [
+                        ['title' => 'DGFT — IEC, FTP, ITC(HS)', 'desc' => 'Directorate General of Foreign Trade', 'url' => 'https://www.dgft.gov.in/'],
+                        ['title' => 'Foreign Trade Policy 2023 (PDF)', 'desc' => 'Export policy and core documents', 'url' => 'https://content.dgft.gov.in/Website/dgftprod/61d61bc2-272e-4880-b96c-c8f685a3b244/Foreign%20Trade%20Policy%202023.pdf'],
+                        ['title' => 'ICEGATE', 'desc' => 'Indian Customs electronic gateway', 'url' => 'https://www.icegate.gov.in/'],
+                        ['title' => 'eSANCHIT guidance', 'desc' => 'Electronic supporting-document filing', 'url' => 'https://www.icegate.gov.in/guidelines/electronic-filing/esanchit-advisory'],
+                        ['title' => 'Trade Connect / eCoO 2.0', 'desc' => 'Trade information and origin certificate pathway', 'url' => 'https://www.trade.gov.in/'],
+                        ['title' => 'DGFT CoO information', 'desc' => 'Notices, manuals and help', 'url' => 'https://coo.dgft.gov.in/'],
+                        ['title' => 'GST portal', 'desc' => 'GST services and applicable LUT/returns', 'url' => 'https://www.gst.gov.in/'],
+                        ['title' => 'Reserve Bank of India', 'desc' => 'Current export proceeds/foreign exchange directions', 'url' => 'https://www.rbi.org.in/'],
+                        ['title' => 'AEPC', 'desc' => 'Apparel Export Promotion Council', 'url' => 'https://www.aepcindia.com/'],
+                        ['title' => 'TEXPROCIL', 'desc' => 'Cotton Textiles Export Promotion Council', 'url' => 'https://texprocil.org/'],
+                        ['title' => 'India Trade Portal', 'desc' => 'Market and trade information', 'url' => 'https://www.india.tradeportal.in/'],
+                        ['title' => 'Customs export procedure', 'desc' => 'Official example of Shipping Bill, examination and LEO', 'url' => 'https://mumbaicustomszone3.gov.in/export-commissionerate-export-procedure']
+                    ],
+                    'disclaimer' => 'This educational guide is not legal, tax, customs-broker, laboratory or banking advice. TEFC is an information and facilitation initiative; it does not issue export licences, certify textiles or conduct product testing.'
+                ]
+            ]);
+
+            Section::create([
+                'page_id' => $resourcesPage->id, 'type' => 'resources_launched_services', 'order' => 4, 'title' => 'Recently Launched Services',
+                'content' => [
+                    'eyebrow' => 'TEFC digital initiatives',
+                    'heading' => 'Recently Launched Services',
+                    'intro' => 'Discover digital tools designed to help textile exporters find relevant trade information and navigate export-related queries.',
+                    'services' => [
+                        [
+                            'title' => 'HS Code Intelligence Tool',
+                            'badge' => 'New service',
+                            'description' => 'Enter a product description to explore suggested HS codes, applicable FTA duty information and potentially relevant export schemes in one search.',
+                            'action_text' => 'Try the tool',
+                            'action_url' => '/p/hs-code',
+                            'meta' => 'Product classification support',
+                            'color' => 'blue',
+                            'icon' => 'hs_code'
+                        ],
+                        [
+                            'title' => 'AI Export Query Assistant',
+                            'badge' => 'New service',
+                            'description' => 'Ask export-related questions about documentation, regulations, duties and market entry, and get quick guidance from TEFC’s knowledge resources.',
+                            'action_text' => 'Ask a question',
+                            'action_url' => '#chatModal',
+                            'meta' => 'Export information & guidance',
+                            'color' => 'gold',
+                            'icon' => 'ai_assistant'
+                        ]
+                    ],
+                    'footer_note' => 'These services provide information and facilitation support. HS code suggestions, duty details and AI-generated responses should be independently verified against the relevant official sources before making export or compliance decisions.'
+                ]
+            ]);
+
+            Section::create([
+                'page_id' => $resourcesPage->id, 'type' => 'resources_govt_schemes', 'order' => 5, 'title' => 'Government Schemes',
+                'content' => [
+                    'heading' => 'Government Schemes',
+                    'intro' => 'Explore Government of India schemes and programmes that support textile manufacturing, export competitiveness, market access and export-enabling infrastructure.',
+                    'schemes' => [
+                        [
+                            'eyebrow' => 'Export Promotion',
+                            'title' => 'Export Promotion Mission (EPM)',
+                            'description' => 'A unified, digitally driven framework for export promotion, with dedicated support for trade finance and export-enabling measures.',
+                            'link_text' => 'Know More',
+                            'link_url' => 'https://www.commerce.gov.in/',
+                            'icon' => 'epm'
+                        ],
+                        [
+                            'eyebrow' => 'Export Remission',
+                            'title' => 'Remission of Duties and Taxes on Exported Products (RoDTEP)',
+                            'description' => 'A remission mechanism for eligible duties, taxes and levies borne on exported products and not otherwise refunded or remitted.',
+                            'link_text' => 'Know More',
+                            'link_url' => 'https://www.dgft.gov.in/',
+                            'icon' => 'rodtep'
+                        ],
+                        [
+                            'eyebrow' => 'Apparel & Made-ups',
+                            'title' => 'Rebate of State and Central Taxes and Levies (RoSCTL)',
+                            'description' => 'A remission mechanism for eligible embedded State and Central taxes and levies on exports of apparel/garments and made-ups.',
+                            'link_text' => 'Know More',
+                            'link_url' => 'https://texmin.nic.in/',
+                            'icon' => 'rosctl'
+                        ],
+                        [
+                            'eyebrow' => 'Textile Manufacturing',
+                            'title' => 'Production Linked Incentive (PLI) Scheme for Textiles',
+                            'description' => 'Promotes production of MMF apparel, MMF fabrics and specified technical textile products to build scale and global competitiveness.',
+                            'link_text' => 'Know More',
+                            'link_url' => 'https://texmin.nic.in/',
+                            'icon' => 'pli'
+                        ],
+                        [
+                            'eyebrow' => 'Integrated Textile Infrastructure',
+                            'title' => 'PM Mega Integrated Textile Regions and Apparel (PM MITRA) Parks',
+                            'description' => 'Develops integrated textile parks intended to strengthen the complete textile value chain, reduce logistics costs and augment export potential.',
+                            'link_text' => 'Know More',
+                            'link_url' => 'https://texmin.nic.in/',
+                            'icon' => 'pm_mitra'
+                        ],
+                        [
+                            'eyebrow' => 'Export Infrastructure',
+                            'title' => 'Trade Infrastructure for Export Scheme (TIES)',
+                            'description' => 'Supports export-linked infrastructure that helps address logistics, testing, warehousing, packaging and connectivity gaps.',
+                            'link_text' => 'Know More',
+                            'link_url' => 'https://www.commerce.gov.in/',
+                            'icon' => 'ties'
+                        ]
+                    ],
+                    'disclaimer' => 'TEFC role: TEFC provides information and facilitation support. Scheme approval, eligibility determination, sanction and disbursement remain with the competent Government authority and implementing agency.'
+                ]
+            ]);
+
+            Section::create([
+                'page_id' => $resourcesPage->id, 'type' => 'resources_downloads', 'order' => 6, 'title' => 'Downloads & Publications',
+                'content' => [
+                    'heading' => 'Downloads & Official Documents',
+                    'intro' => 'Download official policy documents, export compliance guidelines, circulars, and standard operating procedures directly.',
+                ]
+            ]);
+        }
     }
 }

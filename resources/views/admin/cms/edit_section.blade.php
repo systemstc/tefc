@@ -513,19 +513,39 @@
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <label class="form-label fw-bold small">Cluster Name</label>
-                                            <input type="text" id="adm_f_name" class="form-control form-control-sm" onchange="syncActiveClusterField('name', this.value)">
+                                            <input type="text" id="adm_f_name" class="form-control form-control-sm" oninput="syncActiveClusterField('name', this.value)" onchange="syncActiveClusterField('name', this.value)">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label fw-bold small">State Jurisdiction</label>
-                                            <input type="text" id="adm_f_state" class="form-control form-control-sm" onchange="syncActiveClusterField('state', this.value)">
+                                            <input type="text" id="adm_f_state" class="form-control form-control-sm" oninput="syncActiveClusterField('state', this.value)" onchange="syncActiveClusterField('state', this.value)">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label fw-bold small">Primary Specialization</label>
-                                            <input type="text" id="adm_f_spec" class="form-control form-control-sm" onchange="syncActiveClusterField('spec', this.value)">
+                                            <input type="text" id="adm_f_spec" class="form-control form-control-sm" oninput="syncActiveClusterField('spec', this.value)" onchange="syncActiveClusterField('spec', this.value)">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label fw-bold small">Heritage / Established Era</label>
-                                            <input type="text" id="adm_f_era" class="form-control form-control-sm" onchange="syncActiveClusterField('era', this.value)">
+                                            <input type="text" id="adm_f_era" class="form-control form-control-sm" oninput="syncActiveClusterField('era', this.value)" onchange="syncActiveClusterField('era', this.value)">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-bold small"><i class="fas fa-map-marker-alt text-danger me-1"></i> Card District Title (Title on Card)</label>
+                                            <input type="text" id="adm_f_districts" class="form-control form-control-sm" placeholder="Leave blank to use Cluster Name" oninput="syncActiveClusterField('districts', this.value)" onchange="syncActiveClusterField('districts', this.value)">
+                                            <small class="text-muted" style="font-size:0.7rem;">Custom district title displayed on the cluster card (e.g. "Varanasi, Sant Ravidas Nagar...")</small>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-bold small"><i class="fas fa-image text-primary me-1"></i> Cluster Card Landmark Photo</label>
+                                            <div class="d-flex align-items-center gap-2 p-2 border rounded-3 bg-light">
+                                                <div id="adm_card_img_preview_box" style="width:52px; height:42px; border-radius:6px; background:#fff; overflow:hidden; border:1px solid #dee2e6; flex-shrink:0; display:flex; align-items:center; justify-content:center;">
+                                                    <img id="adm_card_img_preview" src="" style="width:100%; height:100%; object-fit:cover;">
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <label class="btn btn-outline-primary btn-sm py-1 px-2 mb-0 w-100" style="font-size:0.75rem; cursor:pointer;">
+                                                        <i class="fas fa-camera me-1"></i> <span id="adm_card_img_btn_txt">Upload Card Photo</span>
+                                                        <input type="file" id="adm_card_img_file" accept="image/*" style="display:none;" onchange="admUploadCardImg(this)">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <small class="text-muted" style="font-size:0.7rem;">Photo displayed as background monument/landmark on this cluster's card</small>
                                         </div>
                                         <!-- Inline Stats Strip Active/Inactive Toggle -->
                                         <div class="col-12 mt-3 mb-1">
@@ -542,19 +562,19 @@
                                         </div>
                                         <div class="col-md-3 col-sm-6">
                                             <label class="form-label fw-bold small">Units Count</label>
-                                            <input type="text" id="adm_f_units" class="form-control form-control-sm" onchange="syncActiveClusterField('units', this.value)">
+                                            <input type="text" id="adm_f_units" class="form-control form-control-sm" oninput="syncActiveClusterField('units', this.value)" onchange="syncActiveClusterField('units', this.value)">
                                         </div>
                                         <div class="col-md-3 col-sm-6">
                                             <label class="form-label fw-bold small">Export Value</label>
-                                            <input type="text" id="adm_f_exportVal" class="form-control form-control-sm" onchange="syncActiveClusterField('exportVal', this.value)">
+                                            <input type="text" id="adm_f_exportVal" class="form-control form-control-sm" oninput="syncActiveClusterField('exportVal', this.value)" onchange="syncActiveClusterField('exportVal', this.value)">
                                         </div>
                                         <div class="col-md-3 col-sm-6">
                                             <label class="form-label fw-bold small">Workforce Employed</label>
-                                            <input type="text" id="adm_f_workforce" class="form-control form-control-sm" onchange="syncActiveClusterField('workforce', this.value)">
+                                            <input type="text" id="adm_f_workforce" class="form-control form-control-sm" oninput="syncActiveClusterField('workforce', this.value)" onchange="syncActiveClusterField('workforce', this.value)">
                                         </div>
                                         <div class="col-md-3 col-sm-6">
                                             <label class="form-label fw-bold small">Export Destinations</label>
-                                            <input type="text" id="adm_f_dests" class="form-control form-control-sm" onchange="syncActiveClusterField('dests', this.value)">
+                                            <input type="text" id="adm_f_dests" class="form-control form-control-sm" oninput="syncActiveClusterField('dests', this.value)" onchange="syncActiveClusterField('dests', this.value)">
                                         </div>
                                     </div>
                                 </div>
@@ -563,7 +583,7 @@
                                 <div class="tab-pane fade" id="admsub-overview">
                                     <div class="mb-3">
                                         <label class="form-label fw-bold small">Overview Narrative</label>
-                                        <textarea id="adm_f_desc" class="form-control" rows="4" onchange="syncActiveClusterField('desc', this.value)"></textarea>
+                                        <textarea id="adm_f_desc" class="form-control" rows="4" oninput="syncActiveClusterField('desc', this.value)" onchange="syncActiveClusterField('desc', this.value)"></textarea>
                                     </div>
                                     <div>
                                         <div class="d-flex justify-content-between align-items-center mb-1">
@@ -637,19 +657,19 @@
                                     <div class="row g-2">
                                         <div class="col-12">
                                             <label class="form-label fw-bold small">Office Address</label>
-                                            <input type="text" id="adm_f_address" class="form-control form-control-sm" onchange="syncActiveClusterField('address', this.value)">
+                                            <input type="text" id="adm_f_address" class="form-control form-control-sm" oninput="syncActiveClusterField('address', this.value)" onchange="syncActiveClusterField('address', this.value)">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label fw-bold small">Phone</label>
-                                            <input type="text" id="adm_f_phone" class="form-control form-control-sm" onchange="syncActiveClusterField('phone', this.value)">
+                                            <input type="text" id="adm_f_phone" class="form-control form-control-sm" oninput="syncActiveClusterField('phone', this.value)" onchange="syncActiveClusterField('phone', this.value)">
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label fw-bold small">Email</label>
-                                            <input type="email" id="adm_f_email" class="form-control form-control-sm" onchange="syncActiveClusterField('email', this.value)">
+                                            <input type="email" id="adm_f_email" class="form-control form-control-sm" oninput="syncActiveClusterField('email', this.value)" onchange="syncActiveClusterField('email', this.value)">
                                         </div>
                                         <div class="col-12">
                                             <label class="form-label fw-bold small">Google Maps URL</label>
-                                            <input type="url" id="adm_f_mapUrl" class="form-control form-control-sm" onchange="syncActiveClusterField('mapUrl', this.value)">
+                                            <input type="url" id="adm_f_mapUrl" class="form-control form-control-sm" oninput="syncActiveClusterField('mapUrl', this.value)" onchange="syncActiveClusterField('mapUrl', this.value)">
                                         </div>
                                     </div>
                                 </div>
@@ -828,6 +848,561 @@
                             </div>
                         </div>
                     </div>
+                @elseif($section->type == 'resources_hero')
+                    <!-- Resource Center Banner Section -->
+                    <div class="col-12">
+                        <div class="alert alert-primary d-flex align-items-center mb-2" role="alert">
+                            <i class="fas fa-image fa-2x me-3 text-primary"></i>
+                            <div>
+                                <strong class="d-block text-dark">Resource Center Hero Banner</strong>
+                                <span class="small text-muted">Customize the header banner title, descriptive introduction, and hero background graphic.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="p-4 border rounded-3 bg-white shadow-sm mb-3">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Banner Subtitle / Introduction</label>
+                                <textarea name="subtitle" class="form-control" rows="3" placeholder="Access essential trade guides, bilateral tariff structures...">{{ $section->content['subtitle'] ?? '' }}</textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold"><i class="fas fa-image text-primary me-1"></i> Background Hero Graphic</label>
+                                <div class="d-flex align-items-center gap-3 p-2 border rounded bg-light">
+                                    @if(!empty($section->content['background_image']))
+                                        <img src="{{ asset($section->content['background_image']) }}" class="rounded border" style="height: 60px; max-width: 140px; object-fit: cover;">
+                                    @endif
+                                    <div class="flex-grow-1">
+                                        <input type="file" name="background_image" class="form-control" accept="image/*">
+                                        <small class="text-muted">Recommended: 1920 &times; 500 px. Leave empty to keep existing image.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @elseif($section->type == 'resources_export_markets')
+                    <!-- Explore Export Markets Component -->
+                    <div class="col-12">
+                        <div class="alert alert-primary d-flex align-items-center mb-2" role="alert">
+                            <i class="fas fa-globe-americas fa-2x me-3 text-primary"></i>
+                            <div>
+                                <strong class="d-block text-dark">Explore Export Markets — Country Market Intelligence</strong>
+                                <span class="small text-muted">Manage the featured international destination country cards (US, DE, JP, AE), codes, geographic regions, descriptions, and direct DGFT Trade Connect links.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="card border bg-white shadow-sm mb-4">
+                            <div class="card-header bg-light py-2 fw-bold text-primary">
+                                <i class="fas fa-heading me-1"></i> Section Header & Introduction
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold small">Kicker / Eyebrow Text</label>
+                                        <input type="text" name="kicker" value="{{ $section->content['kicker'] ?? 'Market intelligence · International trade' }}" class="form-control">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold small">Section Main Heading</label>
+                                        <input type="text" name="heading" value="{{ $section->content['heading'] ?? 'Explore your next export market.' }}" class="form-control">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label fw-bold small">Introductory Description</label>
+                                        <textarea name="intro" class="form-control" rows="2">{{ $section->content['intro'] ?? 'Start with a featured destination, then continue to Trade Connect for the official country guide and detailed market information.' }}</textarea>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold small">"View All" Link Text</label>
+                                        <input type="text" name="view_all_text" value="{{ $section->content['view_all_text'] ?? 'Explore all country guides' }}" class="form-control">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold small">"View All" Target URL</label>
+                                        <input type="text" name="view_all_url" value="{{ $section->content['view_all_url'] ?? 'https://www.trade.gov.in/pages/country-guide' }}" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4 Featured Country Cards -->
+                    <div class="col-12">
+                        <div class="card border bg-white shadow-sm mb-4">
+                            <div class="card-header bg-light py-2 fw-bold text-primary">
+                                <i class="fas fa-flag me-1"></i> Featured Destination Country Cards (4 Columns)
+                            </div>
+                            <div class="card-body">
+                                @php
+                                    $marketCards = $section->content['cards'] ?? [
+                                        ['code' => 'US', 'name' => 'United States', 'region' => 'North America', 'description' => 'High demand for apparel, home textiles, and technical textiles. Direct access to major retail chains.', 'url' => 'https://www.trade.gov.in/pages/country-guide', 'label' => 'DESTINATION', 'index' => '01', 'style_class' => 'us', 'button_text' => 'Know more'],
+                                        ['code' => 'DE', 'name' => 'Germany', 'region' => 'Europe', 'description' => 'Key gateway for sustainable, organic, and circular textiles in the EU market.', 'url' => 'https://www.trade.gov.in/pages/country-guide', 'label' => 'DESTINATION', 'index' => '02', 'style_class' => 'de', 'button_text' => 'Know more'],
+                                        ['code' => 'JP', 'name' => 'Japan', 'region' => 'East Asia', 'description' => 'Premium market for high-quality cotton fabrics, silks, and specialized finishes.', 'url' => 'https://www.trade.gov.in/pages/country-guide', 'label' => 'DESTINATION', 'index' => '03', 'style_class' => 'jp', 'button_text' => 'Know more'],
+                                        ['code' => 'AE', 'name' => 'United Arab Emirates', 'region' => 'Middle East', 'description' => 'Strategic hub for re-exports and growing direct retail demand under CEPA.', 'url' => 'https://www.trade.gov.in/pages/country-guide', 'label' => 'DESTINATION', 'index' => '04', 'style_class' => 'ae', 'button_text' => 'Know more'],
+                                    ];
+                                @endphp
+                                <div class="row g-3">
+                                    @foreach($marketCards as $cIdx => $c)
+                                        <div class="col-md-6 col-lg-3">
+                                            <div class="p-3 border rounded-3 bg-light h-100 shadow-sm d-flex flex-column">
+                                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                                    <span class="badge bg-primary text-uppercase">{{ $c['code'] ?? 'CODE' }}</span>
+                                                    <span class="small text-muted fw-bold">Card #{{ $cIdx + 1 }}</span>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <label class="form-label small fw-bold mb-1">Country Name</label>
+                                                    <input type="text" name="cards[{{ $cIdx }}][name]" value="{{ $c['name'] ?? '' }}" class="form-control form-control-sm">
+                                                </div>
+                                                <div class="row g-2 mb-2">
+                                                    <div class="col-6">
+                                                        <label class="form-label small fw-bold mb-1">2-Letter Code</label>
+                                                        <input type="text" name="cards[{{ $cIdx }}][code]" value="{{ $c['code'] ?? '' }}" class="form-control form-control-sm" maxlength="3">
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label class="form-label small fw-bold mb-1">Style/Tint</label>
+                                                        <select name="cards[{{ $cIdx }}][style_class]" class="form-select form-select-sm">
+                                                            <option value="us" {{ ($c['style_class'] ?? '') == 'us' ? 'selected' : '' }}>US (Wine/Burgundy)</option>
+                                                            <option value="de" {{ ($c['style_class'] ?? '') == 'de' ? 'selected' : '' }}>DE (Gold/Warm)</option>
+                                                            <option value="jp" {{ ($c['style_class'] ?? '') == 'jp' ? 'selected' : '' }}>JP (Rose/Coral)</option>
+                                                            <option value="ae" {{ ($c['style_class'] ?? '') == 'ae' ? 'selected' : '' }}>AE (Emerald/Teal)</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <label class="form-label small fw-bold mb-1">Geographic Region</label>
+                                                    <input type="text" name="cards[{{ $cIdx }}][region]" value="{{ $c['region'] ?? '' }}" class="form-control form-control-sm">
+                                                </div>
+                                                <div class="mb-2">
+                                                    <label class="form-label small fw-bold mb-1">Market Overview / Description</label>
+                                                    <textarea name="cards[{{ $cIdx }}][description]" class="form-control form-control-sm" rows="3">{{ $c['description'] ?? '' }}</textarea>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <label class="form-label small fw-bold mb-1">Target Official URL</label>
+                                                    <input type="url" name="cards[{{ $cIdx }}][url]" value="{{ $c['url'] ?? 'https://www.trade.gov.in/pages/country-guide' }}" class="form-control form-control-sm">
+                                                </div>
+                                                <div class="row g-2 mt-auto">
+                                                    <div class="col-6">
+                                                        <label class="form-label small fw-bold mb-1">Button Text</label>
+                                                        <input type="text" name="cards[{{ $cIdx }}][button_text]" value="{{ $c['button_text'] ?? 'Know more' }}" class="form-control form-control-sm">
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label class="form-label small fw-bold mb-1">Index Tag</label>
+                                                        <input type="text" name="cards[{{ $cIdx }}][index]" value="{{ $c['index'] ?? sprintf('%02d', $cIdx + 1) }}" class="form-control form-control-sm">
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" name="cards[{{ $cIdx }}][label]" value="{{ $c['label'] ?? 'DESTINATION' }}">
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Collaboration Note -->
+                    <div class="col-12">
+                        <div class="p-3 border rounded-3 bg-white shadow-sm mb-3">
+                            <label class="form-label fw-bold"><i class="fas fa-info-circle text-primary me-1"></i> Bottom Collaboration Note</label>
+                            <textarea name="bottom_note" class="form-control" rows="2">{{ $section->content['bottom_note'] ?? 'TEFC and Trade Connect are collaborative initiatives. Country guidance is curated by the Directorate General of Foreign Trade (DGFT) and the Ministry of Commerce & Industry.' }}</textarea>
+                        </div>
+                    </div>
+                @elseif($section->type == 'resources_launched_services')
+                    <!-- Recently Launched Services Component -->
+                    <div class="col-12">
+                        <div class="alert alert-primary d-flex align-items-center mb-2" role="alert">
+                            <i class="fas fa-rocket fa-2x me-3 text-primary"></i>
+                            <div>
+                                <strong class="d-block text-dark">Recently Launched Services — Digital Exporter Tools</strong>
+                                <span class="small text-muted">Manage the digital intelligence tools and AI assistant services designed to empower Indian textile exporters with instant classifications and trade guidance.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="card border bg-white shadow-sm mb-4">
+                            <div class="card-header bg-light py-2 fw-bold text-primary">
+                                <i class="fas fa-heading me-1"></i> Section Header & Introduction
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold small">Eyebrow / Badge Text</label>
+                                        <input type="text" name="eyebrow" value="{{ $section->content['eyebrow'] ?? 'TEFC digital initiatives' }}" class="form-control">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold small">Section Main Heading</label>
+                                        <input type="text" name="heading" value="{{ $section->content['heading'] ?? 'Recently Launched Services' }}" class="form-control">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label fw-bold small">Section Subtitle / Copy</label>
+                                        <textarea name="intro" class="form-control" rows="2">{{ $section->content['intro'] ?? 'Discover digital tools designed to help textile exporters find relevant trade information and navigate export-related queries.' }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2 Digital Service Cards -->
+                    <div class="col-12">
+                        <div class="card border bg-white shadow-sm mb-4">
+                            <div class="card-header bg-light py-2 fw-bold text-primary">
+                                <i class="fas fa-laptop-code me-1"></i> Featured Digital Services (2 Cards)
+                            </div>
+                            <div class="card-body">
+                                @php
+                                    $servicesList = $section->content['services'] ?? [
+                                        [
+                                            'title' => 'HS Code Intelligence Tool',
+                                            'badge' => 'New service',
+                                            'description' => 'Enter a product description to explore suggested HS codes, applicable FTA duty information and potentially relevant export schemes in one search.',
+                                            'action_text' => 'Try the tool',
+                                            'action_url' => '/p/hs-code',
+                                            'meta' => 'Product classification support',
+                                            'color' => 'blue',
+                                            'icon' => 'hs_code'
+                                        ],
+                                        [
+                                            'title' => 'AI Export Query Assistant',
+                                            'badge' => 'New service',
+                                            'description' => 'Ask export-related questions about documentation, regulations, duties and market entry, and get quick guidance from TEFC’s knowledge resources.',
+                                            'action_text' => 'Ask a question',
+                                            'action_url' => '#chatModal',
+                                            'meta' => 'Export information & guidance',
+                                            'color' => 'gold',
+                                            'icon' => 'ai_assistant'
+                                        ]
+                                    ];
+                                @endphp
+                                <div class="row g-4">
+                                    @foreach($servicesList as $sIdx => $srv)
+                                        <div class="col-md-6">
+                                            <div class="p-4 border rounded-3 bg-light shadow-sm h-100 d-flex flex-column">
+                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                    <span class="badge {{ ($srv['color'] ?? '') == 'gold' ? 'bg-warning text-dark' : 'bg-primary' }}">
+                                                        {{ $srv['badge'] ?? 'New service' }}
+                                                    </span>
+                                                    <span class="small text-muted fw-bold">Tool #{{ $sIdx + 1 }}</span>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label small fw-bold">Service Title</label>
+                                                    <input type="text" name="services[{{ $sIdx }}][title]" value="{{ $srv['title'] ?? '' }}" class="form-control">
+                                                </div>
+                                                <div class="row g-2 mb-3">
+                                                    <div class="col-6">
+                                                        <label class="form-label small fw-bold">Badge Text</label>
+                                                        <input type="text" name="services[{{ $sIdx }}][badge]" value="{{ $srv['badge'] ?? 'New service' }}" class="form-control form-control-sm">
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label class="form-label small fw-bold">Theme Color</label>
+                                                        <select name="services[{{ $sIdx }}][color]" class="form-select form-select-sm">
+                                                            <option value="blue" {{ ($srv['color'] ?? '') == 'blue' ? 'selected' : '' }}>Blue (Soft Blue)</option>
+                                                            <option value="gold" {{ ($srv['color'] ?? '') == 'gold' ? 'selected' : '' }}>Gold (Warm Gold)</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label small fw-bold">Service Description</label>
+                                                    <textarea name="services[{{ $sIdx }}][description]" class="form-control" rows="3">{{ $srv['description'] ?? '' }}</textarea>
+                                                </div>
+                                                <div class="row g-2 mb-3">
+                                                    <div class="col-6">
+                                                        <label class="form-label small fw-bold">Action Button Text</label>
+                                                        <input type="text" name="services[{{ $sIdx }}][action_text]" value="{{ $srv['action_text'] ?? 'Try the tool' }}" class="form-control form-control-sm">
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label class="form-label small fw-bold">Action URL</label>
+                                                        <input type="text" name="services[{{ $sIdx }}][action_url]" value="{{ $srv['action_url'] ?? '#' }}" class="form-control form-control-sm">
+                                                    </div>
+                                                </div>
+                                                <div class="mt-auto">
+                                                    <label class="form-label small fw-bold">Meta Subtitle / Tag</label>
+                                                    <input type="text" name="services[{{ $sIdx }}][meta]" value="{{ $srv['meta'] ?? '' }}" class="form-control form-control-sm">
+                                                </div>
+                                                <input type="hidden" name="services[{{ $sIdx }}][icon]" value="{{ $srv['icon'] ?? ($sIdx == 0 ? 'hs_code' : 'ai_assistant') }}">
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer Verification Note -->
+                    <div class="col-12">
+                        <div class="p-3 border rounded-3 bg-white shadow-sm mb-3">
+                            <label class="form-label fw-bold"><i class="fas fa-shield-alt text-primary me-1"></i> Verification & Accuracy Disclaimer Note</label>
+                            <textarea name="footer_note" class="form-control" rows="2">{{ $section->content['footer_note'] ?? 'These services provide information and facilitation support. HS code suggestions, duty details and AI-generated responses should be independently verified against the relevant official sources before making export or compliance decisions.' }}</textarea>
+                        </div>
+                    </div>
+                @elseif($section->type == 'resources_govt_schemes')
+                    <!-- Government Schemes Component -->
+                    <div class="col-12">
+                        <div class="alert alert-primary d-flex align-items-center mb-2" role="alert">
+                            <i class="fas fa-landmark fa-2x me-3 text-primary"></i>
+                            <div>
+                                <strong class="d-block text-dark">Government Schemes — Export & Infrastructure Initiatives</strong>
+                                <span class="small text-muted">Manage the 6 core Government of India textile schemes (EPM, RoDTEP, RoSCTL, PLI, PM MITRA, TIES), categories, descriptions, and official portal links.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="card border bg-white shadow-sm mb-4">
+                            <div class="card-header bg-light py-2 fw-bold text-primary">
+                                <i class="fas fa-heading me-1"></i> Section Heading & Overview
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold small">Section Main Heading</label>
+                                        <input type="text" name="heading" value="{{ $section->content['heading'] ?? 'Government Schemes' }}" class="form-control">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label fw-bold small">Section Subtitle / Description</label>
+                                        <textarea name="intro" class="form-control" rows="2">{{ $section->content['intro'] ?? 'Explore Government of India schemes and programmes that support textile manufacturing, export competitiveness, market access and export-enabling infrastructure.' }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6 Government Scheme Cards -->
+                    <div class="col-12">
+                        <div class="card border bg-white shadow-sm mb-4">
+                            <div class="card-header bg-light py-2 fw-bold text-primary">
+                                <i class="fas fa-th-large me-1"></i> 6 Government Scheme Cards (3 Columns)
+                            </div>
+                            <div class="card-body">
+                                @php
+                                    $schemesList = $section->content['schemes'] ?? [
+                                        ['eyebrow' => 'Export Promotion', 'title' => 'Export Promotion Mission (EPM)', 'description' => 'A unified, digitally driven framework for export promotion, with dedicated support for trade finance and export-enabling measures.', 'link_text' => 'Know More', 'link_url' => 'https://www.commerce.gov.in/', 'icon' => 'epm'],
+                                        ['eyebrow' => 'Export Remission', 'title' => 'Remission of Duties and Taxes on Exported Products (RoDTEP)', 'description' => 'A remission mechanism for eligible duties, taxes and levies borne on exported products and not otherwise refunded or remitted.', 'link_text' => 'Know More', 'link_url' => 'https://www.dgft.gov.in/', 'icon' => 'rodtep'],
+                                        ['eyebrow' => 'Apparel & Made-ups', 'title' => 'Rebate of State and Central Taxes and Levies (RoSCTL)', 'description' => 'A remission mechanism for eligible embedded State and Central taxes and levies on exports of apparel/garments and made-ups.', 'link_text' => 'Know More', 'link_url' => 'https://texmin.nic.in/', 'icon' => 'rosctl'],
+                                        ['eyebrow' => 'Textile Manufacturing', 'title' => 'Production Linked Incentive (PLI) Scheme for Textiles', 'description' => 'Promotes production of MMF apparel, MMF fabrics and specified technical textile products to build scale and global competitiveness.', 'link_text' => 'Know More', 'link_url' => 'https://texmin.nic.in/', 'icon' => 'pli'],
+                                        ['eyebrow' => 'Integrated Textile Infrastructure', 'title' => 'PM Mega Integrated Textile Regions and Apparel (PM MITRA) Parks', 'description' => 'Develops integrated textile parks intended to strengthen the complete textile value chain, reduce logistics costs and augment export potential.', 'link_text' => 'Know More', 'link_url' => 'https://texmin.nic.in/', 'icon' => 'pm_mitra'],
+                                        ['eyebrow' => 'Export Infrastructure', 'title' => 'Trade Infrastructure for Export Scheme (TIES)', 'description' => 'Supports export-linked infrastructure that helps address logistics, testing, warehousing, packaging and connectivity gaps.', 'link_text' => 'Know More', 'link_url' => 'https://www.commerce.gov.in/', 'icon' => 'ties'],
+                                    ];
+                                @endphp
+                                <div class="row g-3">
+                                    @foreach($schemesList as $schIdx => $sch)
+                                        <div class="col-md-6 col-lg-4">
+                                            <div class="p-3 border rounded-3 bg-light shadow-sm h-100 d-flex flex-column" style="border-top: 3px solid #6c1340 !important;">
+                                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                                    <span class="badge bg-secondary-subtle text-dark border">{{ $sch['eyebrow'] ?? 'SCHEME' }}</span>
+                                                    <span class="small text-muted fw-bold">#{{ $schIdx + 1 }}</span>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <label class="form-label small fw-bold mb-1">Category / Eyebrow</label>
+                                                    <input type="text" name="schemes[{{ $schIdx }}][eyebrow]" value="{{ $sch['eyebrow'] ?? '' }}" class="form-control form-control-sm">
+                                                </div>
+                                                <div class="mb-2">
+                                                    <label class="form-label small fw-bold mb-1">Scheme Title</label>
+                                                    <input type="text" name="schemes[{{ $schIdx }}][title]" value="{{ $sch['title'] ?? '' }}" class="form-control form-control-sm fw-bold">
+                                                </div>
+                                                <div class="mb-2">
+                                                    <label class="form-label small fw-bold mb-1">Description</label>
+                                                    <textarea name="schemes[{{ $schIdx }}][description]" class="form-control form-control-sm" rows="3">{{ $sch['description'] ?? '' }}</textarea>
+                                                </div>
+                                                <div class="row g-2 mt-auto">
+                                                    <div class="col-5">
+                                                        <label class="form-label small fw-bold mb-1">Link Text</label>
+                                                        <input type="text" name="schemes[{{ $schIdx }}][link_text]" value="{{ $sch['link_text'] ?? 'Know More' }}" class="form-control form-control-sm">
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <label class="form-label small fw-bold mb-1">Official Portal URL</label>
+                                                        <input type="url" name="schemes[{{ $schIdx }}][link_url]" value="{{ $sch['link_url'] ?? '#' }}" class="form-control form-control-sm">
+                                                    </div>
+                                                </div>
+                                                <input type="hidden" name="schemes[{{ $schIdx }}][icon]" value="{{ $sch['icon'] ?? 'epm' }}">
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Role Disclaimer -->
+                    <div class="col-12">
+                        <div class="p-3 border rounded-3 bg-white shadow-sm mb-3">
+                            <label class="form-label fw-bold"><i class="fas fa-balance-scale text-primary me-1"></i> TEFC Statutory Role Disclaimer</label>
+                            <textarea name="disclaimer" class="form-control" rows="2">{{ $section->content['disclaimer'] ?? 'TEFC role: TEFC provides information and facilitation support. Scheme approval, eligibility determination, sanction and disbursement remain with the competent Government authority and implementing agency.' }}</textarea>
+                        </div>
+                    </div>
+                @elseif($section->type == 'resources_export_process')
+                    <!-- Step-by-Step Textile Export Process (12-Step Guide) Component -->
+                    <div class="col-12">
+                        <div class="alert alert-primary d-flex align-items-center mb-2" role="alert">
+                            <i class="fas fa-tasks fa-2x me-3 text-primary"></i>
+                            <div>
+                                <strong class="d-block text-dark">Step-by-Step Textile Export Process (12 Comprehensive Steps)</strong>
+                                <span class="small text-muted">Manage the 12 complete practical steps from order to payment, textile-specific checks, documentation records, actions, timelines, and the interactive exporter checklist.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section Header Info -->
+                    <div class="col-12">
+                        <div class="card border bg-white shadow-sm mb-4">
+                            <div class="card-header bg-light py-2 fw-bold text-primary">
+                                <i class="fas fa-heading me-1"></i> Guide Header, Eyebrow & Badges
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-bold small">Eyebrow</label>
+                                        <input type="text" name="eyebrow" value="{{ $section->content['eyebrow'] ?? 'Exporter learning guide' }}" class="form-control">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <label class="form-label fw-bold small">Guide Title</label>
+                                        <input type="text" name="heading" value="{{ $section->content['heading'] ?? 'Textile Export Process' }}" class="form-control">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label fw-bold small">Introduction Narrative</label>
+                                        <textarea name="intro" class="form-control" rows="2">{{ $section->content['intro'] ?? 'A practical guide to exporting textile products from India — from selecting a product and finding a buyer to customs clearance, shipment and receipt of export payment.' }}</textarea>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold small">Feature Chips (Comma-separated)</label>
+                                        @php
+                                            $chipsVal = is_array($section->content['chips'] ?? null) ? implode(', ', $section->content['chips']) : ($section->content['chips'] ?? '12 practical steps, Document checklists, Official resources, Indicative timelines');
+                                        @endphp
+                                        <input type="text" name="chips_text" value="{{ $chipsVal }}" class="form-control">
+                                        <small class="text-muted">Badges displayed at top of guide (comma-separated)</small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold small">Sidebar Progress Title</label>
+                                        <input type="text" name="sidebar_heading" value="{{ $section->content['sidebar_heading'] ?? 'Your export journey' }}" class="form-control">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label fw-bold small"><i class="fas fa-exclamation-triangle text-warning me-1"></i> Important Notice Box</label>
+                                        <textarea name="notice" class="form-control" rows="2">{{ $section->content['notice'] ?? 'Important: Timelines below are indicative planning estimates, not government-guaranteed service levels. Requirements vary by product/HS code, destination, buyer contract, transport mode and current notifications. Confirm current requirements with DGFT, Customs, your bank, the relevant textile Export Promotion Council and the buyer before shipment.' }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 12 Steps Accordion Workspace -->
+                    <div class="col-12">
+                        <div class="card border bg-white shadow-sm mb-4">
+                            <div class="card-header bg-light d-flex justify-content-between align-items-center py-2">
+                                <span class="fw-bold text-primary"><i class="fas fa-list-ol me-1"></i> 12 Export Steps (Detailed Content, Checks & Records)</span>
+                                <span class="badge bg-secondary">All 12 Steps Editable</span>
+                            </div>
+                            <div class="card-body p-3">
+                                @php
+                                    $stepsList = $section->content['steps'] ?? [];
+                                @endphp
+                                <div class="accordion" id="exportStepsAccordion">
+                                    @foreach($stepsList as $stIdx => $st)
+                                        <div class="accordion-item mb-2 border rounded-3 overflow-hidden shadow-sm">
+                                            <h2 class="accordion-header" id="heading_step_{{ $stIdx }}">
+                                                <button class="accordion-button {{ $stIdx > 0 ? 'collapsed' : '' }} py-2 px-3 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_step_{{ $stIdx }}">
+                                                    <span class="badge bg-primary me-2">Step {{ $st['num'] ?? sprintf('%02d', $stIdx + 1) }}</span>
+                                                    <span class="text-dark">{{ $st['title'] ?? 'Step Title' }}</span>
+                                                    <span class="badge bg-light text-muted border ms-auto me-3">{{ $st['time'] ?? '' }}</span>
+                                                </button>
+                                            </h2>
+                                            <div id="collapse_step_{{ $stIdx }}" class="accordion-collapse collapse {{ $stIdx === 0 ? 'show' : '' }}" data-bs-parent="#exportStepsAccordion">
+                                                <div class="accordion-body bg-light p-3">
+                                                    <input type="hidden" name="steps[{{ $stIdx }}][num]" value="{{ $st['num'] ?? sprintf('%02d', $stIdx + 1) }}">
+                                                    <div class="row g-3">
+                                                        <div class="col-md-7">
+                                                            <label class="form-label small fw-bold">Step Title</label>
+                                                            <input type="text" name="steps[{{ $stIdx }}][title]" value="{{ $st['title'] ?? '' }}" class="form-control form-control-sm">
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <label class="form-label small fw-bold">Indicative Timeline</label>
+                                                            <input type="text" name="steps[{{ $stIdx }}][time]" value="{{ $st['time'] ?? '' }}" class="form-control form-control-sm">
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <label class="form-label small fw-bold">Subtitle / Step Goal</label>
+                                                            <input type="text" name="steps[{{ $stIdx }}][sub]" value="{{ $st['sub'] ?? '' }}" class="form-control form-control-sm">
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <label class="form-label small fw-bold">Comprehensive Step Narrative</label>
+                                                            <textarea name="steps[{{ $stIdx }}][description]" class="form-control form-control-sm" rows="3">{{ $st['description'] ?? '' }}</textarea>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label small fw-bold text-primary"><i class="fas fa-check-square me-1"></i> Textile-Specific Checks</label>
+                                                            <textarea name="steps[{{ $stIdx }}][checks_text]" class="form-control form-control-sm" rows="4" placeholder="Enter one check per line...">{{ is_array($st['checks'] ?? null) ? implode("\n", $st['checks']) : ($st['checks'] ?? '') }}</textarea>
+                                                            <small class="text-muted" style="font-size:0.7rem;">Enter each requirement on a new line</small>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label small fw-bold text-success"><i class="fas fa-file-invoice me-1"></i> Prepare These Records</label>
+                                                            <textarea name="steps[{{ $stIdx }}][records_text]" class="form-control form-control-sm" rows="4" placeholder="Enter one document/record per line...">{{ is_array($st['records'] ?? null) ? implode("\n", $st['records']) : ($st['records'] ?? '') }}</textarea>
+                                                            <small class="text-muted" style="font-size:0.7rem;">Enter each document on a new line</small>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label small fw-bold text-warning"><i class="fas fa-bolt me-1"></i> Actions To Take</label>
+                                                            <textarea name="steps[{{ $stIdx }}][actions_text]" class="form-control form-control-sm" rows="4" placeholder="Enter one action item per line...">{{ is_array($st['actions'] ?? null) ? implode("\n", $st['actions']) : ($st['actions'] ?? '') }}</textarea>
+                                                            <small class="text-muted" style="font-size:0.7rem;">Enter each action on a new line</small>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <label class="form-label small fw-bold">Footnote / Timeline Remark</label>
+                                                            <input type="text" name="steps[{{ $stIdx }}][footnote]" value="{{ $st['footnote'] ?? '' }}" class="form-control form-control-sm">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Checklist & Official Portals -->
+                    <div class="col-12">
+                        <div class="card border bg-white shadow-sm mb-4">
+                            <div class="card-header bg-light py-2 fw-bold text-primary">
+                                <i class="fas fa-check-double me-1"></i> Exporter Readiness Checklist & Portals
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold small">Checklist Heading</label>
+                                        <input type="text" name="checklist_heading" value="{{ $section->content['checklist_heading'] ?? 'Export readiness checklist' }}" class="form-control">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold small">Checklist Subtitle</label>
+                                        <input type="text" name="checklist_sub" value="{{ $section->content['checklist_sub'] ?? 'This checklist is for your own tracking. Checking a box does not submit a form to a government department.' }}" class="form-control">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label fw-bold small">Checklist Items (One item per line — exactly 12 items synced with progress bar)</label>
+                                        @php
+                                            $checkItemsVal = is_array($section->content['checklist_items'] ?? null) ? implode("\n", $section->content['checklist_items']) : ($section->content['checklist_items'] ?? '');
+                                        @endphp
+                                        <textarea name="checklist_text" class="form-control" rows="6">{{ $checkItemsVal }}</textarea>
+                                        <small class="text-muted">Enter each checklist item on a new line</small>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label fw-bold small"><i class="fas fa-gavel text-primary me-1"></i> Guide Bottom Disclaimer</label>
+                                        <textarea name="disclaimer" class="form-control" rows="2">{{ $section->content['disclaimer'] ?? 'This educational guide is not legal, tax, customs-broker, laboratory or banking advice. TEFC is an information and facilitation initiative; it does not issue export licences, certify textiles or conduct product testing.' }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @elseif($section->type == 'resources_downloads')
+                    <!-- Resources Downloads Section -->
+                    <div class="col-12">
+                        <div class="alert alert-primary d-flex align-items-center mb-2" role="alert">
+                            <i class="fas fa-download fa-2x me-3 text-primary"></i>
+                            <div>
+                                <strong class="d-block text-dark">Downloads & Official Publications Repository</strong>
+                                <span class="small text-muted">Upload and manage downloadable trade advisories, circulars, notifications, and export guides directly. Files uploaded under <a href="{{ route('admin.resources') }}" class="alert-link">Media & Resources</a> are automatically organized into categories.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="p-4 border rounded-3 bg-white shadow-sm mb-3">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Section Heading</label>
+                                <input type="text" name="heading" value="{{ $section->content['heading'] ?? 'Downloads & Official Documents' }}" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Section Subtitle / Introduction</label>
+                                <textarea name="intro" class="form-control" rows="2">{{ $section->content['intro'] ?? 'Download official policy documents, export compliance guidelines, circulars, and standard operating procedures directly.' }}</textarea>
+                            </div>
+                        </div>
+                    </div>
                 @endif
 
                 <!-- Dynamic Content Fields (Auto-detecting type for non-hero or extra keys) -->
@@ -839,9 +1414,33 @@
                     $regModalHandledKeys = ['subtitle', 'btn_text', 'btn_url', 'secondary_text'];
                     $serviceDetailHandledKeys = ['subtitle', 'what_is', 'cta_text', 'cta_url'];
                     $announcementHandledKeys = ['badge', 'view_all_text', 'view_all_url'];
+                    $resHeroHandledKeys = ['subtitle', 'background_image'];
+                    $resMarketsHandledKeys = ['kicker', 'heading', 'intro', 'view_all_text', 'view_all_url', 'cards', 'bottom_note'];
+                    $resProcessHandledKeys = ['eyebrow', 'heading', 'intro', 'chips', 'chips_text', 'notice', 'sidebar_heading', 'steps_heading', 'steps_intro', 'steps', 'checklist_heading', 'checklist_sub', 'checklist_items', 'checklist_text', 'sources_heading', 'sources_sub', 'sources', 'disclaimer'];
+                    $resServicesHandledKeys = ['eyebrow', 'heading', 'intro', 'services', 'footer_note'];
+                    $resSchemesHandledKeys = ['heading', 'intro', 'schemes', 'disclaimer'];
+                    $resDownloadsHandledKeys = ['heading', 'intro'];
                 @endphp
                 @foreach($section->content as $key => $value)
                     @if($section->type == 'hero' && in_array($key, $heroHandledKeys))
+                        @continue
+                    @endif
+                    @if($section->type == 'resources_hero' && in_array($key, $resHeroHandledKeys))
+                        @continue
+                    @endif
+                    @if($section->type == 'resources_export_markets' && in_array($key, $resMarketsHandledKeys))
+                        @continue
+                    @endif
+                    @if($section->type == 'resources_export_process' && in_array($key, $resProcessHandledKeys))
+                        @continue
+                    @endif
+                    @if($section->type == 'resources_launched_services' && in_array($key, $resServicesHandledKeys))
+                        @continue
+                    @endif
+                    @if($section->type == 'resources_govt_schemes' && in_array($key, $resSchemesHandledKeys))
+                        @continue
+                    @endif
+                    @if($section->type == 'resources_downloads' && in_array($key, $resDownloadsHandledKeys))
                         @continue
                     @endif
                     @if($section->type == 'announcement' && in_array($key, $announcementHandledKeys))
@@ -1976,10 +2575,20 @@ function initClustersDataEditor() {
         document.getElementById('adm_f_state').value = c.state || '';
         document.getElementById('adm_f_spec').value = c.spec || '';
         document.getElementById('adm_f_era').value = c.era || '';
+        if (document.getElementById('adm_f_districts')) {
+            document.getElementById('adm_f_districts').value = c.districts || '';
+        }
         document.getElementById('adm_f_units').value = c.units || '';
         document.getElementById('adm_f_exportVal').value = c.exportVal || '';
         document.getElementById('adm_f_workforce').value = c.workforce || '';
         document.getElementById('adm_f_dests').value = c.dests || '';
+
+        // Card Image Preview
+        const codeKey = (activeClusterKey === 'kolhapur' ? 'ichalkaranji' : activeClusterKey.toLowerCase());
+        const defaultCard = 'images/clusters/' + codeKey + '_card.png';
+        const cardImg = c.image ? formatAssetUrl(c.image) : formatAssetUrl(defaultCard);
+        const previewImg = document.getElementById('adm_card_img_preview');
+        if (previewImg) previewImg.src = cardImg;
 
         // Overview
         document.getElementById('adm_f_desc').value = c.desc || '';
@@ -2005,6 +2614,13 @@ function initClustersDataEditor() {
 
     function syncJson() {
         jsonInput.value = JSON.stringify(clustersMap);
+    }
+
+    const formEl = jsonInput.closest('form');
+    if (formEl) {
+        formEl.addEventListener('submit', function() {
+            syncJson();
+        });
     }
 
     window.syncActiveClusterField = function(field, val) {
@@ -2053,6 +2669,49 @@ function initClustersDataEditor() {
             wrap.appendChild(card);
         });
     }
+
+    window.admUploadCardImg = async function(fileInput) {
+        if (!fileInput.files || !fileInput.files[0]) return;
+        const file = fileInput.files[0];
+        const formData = new FormData();
+        formData.append('image', file);
+        formData.append('_token', document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '{{ csrf_token() }}');
+
+        const btnTxt = document.getElementById('adm_card_img_btn_txt');
+        const origBtnText = btnTxt ? btnTxt.innerHTML : 'Upload Card Photo';
+        if (btnTxt) btnTxt.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Uploading...';
+
+        try {
+            fileInput.disabled = true;
+            const res = await fetch("{{ route('cms.upload-cluster-image') }}", {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '{{ csrf_token() }}',
+                    'Accept': 'application/json'
+                },
+                body: formData
+            });
+            const data = await res.json();
+            if (data.success) {
+                const c = clustersMap[activeClusterKey];
+                c.image = data.path || data.url;
+                const previewImg = document.getElementById('adm_card_img_preview');
+                if (previewImg) previewImg.src = formatAssetUrl(c.image);
+                syncJson();
+                if (btnTxt) btnTxt.innerHTML = '<i class="fas fa-check text-success me-1"></i> Uploaded!';
+                setTimeout(() => { if (btnTxt) btnTxt.innerHTML = 'Change Card Photo'; }, 2000);
+            } else {
+                alert(data.message || 'Image upload failed.');
+                if (btnTxt) btnTxt.innerHTML = origBtnText;
+            }
+        } catch(err) {
+            console.error(err);
+            alert('An error occurred while uploading image.');
+            if (btnTxt) btnTxt.innerHTML = origBtnText;
+        } finally {
+            fileInput.disabled = false;
+        }
+    };
 
     window.admUploadHighlightImg = async function(idx, fileInput) {
         if (!fileInput.files || !fileInput.files[0]) return;

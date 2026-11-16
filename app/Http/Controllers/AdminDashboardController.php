@@ -214,6 +214,91 @@ class AdminDashboardController extends Controller
             $content['people'] = $people;
         }
 
+        // Handle Resources: Export Markets
+        if ($section->type === 'resources_export_markets') {
+            if ($request->has('cards')) {
+                $content['cards'] = array_values($request->input('cards', []));
+            }
+        }
+
+        // Handle Resources: Launched Services
+        if ($section->type === 'resources_launched_services') {
+            if ($request->has('services')) {
+                $content['services'] = array_values($request->input('services', []));
+            }
+        }
+
+        // Handle Resources: Government Schemes
+        if ($section->type === 'resources_govt_schemes') {
+            if ($request->has('schemes')) {
+                $content['schemes'] = array_values($request->input('schemes', []));
+            }
+        }
+
+        // Handle Resources: Export Process
+        if ($section->type === 'resources_export_process') {
+            if ($request->has('chips_text')) {
+                $chips = array_filter(array_map('trim', explode(',', $request->input('chips_text', ''))));
+                $content['chips'] = array_values($chips);
+            }
+            if ($request->has('checklist_text')) {
+                $items = array_filter(array_map('trim', explode("\n", $request->input('checklist_text', ''))));
+                $content['checklist_items'] = array_values($items);
+            }
+            if ($request->has('steps')) {
+                $stepsInput = $request->input('steps', []);
+                $processedSteps = [];
+                foreach ($stepsInput as $idx => $step) {
+                    $item = [
+                        'num' => $step['num'] ?? sprintf('%02d', $idx + 1),
+                        'title' => $step['title'] ?? '',
+                        'sub' => $step['sub'] ?? '',
+                        'time' => $step['time'] ?? '',
+                        'description' => $step['description'] ?? '',
+                        'footnote' => $step['footnote'] ?? '',
+                    ];
+                    // Checks
+                    if (isset($step['checks_text'])) {
+                        $item['checks'] = array_values(array_filter(array_map('trim', explode("\n", $step['checks_text']))));
+                    } elseif (isset($step['checks']) && is_array($step['checks'])) {
+                        $item['checks'] = array_values($step['checks']);
+                    } else {
+                        $item['checks'] = $content['steps'][$idx]['checks'] ?? [];
+                    }
+                    // Records
+                    if (isset($step['records_text'])) {
+                        $item['records'] = array_values(array_filter(array_map('trim', explode("\n", $step['records_text']))));
+                    } elseif (isset($step['records']) && is_array($step['records'])) {
+                        $item['records'] = array_values($step['records']);
+                    } else {
+                        $item['records'] = $content['steps'][$idx]['records'] ?? [];
+                    }
+                    // Actions
+                    if (isset($step['actions_text'])) {
+                        $item['actions'] = array_values(array_filter(array_map('trim', explode("\n", $step['actions_text']))));
+                    } elseif (isset($step['actions']) && is_array($step['actions'])) {
+                        $item['actions'] = array_values($step['actions']);
+                    } else {
+                        $item['actions'] = $content['steps'][$idx]['actions'] ?? [];
+                    }
+                    // Links
+                    if (isset($step['links_json'])) {
+                        $decodedLinks = json_decode($step['links_json'], true);
+                        $item['links'] = is_array($decodedLinks) ? $decodedLinks : [];
+                    } elseif (isset($step['links']) && is_array($step['links'])) {
+                        $item['links'] = array_values($step['links']);
+                    } else {
+                        $item['links'] = $content['steps'][$idx]['links'] ?? [];
+                    }
+                    $processedSteps[] = $item;
+                }
+                $content['steps'] = $processedSteps;
+            }
+            if ($request->has('sources')) {
+                $content['sources'] = array_values($request->input('sources', []));
+            }
+        }
+
         // Handle ALL JSON array updates (prefixed with json_)
         foreach ($request->all() as $paramKey => $val) {
             if (str_starts_with($paramKey, 'json_')) {
@@ -233,7 +318,8 @@ class AdminDashboardController extends Controller
         $excludedKeys = [
             '_token', 'background_image', 'slider_images', 'existing_slider_images', 'gallery_images', 'title',
             'people_name', 'people_designation', 'people_existing_image', 'people_link', 'people_image',
-            'show_map_card_submitted', 'show_map_card'
+            'show_map_card_submitted', 'show_map_card',
+            'steps', 'cards', 'services', 'schemes', 'chips_text', 'checklist_text', 'sources',
         ];
 
         // Handle other text or array fields safely
