@@ -650,6 +650,9 @@
 
     // Step navigation
     function goToStep(step) {
+        // Fibre composition must total 100% before leaving Step 3 (covers Next button, step pills and Review)
+        if (step >= 4 && !validateFibres()) return;
+
         document.querySelectorAll('.wizard-step').forEach(el => el.classList.remove('active'));
         document.getElementById('step-' + step).classList.add('active');
 
@@ -976,25 +979,76 @@
         updateMaterialSummary();
     }
 
-    function calculateFibreTotal() {
+    // Sum of all fibre percentages across every fibre row (rounded to avoid float noise)
+    function getFibreTotal() {
         let total = 0;
         document.querySelectorAll('.fibre-percent-input').forEach(inp => {
-            const val = parseFloat(inp.value) || 0;
-            total += val;
+            total += parseFloat(inp.value) || 0;
         });
+        return Math.round(total * 100) / 100;
+    }
 
+    function calculateFibreTotal() {
+        const total = getFibreTotal();
         const counter = document.getElementById('fibrePercentCounter');
-        counter.innerText = `Total: ${total}%`;
+
         if (total === 100) {
+            counter.innerText = 'Total: 100% \u2713';
             counter.className = 'badge bg-success-subtle text-success border';
         } else if (total > 100) {
+            counter.innerText = `Total: ${total}% (${Math.round((total - 100) * 100) / 100}% over)`;
             counter.className = 'badge bg-danger-subtle text-danger border';
         } else {
+            counter.innerText = `Total: ${total}% (${Math.round((100 - total) * 100) / 100}% remaining)`;
             counter.className = 'badge bg-warning-subtle text-warning border';
         }
 
+        // clear the red highlight once the user starts fixing it
+        document.getElementById('section-fibre').classList.remove('border-danger');
         updateMaterialSummary();
     }
+
+    // Returns true only if the fibre rows are complete and add up to exactly 100%
+    function validateFibres() {
+        let error = '';
+        let filledRows = 0;
+
+        document.querySelectorAll('.fibre-row').forEach(row => {
+            const fibre = row.querySelector('.fibre-select').value;
+            const pct = parseFloat(row.querySelector('.fibre-percent-input').value);
+            const hasPct = !isNaN(pct) && pct > 0;
+
+            if (!fibre && !hasPct) return;               // untouched empty row, ignore
+            if (!fibre || !hasPct) {
+                error = error || 'Each fibre row needs both a fibre and a percentage.';
+                return;
+            }
+            filledRows++;
+        });
+
+        const total = getFibreTotal();
+        if (!error && filledRows === 0) {
+            error = 'Please add at least one fibre with its percentage.';
+        }
+        if (!error && total !== 100) {
+            error = `Fibre composition must add up to exactly 100%. Current total: ${total}%.`;
+        }
+
+        if (error) {
+            goToStep(3);
+            const sec = document.getElementById('section-fibre');
+            sec.classList.add('border-danger');
+            sec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            alert(error);
+            return false;
+        }
+        return true;
+    }
+
+    // Final safety net: block form submission (e.g. Enter key) unless fibres total 100%
+    document.getElementById('productForm').addEventListener('submit', function(e) {
+        if (!validateFibres()) e.preventDefault();
+    });
 
     function updateMaterialSummary() {
         const parts = [];

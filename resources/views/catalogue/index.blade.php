@@ -19,64 +19,195 @@
     .pagination .page-link { color: var(--primary); }
     .pagination .page-link:hover { background-color: var(--sky); color: var(--primary); }
     
+    .cat-page { --line: #efe3ea; }
+
+    /* ---------- Sidebar ---------- */
+    .cat-page .cat-sidebar {
+        position: sticky;
+        top: 16px;               /* increase if your header is sticky */
+        align-self: flex-start;
+        max-height: calc(100vh - 32px);
+        overflow-y: auto;
+        padding-right: 4px;
+    }
+    .cat-page .cat-sidebar::-webkit-scrollbar { width: 5px; }
+    .cat-page .cat-sidebar::-webkit-scrollbar-thumb { background: #dcc3d0; border-radius: 10px; }
+
+    .cat-page .cat-sidebar .card {
+        border: 1px solid var(--line) !important;
+        box-shadow: 0 2px 10px rgba(108, 19, 64, .05) !important;
+    }
+    .cat-page .cat-sidebar .card-header { background: #fff; border-bottom: 1px solid var(--line) !important; }
+    .cat-page .cat-sidebar h6 { font-size: .95rem; letter-spacing: .2px; }
+
+    /* Categories accordion */
+    .cat-accordion .accordion-button {
+        font-size: .9rem;
+        font-weight: 600;
+        color: #2b2b2b;
+        padding: .7rem 1rem;
+        background: #fff;
+    }
     .cat-accordion .accordion-button:not(.collapsed) {
         background-color: var(--sky);
         color: var(--primary);
-        font-weight: 700;
         box-shadow: none;
     }
-    .cat-accordion .accordion-button:focus {
-        box-shadow: none;
-        border-color: rgba(108, 19, 64, 0.2);
-    }
+    .cat-accordion .accordion-button:focus { box-shadow: none; }
+    .cat-accordion .accordion-button::after { transform: scale(.8); }
+    .cat-accordion .accordion-item { border-color: var(--line); }
+    .cat-accordion .accordion-body { background: #fdf8fb !important; padding: .5rem !important; }
+
     .cat-sub-item {
-        display: block;
-        padding: 6px 12px;
+        display: flex;
+        align-items: center;
+        padding: 7px 12px;
+        margin-bottom: 2px;
         color: #495057;
         text-decoration: none;
-        font-size: 0.85rem;
-        border-radius: 6px;
-        transition: all 0.15s;
+        font-size: .85rem;
+        border-radius: 8px;
+        transition: all .15s;
     }
-    .cat-sub-item:hover, .cat-sub-item.active {
-        background-color: var(--primary);
-        color: #fff;
-    }
+    .cat-sub-item:hover { background: var(--sky); color: var(--primary); }
+    .cat-sub-item.active { background: var(--primary); color: #fff; font-weight: 600; }
+    .cat-sub-item.active:hover { background: #4a0e2b; color: #fff; }
+
+    /* Fibre chips */
     .filter-chip {
         display: inline-flex;
         align-items: center;
-        padding: 4px 10px;
-        background: #f1f3f5;
-        border: 1px solid #dee2e6;
+        padding: 5px 13px;
+        background: #fff;
+        border: 1px solid #e2d6dd;
         border-radius: 50px;
-        font-size: 0.8rem;
+        font-size: .8rem;
         color: #495057;
-        margin-right: 6px;
-        margin-bottom: 6px;
+        margin: 0 6px 8px 0;
         text-decoration: none;
-        transition: all 0.15s;
+        transition: all .15s;
     }
-    .filter-chip:hover, .filter-chip.active {
-        background: var(--primary);
-        color: #fff;
-        border-color: var(--primary);
+    .filter-chip:hover { border-color: var(--primary); color: var(--primary); background: var(--sky); }
+    .filter-chip.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .filter-chip.active::before {
+        content: "\f00c";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        font-size: .6rem;
+        margin-right: 6px;
     }
-    .product-card {
-        transition: transform 0.2s, box-shadow 0.2s;
-        border: 1px solid #e9ecef;
+
+    /* Cluster list */
+    .cat-page .list-group-item-action { transition: all .15s; margin-bottom: 1px; }
+    .cat-page .list-group-item-action:hover { background: var(--sky) !important; color: var(--primary) !important; }
+
+    /* ---------- Active filters bar ---------- */
+    .cat-page > .card.bg-light {
+        background: #fff !important;
+        border: 1px solid var(--line) !important;
+        box-shadow: 0 2px 10px rgba(108, 19, 64, .05);
+    }
+    .cat-page > .card.bg-light .badge {
+        background: var(--sky) !important;
+        color: var(--primary) !important;
+        border: 1px solid #f0cfe0 !important;
+        border-radius: 50px;
+        padding: .45rem .5rem .45rem .8rem !important;
+        font-weight: 500;
+        font-size: .75rem;
+    }
+    .cat-page > .card.bg-light .badge a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px; height: 18px;
+        margin-left: 6px;
+        border-radius: 50%;
+        background: #fff;
+        color: var(--primary) !important;
+        font-size: .85rem;
+        line-height: 1;
+    }
+    .cat-page > .card.bg-light .badge a:hover { background: var(--primary); color: #fff !important; }
+
+    /* ---------- Search box ---------- */
+    .cat-page .input-group .form-control { border-radius: 50px 0 0 50px; padding-left: 18px; border-color: #e2d6dd; }
+    .cat-page .input-group .btn { border-radius: 0 50px 50px 0; padding: 0 18px; }
+    .cat-page .input-group .form-control:focus { box-shadow: none; border-color: var(--primary); }
+
+    /* ---------- Results bar ---------- */
+    .cat-results-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #fff;
+        border: 1px solid var(--line);
         border-radius: 12px;
+        padding: 10px 16px;
+        margin-bottom: 1.25rem;
+        font-size: .88rem;
+        color: #6c757d;
+    }
+
+    /* ---------- Product cards ---------- */
+    .product-card {
+        border: 1px solid var(--line);
+        border-radius: 16px;
         overflow: hidden;
+        background: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, .04) !important;
+        transition: transform .25s, box-shadow .25s, border-color .25s;
     }
     .product-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.08) !important;
+        transform: translateY(-4px);
+        border-color: #e3c3d4;
+        box-shadow: 0 14px 28px rgba(108, 19, 64, .13) !important;
+    }
+    .product-card .position-relative img { transition: transform .5s; }
+    .product-card:hover .position-relative img { transform: scale(1.06); }
+    .product-card h6 { font-size: .98rem; }
+    .product-card h6 a:hover { color: var(--primary) !important; }
+    .product-card .badge.bg-light {
+        background: var(--sky) !important;
+        color: var(--primary) !important;
+        border-color: transparent !important;
+        font-weight: 600;
+    }
+    .product-card .border-top { border-top-color: var(--line) !important; }
+    .product-card .btn-outline-primary { border-radius: 50px; padding: 4px 12px !important; }
+
+    /* Empty state */
+    .cat-page .card.bg-light.p-5 { background: #fdf8fb !important; border: 1px dashed #e3c3d4 !important; }
+
+    /* Mobile / tablet: no sticky sidebar */
+    @media (max-width: 991.98px) {
+        .cat-page .cat-sidebar { position: static; max-height: none; overflow: visible; }
     }
 </style>
 @endsection
 
 @section('content')
-<div class="container py-5">
+<div class="container py-5 cat-page">
     <!-- Top Banner & Header -->
+    @php
+        // Multi-select helpers: filters live in the URL as arrays (?fibre[]=Cotton&fibre[]=Nylon)
+        $vals = fn (string $key) => array_values(array_filter(
+            \Illuminate\Support\Arr::wrap(request()->query($key)),
+            fn ($v) => $v !== null && $v !== ''
+        ));
+        $isOn = fn (string $key, $value) => in_array((string) $value, array_map('strval', $vals($key)), true);
+        // URL that adds $value to the filter if absent, removes it if present
+        $toggle = function (string $key, $value) use ($vals) {
+            $q = request()->query();
+            unset($q['page']);
+            $cur = array_map('strval', $vals($key));
+            $value = (string) $value;
+            $cur = in_array($value, $cur, true) ? array_values(array_diff($cur, [$value])) : array_merge($cur, [$value]);
+            if ($cur) { $q[$key] = $cur; } else { unset($q[$key]); }
+            return route('catalogue.index', $q);
+        };
+    @endphp
+
     <div class="row mb-4 align-items-center">
         <div class="col-md-6">
             <h2 class="fw-bold mb-1" style="color: var(--primary);">Textile Product Catalogue</h2>
@@ -85,10 +216,11 @@
         <div class="col-md-6 mt-3 mt-md-0">
             <div class="d-flex justify-content-md-end gap-2">
                 <form action="{{ route('catalogue.index') }}" method="GET" class="d-flex flex-grow-1" style="max-width: 380px;">
-                    @if(request('category_id')) <input type="hidden" name="category_id" value="{{ request('category_id') }}"> @endif
-                    @if(request('subcategory_id')) <input type="hidden" name="subcategory_id" value="{{ request('subcategory_id') }}"> @endif
-                    @if(request('cluster')) <input type="hidden" name="cluster" value="{{ request('cluster') }}"> @endif
-                    @if(request('fibre')) <input type="hidden" name="fibre" value="{{ request('fibre') }}"> @endif
+                    @foreach(['category_id', 'subcategory_id', 'fibre', 'fabric', 'process', 'cluster', 'category'] as $hk)
+                        @foreach($vals($hk) as $hv)
+                            <input type="hidden" name="{{ $hk }}[]" value="{{ $hv }}">
+                        @endforeach
+                    @endforeach
                     
                     <div class="input-group">
                         <input type="text" name="q" class="form-control" placeholder="Search product, fibre, HS code..." value="{{ request('q') }}">
@@ -104,44 +236,44 @@
 
     <!-- Active Filters Row -->
     @if(request()->hasAny(['category_id', 'subcategory_id', 'fibre', 'fabric', 'process', 'cluster', 'category', 'q']))
+        @php $allSubs = $textileCategories->pluck('subcategories')->flatten(); @endphp
         <div class="card bg-light border-0 rounded-4 p-3 mb-4">
             <div class="d-flex flex-wrap align-items-center gap-2">
                 <span class="small fw-bold text-muted me-2"><i class="fas fa-filter me-1"></i> Active Filters:</span>
-                @if(request('category_id'))
-                    @php $actCat = $textileCategories->firstWhere('id', request('category_id')); @endphp
+                @foreach($vals('category_id') as $cid)
                     <span class="badge bg-white text-dark border px-2 py-1">
-                        Category: {{ $actCat->name ?? request('category_id') }}
-                        <a href="{{ route('catalogue.index', request()->except(['category_id', 'subcategory_id'])) }}" class="text-danger ms-1 text-decoration-none">&times;</a>
+                        Category: {{ optional($textileCategories->firstWhere('id', $cid))->name ?? $cid }}
+                        <a href="{{ $toggle('category_id', $cid) }}" class="text-danger ms-1 text-decoration-none">&times;</a>
                     </span>
-                @endif
-                @if(request('subcategory_id'))
+                @endforeach
+                @foreach($vals('subcategory_id') as $sid)
                     <span class="badge bg-white text-dark border px-2 py-1">
-                        Subcategory Filtered
-                        <a href="{{ route('catalogue.index', request()->except('subcategory_id')) }}" class="text-danger ms-1 text-decoration-none">&times;</a>
+                        Subcategory: {{ optional($allSubs->firstWhere('id', $sid))->name ?? $sid }}
+                        <a href="{{ $toggle('subcategory_id', $sid) }}" class="text-danger ms-1 text-decoration-none">&times;</a>
                     </span>
-                @endif
-                @if(request('category'))
+                @endforeach
+                @foreach($vals('category') as $c)
                     <span class="badge bg-white text-dark border px-2 py-1">
-                        {{ request('category') }}
-                        <a href="{{ route('catalogue.index', request()->except('category')) }}" class="text-danger ms-1 text-decoration-none">&times;</a>
+                        {{ $c }}
+                        <a href="{{ $toggle('category', $c) }}" class="text-danger ms-1 text-decoration-none">&times;</a>
                     </span>
-                @endif
-                @if(request('fibre'))
+                @endforeach
+                @foreach($vals('fibre') as $f)
                     <span class="badge bg-white text-dark border px-2 py-1">
-                        Fibre: {{ request('fibre') }}
-                        <a href="{{ route('catalogue.index', request()->except('fibre')) }}" class="text-danger ms-1 text-decoration-none">&times;</a>
+                        Fibre: {{ $f }}
+                        <a href="{{ $toggle('fibre', $f) }}" class="text-danger ms-1 text-decoration-none">&times;</a>
                     </span>
-                @endif
-                @if(request('cluster'))
+                @endforeach
+                @foreach($vals('cluster') as $c)
                     <span class="badge bg-white text-dark border px-2 py-1">
-                        Cluster: {{ request('cluster') }}
-                        <a href="{{ route('catalogue.index', request()->except('cluster')) }}" class="text-danger ms-1 text-decoration-none">&times;</a>
+                        Cluster: {{ $c }}
+                        <a href="{{ $toggle('cluster', $c) }}" class="text-danger ms-1 text-decoration-none">&times;</a>
                     </span>
-                @endif
+                @endforeach
                 @if(request('q'))
                     <span class="badge bg-white text-dark border px-2 py-1">
                         "{{ request('q') }}"
-                        <a href="{{ route('catalogue.index', request()->except('q')) }}" class="text-danger ms-1 text-decoration-none">&times;</a>
+                        <a href="{{ route('catalogue.index', request()->except(['q', 'page'])) }}" class="text-danger ms-1 text-decoration-none">&times;</a>
                     </span>
                 @endif
                 <a href="{{ route('catalogue.index') }}" class="btn btn-link btn-sm text-danger p-0 ms-auto text-decoration-none">Clear All Filters</a>
@@ -151,34 +283,39 @@
 
     <div class="row">
         <!-- Sidebar filters -->
-        <div class="col-lg-3 col-md-4 mb-4">
+        <div class="col-lg-3 col-md-4 mb-4 cat-sidebar">
             <!-- TEXTILE HIERARCHICAL CLASSIFICATION -->
             <div class="card shadow-sm border-0 rounded-4 mb-4 overflow-hidden">
                 <div class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center">
                     <h6 class="fw-bold mb-0 text-dark"><i class="fas fa-sitemap me-2 text-primary"></i> Textile Categories</h6>
-                    <a href="{{ route('catalogue.index', request()->except(['category_id', 'subcategory_id', 'category'])) }}" class="small text-muted text-decoration-none">All</a>
+                    <a href="{{ route('catalogue.index', request()->except(['category_id', 'subcategory_id', 'category', 'page'])) }}" class="small text-muted text-decoration-none">All</a>
                 </div>
                 <div class="accordion accordion-flush cat-accordion" id="categoryAccordion">
                     @foreach($textileCategories as $idx => $tCat)
-                        @php $isCatActive = request('category_id') == $tCat->id; @endphp
+                        @php
+                            $isCatSelected = $isOn('category_id', $tCat->id);
+                            $hasSubSelected = $tCat->subcategories->contains(fn($s) => $isOn('subcategory_id', $s->id));
+                            $isCatOpen = $isCatSelected || $hasSubSelected;
+                        @endphp
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="heading{{ $tCat->id }}">
-                                <button class="accordion-button {{ $isCatActive ? '' : 'collapsed' }} py-2 px-3 small" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $tCat->id }}">
-                                    <span class="badge bg-secondary-subtle text-secondary me-2" style="font-size:0.65rem;">{{ $tCat->code }}</span>
+                                <button class="accordion-button {{ $isCatOpen ? '' : 'collapsed' }} py-2 px-3 small" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $tCat->id }}">
+                                    <!-- <span class="badge bg-secondary-subtle text-secondary me-2" style="font-size:0.65rem;">{{ $tCat->code }}</span> -->
                                     {{ $tCat->name }}
                                 </button>
                             </h2>
-                            <div id="collapse{{ $tCat->id }}" class="accordion-collapse collapse {{ $isCatActive ? 'show' : '' }}" data-bs-parent="#categoryAccordion">
+                            {{-- no data-bs-parent: several categories can stay open together --}}
+                            <div id="collapse{{ $tCat->id }}" class="accordion-collapse collapse {{ $isCatOpen ? 'show' : '' }}">
                                 <div class="accordion-body p-2 bg-light">
-                                    <a href="{{ route('catalogue.index', array_merge(request()->query(), ['category_id' => $tCat->id, 'subcategory_id' => null])) }}" 
-                                       class="cat-sub-item fw-bold {{ $isCatActive && !request('subcategory_id') ? 'active' : '' }}">
-                                        All in {{ $tCat->name }}
+                                    <a href="{{ $toggle('category_id', $tCat->id) }}" 
+                                       class="cat-sub-item fw-bold {{ $isCatSelected ? 'active' : '' }}">
+                                        @if($isCatSelected) <i class="fas fa-check me-1"></i> @endif All in {{ $tCat->name }}
                                     </a>
                                     @foreach($tCat->subcategories as $sub)
-                                        @php $isSubActive = request('subcategory_id') == $sub->id; @endphp
-                                        <a href="{{ route('catalogue.index', array_merge(request()->query(), ['category_id' => $tCat->id, 'subcategory_id' => $sub->id])) }}" 
+                                        @php $isSubActive = $isOn('subcategory_id', $sub->id); @endphp
+                                        <a href="{{ $toggle('subcategory_id', $sub->id) }}" 
                                            class="cat-sub-item {{ $isSubActive ? 'active' : '' }}">
-                                            {{ $sub->name }}
+                                            @if($isSubActive) <i class="fas fa-check me-1"></i> @endif{{ $sub->name }}
                                         </a>
                                     @endforeach
                                 </div>
@@ -197,8 +334,8 @@
                             $popularFibres = ['Cotton', 'Polyester', 'Silk', 'Wool', 'Linen', 'Viscose', 'Acrylic', 'Nylon', 'Jute', 'Spandex']; 
                         @endphp
                         @foreach($popularFibres as $f)
-                            <a href="{{ route('catalogue.index', array_merge(request()->query(), ['fibre' => request('fibre') == $f ? null : $f])) }}" 
-                               class="filter-chip {{ request('fibre') == $f ? 'active' : '' }}">
+                            <a href="{{ $toggle('fibre', $f) }}" 
+                               class="filter-chip {{ $isOn('fibre', $f) ? 'active' : '' }}">
                                 {{ $f }}
                             </a>
                         @endforeach
@@ -212,14 +349,14 @@
                     <h6 class="fw-bold mb-3 text-dark"><i class="fas fa-map-marker-alt me-2 text-danger"></i> Manufacturing Clusters</h6>
                     @php $clusters = ['Tirupur', 'Surat', 'Panipat', 'Ludhiana', 'Varanasi', 'Bhilwara', 'Karur', 'Ichalkaranji', 'Jaipur', 'Kanchipuram']; @endphp
                     <div class="list-group list-group-flush small">
-                        <a href="{{ route('catalogue.index', request()->except('cluster')) }}" 
-                           class="list-group-item list-group-item-action border-0 py-1 px-2 rounded {{ !request('cluster') ? 'fw-bold text-primary' : 'text-muted' }}">
+                        <a href="{{ route('catalogue.index', request()->except(['cluster', 'page'])) }}" 
+                           class="list-group-item list-group-item-action border-0 py-1 px-2 rounded {{ empty($vals('cluster')) ? 'fw-bold text-primary' : 'text-muted' }}">
                             All Clusters
                         </a>
                         @foreach($clusters as $c)
-                            <a href="{{ route('catalogue.index', array_merge(request()->query(), ['cluster' => request('cluster') == $c ? null : $c])) }}" 
-                               class="list-group-item list-group-item-action border-0 py-1 px-2 rounded {{ request('cluster') == $c ? 'fw-bold text-primary bg-light' : 'text-muted' }}">
-                                {{ $c }}
+                            <a href="{{ $toggle('cluster', $c) }}" 
+                               class="list-group-item list-group-item-action border-0 py-1 px-2 rounded {{ $isOn('cluster', $c) ? 'fw-bold text-primary bg-light' : 'text-muted' }}">
+                                @if($isOn('cluster', $c)) <i class="fas fa-check me-1"></i> @endif{{ $c }}
                             </a>
                         @endforeach
                     </div>
@@ -229,8 +366,11 @@
 
         <!-- Product Grid -->
         <div class="col-lg-9 col-md-8">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <span class="text-muted small">Showing <strong>{{ $products->total() }}</strong> verified products</span>
+            <div class="cat-results-bar">
+                <span><i class="fas fa-box-open me-2 text-primary"></i>Showing <strong>{{ $products->total() }}</strong> verified product{{ $products->total() == 1 ? '' : 's' }}</span>
+                @if($products->total())
+                    <span class="small">Page {{ $products->currentPage() }} of {{ $products->lastPage() }}</span>
+                @endif
             </div>
 
             <div class="row g-4">

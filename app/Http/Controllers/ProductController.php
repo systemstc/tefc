@@ -38,51 +38,79 @@ class ProductController extends Controller
             ->where('status', 'Approved')
             ->where('is_published', true);
 
-        // 1. Hierarchical Textile Category Filters
-        if ($request->filled('category_id')) {
-            $query->where('textile_category_id', $request->category_id);
-        }
-        if ($request->filled('subcategory_id')) {
-            $query->where('textile_subcategory_id', $request->subcategory_id);
+        // Helper: accept ?x=a (legacy single) or ?x[]=a&x[]=b (multi-select)
+        $multi = function (string $key) use ($request) {
+            return array_values(array_filter(
+                \Illuminate\Support\Arr::wrap($request->input($key)),
+                fn ($v) => $v !== null && $v !== ''
+            ));
+        };
+
+        // 1. Hierarchical Textile Category Filters (multi-select)
+        //    A product matches if its category is selected OR its subcategory is selected.
+        $categoryIds    = $multi('category_id');
+        $subcategoryIds = $multi('subcategory_id');
+        if ($categoryIds || $subcategoryIds) {
+            $query->where(function ($q) use ($categoryIds, $subcategoryIds) {
+                if ($categoryIds) {
+                    $q->whereIn('textile_category_id', $categoryIds);
+                }
+                if ($subcategoryIds) {
+                    $q->orWhereIn('textile_subcategory_id', $subcategoryIds);
+                }
+            });
         }
         if ($request->filled('textile_product_id')) {
             $query->where('textile_product_id', $request->textile_product_id);
         }
 
-        // 2. Technical Attribute Filters
-        if ($request->filled('fibre')) {
-            $fibre = $request->fibre;
-            $query->whereHas('fibres', function($q) use ($fibre) {
-                $q->where('attribute_name', 'like', "%{$fibre}%");
+        // 2. Fibre / Fabric / Process (multi, OR inside the group)
+        //    Fibre also matches the free-text material_composition, so products
+        //    that only have composition text (no attribute rows) are not lost.
+        if ($fibres = $multi('fibre')) {
+            $query->where(function ($q) use ($fibres) {
+                foreach ($fibres as $f) {
+                    $q->orWhereHas('attributeValues', fn ($a) => $a->where('attribute_type', 'fibre')->where('attribute_name', 'like', "%{$f}%"))
+                      ->orWhere('material_composition', 'like', "%{$f}%");
+                }
             });
         }
-        if ($request->filled('fabric')) {
-            $fabric = $request->fabric;
-            $query->whereHas('fabrics', function($q) use ($fabric) {
-                $q->where('attribute_name', 'like', "%{$fabric}%");
+        if ($fabrics = $multi('fabric')) {
+            $query->where(function ($q) use ($fabrics) {
+                foreach ($fabrics as $f) {
+                    $q->orWhereHas('attributeValues', fn ($a) => $a->where('attribute_type', 'fabric')->where('attribute_name', 'like', "%{$f}%"));
+                }
             });
         }
-        if ($request->filled('process')) {
-            $process = $request->process;
-            $query->whereHas('processes', function($q) use ($process) {
-                $q->where('attribute_name', 'like', "%{$process}%");
-            });
-        }
-
-        // 3. Legacy Category filter (with taxonomy fallback)
-        if ($request->filled('category')) {
-            $cat = $request->category;
-            $query->where(function($q) use ($cat) {
-                $q->whereJsonContains('category', $cat)
-                  ->orWhereHas('textileCategory', fn($tc) => $tc->where('name', $cat))
-                  ->orWhereHas('textileSubcategory', fn($ts) => $ts->where('name', $cat))
-                  ->orWhereHas('textileProduct', fn($tp) => $tp->where('name', $cat));
+        if ($processes = $multi('process')) {
+            $query->where(function ($q) use ($processes) {
+                foreach ($processes as $p) {
+                    $q->orWhereHas('attributeValues', fn ($a) => $a->where('attribute_type', 'process')->where('attribute_name', 'like', "%{$p}%"));
+                }
             });
         }
 
-        // 4. Cluster filter
-        if ($request->filled('cluster')) {
-            $query->where('cluster', $request->cluster);
+        // 3. Legacy Category filter (with taxonomy fallback) - multi-select
+        if ($cats = $multi('category')) {
+            $query->where(function ($q) use ($cats) {
+                foreach ($cats as $cat) {
+                    $q->orWhereJsonContains('category', $cat)
+                      ->orWhereHas('textileCategory', fn($tc) => $tc->where('name', $cat))
+                      ->orWhereHas('textileSubcategory', fn($ts) => $ts->where('name', $cat))
+                      ->orWhereHas('textileProduct', fn($tp) => $tp->where('name', $cat));
+                }
+            });
+        }
+
+        // 4. Cluster filter (multi-select)
+        //    LIKE, because stored values can be longer than the sidebar label
+        //    (e.g. "Tirupur Knitwear Cluster" vs "Tirupur").
+        if ($clusters = $multi('cluster')) {
+            $query->where(function ($q) use ($clusters) {
+                foreach ($clusters as $c) {
+                    $q->orWhere('cluster', 'like', "%{$c}%");
+                }
+            });
         }
 
         // 5. Keyword search across name, material, specs, HS code, tags & taxonomy
@@ -297,6 +325,8 @@ class ProductController extends Controller
             'videos.*' => 'mimes:mp4|max:10240',
         ]);
 
+        $this->validateFibreTotal($request);
+
         $user = auth()->user();
         $companyUser = $user->getCompanyUser();
 
@@ -396,6 +426,8 @@ class ProductController extends Controller
             'brochures.*' => 'mimes:pdf,docx,xlsx|max:15000',
             'videos.*' => 'mimes:mp4|max:10240',
         ]);
+
+        $this->validateFibreTotal($request);
 
         $data = $request->only([
             'name', 'cluster', 'contact_information', 'hs_code', 'material_composition', 
@@ -529,6 +561,34 @@ class ProductController extends Controller
         $media->update(['is_primary' => true]);
 
         return back()->with('success', 'Primary product image updated.');
+    }
+
+    /**
+     * Fibre composition across all fibre rows must total exactly 100%.
+     * Uses the same row filter as syncAttributeValues() so blank rows are ignored.
+     */
+    protected function validateFibreTotal(Request $request): void
+    {
+        $total = 0.0;
+        $rows = 0;
+
+        foreach ((array) $request->input('fibres', []) as $f) {
+            if (empty($f['name']) && empty($f['master_id'])) continue;
+            $rows++;
+            $total += (float) ($f['percentage'] ?? 0);
+        }
+
+        if ($rows === 0) {
+            throw \Illuminate\Validation\ValidationException::withMessages([
+                'fibres' => 'Please add at least one fibre with its percentage.',
+            ]);
+        }
+
+        if (abs($total - 100) > 0.001) {
+            throw \Illuminate\Validation\ValidationException::withMessages([
+                'fibres' => 'Fibre composition must add up to exactly 100% (current total: ' . round($total, 2) . '%).',
+            ]);
+        }
     }
 
     protected function syncAttributeValues(Request $request, Product $product): void
