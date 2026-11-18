@@ -614,9 +614,13 @@
                 <strong style="color: var(--primary-dark); display: block; margin-bottom: 0.3rem; font-size: 0.95rem;">
                   ⚖️ Authorized Signatory Undertaking <span style="color:#c62828">*</span>
                 </strong>
-                <span id="authorityDeclarationText">
+               <!--  <span id="authorityDeclarationText">
                   I, <strong id="declarantName" style="color: #0f172a;">[Authorized Signatory]</strong>, serving as <strong id="declarantDesignation" style="color: #0f172a;">[Higher Authority]</strong>, affirm that I am authorized on behalf of <strong id="declarantCompany" style="color: #0f172a;">[Enterprise]</strong> (GSTIN: <strong id="declarantGstin" style="color: #0f172a;">[GSTIN]</strong>) to register this account, create Data Entry Operator logins for staff, and facilitate textile export activities on the TEFC Portal. All statutory details submitted are true and authentic.
-                </span>
+                </span> -->
+
+<span id="authorityDeclarationText">
+I, <strong id="declarantName" style="color: #0f172a;">[Authorized Signatory]</strong>, <strong id="declarantDesignation" style="color: #0f172a;">[Higher Authority]</strong> of <strong id="declarantCompany" style="color: #0f172a;">[Enterprise]</strong> (GSTIN: <strong id="declarantGstin" style="color: #0f172a;">[GSTIN]</strong>), confirm that I am authorized to register this account, create Data Entry Operator logins and conduct export activities on the TEFC Portal on the enterprise's behalf, and that all information submitted is true and authentic.
+</span>
               </label>
             </div>
           </div>
